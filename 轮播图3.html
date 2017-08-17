@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+			#auto{
+				width: 520px;
+				height: 333px;
+				background-color:dodgerblue;
+				margin: 200px auto;
+				position: relative;
+				padding:10px 0;
+				overflow: hidden;
+			}
+			#info{
+				list-style: none;
+				width: 2600px;
+				position: absolute;
+			}
+			#info li{
+				float: left;
+				margin: 0 10px;
+				
+			}
+			#nav{
+				position: absolute;
+				bottom: 20px;
+			
+			}
+			#nav a{
+				float: left;
+				width: 15px;
+				height: 15px;
+				background-color: brown;
+				opacity: 0.5;
+				filter:alpha(opacity=50);
+				margin: 0 5px;
+			}
+			#nav a:hover{
+				background-color: green;
+			}
+		</style>
+		<script type="text/javascript"src="js/tools.js" ></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				var auto=document.getElementById("auto");
+				var info=document.getElementById("info");
+				var imgs=document.getElementsByTagName("img");
+				var nav=document.getElementById("nav");
+				var aArr=document.getElementsByTagName("a");
+				 info.style.width=520*imgs.length +"px";
+				//创建一个索引保存图片luj
+				var num=0;
+				var timer=null;
+				//计算nav的left值
+				nav.style.left=(auto.clientWidth-nav.offsetWidth)/2+"px";
+                  checkA();
+                  autoChange();
+				for(var i=0 ;i<aArr.length;i++){
+					//将索引作为属性保存到每个对象当中
+					aArr[i].index=i;
+					aArr[i].onclick=function(){
+						clearInterval(timer);
+						//修改图片索引
+						num=this.index;
+						checkA();
+						move(info,"left",-520*num,20,function(){
+							autoChange();
+						
+						});
+					}
+				}
+				function checkA(){
+					if(num>=imgs.length-1){
+						num=0;
+						info.style.left=0;
+					}
+					for(var i=0;i<aArr.length;i++){
+					aArr[i].style.backgroundColor="";
+					}
+					//设置选中a后是颜色
+					aArr[num].style.backgroundColor="darkgreen";
+				}
+				function autoChange(){
+				   //开启定时器
+				  timer= setInterval(function(){
+				    	num++;
+				   	if(num>=imgs.length){
+				   		num=0;
+				   	}
+				   	move(info,"left",-520*num,10,function(){
+				   		  checkA();
+				   	});
+				   },2000)
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<div id="auto">
+			<ul id="info">
+				<li><img src="img/1.jpg"/></li>
+				<li><img src="img/2.jpg"/></li>
+				<li><img src="img/3.jpg"/></li>
+				<li><img src="img/4.jpg"/></li>
+				<li><img src="img/5.jpg"/></li>
+				<li><img src="img/1.jpg"/></li>
+			</ul>
+			<div id="nav">
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+			</div>
+		</div>
+	</body>
+</html>

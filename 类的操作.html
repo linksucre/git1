@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			.box1{
+				width: 100px;
+				height: 100px;
+				background-color: palevioletred;
+			}
+			.box2{
+				width: 300px;
+				height: 300px;
+				background-color: forestgreen;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var box1=document.getElementsByTagName("div")[0];
+				var btn=document.getElementById("btn");
+				btn.onclick=function(){
+				//addClass(box1,"box2");
+				//hasClass(box1,"box1");
+				//removeClass(box1,"box1");
+				toggleClass(box1,"box2");
+			  };
+			};
+			function addClass(obj,cn){
+				
+				if(!hasClass(obj,cn)){
+					obj.className += " "+cn;
+				}
+			}
+			function hasClass(obj, cn){
+				//创建一个正则表达式
+				var reg=new RegExp("\\b"+cn+"\\b");
+				return reg.test(obj.className);
+			}
+			function removeClass(obj,cn){
+				var reg=new RegExp("\\b"+cn+"\\b");
+				//将obj中的className中的指定内容替换为空串
+				obj.className=obj.className.replace(reg,"");
+			}
+			//切换一个元素中指定class属性值
+			//若有class，则移除，如果没有则添加
+			function toggleClass(obj,cn){
+				//判断obj中是否含有cn
+				if(hasClass(obj,cn)){
+					removeClass(obj,cn);
+				}else{
+					addClass(obj,cn);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button id="btn">改变div的样式</button>
+		<br /><br />
+		<div class="box1 asc hello nihao"></div>
+		
+		
+	</body>
+</html>
