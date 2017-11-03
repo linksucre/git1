@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+	</head>
+	<style type="text/css">
+		#num {
+			color: #999;
+		}
+		
+		.temperature {
+			width: 85px;
+			height: 160px;
+			background: url(../images/wenduji.png) no-repeat;
+			background-size: 100% 100%;
+			position: relative;
+			border: 1px solid #FFF;
+		}
+		
+		#mometer {
+			position: relative;
+			height: 52px;
+			width: 15px;
+			/*background-color: #925e5e;*/
+			margin: 12px 0 0 40px;
+		}
+		
+		.span_box {
+			position: absolute;
+			display: block;
+			bottom: 0px;
+			width: 40px;
+		}
+		
+		#Hgheader {
+			height: 15px;
+			line-height: 15px;
+			color: #FF0000;
+			font-size: 14px;
+			font-family: Arial, Helvetica, sans-serif;
+			border-bottom: #f00 1px solid;
+			left: -40px;
+			position: relative;
+		}
+		
+		#Hg {
+			height: 5px;
+			width: 13px;
+			background: url(../images/line.png) repeat-y;
+		}
+		
+		.low {
+			width: 15px;
+			height: 0px;
+			display: inline-block;
+			background: #d4e3eb;
+			position: absolute;
+			top: 51px;
+			left: 0px;
+		}
+		
+		#hot {
+			height: 100px;
+			width: 15px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
+	<body>
+		<div class="temperature">
+			<div id="mometer">
+				<div id="hot"></div>
+				<span class="span_box">
+				    <div id="Hg"></div>
+				</span>
+				<span class="low"></span>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+			$("#hot").fadeTo(0, 0); //初始透明度为0；
+			b();
+			var inputnum = 25; 
+			console.log(inputnum)
+			if(inputnum > 0) {
+					if(inputnum >= 50) {
+						inputnum = 50;
+						$('#num').val(50)
+					} else if(inputnum <= 0) {
+						inputnum = 0;
+						$('#num').val(0)
+					}
+					var Columnhe = inputnum / 100;
+					$("#Hg").animate({
+						height: inputnum
+					}, 'show');
+					$("#hot").fadeTo('slow', Columnhe);
+			} else {
+				inputnum = ""+ -inputnum +"px";
+					$('.low').css({
+						'height': "" + inputnum + "",
+						'transition': '1s'
+					})
+			}
+	</script>
+
+</html>
