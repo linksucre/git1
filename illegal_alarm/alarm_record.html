@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../css/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/demo.css">
+	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<link rel="stylesheet" type="text/css" href="../css/other.css">
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/fenye.js"></script>
+	<script type="text/javascript" src="../js/index.js"></script>
+	<script type="text/javascript" src="../js/loading.js"></script>
+	<style type="text/css">
+		body,html{
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+	</style>
+	<body class="easyui-layout">
+        <div region="center" style="overflow: hidden;">  
+		    <table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box" style="margin-top: 10px;">
+					<tr>
+						<td>单位：</td>
+						<td><input id="cc" class="easyui-combotree width" data-options="url:'../json/tree_data1.json',method:'get',required:false" style="width:200px;"></td>
+						<td>车牌号：</td>
+						<td><input type="text" name="number" id="number" /></td>
+						<td>报警类型：</td>
+						<td colspan="2">
+							<select class="easyui-combobox width" name="language">
+								<option value="ar">全部</option>
+								<option value="bg">禁止停车区报警（平台）</option>
+								<option value="ca">平台超速报警（平台）</option>
+								<option value="zh-cht">限时行车报警（平台）</option>
+								<option value="cs">三交一封报警（平台）</option>
+								<option value="da">丢失网络信号报警（平台）</option>
+								<option value="nl">未按时离开报警（平台）</option>
+								<option value="en" selected="selected">未按时到达报警（平台）</option>
+								<option value="et">停车超时报警（平台）</option>
+							</select>
+						</td>
+						<td>报警级别：</td>
+						<td>
+							<select class="easyui-combobox" name="language">
+								<option value="ar">全部</option>
+								<option value="bg">1</option>
+								<option value="ca">2</option>
+								<option value="zh-cht">3</option>
+								<option value="cs">4</option>
+								<option value="da">5</option>
+								<option value="nl">6</option>
+								<option value="en" selected="selected">7</option>
+								<option value="et">8</option>
+								<option value="et">9</option>
+								<option value="et">10</option>
+							</select>
+						</td>
+						<td>报警编号：</td>
+						<td><input type="text" /></td>
+						<td>处理人：</td>
+						<td><input type="text" disabled="disabled" class="person"/></td>
+					</tr>
+					<tr>
+						<td>处理状态：</td>
+						<td>
+							<select class="easyui-combobox width" name="language">
+								<option value="ar">全部</option>
+								<option value="bg">已处理</option>
+								<option value="ca">未处理</option>
+							</select>
+						</td>
+						<td>自编号：</td>
+						<td><input type="text" /></td>
+						<td>报警时间：</td>
+						<td>
+							<input placeholder="请填入用车时间" class="easyui-datetimebox" editable="false" style="width: 140px; display: none;" comboname="useDate">
+						</td>
+						<td>
+							<input placeholder="请填入用车时间" class="easyui-datetimebox" editable="false" style="width: 140px; display: none;" comboname="useDate">				
+						</td>
+						<td style="position: relative;" id="tree_set" >
+							<img src="../images/treeset.png"/>
+						    <div class="tree_show_set yujing" style="top:40px;">
+								<p><span class="filter"></span>近1天</p>
+								<p><span class="filter"></span>近3天</p>
+								<p><span class="filter"></span>近5天</p>
+								<p><span class="filter"></span>近7天</p>
+							</div>
+						
+						</td>
+						<td colspan="4">
+							<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+							<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>
+							<span class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="chuli()">处理</span>
+							<span class="easyui-linkbutton" data-options="iconCls:'icon-excel'" ><a id="exportExcel" href="#">导出</a></span>
+						</td>
+					</tr>
+				</table>
+		    <div id="mm" class="easyui-menu" style="width:120px;height:25px;background: #FFFFFF;">
+				<i></i><span onclick="fun1()">报警轨迹</span>
+			</div>
+			<table id="dg" title="" class="easyui-datagrid" style="width:100%;height:100%" data-options="fitColumns:true,onRowContextMenu: onRowContextMenu,fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../json/alarm_record.json',method:'get'">
+				<thead>
+					<tr>
+						<th data-options="field:'checkbox',checkbox:true"></th>
+						<th data-options="field:'orgName'">单位</th>
+						<th data-options="field:'idNumber'">车牌号</th>
+						<th data-options="field:'listprice',align:'right'">自编号</th>
+						<th data-options="field:'alarmId',align:'right'">报警编号</th>
+						<th data-options="field:'alarmTypeName'">报警类型</th>
+						<th data-options="field:'alarmLvl',align:'center'">报警级别</th>
+						<th data-options="field:'address',align:'center'">报警位置</th>
+						<th data-options="field:'alarmDesc',align:'center'">报警描述</th>
+						<th data-options="field:'alarmLvl',align:'center'">处理状态</th>
+						<th data-options="field:'alarmDate',align:'center'">报警时间</th>
+						<th data-options="field:'endDate',align:'center'">报警结束时间</th>
+					</tr>
+				</thead>
+			</table>
+
+		</div>
+			<!--模态框-->
+			 <div id='w' class="easyui-window" closed='true' title="违规处理" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:360px;height:300px;">
+					<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+						  <table border="0" cellspacing="0" cellpadding="0" style="width: 100%;height:200px;">
+						      <tr>
+						      	<td>处理方式：</td>
+						      	<td>
+						      		<select class="easyui-combobox style">
+								     <option value="">忽略处理</option>
+							         </select>
+						      	</td>
+						      </tr>
+						      <tr>
+						      	<td>处理内容：</td>
+						      	<td>
+						      		<select class="easyui-combobox style">
+										<option value="">请减速慢行，注意安全</option>
+									</select>
+						      	</td>
+						      </tr>
+						      <tr>
+						      	<td>忽略时间：</td>
+						      	<td>
+						      		<input type="text" class="min"/>分钟
+						      	</td>
+						      </tr>
+						      <tr>
+						      	<td>原因：</td>
+						      	<td>
+						      		<textarea  id="pReason"  class="easyui-validatebox" maxlength="256"></textarea>
+						      	</td>
+						      </tr>
+						  </table>
+					</div>
+					<div style="width: 100%; text-align: center;">
+						<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('close')">确定</a>
+						<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('close')">关闭</a>
+				    </div>
+			</div>
+		     <div id='w1' class="easyui-window" closed='true' title="提示框" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:150px;">
+				<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+					选择数据为空，请选择未处理数据！
+				</div>
+				<div style="width:100%; text-align: center;margin-top: 20px;">
+					<a href="#" class="easyui-linkbutton" onclick="$('#w1').window('close')">确定</a>
+					<a href="#" class="easyui-linkbutton" onclick="$('#w1').window('close')">关闭</a>
+				</div>
+			</div>
+
+			
+
+
+	</body>
+	<script type="text/javascript">
+            function chuli(){
+				var rowIndex = $('#dg').datagrid('getSelected');
+					if(rowIndex == null){
+						$('#w1').window('open');
+					}else if( rowIndex != null){
+						$('#w').window('open');
+					}
+			}
+        //设置
+		$('#tree_set').mouseenter(function() {
+			$('.tree_show_set').show();
+		})
+		$('.tree_show_set').mouseleave(function() {
+			$('.tree_show_set').hide();
+		})
+		
+		function onRowContextMenu(e,rowIndex,rowData){			
+			   e.preventDefault();			
+			   var selected=$("#dg").datagrid('getRows'); //获取所有行集合对象			
+			    selected[rowIndex].id; //index为当前右键行的索引，指向当前行对象			
+			    $('#mm').menu('show', {			
+			        left:e.pageX+10,		
+			        top:e.pageY		
+			    });		
+		}
+      
+//   子页面调用主页面的方法
+     function fun1(){
+          window.parent.guiji();
+     }
+	</script>
+</html>

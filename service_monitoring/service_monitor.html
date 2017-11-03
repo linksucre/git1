@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/icon.css">
+		<link rel="stylesheet" type="text/css" href="../css/demo.css">
+		<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../css/other.css">
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	</head>
+
+	<body class="easyui-layout">
+		<table border="0" cellspacing="0" cellpadding="0" style="width:100%;height: 100%;">
+			<tr style="height:40px;">
+				<td style="padding-left: 10px;">导出全部</td>
+			</tr>
+			<tr>
+				<td style="width: 33.33%;box-sizing: border-box; padding: 5px;">
+					<div class="easyui-panel" title="进程监控" style="width:98%;height:100%;background:#fafafa;">
+					   <table id="dg1" class="easyui-datagrid" style="width:100%;height:100%"
+								data-options="singleSelect:true,url:'../json/jincheng_jiankong.json',method:'get',onLoadSuccess:setStyle">
+						   <thead>
+								<tr>
+									<th data-options="field:'couresName',width:130">进程服务名称</th>
+									<th data-options="field:'serviceIp',width:120">服务器IP</th>
+									<th data-options="field:'cpu',formatter: progressFormatter,width:120">cpu(%)</th>
+									<th data-options="field:'memory',formatter: progressFormatter,width:120">内存(%)</th>
+									<th data-options="field:'status',width:60,align:'center'">状态</th>
+								</tr>
+							</thead>
+					   </table>
+					</div>
+				</td>
+				<td style="width: 33.33%;box-sizing: border-box; padding: 5px;">
+					<div class="easyui-panel" title="服务器监控" style="width:98%;height:100%;background:#fafafa;">
+						 <table id="dg2" class="easyui-datagrid" style="width:100%;height:100%"
+								data-options="singleSelect:true,url:'../json/server_jiankong.json',method:'get',onLoadSuccess:setStyle">
+						    <thead>
+								<tr>
+									<th data-options="field:'serversIp',width:130">服务器IP</th>
+									<th data-options="field:'serversCpu',formatter: progressFormatter,width:120">cpu(%)</th>
+									<th data-options="field:'serversMemory',formatter: progressFormatter,width:120">内存(%)</th>
+									<th data-options="field:'serversDisk',formatter: progressFormatter,width:120">硬盘(%)</th>
+									<th data-options="field:'status',width:60,align:'center'">状态</th>
+								</tr>
+							</thead>
+						 
+						 
+						 </table>
+					</div>
+				</td>
+				<td style="width: 33.33%;box-sizing: border-box; padding: 5px;">
+					<div class="easyui-panel" title="数据库监控" style="width:97%;height:100%;background:#fafafa;">
+						 <table id="dg3" class="easyui-datagrid" style="width:100%;height:100%"
+								data-options="singleSelect:true,url:'../json/data_jiankong.json',method:'get'">
+						      <thead>
+								<tr>
+									<th data-options="field:'name',width:130">表空间名称</th>
+									<th data-options="field:'userSize',width:120">表空间大小</th>
+									<th data-options="field:'usedSize',width:120">已用大小</th>
+									<th data-options="field:'usedRate',formatter: progressFormatter,width:120">表空间使用</th>
+									<th data-options="field:'maxSize',width:72">可扩展大小</th>
+								</tr>
+							</thead> 
+						</table>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+	</body>
+	<script type="text/javascript">
+		function progressFormatter(value,row,index){
+			    htmlstr='<div id="p" class="easyui-progressbar progressbar easyui-fluid" style="width: 50px; height: 20px;">'
+			                 +'<div class="progressbar-value" style="width: 100%; height: 20px; line-height: 20px;"> '
+			                     +'<div class="progressbar-text" style="width: '+value+'; height: 20px; line-height: 20px;">'+ value +'</div>'
+			                 +'</div>'
+			           +'</div>'; 
+			    return htmlstr;  	   
+		}
+		function setStyle(d) {
+            var trs = $(this).prev().find('div.datagrid-body').find('tr');
+             for(var i=0; i<trs.length; i++){
+            	if(trs[i].cells[4].firstChild.innerHTML == 1){
+            		 trs[i].cells[4].firstChild.innerHTML = '运行';
+            	     trs[i].cells[4].style.cssText = 'background:green;color:#fff';
+                }else if(trs[i].cells[4].firstChild.innerHTML == 0){
+                	trs[i].cells[4].firstChild.innerHTML = '停止';
+                	trs[i].cells[4].style.cssText = 'background:#f00;color:#fff';
+                }
+	           }                
+             }
+	</script>
+
+</html>

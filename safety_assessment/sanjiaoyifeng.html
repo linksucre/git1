@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>三交一封管理</title>
+		<link href="../images/logo.png" rel="shortcut icon" />
+		<link rel="stylesheet" href="../css/easyui.css" type="text/css" />
+		<link rel="stylesheet" href="../css/icon.css" type="text/css" />
+		<link rel="stylesheet" href="../css/demo.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/other.css" />
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../js/fenye.js"></script>
+		<script src="../js/echarts.min.js"></script>
+		<script type="text/javascript" src="../js/loading.js"></script>
+	</head>
+
+	<body style="width:100%;height:100%;margin:0;padding:0;" class="easyui-layout">
+		<div id='w3' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 10px;">
+				请选择一条数据!
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#w3').window('close')">确定</a>
+			</div>
+		</div>
+		<div id='w4' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 10px;">
+				是否删除数据!
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="del()">确定</a>
+				<a href="#" class="easyui-linkbutton" onclick="$('#w4').window('close')">取消</a>
+			</div>
+		</div>
+
+		<div class='sanjiaoTop' style="width:100%;height:50%;border: 1px solid #D4D4D4;background: #F0F0FF;">
+
+			<table border="0" cellspacing="0" cellpadding="0" class="clear_box">
+				<tr>
+					<td>开始时间:</td>
+					<td><input type="text" id="start-dateQuery" class="easyui-datebox" style="margin-right: 10px;width: 120px;" comboname="start-dateQuery"></td>
+				    <td>结束时间:</td>
+				    <td><input type="text" id="end-dateQuery" class="easyui-datebox" editable="false" style="margin-right: 10px;width: 120px;" comboname="end-dateQuery"></td>
+					<td>
+						<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</a>
+						<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'" onclick="clearSearch('#dg')">重置</a>
+					</td>
+				</tr>
+			</table>
+
+			<table id="dg" style="width:100%;height:92%;margin-top:20px;" data-options="rownumbers:true, fitColumns :true, singleSelect:true,pagination:true,url:'../json/sanjiaotop.json',method:'get'">
+				<thead>
+					<tr>
+						<th data-options="field:'orgName',width:400">单位 </th>
+						<th data-options="field:'holidayName',width:200">假期名</th>
+						<th data-options="field:'beginTime',width:100,align:'right'">放假开始时间 </th>
+						<th data-options="field:'endTime',width:100,align:'right'">放假结束时间 </th>
+						<th data-options="field:'attr1',width:300">备注 </th>
+					</tr>
+				</thead>
+			</table>
+
+		</div>
+		<div class='sanjiaobottom' style="width:100%;height:50%;border: 1px solid #D4D4D4;background: #F0F0FF;box-sizing: border-box;padding-top: 15px;">            
+            <table border="0" cellspacing="0" cellpadding="0" class="clear_box">
+				<tr>
+					<td>单位:</td>
+					<td><input type="text" class="easyui-combotree" comboname="orgCode" style="width:150px;height:20px;border:1px solid #95b8e7;" data-options="url:'get_data.php',url:'../json/alarmSwitchdanwei.json',method:'get'"></td>
+					<td>车牌号:</td>
+					<td><input type="text"/></td>
+					<td>开始时间:</td>
+					<td><input type="text" id="start-dateQuery" class="easyui-datebox" style="margin-right: 10px;width: 120px;" comboname="start-dateQuery"></td>
+				    <td>结束时间:</td>
+				    <td><input type="text" id="end-dateQuery" class="easyui-datebox" editable="false" style="margin-right: 10px;width: 120px;" comboname="end-dateQuery"></td>
+					<td>
+						<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="find()">查询</a>
+						<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'" onclick="clearSearch('#dg1')">重置</a>
+						<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="alert('#w')">新增</a>
+						<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="submitForm1()">删除</a>
+					</td>
+				</tr>
+			</table>
+			<table id="dg1" class="easyui-datagrid" style="width:100%;height:80%" data-options="singleSelect:false,fitColumns :true,collapsible:true,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../json/sanjiaobottom.json',method:'get'">
+				<thead>
+					<tr>
+						<th data-options="field:'checkbox',checkbox:true"></th>
+						<th data-options="field:'threeName',width:200">三交一封说明</th>
+						<th data-options="field:'orgName',width:100,align:'right'">单位 </th>
+						<th data-options="field:'idNumber',width:100,align:'right'">车牌号 </th>
+						<th data-options="field:'beginTime',width:300">开始时间 </th>
+						<th data-options="field:'endTime',width:300">结束时间 </th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		
+		<!--模态框-->
+		<!--添加-->
+		<div id='w' class="easyui-window" closed='true' title="选择车辆" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:600px;height:450px;">
+			<div style="width:100%;height:350px; box-sizing: border-box;">
+				 <table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>单位:</td>
+					<td><input type="text" class="easyui-combotree" comboname="orgCode" style="width:150px;height:20px;border:1px solid #95b8e7;" data-options="url:'get_data.php',url:'../json/alarmSwitchdanwei.json',method:'get'"></td>
+					<td>车牌号:</td>
+					<td><input type="text" style="width: 120px;"/></td>
+					<td>
+						<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg2')">查询</a>
+					</td>
+					</tr>
+				</table>
+				<table id="dg2" class="easyui-datagrid" style="width:100%;height:82%" data-options="singleSelect:false,fitColumns :true,collapsible:true,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../json/three_window.json',method:'get'">
+					<thead>
+						<tr>
+							<th data-options="field:'checkbox',checkbox:true"></th>
+							<th data-options="field:'orgName',width:200">所属单位</th>
+							<th data-options="field:'idNumber',width:100,align:'right'">车牌号码 </th>
+							<th data-options="field:'vtypeName',width:100,align:'right'">车辆类型 </th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div style="width:100%; text-align: center;">
+				<a href="#" class="easyui-linkbutton add" onclick="$('#w').window('close')">确定</a>
+				<a href="#" class="easyui-linkbutton" onclick="$('#w').window('close')">关闭</a>
+			</div>
+		</div>
+		
+		
+	</body>
+	<script>
+	function find(){
+		$('#dg1').datagrid({
+			url:'../json/sanjiaobottom.json'
+		})
+		$('#dg1').datagrid("reload");
+	}
+	$(function(){
+		$('#dg').datagrid({
+			    onClickRow: function(index,data){
+					if(index == 0){
+						$('#dg1').datagrid({
+							url:'../json/three1.json'
+						})
+					}else if(index == 1){
+						$('#dg1').datagrid({
+							url:'../json/three2.json'
+						})
+					}else if(index == 2){
+						$('#dg1').datagrid({
+							url:'../json/three3.json'
+						})
+					}
+				}
+		});
+//		点击添加
+
+	     $('.add').click(function(){
+	     	$('#dg1').datagrid('insertRow', {
+				index: 10, // 索引从0开始
+				row: {
+					threeName: '国庆',
+					orgName: '吉林分公司长春配送中心',
+					idNumber: '吉AP1228',
+					beginTime: '2017-08-14',
+					endTime: '2017-10-08'
+				  }
+            })
+        })
+    })
+     //点击删除代码
+			function submitForm1() {
+			var row = $('#dg1').datagrid('getSelected');			
+				if(!row) {
+					$('#w3').window('open');				
+				}else{
+					$('#w4').window('open');	
+				}
+				
+			}
+			function del(){
+				$('#w4').window('close')
+				 deleteRows("#dg1");		
+			}
+	</script>
+
+</html>

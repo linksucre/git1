@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../css/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/demo.css">
+	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<link rel="stylesheet" type="text/css" href="../css/switchbutton.css">
+	<!-- color picker -->
+	<link rel="stylesheet" href="../css/colorpicker.css">
+	<link rel="stylesheet" href="../css/layout.css">
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	<script src="../js/colorpicker.js"></script>
+	<!--全屏/退出全屏-->
+	<script type="text/javascript" src="../js/full.js"></script>
+	<script type="text/javascript" src="../js/index.js"></script>
+	<script type="text/javascript" src="../js/fenye.js"></script>
+	<script type="text/javascript" src="../js/loading.js"></script>
+	<script src="http://api.map.baidu.com/api?v=2.0&ak=YWdGplhYjUGQ3GtpKNeuTM2S"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/LuShu/1.2/src/LuShu_min.js"></script>
+</head>
+
+<body style="margin: 0;padding: 3px 0 0 3px;">
+
+
+	<div class="left" style="width: 650px;display: inline-block;overflow: hidden">
+		<div style="display: inline-block">
+			<input id="dd" class="easyui-datetimebox" style="width:150px" /> —
+			<input id="ab" class="easyui-datetimebox" style="width:150px" />
+			<span  class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="height: 28px;">查询</span>
+		</div>
+		<div style="width: 600px;">
+			<span class="textbox combo" style="width: 198px;">
+				<span class="textbox-addon textbox-addon-right" style="right: 0px; top: 0px;">
+					<a href="javascript:;" class="textbox-icon combo-arrow" icon-index="0" tabindex="-1" style="width: 18px; height: 22px;"></a>
+				</span>
+				<input id="_easyui_textbox_input1" type="text" class="textbox-text validatebox-text textbox-prompt" autocomplete="off" tabindex=""
+				    placeholder="请输入车牌号、自编号" style="margin: 0px 18px 0px 0px; padding-top: 0px; padding-bottom: 0px; height: 22px; line-height: 22px; width: 172px;"
+				/>
+				<input type="hidden" class="textbox-value" name="" value="">
+			</span>
+			<img src="../images/treeset.png" id="shortcut_menu" style="cursor: pointer; position: relative;top: 5px">
+			<div id="shortcut_menu_k" style="width: 120px; height: 83px; display: none; border: 1px solid #ccc;box-shadow: 1px 1px #ccc; left: 205px; top: 40px;  position: absolute;   background-color: #fff; z-index: 1109021;">
+				<div class="menu-line" style="height: 81px; top: 1px"></div>
+				<div class="menu-item" onclick="" data-options="iconCls:'icon-filter'">
+					<div class="menu-text">近1天</div>
+					<div class="menu-icon icon-filter"></div>
+				</div>
+				<div class="menu-item" onclick="" data-options="iconCls:'icon-filter'">
+					<div class="menu-text">近3天</div>
+					<div class="menu-icon icon-filter"></div>
+				</div>
+				<div class="menu-item" onclick="" data-options="iconCls:'icon-filter'">
+					<div class="menu-text">近5天</div>
+					<div class="menu-icon icon-filter"></div>
+				</div>
+				<div class="menu-item" onclick="" data-options="iconCls:'icon-filter'">
+					<div class="menu-text">近7天</div>
+					<div class="menu-icon icon-filter"></div>
+				</div>
+			</div>
+			<input type="checkbox" id="isFilter" value="isFilter">过滤速度为0的
+			<!-- 添加是否显示非定位点选项wxf -->
+			<input type="checkbox" id="typeFilter" name="shujudian" value="3">非定位点
+			<input type="checkbox" id="typeFilter1" name="shujudian" value="2">补点
+			<input type="checkbox" id="typeFilter2" name="shujudian" value="1">飘点
+
+			<td>点间隔</td>
+			<td>
+				<select panelheight="auto" style="width: 60px; display: none;" id="interval" class="easyui-combobox combobox-f combo-f" editable="false"
+				    comboname="interval">
+					<option value="0" selected="">0</option>
+					<option value="1">1</option>
+					<option value="5">5</option>
+					<option value="11">11</option>
+				</select>
+			</td>
+		</div>
+
+	</div>
+
+
+	<div class="right" style="display: inline-block; width: 324px; height: 60px">
+
+		<table style="float: left">
+			<tbody>
+				<tr>
+					<td>
+						<div style="display: table-cell;position: relative;
+						top: -7px;">速度：</div>
+					</td>&nbsp;&nbsp;
+					<td>
+						<div style="display: table-cell;">
+							<input class="easyui-slider" style="width:100px;height: 20px" data-options="showTip:false"> &nbsp;&nbsp;&nbsp;
+						</div>
+					</td>
+
+				</tr>
+				<tr>
+					<td>
+						<div style="display: table-cell; position: relative;
+						top: -22px;">进度：</div>
+					</td>&nbsp;&nbsp;
+					<td style="position: relative;top: -15px;">
+						<div style="display: table-cell;">
+							<div class="easyui-slider" style="width:100px;height: 20px" data-options="showTip:false"> </div>&nbsp;&nbsp;&nbsp;
+						</div>
+
+
+					</td>
+
+				</tr>
+			</tbody>
+
+		</table>
+		<div class="icon" style="float: right;position: relative;top: 2px;">
+			<img src="../images/play.png" id="play_btn" style="cursor: pointer; display: inline;position: relative;
+			top: -3px;" class="easyui-tooltip tooltip-f" title="播放">
+			<img src="../images/stop.png" id="stop_btn" style="cursor: pointer; display: none;" title="暂停"> &nbsp;&nbsp;
+			<img src="../images/set.png" id="settingsBtn" style="cursor: pointer;" title="" class="tooltip-f"> &nbsp;&nbsp;
+			<img src="../images/export.png" id="exportBtn" style="cursor: pointer;" title="导出轨迹图" class="easyui-tooltip tooltip-f"> &nbsp;&nbsp;
+			<img src="../images/menu.png" id="playListBtn" style="cursor: pointer;" title="播放列表" class="easyui-tooltip tooltip-f"> &nbsp;&nbsp;
+			<img src="../images/filter-export.png" id="exportListBtn" style="cursor: pointer;" title="导出轨迹列表" class="easyui-tooltip tooltip-f"> &nbsp;&nbsp;
+			<img src="../images/icon-da_ywd.png" id="showYWDBtn" style="cursor: pointer;" title="附近业务点" class="easyui-tooltip tooltip-f">
+		</div>
+		<div tabindex="-1" class="tooltip tooltip-bottom" style="left: 658px; top: 36px; z-index: 9003; display:none;">
+			<div class="tooltip-content">
+				<div class="panel" style="display: block; width: 370px;">
+					<div class="panel-header" style="width: 358px;">
+						<div class="panel-title">参数设置</div>
+						<div class="panel-tool"></div>
+					</div>
+					<div title="" class="panel-body" style="width: 368px; height: 167px;">
+						<div id="settings_div" style="padding: 10px 0px 0px 5px;">
+							<legend></legend>
+							<form id="settings_form">
+								<table width="100%" border="0">
+									<tbody>
+										<tr height="40px">
+											<td>
+												<div class="buttononbar">
+													轨迹线颜色：
+													<div id="colorSelector" class="colorSelector"></div>
+												</div>
+											</td>
+											<td>轨迹线粗细：</td>
+											<td>
+												<div id="track_line_width" style="width: 120px;" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+												    aria-disabled="false">
+													<input class="easyui-slider" style="width:100px;height: 20px" data-options="showTip:false">
+												</div>
+											</td>
+										</tr>
+										<tr height="40px">
+											<td>
+												<div class="buttononbar">
+													轨迹点颜色：
+													<div id="colorSelector2" class="colorSelector"></div>
+												</div>
+											</td>
+											<td>轨迹点大小：</td>
+											<td>
+												<div id="track_point_width" style="width: 120px;" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+												    aria-disabled="false">
+													<input class="easyui-slider" style="width:100px;height: 20px" data-options="showTip:false">
+												</div>
+											</td>
+										</tr>
+										<tr height="40px">
+											<td>
+												<div class="buttononbar">
+													轨迹点形状：
+													<select id="ponitSharp">
+														<option value="1">●</option>
+														<option value="2">■</option>
+														<option value="3">◆</option>
+													</select>
+
+												</div>
+											</td>
+											<td>点、线显示：</td>
+											<td>
+												<input id="showPonit" type="checkbox" name="show_point">轨迹点 &nbsp;
+												<input id="showLine" type="checkbox" name="show_line">轨迹线
+											</td>
+										</tr>
+
+									</tbody>
+								</table>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tooltip-arrow-outer" style="border-bottom-color: rgb(212, 212, 212);"></div>
+			<div class="tooltip-arrow" style="border-bottom-color: rgb(255, 255, 255);"></div>
+		</div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<div style="width: 420px;position: relative;top: -8px;">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前记录/总记录:0/0 当前里程/总里程:0/0</div>
+
+	</div>
+
+
+	<div id="map_canvas" style="width:100%;height:500px"></div>
+	<div id="result" style="float:right;position:absolute;left:700px;top:0;"></div>
+	
+	<table class="easyui-datagrid" style="width:100%;height:100%;border: 1px solid red;" data-options="singleSelect:false,fitColumns:true,collapsible:true,url:'../json/datagrid_data_gj.json',method:'get'">
+		<thead>
+			<tr>								
+				<th data-options="field:'checkbox',width:80,checkbox:true"></th>
+				<th data-options="field:'itemid',width:235,align:'center'">GPS时间</th>
+				<th data-options="field:'listprice',width:98,align:'center'">速度（Km/h）</th>
+				<th data-options="field:'unitcost',width:98,align:'center'">方向</th>
+				<th data-options="field:'listprice',width:98,align:'center'">里程（Km）</th>
+				<th data-options="field:'listprice',width:98,align:'center'">相对里程（Km）</th>
+				<th data-options="field:'status',width:98,align:'center'">报警类型</th>
+				<th data-options="field:'productname',width:98,align:'center'">位置</th>
+				<th data-options="field:'lan',width:98,align:'center'">经度</th>
+				<th data-options="field:'lon',width:98,align:'center'">纬度</th>
+				<th data-options="field:'status',width:98,align:'center'">数据点类型</th>
+				<th data-options="field:'productid',width:98,align:'center'">驾驶员行为</th>
+			</tr>
+		</thead>
+	</table>
+	<script>
+		// 日期
+		$(function () {
+			$('#dd,#ab').datebox().datebox('calendar').calendar({
+				validator: function (date) {
+					var now = new Date();
+					var d1 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+					var d2 = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 10);
+					return d1 <= date && date <= d2;
+				}
+			});
+		});
+		//绑定事件
+		$("#play_btn").click(function () {
+			lushu.start();
+
+		})
+
+		// $("#stop").click(function () {
+		// 	lushu.stop();
+		// })
+		// $("#pause").click(function () {
+		// 	lushu.pause();
+		// })
+
+		//百度地图
+		var map = new BMap.Map('map_canvas');
+		map.enableScrollWheelZoom();
+		map.centerAndZoom(new BMap.Point(103.23, 35.33), 13);
+		// 添加带有定位的导航控件
+		var navigationControl = new BMap.NavigationControl({
+			// 靠左上角位置
+			anchor: BMAP_ANCHOR_TOP_LEFT,
+			// LARGE类型
+			type: BMAP_NAVIGATION_CONTROL_LARGE,
+			// 启用显示定位
+			// enableGeolocation: true
+		});
+		map.addControl(navigationControl);
+		var lushu;
+		// 实例化一个驾车导航用来生成路线
+		var drv = new BMap.DrivingRoute('北京', {
+			onSearchComplete: function (res) {
+				if (drv.getStatus() == BMAP_STATUS_SUCCESS) {
+					var arrPois = res.getPlan(0).getRoute(0).getPath();
+					map.addOverlay(new BMap.Polyline(arrPois, {
+						strokeColor: '#000'
+					}));
+					map.setViewport(arrPois);
+
+					lushu = new BMapLib.LuShu(map, arrPois, {
+						defaultContent: "京P88888", //"从天安门到百度大厦"
+						autoView: true, //是否开启自动视野调整，如果开启那么路书在运动过程中会根据视野自动调整
+						icon: new BMap.Icon('http://developer.baidu.com/map/jsdemo/img/car.png', new BMap.Size(52, 26), {
+							anchor: new BMap.Size(27, 13)
+						}),
+						speed: 4500,
+						enableRotation: true, //是否设置marker随着道路的走向进行旋转
+						landmarkPois: [{
+							lng: 116.314782,
+							lat: 39.913508,
+							html: '加油站',
+							pauseTime: 2
+						}]
+					});
+				}
+			}
+		});
+		drv.search('天通苑地铁站', '华仪骏驰物联网技术有限公司');
+
+
+
+		//过滤条件
+		$('#shortcut_menu').mouseenter(function () {
+			$('#shortcut_menu_k').show()
+		}).mouseleave(function () {
+			$('#shortcut_menu_k').hide()
+		})
+
+
+		$('.menu-item').mouseenter(function () {
+			$('#shortcut_menu_k').show()
+			$(this).addClass('menu-active').siblings().removeClass('menu-active')
+		}).mouseleave(function () {
+			$('#shortcut_menu_k').hide()
+		})
+
+		// color picker
+		$("#colorSelector").ColorPicker({
+			color: '#0000ff',
+			onShow: function (colpkr) {
+				$(colpkr).fadeIn(100);
+				return false;
+			},
+			onHide: function (colpkr) {
+				$(colpkr).fadeOut(100);
+				return false;
+			},
+			onChange: function (hsb, hex, rgb) {
+				$('#colorSelector').css('backgroundColor', '#' + hex);
+			}
+		});
+		$("#colorSelector2").ColorPicker({
+			color: '#0000ff',
+			onShow: function (colpkr) {
+				$(colpkr).fadeIn(100);
+				return false;
+			},
+			onHide: function (colpkr) {
+				$(colpkr).fadeOut(100);
+				return false;
+			},
+			onChange: function (hsb, hex, rgb) {
+				$('#colorSelector2').css('backgroundColor', '#' + hex);
+			}
+		});
+
+
+		// 设置
+		$('#settingsBtn,.tooltip,.colorpicker').mouseenter(function () {
+			$('.tooltip').show();
+		}).mouseleave(function () {
+			$('.tooltip').hide();
+		})
+	</script>
+</body>
+
+
+</html>

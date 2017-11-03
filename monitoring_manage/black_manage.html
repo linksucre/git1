@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../css/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/demo.css">
+	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../css/other.css">
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/fenye.js"></script>
+	<script type="text/javascript" src="../js/loading.js"></script>
+	<body class="easyui-layout">
+			<table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
+				<tr>
+					<td>驾驶员：</td>
+					<td><input type="text" /></td>
+					<td>车牌号：</td>
+					<td><input type="text" /></td>
+					<td>单位：</td>
+					<td><input id="cc" class="easyui-combotree width" data-options="url:'../json/tree_data1.json',method:'get',required:false" style="width:200px;"></td>
+					<td>原因：</td>
+					<td>
+						<select class="easyui-combobox">
+							<option value="">请选择</option>
+							<option value="">频繁疲劳驾驶</option>
+							<option value="">频繁发生事故</option>
+							<option value="">频繁超速</option>
+							<option value="">其他</option>
+							<option value="">频繁越区</option>
+						</select>
+					</td>
+					<td colspan="6" style="text-align: left;padding-left: 20px;position: relative;">
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>
+						<span class="easyui-linkbutton add" data-options="iconCls:'icon-add'" onclick="alert('#w')">添加</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-remove'"  onclick="deleteRows('#dg')">删除</span>
+					    <span class="easyui-linkbutton" data-options="iconCls:'icon-excel'" ><a id="exportExcel" href="#">导出</a></span>
+					</td>
+				</tr>
+			</table>
+			<table id="dg" title="" class="easyui-datagrid" style="width:100%;height:90%" data-options="fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../json/black_manage.json',method:'get'">
+				<thead>
+					<tr>
+						<th data-options="field:'checkbox',checkbox:true"></th>
+					    <th data-options="field:'rgName',width:'200'">单位</th>
+						<th data-options="field:'userName',width:'200'">驾驶员</th>
+						<th data-options="field:'idNumber',width:'200'">车牌号</th>
+						<th data-options="field:'reason',width:'200'">原因</th>
+						<th data-options="field:'detail',width:'200'">详情</th>
+						<th data-options="field:'addTime',width:'200'">加入时间</th>
+						<th data-options="field:'addUserName',width:'200'">加入用户</th>
+						<th data-options="field:'recordTime',width:'200'">记录时间</th>
+					</tr>
+				</thead>
+			</table>
+
+		<div id='w' class="easyui-window" closed='true' title="添加黑名单" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:900px;height:500px;">
+			<div>	
+				<table border="0" cellspacing="0" cellpadding="0" class="table_layout table2">
+					<tr>
+						<td>驾驶员：</td>
+						<td><input type="text" /></td>
+						<td>车牌号：</td>
+						<td><input type="text" /></td>
+						<td>单位：</td>
+						<td><input id="cc" class="easyui-combotree width" data-options="url:'../json/tree_data1.json',method:'get',required:false" style="width:200px;"></td>
+						<td colspan="3" class="btn" style="text-align: left;padding-left: 20px;">
+							<span onclick="refreshbtn('#dg1')">查询</span>
+						</td>
+					</tr>
+				</table>
+				<table id="dg1" class="easyui-datagrid" style="width:100%;height:240px" data-options="fitColumns:true,rownumbers:true,singleSelect:true,pagination:true,pageList:[5,10,15,20],url:'../json/add_black.json',method:'get'">
+					<thead>
+						<tr>
+							<th data-options="field:'checkbox',checkbox:true"></th>
+						    <th data-options="field:'userName'">驾驶员</th>
+							<th data-options="field:'idNumber'">车牌号</th>
+							<th data-options="field:'status',align:'right'">状态</th>
+							<th data-options="field:'mobilePhone',align:'right'">手机号</th>
+							<th data-options="field:'email'">邮箱</th>
+							<th data-options="field:'corporationDriverType',align:'center'">驾驶员级别</th>
+							<th data-options="field:'orgName',align:'center'">单位</th>
+						</tr>
+					</thead>
+				</table>
+	            <table border="0" cellspacing="0" cellpadding="0" class="table_window">
+            	<tr>
+            		<td>原因：</td>
+					<td>
+						<select class="easyui-combobox">
+							<option value="">请选择</option>
+							<option value="">频繁疲劳驾驶</option>
+							<option value="">频繁发生事故</option>
+							<option value="">频繁超速</option>
+							<option value="">其他</option>
+							<option value="">频繁越区</option>
+						</select>
+					</td>
+            	</tr>
+            	<tr>
+            		<td>详情：</td>
+					<td><textarea name="" rows="3" cols="50"></textarea></td>
+            	</tr>
+            </table>
+		    </div>
+		
+		    <div style="width: 100%; text-align: center;">
+					<a href="javascript:void(0)" class="easyui-linkbutton add_list" onclick="$('#w').window('close')">确定</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('close')">关闭</a>
+				</div>
+		</div>
+		
+	
+	
+
+ </body>
+	<script type="text/javascript">
+//添加一行数据 
+	 $('.add_list').click(function(){
+	 	$('#dg').datagrid('insertRow',{
+		    index: 11,  // 索引从0开始
+		    row: {
+		        rgName: '大庆燃气运输分公司大庆CNG配送中心',
+		        userName: '张宏',
+		        idNumber: '蒙D55717',
+		        reason: '疲劳驾驶',
+		        detail: '',
+		        addTime: '2017-9-10 12:10',
+		        addUserName: '王萌',
+		        recordTime: '2016-9-10 16:10',
+		    }
+		});
+	 })	
+	</script>
+
+</html>

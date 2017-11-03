@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../css/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/demo.css">
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<link rel="stylesheet" type="text/css" href="../css/other.css">
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/fenye.js"></script>
+	<script type="text/javascript" src="../js/loading.js"></script>
+
+	<body>
+		<div class="easyui-layout" data-options="fit:true">
+			<div data-options="region:'west',border:true,width:328" title="系统角色列表" style="height:100%">
+				<table border="0" cellspacing="0" cellpadding="0" style="margin:10px 0;" class="clear_box">
+					<tr>
+						<td>角色名：</td>
+						<td><input type="text" style="width:80px;"/></td>
+						<td>
+							<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+							<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>
+						</td>
+					</tr>
+				</table>
+				<table id="dg" title="" class="easyui-datagrid" style="width:100%;height:85%" data-options="rownumbers:true,singleSelect:true,pagination:true,pageList:[5,10,15,20],url:'../json/role_manage.json',method:'get'">
+					<thead>
+						<tr>
+							<th data-options="field:'roleName'">分公司监控员</th>
+							<th data-options="field:'isShare'" style="width:65px;">用户创建</th>
+							<th data-options="field:'orgName'" style="width:120px;">物探公司</th>
+						</tr>
+					</thead>
+				</table>
+
+			</div>
+			<div data-options="region:'center',border:true" title="【分公司监控员】角色下的用户" style="width:100%;height:100%">
+				<table border="0" cellspacing="0" cellpadding="0" style="margin: 10px 0 10px 5px;" class="clear_box">
+					<tr>
+						<td>用户名登录：</td>
+						<td><input type="text" /></td>
+						<td>组织单位：</td>
+						<td><input id="cc" class="easyui-combotree" data-options="url:'../json/tree_data1.json',method:'get',required:false" style="width:200px;"></td>
+						<td>用户姓名：</td>
+						<td><input type="text" /></td>
+						</td>
+						<td>
+							<a href="#" class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('#dg1')">查询</a>
+							<a href="#" class="easyui-linkbutton" iconcls="icon-cz_reset" onclick="clearSearch('#dg1')">重置</a>
+							<a href="#" class="easyui-linkbutton clear_btn" iconcls="icon-remove" onclick="alert('#dlg')">移除选中</a>
+							<a href="#" class="easyui-linkbutton clear_btn" iconcls="icon-add" onclick="alert('#dlg1')">添加用户到角色</a>
+						</td>
+					</tr>
+				</table>
+				<table id="dg1" title="" class="easyui-datagrid" style="width:100%;height:85%" data-options="rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../json/main_user.json',method:'get'">
+					<thead>
+						<tr>
+							<th data-options="field:'checkbox',checkbox:true,width:210"></th>
+							<th data-options="field:'userCode',align:'center',width:210">用户登录名</th>
+							<th data-options="field:'userName',align:'center',width:210">用户姓名</th>
+							<th data-options="field:'userType',align:'center',width:220">用户类型</th>
+							<th data-options="field:'orgName',align:'center',width:220">组织单位</th>
+							<th data-options="field:'mobilePhone',align:'center',width:220">手机号</th>
+							<th data-options="field:'phone',align:'center',width:220">座机号</th>
+							<th data-options="field:'status',align:'center',width:220">用户状态</th>
+						</tr>
+					</thead>
+				</table>
+	<!--模态框-->
+	             <div id='dlg' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:180px;">
+					<div style="padding: 10px; box-sizing: border-box;">
+						<table border="0">
+							<tr>
+								<td>
+									<div class="messager-icon messager-question"></div>
+								</td>
+								<td>移除用户可能造成用户登录异常，是否移除？</td>
+							</tr>
+						</table>
+					</div>
+					<div style="width:100%; text-align: center;margin-top: 10px;">
+						<a href="#" class="easyui-linkbutton delete_list" onclick="$('#dlg').window('close')">确定</a>
+						<a href="#" class="easyui-linkbutton" onclick="$('#dlg').window('close')">关闭</a>
+					</div>
+				</div>
+			    
+              
+	             <div id='dlg1' class="easyui-window" closed='true' title="添加用户到【分公司监控员】角色" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:900px;height:450px;">
+					<div style="padding: 10px; box-sizing: border-box;">
+						<table border="0" cellspacing="0" cellpadding="0" style="margin: 10px 0 10px 5px;">
+							<tr>
+								<td>用户名登录：</td>
+								<td><input type="text" /></td>
+								<td>组织单位：</td>
+								<td><input class="easyui-combotree" data-options="url:'../json/tree_data1.json',method:'get',required:false" style="width:150px;"></td>
+								<td>用户姓名：</td>
+								<td><input type="text" /></td>
+								</td>
+								<td>
+									<a href="#" class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('#dg2')">查询</a>
+								</td>
+							</tr>
+						</table>
+						<table id="dg2" title="" class="easyui-datagrid" style="width:100%;height:260px" data-options="rownumbers:true,singleSelect:true,pagination:true,pageList:[5,10,15,20],url:'../json/add_user.json',method:'get'">
+							<thead>
+								<tr>
+									<th data-options="field:'checkbox',checkbox:true"></th>
+									<th data-options="field:'userCode',align:'center'">用户登录名</th>
+									<th data-options="field:'userName',align:'center'">用户姓名</th>
+									<th data-options="field:'userType',align:'center',width:120">用户类型</th>
+									<th data-options="field:'orgName',align:'center',width:120">组织单位</th>
+									<th data-options="field:'mobilePhone',align:'center',width:120">手机号</th>
+									<th data-options="field:'phone',align:'center',width:120">座机号</th>
+									<th data-options="field:'status',align:'center',width:120">用户状态</th>
+								</tr>
+							</thead>
+						</table>
+
+					</div>
+					
+					<div style="width:100%; text-align: center;margin-top: 10px;">
+						<a href="#" class="easyui-linkbutton add_list2" onclick="$('#dlg1').window('close')">确定</a>
+						<a href="#" class="easyui-linkbutton" onclick="$('#dlg1').window('close')">关闭</a>
+					</div>
+				</div>
+			    
+              
+
+			</div>
+		</div>
+
+	</body>
+
+	<script type="text/javascript">
+		//移除
+		$(function(){
+			$('.delete_list').click(function(){
+				var deletedData = $('#dg1').datagrid('getChecked');
+			  for (var i = deletedData.length - 1; i >= 0; i--) {
+			   var rowIndex = $('#dg1').datagrid('getRowIndex', deletedData[i]);
+			  if (deletedData.length>0) {  
+	            	$('#dg1').datagrid('deleteRow', rowIndex)
+			    }
+			  }
+			})
+			
+		})
+		//添加一行数据 
+	 $('.add_list2').click(function(){
+	 	$('#dg1').datagrid('insertRow',{
+		    index: 10,  // 索引从0开始
+		    row: {
+		        userCode: 'qhzyong',
+		        userName: '青海专用',
+		        userType: '0',
+		        orgName: '集团公司',
+		        mobilePhone: '13569845812',
+		        phone: '0101245612',
+		        status: '1',
+		    }
+		});
+	 })
+	</script>
+
+</html>
