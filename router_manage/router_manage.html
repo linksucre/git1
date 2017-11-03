@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../css/icon.css">
+    <link rel="stylesheet" type="text/css" href="../css/demo.css">
+    <link rel="stylesheet" type="text/css" href="../css/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/switchbutton.css">
+    <!-- 百度地图 -->
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css">
+    <link href="http://api.map.baidu.com/library/TrafficControl/1.2/src/TrafficControl_min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/index.js"></script>
+    <script type="text/javascript" src="../js/fenye.js"></script>
+    <script type="text/javascript" src="../js/loading.js"></script>
+    <script type="text/javascript" src="../js/noContextMenu.js"></script>
+    <!-- // 百度地图 -->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=h86KsPl6VGvedz2G3CGmR37Ah8oMUMcY"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/DistanceTool/1.2/src/DistanceTool_min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+    <!-- //加载鼠标绘制工具 -->
+    <script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+    <!-- //拉框放大 -->
+    <script type="text/javascript" src="http://api.map.baidu.com/library/RectangleZoom/1.2/src/RectangleZoom_min.js"></script>
+    <!-- //交通路况 -->
+    <script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.2/src/TrafficControl_min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInRectangle/1.2/src/SearchInRectangle_min.js"></script>
+    <!-- <script src="./js/undomanager.js"></script> -->
+</head>
+
+<body style="width: 100%;height: 100%; margin: 0; padding: 0">
+    <div id="allmap" style="width:100%;height:100%;"></div>
+
+    <div class="easyui-resizable" data-options="maxHeight:750,minHeight:10" style="box-sizing: border-box; background: #FFFFFF;width:100%;height:150px;position:absolute; bottom:0;left:0;right:0;">
+        <div class="easyui-tabs" style="width:100%;height:200px;">
+            <div title="路线列表" data-options="iconCls:'icon-s_monitoring'" style="padding:10px">
+                <table border="0" cellspacing="0" cellpadding="0" id="table_1" class="clear_box">
+                    <tbody>
+                        <tr>
+                            <td>【路线列表】 创建人单位：</td>
+                            <td>
+                                <input class="easyui-combotree" data-options="url:'../json/tree_data1.json',method:'get',required:false" style="width:200px;">
+                            </td>
+                            <td> 路线名称: </td>
+                            <td>
+                                <input class="easyui-textbox" style="width:100%;height:25px">
+                            </td>
+                            <td> 创建人：</td>
+                            <td>
+                                <input class="easyui-textbox" style="width:100%;height:25px">
+                            </td>
+
+                            <td>
+                                <span id="search" onclick="">查询</span>
+                            </td>
+                            <td>
+                                <span id="add" onclick="">添加</span>
+                            </td>
+                            <td>
+                                <span id="edit" onclick="">修改</span>
+                            </td>
+                            <td>
+                                <span id="delete" onclick="">删除</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="easyui-datagrid" id="dg" style="width:100%;height:100%" data-options="singleSelect:false,fitColumns:true,collapsible:true,url:'../json/datagrid_data1.json',method:'get'">
+                    <thead>
+                        <tr>
+                            <th data-options="field:'productid',width:200,align:'center'">创建人单位</th>
+                            <th data-options="field:'listprice',width:200,align:'center'">路线名称</th>
+                            <th data-options="field:'unitcost',width:200,align:'center'">起点</th>
+                            <th data-options="field:'attr1',width:200,align:'center'">终点</th>
+                            <th data-options="field:'status',width:200,align:'center'">途径点</th>
+                            <th data-options="field:'status',width:200,align:'center'">创建人</th>
+                            <th data-options="field:'status',width:200,align:'center'">长度(km)</th>
+                            <th data-options="field:'status',width:200,align:'center'">是否共享</th>
+                            <th data-options="field:'status',width:200,align:'center'">创建日期</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="right_box" style="position: absolute;top:0; right:0; height: 22px">
+        <div class="box1" style="border: 0">
+            <p class="p1"></p>
+        </div>
+    </div>
+    <div class="box1_float" style="margin-top: -30px">
+        <ul class="box1_ul" id="func_list">
+            <li>
+                <a href="#" title="点击后拉框即可放大地图，再次点击后可退出" class="easyui-tooltip" id="zoomMax">
+                    <span>
+                        <img src="../images/nav_zoomin.png" />
+                    </span>拉框放大</a>
+            </li>
+            <li>
+                <a href="#" title="点击后拉框即可缩小地图，再次点击后可退出" class="easyui-tooltip" id="zoomMin">
+                    <span>
+                        <img src="../images/nav_zoomout.png" />
+                    </span>拉框缩小</a>
+            </li>
+            <li>
+                <a href="#" title="点击按钮地图缩放到全局范围" class="easyui-tooltip" id="fullextent">
+                    <span>
+                        <img src="../images/nav_fullextent.png" />
+                    </span>全局</a>
+            </li>
+            <li>
+                <a href="#" title="点击按钮地图返回上一视图" class="easyui-tooltip" id="btnUndo">
+                    <span>
+                        <img src="../images/nav_previous.png" />
+                    </span>前一视图</a>
+            </li>
+            <li>
+                <a href="#" title="点击按钮地图返回下一视图" class="easyui-tooltip" id="btnRedo">
+                    <span>
+                        <img src="../images/nav_next.png" />
+                    </span>后一视图</a>
+            </li>
+            <li>
+                <a href="#" title="点击可进行地图拖拽" class="easyui-tooltip" id="Dragging">
+                    <span>
+                        <img src="../images/nav_pan.png" />
+                    </span>平移</a>
+            </li>
+            <li>
+                <a href="#" title="点击可进行距离测量,再次点击后停止距离测量" class="easyui-tooltip" id="distance">
+                    <span>
+                        <img src="../images/Measure_Distance.png" />
+                    </span>测距</a>
+            </li>
+            <li>
+                <a href="#" title="点击可进行面积测量,再次点击后停止面积测量" id="measureArea" class="easyui-tooltip">
+                    <span>
+                        <img src="../images/Measure_Area.png" />
+                    </span>测面
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</body>
+<script src="../js/mapTools.js"></script>
+<script>
+    // 添加带有定位的导航控件
+    var navigationControl = new BMap.NavigationControl({
+        // 靠左上角位置
+        anchor: BMAP_ANCHOR_TOP_LEFT,
+        // LARGE类型
+        type: BMAP_NAVIGATION_CONTROL_LARGE,
+    });
+    map.addControl(navigationControl);
+    //绘制路线
+    var driving = new BMap.DrivingRoute(map); //创建驾车实例
+    var myP0 = new BMap.Point(111.654892,29.288244); //起点-常德
+    var myP1 = new BMap.Point(87.480844,44.024709); //起点-乌鲁木齐
+    var myP2 = new BMap.Point(108.983569, 34.285675); //终点-西安
+    var myP3 = new BMap.Point(116.404449, 39.920423); //终点-北京
+    var myP4 = new BMap.Point(80.121925,41.087581); //终点-阿克苏
+    var myP5 = new BMap.Point(104.075205,30.697515); //终点-成都
+    var myP6 = new BMap.Point(104.369562,36.15485); //终点-兰州
+
+    driving.search(myP1, myP4); //第一个驾车搜索
+    driving.search(myP2, myP3); //第二个驾车搜索
+    driving.search(myP0, myP5); //第三个驾车搜索
+    driving.search(myP6, myP3); //第四个驾车搜索
+    driving.search(myP6, myP0); //第五个驾车搜索
+
+    driving.setSearchCompleteCallback(function () {
+        var pts = driving.getResults().getPlan(0).getRoute(0).getPath(); //通过驾车实例，获得一系列点的数组
+
+        var polyline = new BMap.Polyline(pts);
+        map.addOverlay(polyline);
+    })
+</script>
+
+</html>

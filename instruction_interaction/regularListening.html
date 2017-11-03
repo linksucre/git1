@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset=utf-8 />
+		<title>定时监听</title>
+		<link href="../images/logo.png" rel="shortcut icon" />
+		<link rel="stylesheet" href="../css/easyui.css" type="text/css" />
+		<link rel="stylesheet" href="../css/icon.css" type="text/css" />
+		<link rel="stylesheet" href="../css/demo.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/other.css"/>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/fenye.js"></script>
+		<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+		<!-- 引入EasyUI的中文国际化js，让EasyUI支持中文 -->
+		<script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+		<script src="../js/echarts.min.js"></script>
+		<script type="text/javascript" src="../js/loading.js"></script>
+
+	</head>
+
+	<body class="easyui-layout">
+		<div id="DATA_TABLE_SEARCH" style="padding: 5px; height:100%" class="datagrid-toolbar">
+			<!--form表单及弹框-->
+			<div id='w' class="easyui-window" closed='true' title="违规处理" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:780px;height:560px;overflow: hidden;">
+				<div class="message" style="width:100%;position: relative;">
+					<div style="display:none;width:146px;height:110px;box-shadow: 0 2px 5px #DCDCDC,2px 0 5px #DCDCDC;position: absolute;left:171px;top:54px;z-index: 1000;background:#ffffff;" id="mm1">
+						<ul class="mm1left" style="border-right:1px solid #DCDCDC;float:left;width:20%;height:100%;">
+							<li style="display:inline-block;width:30px;height:20px;background:url('../images/filter.png') no-repeat 5px 5px;"></li>
+							<li style="display:inline-block;width:30px;height:20px;background:url('../images/filter.png') no-repeat 5px 5px;"></li>
+							<li style="display:inline-block;width:30px;height:20px;background:url('../images/filter.png') no-repeat 5px 5px;"></li>
+							<li style="display:inline-block;width:30px;height:20px;background:url('../images/filter.png') no-repeat 5px 5px;"></li>
+							<li style="display:inline-block;width:30px;height:20px;background:url('../images/filter.png') no-repeat 5px 5px;"></li>
+						</ul>
+						<ul class="mm1right" style="float:left;width:75%;height:100%;line-height:23px;">
+							<li>显示驾驶员</li>
+							<li>显示终端号</li>
+							<li>显示SIM卡号</li>
+							<li>显示驾驶员</li>
+							<li>显示驾驶员</li>
+
+						</ul>
+		
+					</div>
+					<div class="easyui-layout" style="width:100%;height:465px;">
+						<div data-options="region:'west',split:true" title="选择车辆" style="width:260px;height:100%;">
+
+							<div class="easyui-accordion" style="width:252px;height:100%;">
+								<div style="text-align: center;height:100%;position: relative;" id="shishi" selected="false" data-options="iconCls:'icon-search'">
+									<div class="easyui-panel" style="border:none;height:100%;overflow: hidden;">
+										<!--选项卡-->
+						<div class="VsearchBar" style="margin-left:15px;">
+									<div class="statusFileDiv" style="margin-left:5px;">
+										<label><input name="v_status" class="v_status" type="radio" value="0" checked="">所有</label>&nbsp;
+										<label><input name="v_status" class="v_status" type="radio" value="1">在线</label>&nbsp;
+										<label><input name="v_status" class="v_status" type="radio" value="2">行驶</label>&nbsp;
+										<span title="设置树显示" class="span-icon icon-treestatus treeShowSet v_status"></span>&nbsp;
+										<span title="重置树" class="span-icon icon-treerefsh treeReflshBtn v_status"></span>&nbsp;
+									</div>
+									<div class="search" >
+										<input autocomplete="off" class="easyui-combobox monitorSearch" type="text">
+										<input type="text" class="combo-text validatebox-text" autocomplete="off" placeholder="请输入车牌号、自编号">
+										<span class="combo-clear qingchu" style='right:39px'></span>
+									</div>
+								</div>
+								<div class="easyui-panel" style="padding-left:15px;">
+									<ul class="easyui-tree" id="corp-tree"  class="tree" data-options="url:'../json/dingshijianting.json',method:'get',animate:true,checkbox:true"></ul>
+								</div>
+									
+										
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div data-options="region:'center',title:'车辆列表'" style="width:400px;height:465px;overflow: hidden;">
+							<div class='liebiaoTop' style="width:100%;height:300px;overflow: auto;">
+								<table class="easyui-datagrid" id="dingshiTable" data-options="url:'../json/dingshidianmingalert.json',method:'get',border:false,singleSelect:true,fit:true,fitColumns:true">
+									<thead>
+										<tr>
+											<th data-options="field:'itemid'" width="40">终端是否支持</th>
+											<th data-options="field:'productid'" width="50">车牌号</th>
+											<th data-options="field:'listprice',align:'right'" width="40">单位</th>
+											<th data-options="field:'unitcost',align:'right'" width="40">终端编码</th>
+
+										</tr>
+									</thead>
+								</table>
+								
+							</div>
+							<div class='clear_box' style="width:100%;height:300px;border-top:1px solid #444444;">
+								<div id="south" data-options="region:'south',border:true" style="height: 148px;" title="" class="panel-body panel-body-noheader layout-body">
+									<form id="listening_param_form">
+							<input type="hidden" id="instructFuncCode1" name="instructFuncCode1" value="94">
+							<input type="hidden" id="instructFuncCode2" name="instructFuncCode2" value="92">
+							<input type="hidden" id="instrtaskId" name="instrtaskId" value="">
+							<table style="height:300px;">
+								<tbody style="height:300px;">
+									<tr style="height:300px;">
+										<td style="width:320px;text-align: left; padding-top: 2px;height:300px;" valign="top">
+									
+												<p>
+													&nbsp;任务名称：<input id="instrtaskName" type="text" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:'length[1,100]'">
+												</p>
+										
+											<p style="margin-top:15px;">
+												&nbsp;&nbsp;监听期限： 
+												<input type="radio" name="deadline" id="deadline1" value="1" checked="checked">每天
+												<input type="radio" name="deadline" id="deadline2" value="2">定时
+												<input type="radio" name="deadline" id="deadline3" value="3">时间段
+											</p>
+											<div id="beginDate_div" style="display:none;">
+												<p>
+													&nbsp;开始时间：<input id="beginDate" type="text" class="easyui-validatebox easyui-datebox validatebox-text datebox-f combo-f validatebox-invalid" data-options="required:true" editable="false" comboname="beginDate" style="display: none;"><span class="combo datebox" style="width: 171px; height: 20px;"><input type="text" class="combo-text validatebox-text validatebox-invalid" autocomplete="off" readonly="readonly" style="cursor: pointer; width: 149px; height: 20px; line-height: 20px;"><span><span class="combo-arrow" style="height: 20px;"></span></span><input type="hidden" class="combo-value" name="beginDate" value=""></span>
+												</p>
+											</div>
+											<div id="endDate_div" style="display:none;">
+												<p>
+													&nbsp;结束时间：<input id="endDate" type="text" class="easyui-validatebox easyui-datebox validatebox-text datebox-f combo-f validatebox-invalid" data-options="required:true" editable="false" comboname="endDate" style="display: none;"><span class="combo datebox" style="width: 171px; height: 20px;"><input type="text" class="combo-text validatebox-text validatebox-invalid" autocomplete="off" readonly="readonly" style="cursor: pointer; width: 149px; height: 20px; line-height: 20px;"><span><span class="combo-arrow" style="height: 20px;"></span></span><input type="hidden" class="combo-value" name="endDate" value=""></span>
+												</p>
+											</div>
+											
+												<p style="margin-top:10px;">
+													&nbsp;定时频率：<input id="frequency" name="frequency" type="text" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:['dateTime','length[1,100]']" title="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(如：08:00,09:00,多个用','隔开)
+												</p>
+										
+											<div id="executeDate_div" style="display:none;">
+												<p>
+													&nbsp;执行时间：<input id="executeDate" type="text" class="easyui-datetimebox easyui-validatebox validatebox-text combo-f datetimebox-f validatebox-invalid datebox-f" editable="false" data-options="required:true,showSeconds:false" comboname="executeDate" style="display: none;"><span class="combo datebox" style="width: 171px; height: 20px;"><input type="text" class="combo-text validatebox-text validatebox-invalid" autocomplete="off" readonly="readonly" style="cursor: pointer; width: 149px; height: 20px; line-height: 20px;"><span><span class="combo-arrow" style="height: 20px;"></span></span><input type="hidden" class="combo-value" name="executeDate" value=""></span>
+												</p>
+											</div>
+										</td>
+										<td style="width:310px;text-align: left; padding-top: 2px;" valign="top">
+											<p>
+												&nbsp;&nbsp;监听方式： 
+												<input type="radio" name="listeningType" id="listeningType1" value="phoenBack" checked="checked">电话回拨
+												<input type="radio" name="listeningType" id="listeningType2" value="recording">录音
+											</p>
+											
+												<p style="margin-top:15px;">
+													&nbsp;&nbsp;标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 识：
+													<input type="radio" name="phoenBackstatus" id="phoenBackstatus0" value="0" checked="checked">普通通话
+												 	<input type="radio" name="phoenBackstatus" id="phoenBackstatus1" value="1">监听
+												</p>
+												<p style="margin-top:10px;">
+												回拨电话：
+													<input type="text"  class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:'mobile'" title="">
+												</p>
+										
+											<div id="recording_div" style="display:none">
+												<p>
+													&nbsp;&nbsp;录音命令：
+													<input type="radio" name="recordingorder" id="recordingorder1" value="1" checked="checked">开始录音
+												 	<input type="radio" name="recordingorder" id="recordingorder0" value="0">停止录音
+												</p>
+												<p>
+													&nbsp;录音时间：
+													<input type="text" id="recordingTime" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:['intOrFloat','length[1,4]']">&nbsp;&nbsp;(秒)【0表示一直录音】
+												</p>
+												
+												<p>
+													&nbsp;&nbsp;音频采样率：
+													<input type="radio" name="audioSamplingRate" id="audioSamplingRate0" value="0" checked="checked">8k
+												 	<input type="radio" name="audioSamplingRate" id="audioSamplingRate1" value="1">11k
+												 	<input type="radio" name="audioSamplingRate" id="audioSamplingRate2" value="2">23k
+												 	<input type="radio" name="audioSamplingRate" id="audioSamplingRate3" value="3">32k
+												</p>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+								</div>
+							</div>
+
+						</div>
+						 <div class="tree_show_set" style="top:55px;">
+									<p><span class="filter"></span>显示车辆状态</p>
+									<p><span class="filter"></span>显示终端号</p>
+									<p><span class="filter"></span>显示SIM卡号</p>
+									<p><span class="filter"></span>显示驾驶员</p>
+									<p><span class="filter"></span>显示车辆自编号</p>
+								</div>	
+					</div>
+				</div>
+				<div style="width: 100%; text-align: center;margin-top:10px;">
+					<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('open')" style="background: #075EA2;color:#FFFFFF;">保存</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('close')" style="background: #075EA2;color:#FFFFFF;">关闭</a>
+				</div>
+			</div>
+
+			<!--车辆点名弹框-->
+			<div id='w2' class="easyui-window" closed='true' title="违规处理" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:550px;height:430px;">
+				<div class="message" style="height:100%;">
+					<div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+					
+						
+						<div data-options="region:'center',border:true,title:'车辆列表'" title="" class="" style="width: 534px; height: 236px;">
+							
+								<table class="easyui-datagrid" id="dingshiTable2"
+										data-options="url:'../json/dianjicheliang.json',method:'get',border:false,singleSelect:true,fit:true,fitColumns:true">
+									<thead>
+										<tr>
+											<th data-options="field:'itemid'" width="40">车牌号</th>
+											<th data-options="field:'productid'" width="50">单位</th>
+											<th data-options="field:'listprice',align:'right'" width="40">终端编码</th>
+											<th data-options="field:'unitcost',align:'right'" width="40">终端类型</th>
+											<th data-options="field:'unitcost',align:'right'" width="40">SIM卡</th>
+										</tr>
+									</thead>
+								</table>	
+					
+						</div>
+					</div>
+				
+						<div id="south" data-options="region:'south',border:true" style="height: 148px; width: 534px;margin-top: 10px;" title="" class="">
+							<input type="hidden" id="instrtaskId" name="instrtaskId">
+							<p>
+								&nbsp;&nbsp;任务名称： <label id="show_instrtaskName">定时点名PANX</label>
+							</p>
+							<p style="margin-top:10px;">
+								&nbsp;&nbsp;启动频率：
+								<input type="radio" name="show_deadline" disabled="disabled" id="show_deadline2" value="2">定时单次
+								<input type="radio" name="show_deadline" disabled="disabled" id="show_deadline1" value="1">每天多次
+							</p>
+							<div id="show_executeDate_div" style="margin-top:10px;">
+								<p>
+									&nbsp;&nbsp;单次执行时间：<label id="show_executeDate">2015-06-17 16:19</label>
+								</p>
+							</div>
+							<div id="show_frequency_div" style="display: none;margin-top:10px">
+								<p>
+									&nbsp;&nbsp;每天多次：<label id="show_frequency"></label>
+								</p>
+							</div>
+					</div>
+
+				</div>
+			
+			</div>
+
+			<!--车辆点名-->
+			<div id="dg_listening_task_table_search" style="padding: 5px; height: auto" class="datagrid-toolbar">
+				<form id="searchForm">
+					监听期限：
+					<select id="search_deadline" class="easyui-combobox combobox-f combo-f" editable="false" style="display: none;">
+						<option value="">全部</option>
+						<option value="1">每天</option>
+						<option value="2">定时</option>
+						<option value="3">时间段</option>
+					</select>
+					
+					状态：
+					<select id="search_status" class="easyui-combobox combobox-f combo-f" editable="false" style="display: none;">
+						<option value="">全部</option>
+						<option value="0">禁用</option>
+						<option value="1">新建</option>
+						<option value="2">启用</option>
+						<option value="3">已完成</option>
+					</select>
+					
+					<a class="easyui-linkbutton c8" data-options="iconCls:'icon-search'"  onclick="refreshbtn('#dingshitt')">查询</a>
+					<a class="easyui-linkbutton c8" data-options="iconCls:'icon-cz_reset'" onclick="clearSearch('#clear_box')">重置</a>
+					
+					<a id="listeningAddBtn" onclick="insert();" href="javascript:void(0)" class="easyui-linkbutton clear_btn" data-options="iconCls:'icon-add'" >
+						添加监听任务     
+						
+					</a>
+				</form>
+			</div>
+			<table id="dingshitt" class="easyui-datagrid"  style="width:100%;height:90%" data-options="singleSelect:true,collapsible:true,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../json/dingshidianming.json',method:'get'">
+			</table>
+		</div>
+		<script>
+			function closeForm() {
+				$("#dianmingformBlock").css("display", "none");
+			}
+
+			function prompt1a() {
+				$('#w').window('open');
+			};
+
+			//以下很长一段表格数据
+			$(function() {
+				$('#dingshitt').datagrid({
+					 fitColumns : "true", 
+					iconCls: 'icon-edit',
+					singleSelect: true,
+					//				idField:'itemid',
+					columns: [
+						[{
+								field: 'instrtaskName',
+								title: '任务名称',
+								width: 200,
+								sortable: true
+							},
+							{
+								field: 'modifierName',
+								title: '监听方式',
+								width: 200,
+								align: 'right',
+								sortable: true,
+								editor: {
+									type: 'numberbox',
+									options: {
+										precision: 1
+									}
+								}
+							},
+							{
+								field: 'orgCode',
+								title: '监听期限',
+								width: 200,
+								align: 'right',
+								sortable: true,
+								editor: 'numberbox'
+							},
+							{
+								field: 'executeDate',
+								title: '开始时间',
+								width: 200,
+								sortable: true,
+								editor: 'text'
+							},
+							{
+								field: 'recordTime',
+								title: '结束时间',
+								width: 200,
+								sortable: true,
+								editor: 'text'
+							},
+							{
+								field: 'instructParam',
+								title: '启动时间',
+								width: 200,
+								sortable: true,
+								align: 'center',
+								editor: {
+									type: '操作',
+									options: {
+										on: 'P',
+										off: ''
+									}
+								}
+							},
+							{
+								field: 'instructParam',
+								title: '创建时间',
+								width: 200,
+								sortable: true,
+								align: 'center',
+								editor: {
+									type: '操作',
+									options: {
+										on: 'P',
+										off: ''
+									}
+								}
+							},
+							{
+								field: 'instructParam',
+								title: '状态',
+								width: 200,
+								sortable: true,
+								align: 'center',
+								editor: {
+									type: '操作',
+									options: {
+										on: 'P',
+										off: ''
+									}
+								}
+							},
+							{
+								field: 'action',
+								title: '操作',
+								width: 250,
+								sortable: true,
+								align: 'center',
+								formatter: function(value, row, index) {
+									if(row.editing) {
+										var s = '<a href="#" onclick="saverow(this)">Save</a> ';
+										var c = '<a href="#" onclick="cancelrow(this)">Cancel</a>';
+										return s + c;
+									} else {
+										var e = '<a href="#" onclick="editrow(this)" style="color:#0000EE">点名车辆</a> ';
+										var d = '<a href="#" onclick="deleterow(this)" style="color:#0000EE">禁用</a>';
+										return e + d;
+									}
+								}
+							}
+						]
+					],
+					onBeforeEdit: function(index, row) {
+						row.editing = true;
+						updateActions(index);
+					},
+					onAfterEdit: function(index, row) {
+						row.editing = false;
+						updateActions(index);
+					},
+					onCancelEdit: function(index, row) {
+						row.editing = false;
+						updateActions(index);
+					}
+				});
+			});
+
+			function updateActions(index) {
+				$('#dingshitt').datagrid('updateRow', {
+					index: index,
+					row: {}
+				});
+			}
+
+			function getRowIndex(target) {
+				var tr = $(target).closest('tr.datagrid-row');
+				return parseInt(tr.attr('datagrid-row-index'));
+			}
+
+			function editrow(target) {
+
+				$('#w2').window('open')
+			}
+
+			function deleterow(target) {
+				console.log(target)
+				$.messager.confirm('Confirm', '你确定吗?', function(r) {
+					if(r) {
+						$('#dingshitt').datagrid('deleteRow', getRowIndex(target));
+					}
+				});
+			}
+
+			function saverow(target) {
+				$('#dingshitt').datagrid('endEdit', getRowIndex(target));
+			}
+
+			function cancelrow(target) {
+				$('#dingshitt').datagrid('cancelEdit', getRowIndex(target));
+			}
+
+			function insert() {
+				prompt1a();
+
+			}
+			//		分页
+			var pager = $('#dingshitt').datagrid().datagrid('getPager'); // get the pager of datagrid
+			pager.pagination({
+				buttons: [{
+					iconCls: 'icon-search',
+					handler: function() {
+						alert('search');
+					}
+				}, {
+					iconCls: 'icon-add',
+					handler: function() {
+						alert('add');
+					}
+				}, {
+					iconCls: 'icon-edit',
+					handler: function() {
+						alert('edit');
+					}
+				}]
+			});
+
+			function pagerFilter(data) {
+				if(typeof data.length == 'number' && typeof data.splice == 'function') { // is array  
+					data = {
+						total: data.length,
+						rows: data
+					}
+				}
+				var dg = $(this);
+				var opts = dg.datagrid('options');
+				var pager = dg.datagrid('getPager');
+				pager.pagination({
+					onSelectPage: function(pageNum, pageSize) {
+						opts.pageNumber = pageNum;
+						opts.pageSize = pageSize;
+						pager.pagination('refresh', {
+							pageNumber: pageNum,
+							pageSize: pageSize
+						});
+						dg.datagrid('loadData', data);
+					}
+				});
+				if(!data.originalRows) {
+					data.originalRows = (data.rows);
+				}
+				var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
+				var end = start + parseInt(opts.pageSize);
+				data.rows = (data.originalRows.slice(start, end));
+				return data;
+			}
+
+			$('#dingshitt').datagrid({
+				loadFilter: pagerFilter
+			});
+			//以下很长一段表格数据结束
+			
+			
+		//点击所有、在线行驶按钮事件
+			 $(".v_status").click(function(){
+				  $(window.top.document).find("#corp-tree").tree('reload');
+				  });
+				  $("#treeReflshBtn").click(function(){
+				  	$(window.top.document).find("#corp-tree").tree('reload');
+				  });
+		
+		//给树添加点击事件
+ $("#corp-tree").tree({
+        checkbox: true,
+        cascadeCheck: false,
+        onCheck: function (node, checked) {
+          if (checked) {
+          	var nodes = $('#corp-tree').tree('getChecked');
+//        	var nodes = $(this).tree('getChecked');
+				var s = '';
+				for(var i=0; i<nodes.length; i++){
+					if (s != '') s += ',';
+					s += nodes[i].text;
+				}
+//				alert(s);
+				
+				$("#dingshiTable").datagrid("reload");
+//          var parentNode = $("#tt").tree('getParent', node.target);
+//          if (parentNode != null) {
+//            $("#tt").tree('check', parentNode.target);
+//          }
+          } else {
+//          var childNode = $("#tt").tree('getChildren', node.target);
+//          if (childNode.length > 0) {
+//            for (var i = 0; i < childNode.length; i++) {
+//              $("#tt").tree('uncheck', childNode[i].target);
+//            }
+//          }
+          }
+        }
+      });
+
+		</script>
+	</body>
+
+</html>

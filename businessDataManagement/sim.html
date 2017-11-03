@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>车辆终端sim快捷录入</title>
+			<link href="../images/logo.png" rel="shortcut icon" />
+			<link rel="stylesheet" href="../css/easyui.css" type="text/css"/>
+			<link rel="stylesheet" href="../css/icon.css" type="text/css"/>
+			<link rel="stylesheet" href="../css/demo.css" />
+			<link rel="stylesheet" href="../css/index.css" />
+			<link rel="stylesheet" href="../css/common.css" />
+			<link rel="stylesheet" href="../css/other.css" />
+			
+			<script type="text/javascript" src="../js/jquery.min.js"></script>
+			<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+			<!-- 引入EasyUI的中文国际化js，让EasyUI支持中文 -->
+			<script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+			<script src="../js/echarts.min.js"></script>
+			<script src="../js/fenye.js"></script>
+			<script type="text/javascript" src="../js/loading.js"></script>
+	</head>
+	<body>
+		<div id="DIV_VEH">
+			<!--模态框-->
+<div id='dlg1' class="easyui-window" closed='true' title="导入数据" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:180px;">
+	<div class="message"> 
+		
+	   	<form id="xlsForm" method="post" enctype="multipart/form-data" action="../despatch/importUpload.do"> 
+	   		<table align="center">
+				<tbody>
+					<tr>
+						<td>
+							<a href="#"  id="export_btn" class="easyui-linkbutton clear_btn" iconcls="icon-down">
+									下载导入模板
+							</a>
+							</td>
+							<td>
+							<a href="#" id="vvdataTable_helpbtn" class="easyui-linkbutton clear_btn" iconcls="icon-help" onclick="alert('#dlg2')">
+									导入模板说明
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						<input id="upload" type="file" name="upload" style="width: 180px; height: 26px;"> 
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<a href="#"  class="easyui-linkbutton clear_btn" iconcls="icon-impo" style=" " group="">
+								确定导入	
+							</a>
+						</td>
+					</tr> 
+				</tbody>
+	   		</table> 
+			<input id="submitbtn" type="submit" style="display: none">  	    
+ 	   </form> 
+	
+		
+	</div>
+			<!--<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton add_list" onclick="$('#dlg1').window('close')">确定</a>
+				<a href="#" class="easyui-linkbutton" onclick="$('#dlg1').window('close')">关闭</a>
+			</div>-->
+		</div>
+		
+	<div id='dlg2' class="easyui-window" closed='true' title="导入数据" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:650px;height:350px;">
+	<div class="message"> 
+		<div style=" height:350px; width:100%">
+			<div style=" height:350px; width:100%">
+				<font color="red">
+					备注：<br>
+					&nbsp;&nbsp;1.文件名格式：文件名+当前时间（如aa201405140745.xls）。<br>
+					&nbsp;&nbsp;2.上传数据的时候，第一行的标题不能修改,数据列只能从第二行开始，不管是几个sheet,每个sheet都应该这样(即表头要相同)。<br>
+					&nbsp;&nbsp;3.第二行数据是例子数据。正式数据要把其覆盖。<br>
+					&nbsp;&nbsp;4.simNum(sim卡号)用文本形式。<br>
+				</font>
+			</div>
+		</div> 
+	</div>
+
+		</div>
+	        <table style="width:100%">
+       				<tbody><tr style="background:#DDEAF2"><td colspan="4" align="left" background="#FF1493"><font color="#656565" style="font-weight: bold;font-size: 15px">车辆信息</font></td></tr>
+					<tr style="hight:30px;"></tr>
+					<tr>
+						<td style="width:25%" class="form_td1">信息来源：</td>
+						<td style="width:25%"><input type="text" id="dataFrom" style="width:146.5px" value="VMS2.0" disabled="disabled" class="easyui-validatebox textbox validatebox-text"></td>
+						<td>自编号：</td>
+						<td><input style="width: 150px" id="myCode" class="easyui-validatebox textbox validatebox-text" data-options="validType:['numberAndABC']"></td>
+					</tr>
+					<tr>
+						<td style="width:25%" class="form_td1">车牌号：</td>
+						<td style="width:25%"><input type="text" id="idNumber" name="idNumber" style="width:146.5px" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:['idNumber']" title=""></td>
+						<td>车辆类型：</td>
+						<td>
+							<input style="width:150px;height:20px;" class="easyui-combobox" data-options="
+							valueField: 'label',
+							textField: 'value',
+							data: [{
+								label: '小客车(越野6-8座)',
+								value: '小客车(越野6-8座)'
+							},{
+								label: '小客车(商务6-8座)',
+								value: '小客车(商务6-8座)'
+							},{
+								label: '小客车(五十铃、尼桑越野5座)',
+								value: '小客车(五十铃、尼桑越野5座)'
+							},{
+								label: '小客车(小客车)',
+								value: '小客车(小客车)'
+							},{
+								label: '小客车(槽车)',
+								value: '小客车(槽车)'
+							},{
+								label: '小客车(轿货车)',
+								value: '小客车(轿货车)'
+							},{
+								label: '小客车(小型轿车)',
+								value: '小客车(小型轿车)'
+							},{
+								label: '小客车',
+								value: '小客车'
+							},{
+								label: '小客车(生活服务)',
+								value: '小客车(生活服务)'
+							},{
+								label: '小客车(越野车)',
+								value: '小客车(越野车)'
+							}]" />
+						
+						</td>
+					</tr>
+					<tr>
+						<td style="width:25%" class="form_td1">单位：</td>
+						<td style="width:25%">
+							<input type="text" class="easyui-combotree" comboname="orgCode" style="width:150px;height:20px;border:1px solid #95b8e7;" data-options="url:'get_data.php',url:'../json/alarmSwitchdanwei.json',method:'get'">
+						
+						</td>
+						<td>车辆识别代号(车架号)：</td><td><input type="text" id="frameNumber" name="frameNumber" style="width:146.5px" class="easyui-validatebox textbox validatebox-text" data-options="validType:['numberABC']"></td>
+					</tr>
+					<tr>
+						<td class="form_td1">车牌颜色：</td>
+						<td>
+						<input style="width:150px;height:20px;" class="easyui-combobox" data-options="
+							valueField: 'label',
+							textField: 'value',
+							data: [{
+								label: '黑色',
+								value: '黑色'
+							},{
+								label: '白/蓝',
+								value: '白/蓝'
+							},{
+								label: '红/白',
+								value: '红/白'
+							},{
+								label: '灰色',
+								value: '灰色'
+							},{
+								label: '黄/灰',
+								value: '黄/灰'
+							},{
+								label: '蓝/灰',
+								value: '蓝/灰'
+							},{
+								label: '红色/灰色',
+								value: '红色/灰色'
+							},{
+								label: '绿',
+								value: '绿'
+							},{
+								label: '白/灰',
+								value: '白/灰'
+							},{
+								label: '红色',
+								value: '红色'
+							}]" />
+						
+						</td>
+						<td>燃油类型：</td>
+						<td>
+						
+						 </td>
+					</tr>
+					<tr>
+						<td class="form_td1">行驶证号：</td>
+						<td><input type="text" id="travelLicence" name="travelLicence" class="easyui-validatebox textbox validatebox-text" data-options="validType:['number']" style="width:146.5px"></td>
+						<td>生产厂家：</td>
+						<td>
+							<input type="text" id="factoryId" name="factoryId" style="width:146.5px" data-options="validType:'length[0,32]'" class="easyui-validatebox textbox validatebox-text">
+							<span class="more" onclick="more()" style="font-weight: bold; color: rgb(70, 130, 180); cursor: pointer; display: inline;">
+								更多
+								<img src="../images/gengduo.gif">
+							</span>
+							<span class="less" onclick="less()" style="display: none;font-weight: bold; color: rgb(70, 130, 180); cursor: pointer; display: none;">
+								收起
+								<img src="../images/shouqi.gif">
+							</span>
+						
+						</td>
+					</tr>
+					<!--收起-->
+				
+					<tr class="morediv" style="display: none;">
+						 <td class="form_td1">车辆品牌：</td>
+						 <td>
+						 	<input editable="false" type="text" id="trademarkId" style="width: 150px;" class="easyui-combobox combobox-f combo-f" comboname="trademarkId">
+						 	
+						 </td>
+						 <td>车型：</td>
+						 <td>
+						 	<input editable="false" type="text" id="modelId" style="width: 150px;" class="easyui-combobox combobox-f combo-f" comboname="modelId">
+						 
+						 </td>
+					</tr>
+					<tr class="morediv" style="display: none;">
+						<td class="form_td1">罐体材质：</td>
+						<td>
+							<input editable="false" type="text" id="tinmaterial" style="width: 150px;" class="easyui-combobox combobox-f combo-f" comboname="tinmaterial">
+						
+						</td>
+						<td>引擎类型：</td>
+						<td>
+							<input editable="false" type="text" id="engineType" style="width: 150px;" class="easyui-combobox combobox-f combo-f" comboname="engineType">
+							
+						</td>
+					</tr>
+					<tr class="morediv" style="display: none;">
+						<td class="form_td1">道路运输许可证号：</td>
+						<td><input type="text" id="transportPermits" name="transportPermits" style="width:146.5px" class="easyui-validatebox textbox validatebox-text" data-options="validType:['number']">
+						</td>
+						 <td>是否进口：</td>
+						 <td>
+						 	<select editable="false" style="width: 150px;" id="isImport" class="easyui-combobox combobox-f combo-f" comboname="isImport"><option value="">请选择</option>
+						 <option value="1">是</option><option value="0">否</option></select>
+						
+						 </td>
+					 </tr>
+					<tr class="morediv" style="display: none;">
+						<td class="form_td1">发动机功率：</td>
+						<td><input type="text" id="displacementEnginepower" style="width: 144px; height: 20px; line-height: 20px;" precision="2" max="2000.00" min="0.00" data-options="validType:'length[0,16]'" class="easyui-validatebox easyui-numberbox numberbox numberbox-f validatebox-text" "="" numberboxname="displacementEnginepower"><input type="hidden" name="displacementEnginepower" value=""></td>
+						 <td>排量：</td>
+						 <td><input type="text" id="displacement" data-options="validType:'length[0,20]'" precision="2" max="100.00" min="0.00" class="easyui-validatebox easyui-numberbox numberbox numberbox-f validatebox-text" style="width: 144px; height: 20px; line-height: 20px;" numberboxname="displacement"><input type="hidden" name="displacement" value=""></td>
+					  </tr>
+					<tr class="morediv" style="display: none;">
+						<td class="form_td1">购买日期：</td>
+						<td>
+							<input editable="false" type="text" id="buyDate" style="width: 150px;" class="easyui-datebox datebox-f combo-f" comboname="buyDate">
+							<!--<span class="combo datebox" style="width: 148px; height: 20px;">
+								<input type="text" class="combo-text validatebox-text" autocomplete="off" readonly="readonly" style="cursor: pointer; width: 126px; height: 20px; line-height: 20px;">
+								<span>
+									<span class="combo-arrow" style="height: 20px;">
+										
+									</span>
+								</span>
+								<input type="hidden" class="combo-value" name="buyDate" value="">
+							</span>-->
+						</td>
+					    <td>备注：</td>
+					    <td><input type="text" id="remark" name="remark" style="width:146.5px" data-options="validType:'length[0,128]'" class="easyui-validatebox textbox validatebox-text"></td>
+					  </tr>
+					
+					<tr><td><br></td></tr>
+						
+					<tr style="background:#DDEAF2">
+						<td colspan="4" align="left"><font color="#656565" style="font-weight: bold;font-size: 15px">终端信息</font></td></tr>
+					
+					<tr>
+						<!-- <td>终端名：</td>
+						<td><input type="text" id="terminalName" name="terminalName" data-options="required:true,validType:'length[1,16]'"
+						 class="easyui-validatebox textbox" style="width:146.5px" /></td> -->
+						 <td class="form_td1">终端编号(产品编号)：</td>
+						<td><input type="text" id="terminalCode" name="terminalCode" data-options="required:true,validType:['paramCode','length[1,30]']" class="easyui-validatebox textbox validatebox-text validatebox-invalid" style="width:146.5px" onblur="return CheckTerminalCode(this);" title=""></td>
+						 <td>终端类型：</td>
+						 <td>
+						 	<input style="width:150px;height:20px;" class="easyui-combobox" data-options="
+								valueField: 'label',
+								textField: 'value',
+								data: [{
+									label: '华强V36',
+									value: '华强V36'
+								},{
+									label: '华强V37',
+									value: '华强V37'
+								},{
+									label: '易特08',
+									value: '易特08'
+								},{
+									label: '易特09(部标)',
+									value: '易特09(部标)'
+								},{
+									label: '天琴',
+									value: '天琴'
+								},{
+									label: '欧亚北斗星V1.0',
+									value: '欧亚北斗星V1.0'
+								},{
+									label: '欧亚北斗星V2.0',
+									value: '欧亚北斗星V2.0'
+								},{
+									label: '欧亚北斗星V2.1',
+									value: '欧亚北斗星V2.1'
+								},{
+									label: '海南吉码',
+									value: '海南吉码'
+								},{
+									label: '伊爱',
+									value: '伊爱'
+								}]" />
+						 	
+						 </td>
+					 </tr>
+					 <tr>
+					     <td class="form_td1">终端回传时间：</td>
+						 <td><input type="text" id="rinterval" data-options="validType:'length[0,10]'" class="easyui-validatebox easyui-numberbox numberbox numberbox-f validatebox-text" style="width: 144px; height: 20px; line-height: 20px;" numberboxname="rinterval"><input type="hidden" name="rinterval" value=""></td>
+						 <td>鉴权码：</td>
+				 		 <td><input type="text" id="authenticationCode" name="authenticationCode" style="width:146.5px" value="c5vms" data-options="required:true,validType:'length[1,50]'" class="easyui-validatebox textbox validatebox-text"></td>
+				    </tr>
+					<tr>
+						<td class="form_td1">主ip：</td>
+						<td><input type="text" id="ip" name="ip" data-options="validType:['ip','length[1,32]']" class="easyui-validatebox textbox validatebox-text" style="width:146.5px"></td>
+						 <td>主port：</td>
+						 <td><input type="text" id="port" name="port" data-options="validType:['port','length[1,4]']" class="easyui-validatebox textbox validatebox-text" style="width:146.5px"></td>
+					  </tr>
+					
+					<!-- <tr><td>从ip：</td><td><input type="sip" id="sip" /></td><td>从port：</td><td><input type="sport" id="sport" name="violationAddress"/></td></tr> -->
+			 		<tr>
+				 		<td class="form_td1">开户状态：</td>
+				 		<td>
+				 			<select editable="false" id="accountFlag" style="width: 150px; display: none;" class="easyui-combobox combobox-f combo-f" comboname="accountFlag"><option value="">请选择</option>	<option value="1">开通</option>
+				 		 <option value="0">未开通</option></select>
+				 		 
+				 		 
+				 		 <td><!-- 鉴权码： --></td>
+				 		 <td><!-- <input type="text" id="authenticationCode" name="authenticationCode"  style="width:146.5px"
+				 		 data-options="validType:'length[0,50]'" class="easyui-validatebox textbox"/> --></td>
+			 		 </tr>
+			 		 
+			 		<tr><td><br></td></tr>
+			 		
+			 		<tr style="background:#DDEAF2"><td colspan="4" align="left"><font color="#656565" style="font-weight: bold;font-size: 15px">sim卡信息</font></td></tr>
+					
+					<tr>
+						<td class="form_td1">SIM卡号：</td>
+						<td><input type="text" id="simNum1" onblur="return CheckSim(this);" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:['integerOrZero','length[1,16]']" style="width:146.5px" title="">
+						<!--  <input type="text" id="simNum1"  class="easyui-validatebox textbox"
+						 data-options="required:true,validType:['integerOrZero','length[1,16]']" style="width:146.5px"/> --></td>
+						<td>运营商：</td>
+						<td>
+							
+							
+						 <select editable="false" id="deptcode1" style="width: 146.5px; display: none;" class="easyui-combobox combobox-f combo-f"><option value="">请选择</option>	<option value="中国移动">中国移动</option>
+				 		 <option value="中国联通">中国联通</option><option value="中国电信">中国电信</option></select>
+						</td>
+					 </tr>
+					<tr>
+						<td class="form_td1">批次号：</td>
+						<td><input type="text" id="batchId1" name="batchId" data-options="validType:'length[1,50]'" class="easyui-validatebox textbox validatebox-text" style="width:146.5px"></td>
+						<td>付费模式：</td>
+						<td>
+							<select editable="false" style="width: 150px; display: none;" type="text" id="payModle1" class="easyui-validatebox easyui-combobox combobox-f combo-f validatebox-text" comboname="payModle"><option value="预付费">预付费</option><option value="后付费">后付费</option></select>
+						</td>
+					 </tr>
+					<tr><td><br></td></tr>
+					<tr style="background:#F5F5F5">
+					<td>
+						
+					</td>
+					<td colspan="2" align="center">
+					<a href="#" id="saveViolation" onclick="return addViolation();" class="easyui-linkbutton l-btn l-btn-small" group=""><span class="l-btn-left"><span class="l-btn-text">确定</span></span></a>
+					<a href="#" id="vehicleTable_loadbtn" class="easyui-linkbutton l-btn l-btn-small" onclick="alert('#dlg1')" group="">
+						<span class="l-btn-left l-btn-icon-left">
+							导入
+						<span class="l-btn-icon icon-impo">&nbsp;</span>
+						</span>
+					</a>
+					</td>
+					</tr>
+					
+				</tbody>
+	       </table>
+        </div>
+	</body>
+	<script>
+//	展开收起
+	function more() {
+		$('.morediv').show()
+		$('.less').show()
+		$('.more').hide()
+	}
+	function less() {
+		$('.morediv').hide()
+		$('.less').hide()
+		$('.more').show()
+	}
+		  //easyui导出
+window.onload = function() {
+	var tableToExcel = (function() {
+		var uri = 'data:application/vnd.ms-excel;base64,',
+			template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">' +
+			'<head><meta http-equiv="Content-type" content="text/html;charset=UTF-8" /><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/>' +
+			'</x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+			base64 = function(s) {
+				return window.btoa(unescape(encodeURIComponent(s)))
+			},
+			format = function(s, c) {
+				return s.replace(/{(\w+)}/g, function(m, p) {
+					return c[p];
+				})
+			};
+
+		return function(table, name) {
+			var ctx = {
+				worksheet: name || 'Worksheet',
+				table: table.innerHTML
+			}
+			return uri + base64(format(template, ctx));
+		}
+	})();
+
+	$(function() {
+		$('#export_btn').on('click', function() {
+			var $this = $(this);
+			//设定下载的文件名及后缀
+			$this.attr('download', '报警记录.xls');
+			//设定下载内容
+			$this.attr('href', tableToExcel($('.datagrid-view2')[0], '报警记录'));
+		});
+	});
+	
+	
+}
+	</script>
+</html>
