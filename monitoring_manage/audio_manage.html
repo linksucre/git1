@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../css/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/demo.css">
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<link rel="stylesheet" type="text/css" href="../css/other.css">
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/fenye.js"></script>
+	<script type="text/javascript" src="../js/loading.js"></script>
+
+	<body>
+		<div class="easyui-layout" data-options="fit:true">
+			<div data-options="region:'center',border:true">
+				<table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
+					<tr>
+						<td>车牌号：</td>
+						<td><input type="text" name="number" id="number" /></td>
+						<td>单位：</td>
+						<td><input id="cc" class="easyui-combotree" data-options="url:'../json/tree_data1.json',method:'get',required:false" style="width:200px;"></td>
+						<td>开始时间</td>
+						<td>
+							<input placeholder="请填入用车时间" class="easyui-datetimebox" editable="false" style="width: 140px; display: none;" comboname="useDate">
+						</td>
+						<td>结束时间</td>
+						<td>
+							<input placeholder="请填入用车时间" class="easyui-datetimebox" editable="false" style="width: 140px; display: none;" comboname="useDate">
+						</td>
+						<td>
+						    <span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+							<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>
+							<span class="easyui-linkbutton" data-options="iconCls:'icon-remove'"  onclick="deleteRows('#dg')">删除</span>
+						</td>
+					</tr>
+				</table>
+				<table id="dg" class="easyui-datagrid" title="" style="width:100%;height:85%" data-options="singleSelect:false,collapsible:true,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../json/phone_manage.json',method:'get'"></table>
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		$(function() {
+			$('#dg').datagrid({
+				idField: 'itemid',
+				columns: [
+					[
+					     {
+							field: 'checkbox',
+							title: '',
+							width: 560,
+							checkbox: true
+						},{
+							field: 'userLogin',
+							title: '用户登录名',
+							width: 560,
+							sortable: true
+						},
+						{
+							field: 'userName',
+							title: '用户姓名',
+							width: 560,
+							sortable: true
+						},
+						{
+							field: 'time',
+							title: '时间',
+							width: 560,
+							sortable: true
+						},
+						{
+							field: 'action',
+							title: '操作',
+							width: 200,
+							align: 'center',
+							formatter: function(value, row, index) {
+								if(row.editing) {} else {
+									var e = '<a href="#" onclick="editrow(this)"  style="color: dodgerblue;">照片查看</a> ';
+									return e;
+								}
+							}
+						}
+					]
+				]
+			});
+		});
+
+		function getRowIndex(target) {
+			var tr = $(target).closest('tr.datagrid-row');
+			return parseInt(tr.attr('datagrid-row-index'));
+		}
+
+		function editrow(target) {
+			$('#dg').datagrid('beginEdit', getRowIndex(target));
+		}
+
+	</script>
+
+</html>

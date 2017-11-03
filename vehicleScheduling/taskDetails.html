@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8 />
+		<title>任务详情</title>
+		<link href="../images/logo.png" rel="shortcut icon" />
+		<link rel="stylesheet" href="../css/easyui.css" type="text/css" />
+		<link rel="stylesheet" href="../css/icon.css" type="text/css" />
+		<link rel="stylesheet" href="../css/demo.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+		<!-- 引入EasyUI的中文国际化js，让EasyUI支持中文 -->
+		<script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+		<script src="../js/echarts.min.js"></script>
+		<script type="text/javascript" src="../js/loading.js"></script>
+		<style>
+     
+		</style>
+	</head>
+
+	<body class="easyui-layout" style="position: relative;">
+		<!--form表单及弹框-->
+		<div style="width:400px;height:263px;display: none;position: absolute;left:0;top:0;bottom:0;right:0;margin:auto;z-index: 10;" id="formBlock">
+			<div class="easyui-panel" title="违规处理" style="width:400px">
+		<div style="padding:10px 60px 20px 60px">
+	    <form id="ff" method="post">
+	    	<table cellpadding="5">
+	    		<tr data-options="field:'itemid',width:233">
+	    			<td>处理方式:</td>
+	    			<td><input style="width:171px;" class="easyui-textbox" type="text" name="name" data-options="required:true"></input></td>
+	    		</tr>
+	    		<tr data-options="field:'itemid',width:233">
+	    			<td>处理内容:</td>
+	    			<td><input style="width:171px;" class="easyui-textbox" type="text" name="email" data-options="required:true,validType:'email'"></input></td>
+	    		</tr>
+	    		<tr data-options="field:'itemid',width:233">
+	    			<td>忽略时长:</td>
+	    			<td><input style="width:171px;" class="easyui-textbox" type="text" name="subject" data-options="required:true"></input></td>
+	    		</tr>
+	    		<tr data-options="field:'itemid',width:233">
+	    			<td>原因:</td>
+	    			<td><input style="width:171px;" class="easyui-textbox" name="message" data-options="multiline:true" style="height:60px"></input></td>
+	    		</tr>
+	    	
+	    	</table>
+	    </form>
+	    <div style="text-align:center;padding:5px">
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">确定</a>
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="closeForm()">关闭</a>
+	    </div>
+	    </div>
+	</div>
+			
+			
+		</div>
+
+
+		<div id="DATA_TABLE_SEARCH" style="padding: 5px; height:100%" class="datagrid-toolbar">
+			<!--上面的部分-->
+			<div style="height: 32px; line-height: 32px;">
+				&nbsp;
+				<a href="#" onclick="addTab('主页')">
+					<button class="easyui-linkbutton l-btn l-btn-small" id="btnback" data-options="iconCls:'icon-return'" style="background: #075EA2;color:#FFFFFF;" >
+						返回
+					</button>
+				</a>
+				<a href="#" class="easyui-linkbutton l-btn l-btn-small" id="rcdp" style="display: none" group="" ><span class="l-btn-left"><span class="l-btn-text">人车调派</span></span></a>
+				<a href="#" class="easyui-linkbutton l-btn l-btn-small" id="tzpf" style="display: none" group=""><span class="l-btn-left"><span class="l-btn-text">通知派发</span></span></a> <a href="#" class="easyui-linkbutton l-btn l-btn-small" id="hcdj" style="display: none" onclick="showVehicleBackDialog()" group=""><span class="l-btn-left"><span class="l-btn-text">回车登记</span></span></a> <a href="#" class="easyui-linkbutton l-btn l-btn-small" id="dzld" style="display: none" group=""><span class="l-btn-left"><span class="l-btn-text">导出电子路单</span></span></a>
+				<a href="#" onclick="callParent()" id="chakanId" style="background: #075EA2;color:#FFFFFF;" class="easyui-linkbutton l-btn l-btn-small" id="ckdp" style="" group="">
+					<span class="l-btn-left">
+						<span class="l-btn-text" >查看调派</span>
+					</span>
+				</a>
+			</div>
+			<div style="width:100%;height:100%;border:none;">
+					<div class="easyui-tabs" style="width:100%;height:100%;background: #F4F8F8;">
+						<div title="任务详情" style="padding:10px;border:none">
+							<div class="panel" style="display: block; width: auto;"><div id="p1" title="" style="padding: 10px; width: 1033px; height: auto;" data-options="collapsible:true,remoteSort:false" class="panel-body panel-body-noheader panel-body-noborder">
+								<table style="width: 100%;">
+									<tbody>
+										<tr>
+										<td align="right">任务名称：</td>
+										<td colspan="3">运送防潮剂</td>
+										
+										</tr>
+									<tr>
+										<td align="right" style="width: 100px;">任务类型：</td>
+										<td style="width: 350px;">货车</td>
+										<td align="right" style="width: 100px;">优先级别：</td>
+										<td>普通</td>
+									</tr>
+									<tr>
+										<td align="right">申请人：</td>
+										<td>文章</td>
+										<td align="right">申请时间：</td>
+										<td>2017-08-09</td>
+									</tr>
+									<tr>
+										<td align="right">申请单位：</td>
+										<td>集团公司</td>
+										<td align="right">任务状态：</td>
+										<td>已调派</td>
+									</tr>
+									<tr>
+										<td align="right">用车时间：</td>
+										<td>2017-08-10 16:33</td>
+										<td align="right">回车时间：</td>
+										<td>2017-08-14 16:33</td>
+									</tr>
+									<tr>
+										<td align="right">出发地：</td>
+										<td>腾飞站</td>
+										<td align="right">目的地：</td>
+										<td>张良路站</td>
+									</tr>
+									<tr>
+										<td align="right">单程里程：</td>
+										
+										
+								    
+									    <td>&lt;400km</td>
+									
+									</tr>
+									
+									
+									<tr>
+										<td align="right">订单编号：</td>
+										<td>1501317224000</td>
+										<td align="right">发货编号：</td>
+										<td>1501317224000</td>
+									</tr>
+									<tr>
+										<td align="right">运输货物：</td>
+										<td colspan="3" style="padding-right:10px">货物总吨数：1.00T     详情：16020404硅胶防潮剂*1T;</td>						
+									</tr>
+									
+									<tr>
+										<td align="right">需求车辆：</td>
+										<td colspan="3"> 普通货车(重型罐式货车)*1</td>
+									</tr>
+									<tr>
+										<td align="right">任务途经点：</td>
+										<td colspan="3"></td>
+									</tr>
+									<tr>
+										<td align="right">说明：</td>
+										<td colspan="3"><label></label></td>
+									</tr>
+								</tbody></table>
+							</div><div class="panel" style="display: block; width: auto;"><div id="p1" title="" style="padding: 10px; width: 1033px; height: auto;" data-options="collapsible:true,remoteSort:false" class="panel-body panel-body-noheader panel-body-noborder">
+								<table style="width: 100%;">
+									<tbody><tr>
+										<td align="right">任务名称：</td>
+										<td colspan="3">运送防潮剂</td>
+										
+									</tr>
+									<tr>
+										<td align="right" style="width: 100px;">任务类型：</td>
+										<td style="width: 350px;">货车</td>
+										<td align="right" style="width: 100px;">优先级别：</td>
+										<td>普通</td>
+									</tr>
+									<tr>
+										<td align="right">申请人：</td>
+										<td>文章</td>
+										<td align="right">申请时间：</td>
+										<td>2017-08-09</td>
+									</tr>
+									<tr>
+										<td align="right">申请单位：</td>
+										<td>集团公司</td>
+										<td align="right">任务状态：</td>
+										<td>已调派</td>
+									</tr>
+									<tr>
+										<td align="right">用车时间：</td>
+										<td>2017-08-10 16:33</td>
+										<td align="right">回车时间：</td>
+										<td>2017-08-14 16:33</td>
+									</tr>
+									<tr>
+										<td align="right">出发地：</td>
+										<td>腾飞站</td>
+										<td align="right">目的地：</td>
+										<td>张良路站</td>
+									</tr>
+									<tr>
+										<td align="right">单程里程：</td>
+										
+										
+								    
+									    <td>&lt;400km</td>
+									
+									</tr>
+									
+									
+									<tr>
+										<td align="right">订单编号：</td>
+										<td>1501317224000</td>
+										<td align="right">发货编号：</td>
+										<td>1501317224000</td>
+									</tr>
+									<tr>
+										<td align="right">运输货物：</td>
+										<td colspan="3" style="padding-right:10px">货物总吨数：1.00T     详情：16020404硅胶防潮剂*1T;</td>						
+									</tr>
+									
+									<tr>
+										<td align="right">需求车辆：</td>
+										<td colspan="3"> 普通货车(重型罐式货车)*1</td>
+									</tr>
+									<tr>
+										<td align="right">任务途经点：</td>
+										<td colspan="3"></td>
+									</tr>
+									<tr>
+										<td align="right">说明：</td>
+										<td colspan="3"><label></label></td>
+									</tr>
+								</tbody></table>
+								</div>
+							</div>
+						</div>
+						</div>
+						<div title="调派详情" style="padding:10px">
+							<table class="easyui-datagrid" style="background:#89BCF1;width:1000px;height:250px;border:none;"
+										data-options="singleSelect:true,collapsible:true,url:'../json/renwuxiangqing1.json',method:'get'">
+									<thead style="background:#89BCF1;">
+										<tr style="background:#89BCF1;">
+											<th data-options="field:'itemid',width:80">车牌号</th>
+											<th data-options="field:'productid',width:100">车辆类型</th>
+											<th data-options="field:'listprice',width:80,align:'right'">车型</th>
+											<th data-options="field:'unitcost',width:80,align:'right'">状态</th>
+											<th data-options="field:'attr1',width:250">载人</th>
+											<th data-options="field:'status',width:60,align:'center'">发车时间</th>
+											<th data-options="field:'attr1',width:250">主驾驶员</th>
+											<th data-options="field:'attr1',width:250">驾驶员级别</th>
+											<th data-options="field:'attr1',width:250">副驾驶员</th>
+											<th data-options="field:'attr1',width:250">副驾驶员级别</th>
+										</tr>
+									</thead>
+								</table>
+
+						</div>
+						<div title="审批信息" data-options="closable:true" style="padding:10px">
+							<table class="easyui-datagrid" style="width:1000px;height:250px"
+									data-options="singleSelect:true,collapsible:true,url:'../json/renwuxiangqing2.json',method:'get'">
+								<thead>
+									<tr>
+										<th data-options="field:'itemid',width:80">审批节点</th>
+										<th data-options="field:'productid',width:100">可审批人</th>
+										<th data-options="field:'listprice',width:80,align:'right'">审批日期</th>
+										<th data-options="field:'unitcost',width:80,align:'right'">审批单位</th>
+										<th data-options="field:'attr1',width:250">审批人</th>
+										<th data-options="field:'status',width:60,align:'center'">审批结果</th>
+										<th data-options="field:'attr1',width:250">审批意见</th>
+									</tr>
+								</thead>
+							</table>
+
+						</div>
+						<div title="任务跟踪信息" data-options="closable:true" style="padding:10px">
+							<table class="easyui-datagrid" style="width:1000px;height:250px"
+								data-options="singleSelect:true,collapsible:true,url:'../json/renwuxiangqing3.json',method:'get'">
+							<thead>
+								<tr>
+									<th data-options="field:'itemid',width:150">处理时间</th>
+									<th data-options="field:'productid',width:100">处理人</th>
+									<th data-options="field:'listprice',width:500,align:'right'">处理信息</th>
+									<th data-options="field:'unitcost',width:80,align:'right'">车辆信息</th>
+							
+								</tr>
+							</thead>
+						</table>
+
+						</div>
+					</div>
+			</div>
+		</div>
+	
+		<script>
+	 
+            //在iframe中查找父页面元素
+//          alert($('#default', window.parent.document).html());
+            //在iframe中调用父页面中定义的方法
+            function callParent(url){ 
+				window.location.href = "../car_send/view_assign.html";
+			} 
+			//点击返回按钮
+			 function addPanel(url){ 
+				window.location.href = "taskTracking.html";
+			}
+			 function addTab(){
+				window.parent.tabs1();
+			}
+		</script>
+	</body>
+
+</html>

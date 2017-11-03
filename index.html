@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>  
+	<head>
+		<meta charset="UTF-8">
+		<title>车辆管理系统</title>
+		<link rel="stylesheet" type="text/css" href="css/icon.css">
+		<link rel="stylesheet" type="text/css" href="css/demo.css">
+		<link rel="stylesheet" type="text/css" href="css/easyui.css">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/switchbutton.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="js/full.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/fenye.js"></script>
+		<script type="text/javascript" src="js/loading.js"></script>
+	</head>      
+	<body class="easyui-layout" id="container_head">   
+		<div region="north" border="true" split="true" style="height:84px; background: #0F9FE5; display: flex; white-space: nowrap; overflow: hidden;min-width:1000px;">
+			<div id="p">    
+				<span class="logo"><img src="images/LOGO.png"/></span>
+				<span class="text">车辆管理系统</span>
+			</div>   
+			<ul class="nav_ul">
+				<li>
+					<p><img src="images/cheliangjiankong.png" /></p>
+					<p class="nav">车辆监控</p >
+				</li>
+				<li>
+					<p><img src="images/anquanjiankong.png" /></p>
+					<p class="nav">安全管控</p>
+				</li>
+				<li>
+					<p><img src="images/cheliangdiaodu.png" /></p>
+					<p class="nav">车辆调度</p>
+				</li>
+				<li>
+					<p><img src="images/zonghefuwu.png" /></p>
+					<p class="nav">综合服务</p>
+				</li>
+				<li>
+					<p><img src="images/jianguanfuwu.png" /></p>
+					<p class="nav">监管服务</p>
+				</li>
+				<li>
+					<p><img src="images/zonghefenxi.png" /></p>
+					<p class="nav">综合分析</p>
+				</li>
+				<li>
+					<p><img src="images/yewuguanli.png" /></p>
+					<p class="nav">业务管理</p>
+				</li>
+				<li>
+					<p><img src="images/xitongguanli.png" /></p>
+					<p class="nav">系统管理</p>
+				</li>
+				<li>
+					<p><img src="images/cockpit.png" /></p>
+					<p class="nav">驾驶舱</p>
+				</li>
+				<li>
+					<p><img src="images/smallProgram.png" /></p>
+					<p class="nav">更多</p>
+				</li>
+			</ul>
+			<div class="head_right_title">
+				<div class="right_index">
+					<div><span><img src="images/s-1.png"/></span>您好，xxxx</div>
+					<div>退出</div>
+					<div>
+						<span><img src="images/sy_sys_manage1.png"/></span>
+						<span><img src="images/s-0.png"/></span>
+						<span id="full"><img src="images/s-2.png"/></span>
+						<span id="unfull"><img src="images/s-2.png"/></span>
+						<span onclick="northClose()"><img src="images/s-3.png"/></span>
+						<span onclick="westClose()" class="west"><img src="images/s-5.png"/></span>
+						<span onclick="eastClose()" class="east"><img src="images/s-5.png"/></span>
+						<span onclick="southClose()"><img src="images/s-6.png"/></span>
+						<!--<span class="change"><img src="images/s-7.png"/></span>
+		    		     <span class="changeleft"><img src="images/s-7.png"/></span>-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div region="south" border="true" split="true" style="overflow: hidden; height: 20px;"></div>
+		<div region="center" style="overflow: hidden;">
+			<!--<div class="easyui-layout" data-options="fit:true" style="overflow: hidden;">-->		
+				<iframe id="month" frameborder="0" border="0" noresize="noresize" framespacing="0" src="car_monitor.html" width="100%" height="100%" scrolling = "no"></iframe>
+			<!--</div>-->
+		</div>
+	</body>
+	<script language="JavaScript">
+//iframe
+		$('.nav_ul li').each(function(){
+		   $(this).click(function(){
+		   	$(this).css('background','#0084CF');
+		   	$(this).siblings().css('background','#0F9FE5');
+    		   	if($(this).find('.nav').html()=='综合分析'){
+    				   $('#month').attr('src', 'compre_analysis.html')
+    				}else if($(this).find('.nav').html()=='业务管理'){
+    				   $('#month').attr('src', 'service_manage.html')
+    			    }else if($(this).find('.nav').html()=='车辆监控'){
+    				   $('#month').attr('src', 'car_monitor.html')
+    			    }else if($(this).find('.nav').html()=='安全管控'){
+    				   $('#month').attr('src', 'anquanguankong.html')
+    			    }else if($(this).find('.nav').html()=='车辆调度'){
+    				   $('#month').attr('src', 'cheliangdiaodu.html')
+    			    }else if($(this).find('.nav').html()=='综合服务'){
+    				   $('#month').attr('src', 'zonghefuwu.html')
+    			    }else if($(this).find('.nav').html()=='监管服务'){
+    				   $('#month').attr('src', 'jianguanfuwu.html')
+    			    }else if($(this).find('.nav').html()=='系统管理'){
+    				   $('#month').attr('src', 'xitongguanli.html')
+    			    }else if($(this).find('.nav').html()=='驾驶舱'){
+    				    $('#month').attr('src', 'cockpit.html')
+    			    }else if($(this).find('.nav').html()=='更多'){
+//  				   $('#month').attr('src', 'xitongguanli.html')
+    			    }
+		   })			
+		})
+   //主页面中点击按钮关闭左边菜单栏
+		function westClose() {
+			var month = document.getElementById('month');
+			var win = month.window || month.contentWindow;
+			 win.westClose_child();
+		}
+		function aaa(){
+			$('.nav_ul').find('li').eq(0).css('background','#0084CF')
+			$('.nav_ul').find('li').eq(1).css('background','#0F9FE5')
+			$('#month').attr('src', 'car_monitor.html')
+		}
+//点击全屏和点击取消全屏
+      $(function(){
+  	  	var full1 = document.getElementById('full');
+		var gpyDiv1 = document.getElementById('container_head');
+		var unfull1 = document.getElementById('unfull');
+		full1.onclick = function() {
+			fullScreen(gpyDiv1);
+			full1.style.display = 'none';
+			unfull1.style.display = 'block';
+		}
+		unfull1.onclick = function() {
+			exitFullScreen();
+			full1.style.display = 'block';
+			unfull1.style.display = 'none';
+		}
+      })		
+	</script>
+
+
+</html>
