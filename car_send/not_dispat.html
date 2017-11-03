@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>未调派</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../css/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/demo.css">
+	<link rel="stylesheet" type="text/css" href="../css/other.css">
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/fenye.js"></script>
+	<script type="text/javascript" src="../js/loading.js"></script>
+     <style type="text/css">
+     	body,html{
+     		width: 100%;
+     		height: 100%;
+     	}
+     	.car_name,.car_person{
+     		color: dodgerblue;
+     	}
+     </style>
+	<body class="easyui-layout">
+		<div class="easyui-layout" data-options="fit:true" id="body_layout" style="width: 100%;height:100%;">
+	        <div data-options="region:'west',split:true" title="未调派任务" style="width:240px;">
+				<div style="padding: 5px; height: auto">
+					任务名称 : <input class="easyui-validatebox" id="task_name" style="width: 65px">
+				</div>
+				<div style="padding: 5px; height: auto">
+					<a href="#" class="easyui-linkbutton ser_btn" iconcls="icon-search">查询</a>
+					<a href="#" class="easyui-linkbutton ser_btn clear1" iconcls="icon-cz_reset">清空</a>
+				</div>				
+	            <div class="easyui-panel" style="height:80%;">
+					<ul class="easyui-tree" data-options="url:'../json/not_dispatched.json',method:'get',animate:true"></ul>
+				</div>
+	        
+	        
+	        </div>
+			<div data-options="region:'center',title:'人车调派'" style="width:100%;overflow: hidden;">
+				<div id="p1" class="easyui-panel" title="任务相关信息" style="width:100%;border:none;overflow: hidden;" data-options="collapsible:true">
+					<table style="width:98%;margin: 20px; 0">
+						<tbody>
+							<tr>
+								<td align="right" style="width: 100px">任务名称：</td>
+								<td><label>生产用车</label></td>
+								<td align="right">路线规划</td>
+							</tr>
+							<tr>
+								<td align="right" style="width: 100px">用车时间：</td>
+								<td style="width: 350px"><label id="useDate">2017-08-02 14:31</label></td>
+								<td align="right" style="width: 100px">回车时间：</td>
+								<td><label id="backDate">2017-08-03 15:31</label></td>
+							</tr>
+							<tr>
+								<td align="right">出发地：</td>
+								<td><label id="leaveAddress">巴里坤经营部下涝坝加油站</label></td>
+								<td align="right">目的地：</td>
+								<td><label id="arriveAddress">轮台绿洲</label></td>
+								<td class="more_less">
+									<span onclick="more()" class="more" style="display: none;">更多</span>
+									<span onclick="less()" class="less">收起</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="easyui-tabs tasb1" style="width:800px;height:340px">
+						<div title="任务详情" style="padding:10px">
+							<table style="width: 100%;">
+								<tbody>
+									<tr>
+										<td align="right" style="width: 95px;">任务类型：</td>
+										<td style="width: 350px;"><label>公车</label></td>
+										<td align="right" style="width: 100px;">任务状态：</td>
+										<td><label>部门审批完成</label></td>
+									</tr>
+									<tr>
+										<td align="right">申请人：</td>
+										<td><label>辽阳石化演示</label></td>
+										<td align="right">优先级别：</td>
+										<td><label>普通</label></td>
+									</tr>
+									<tr>
+										<td align="right">申请单位：</td>
+										<td><label>中国石油辽阳石油化纤公司</label></td>
+										<td align="right">申请时间：</td>
+										<td><label>2017-07-26</label></td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td align="right">单程里程：</td>
+										<td><label>&lt;400km</label></td>
+									</tr>
+									<tr>
+										<td align="right">用车负责人：</td>
+										<td><label></label></td>
+										<td align="right">用车负责人电话：</td>
+										<td><label></label></td>
+									</tr>
+									<tr>
+										<td align="right">候车位置：</td>
+										<td><label></label></td>
+										<td align="right">乘车人数：</td>
+										<td><label></label></td>
+									</tr>
+									<tr>
+										<td align="right">用车人列表：</td>
+										<td colspan="3"></td>
+									</tr>
+									<tr>
+										<td align="right">用车部门：</td>
+										<td><label>中国石油辽阳石油化纤公司</label></td>
+										<td align="right">风险等级：</td>
+										<td>
+											驾驶员：<label>A</label> 车辆：
+											<label>A</label> 任务：
+											<label>A</label>
+										</td>
+									</tr>
+									<tr>
+										<td align="right">道路类型：</td>
+										<td><label></label></td>
+										<td align="right">天气情况：</td>
+										<td><label></label></td>
+									</tr>
+									<tr>
+										<td align="right">过路费：</td>
+										<td><label></label></td>
+										<td align="right">派车人：</td>
+										<td><label></label></td>
+									</tr>
+									<tr style="display: none;">
+										<td align="right">订单编号：</td>
+										<td><label></label></td>
+										<td align="right">发货编号：</td>
+										<td><label></label></td>
+									</tr>
+									<tr style="display: none;">
+										<td align="right">商品名称：</td>
+										<td colspan="3"><label id="goodsName"></label></td>
+									</tr>
+									<tr style="display: none;">
+										<td align="right">是否工作日：</td>
+										<td><label>工作日</label></td>
+										<td align="right">是否节假日：</td>
+										<td><label></label></td>
+									</tr>
+									<tr style="display: none;">
+										<td style="algin: right;">发车频率：</td>
+										<td colspan="3"><label id="frequency"></label></td>
+									</tr>
+									<tr>
+										<td align="right">需求车辆：</td>
+										<td colspan="3"><label> 小客车*1</label></td>
+									</tr>
+									<tr>
+										<td align="right">任务途经点：</td>
+										<td colspan="3"><label></label></td>
+									</tr>
+									<tr>
+										<td align="right">备注：</td>
+										<td colspan="3"><label></label></td>
+									</tr>
+								</tbody>
+							</table>
+	
+						</div>
+						<div title="运能运力分析详情" style="padding:10px">
+							<div>
+								时间：<input class="easyui-datetimebox" id="startDateC" editable="false" style="width: 150px; display: none;"> 到 <input class="easyui-datetimebox" id="endDateC" editable="false" style="width: 150px; display: none;">
+								<a href="#" id="search_btn" class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('#dg1')">查询</a>
+							</div>
+							<table id="dg1" class="easyui-datagrid" style="width:100%;height:230px" data-options="rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../json/not_dis_yunneng.json',method:'get'">
+								<thead>
+									<tr>
+										<th data-options="field:'typeId',width:200">车辆类型</th>
+										<th data-options="field:'modelId',width:120">类型</th>
+										<th data-options="field:'vehNum',width:200">空闲车辆(辆)</th>
+										<th data-options="field:'authorizerCapacity',width:200">限载人数(人/辆)</th>
+									</tr>
+								</thead>
+						</table>
+						</div>
+						<div title="相关天气预报信息" style="padding:10px">
+							<table class="easyui-datagrid" style="width:100%;height:280px" data-options="url:'../json/not_dis_sky.json',method:'get'">
+								<thead>
+									<tr>
+										<th data-options="field:'provinceName'">城市名称</th>
+										<th data-options="field:'detailDate'">预报日期</th>
+										<th data-options="field:'dayWeatherInfo'">白天气象</th>
+										<th data-options="field:'dayTemperature'">白天温度</th>
+										<th data-options="field:'dayDirect'">白天风力</th>
+										<th data-options="field:'nightWeatherInfo'">晚间气象</th>
+										<th data-options="field:'nightTemperature'">晚间温度</th>
+										<th data-options="field:'nightDirect'">晚间风向</th>
+										<th data-options="field:'nightDirectPower'">晚间风力</th>
+										<th data-options="field:'recordorName'">数据来源</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div title="相关天气预警信息" style="padding:10px">
+							<table class="easyui-datagrid" style="width:100%;height:280px" data-options="url:'../json/not_dis_yujing.json',method:'get'">
+								<thead>
+									<tr>
+										<th data-options="field:'provinceName'">省份名称</th>
+										<th data-options="field:'cityName'">城市名称</th>
+										<th data-options="field:'alarmLvl'">预警等级</th>
+										<th data-options="field:'alarmType'">预警类型</th>
+										<th data-options="field:'alarmTime'">预警时间</th>
+										<th data-options="field:'recordorName'">数据来源</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div title="相关路况信息" style="padding:10px">
+							<table class="easyui-datagrid" style="width:100%;height:280px" data-options="url:'../json/not_dis_lukuang.json',method:'get'">
+								<thead>
+									<tr>
+										<th data-options="field:'line_name',width:150">线路名称</th>
+										<th data-options="field:'line_id',width:150">线路标示</th>
+										<th data-options="field:'f_start_time',width:150">开始时间</th>
+										<th data-options="field:'r_end_time',width:150">结束时间</th>
+										<th data-options="field:'recordor_name',width:150">数据来源</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div title="相关地质灾害信息" style="padding:10px">
+							<table class="easyui-datagrid" style="width:100%;height:280px" data-options="url:'../json/not_dis_dizhi.json',method:'get'">
+								<thead>
+									<tr>
+										<th data-options="field:'address'">发震地址</th>
+										<th data-options="field:'lon'">经度</th>
+										<th data-options="field:'lat'">纬度</th>
+										<th data-options="field:'desaster_lvl'">地震等级</th>
+										<th data-options="field:'alt'">深度</th>
+										<th data-options="field:'happen_time'">发震时间</th>
+										<th data-options="field:'recordorName'">数据来源</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div id="p2" class="easyui-panel" title="调派列表" style="width:100%; border: none;overflow: hidden;" data-options="collapsible:true">
+						<table style="width: 100%;">
+								<tbody>
+									<tr>
+										<td width="40px"></td>
+										<td width="70px"><input id="SelectAll" type="checkbox" onclick="selectAll(this);">全选</td>
+										<td>
+											<tt style="cursor: pointer;" title="" class="easyui-tooltip tooltip-f">
+									           <!--<font color="blue"></font>-->
+									           <a href="#" id="d" class="car_name">操作提示：</a>
+								            </tt> 
+								                        请对申请单进行调派!
+										</td>
+										<td width="500px">
+											<a href="#" id="btnHighAssign" style=";float: right; margin-left: 5px;" class="easyui-linkbutton clear_btn" iconcls="icon-d_ydplb" onclick="body_layout()">高级调派</a>
+											<a href="#" id="btnWorkFlow" style=";float: right; margin-left: 5px;" class="easyui-linkbutton clear_btn" iconcls="icon-d_dpsplb">保存并通知派发</a>
+											<a href="#" id="btnSave" style=";float: right; margin-left: 5px;" class="easyui-linkbutton" iconcls="icon-ok">保存</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						<div id="divLeft" class="left" style="overflow-y: scroll;">
+							<table id="VehTable">
+								<tbody>
+									<tr align="center">
+										<th width="40px"></th>
+										<th width="20px"></th>
+										<th width="100px">申请单位</th>
+										<th width="100px">车辆</th>
+										<th width="80px">车辆类型</th>
+										<th width="150px">发车时间</th>
+										<th width="100px">主驾驶员</th>
+									</tr>
+									<tr align="center">
+										<td class="blank" width="40px">1</td>
+										<td class="blank" width="20px"><input id="subcheck" type="checkbox"></td>
+										<td class="blank" width="200px">中国石油辽阳石油化纤公司 </td>
+										<td class="blank" width="150px"><a href="#" class="car_name" onclick="alert('#dlg1')">川R42069</a></td>
+										<td class="blank" width="80px">中、大型客车(依维柯14座)</td>
+										<td class="blank" width="200px">2017-08-02 14:31 </td>
+										<td class="blank" width="80px"><a href="#" class="car_person" onclick="alert('#dlg2')">请选择主驾驶员</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<table width="100%" style="margin-top: 200px;">
+							<tbody>
+								<tr>
+									<td id="tdSpace" width="40px" style="width: 20px;">&nbsp;</td>
+									<td align="center">自动筛选<input class="easyui-numberbox numberbox numberbox-f validatebox-text" data-options="min:1,max:1000" style="width: 44px; height: 20px; line-height: 20px;" type="text" id="rowNum"><input type="hidden" value=""> 辆可用车辆
+										<a alt="chongx" href="#" class="easyui-linkbutton l-btn l-btn-small" onclick="queryVeh()" group="" id=""><span class="l-btn-left"><span class="l-btn-text">刷新</span></span>
+										</a>
+									</td>
+									<td id="tdSpace1" width="20px" style="width: 5px;">&nbsp;</td>
+								</tr>
+							</tbody>
+						</table>
+				</div>
+			</div>
+	        <!--模态框--> 
+					<div id='dlg1' class="easyui-window" closed='true' title="选择车辆" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:980px;height:540px;">
+						<div> 
+							<table border="0" cellspacing="0" cellpadding="0" class="table_mes">
+								<tr>
+									<td align="right">单位：</td>
+									<td><input id="cc" style="width: 120px;" class="easyui-combotree" data-options="url:'../json/tree_data1.json',method:'get',required:false"></td>
+						            <td align="right">车辆类型：</td>
+									<td colspan="2">
+										<select class="easyui-combobox width" name="language">
+											<option value="ar">小客车(越野6-8座)</option>
+											<option value="bg">小客车(商务6-8座)</option>
+											<option value="ca">中、大型客车(依维柯9座)</option>
+											<option value="zh-cht">中、大型客车(依维柯10座)</option>
+											<option value="cs">中、大型客车(依维柯14座)</option>
+											<option value="da">中、大型客车(奔驰丰田)</option>
+										</select>
+									</td>
+									<td align="right">车牌号码：</td>
+									<td><input type="text"/></td>
+								</tr>
+								<tr>
+									<td align="right">时间：</td>
+									<td><input id="useDate" style="width: 120px;" class="easyui-datetimebox" editable="false" comboname="useDate"></td>
+								    <td colspan="3">到<input id="backDate" style="width: 120px;" class="easyui-datetimebox combo-f datetimebox-f datebox-f" editable="false"comboname="backDate"></td>
+								    <td colspan="2" class="btn">
+										<span class="refreshbtn">查询</span>
+										<span class="refreshbtn">重置</span>
+									</td>
+								</tr>
+							</table>
+							<table id="dg2" class="easyui-datagrid" style="width:100%;height:370px" data-options="rownumbers:true,singleSelect:true,pagination:true,pageList:[5,10,15,20],url:'../json/car_number.json',method:'get'">
+				            	<thead>
+									<tr>
+										<th data-options="field:'orgName'" style="width: 200px;">单位</th>
+										<th data-options="field:'typeName'">车辆类型</th>
+										<th data-options="field:'idNumber',align:'right'">车牌号</th>
+										<th data-options="field:'modelId',align:'right'">型号</th>
+										<th data-options="field:'driverId'">载客</th>
+										<th data-options="field:'driverName',align:'center'">主驾驶员</th>
+										<th data-options="field:'levelName',align:'center'">驾驶员级别</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div style="width:100%; text-align: center;margin-top: 10px;">
+							<a href="#" class="easyui-linkbutton" onclick="$('#dlg1').window('close')">确定</a>
+							<a href="#" class="easyui-linkbutton" onclick="$('#dlg1').window('close')">关闭</a>
+						</div>
+					</div>
+					<div id='dlg2' class="easyui-window" closed='true' title="选择驾驶员" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:980px;height:540px;">
+						<div> 
+							<table border="0" cellspacing="0" cellpadding="0" class="table_mes" style="width: 100%;">
+								<tr>
+									<td align="right">驾驶员名称：</td>
+									<td><input type="text" /></td>
+									<td align="right">时间：</td>
+									<td><input id="useDate" style="width: 120px;" class="easyui-datetimebox" editable="false" comboname="useDate"></td>
+								    <td colspan="3">到<input id="backDate" style="width: 120px;" class="easyui-datetimebox combo-f datetimebox-f datebox-f" editable="false"comboname="backDate"></td>
+								    <td colspan="2" class="btn">
+										<span class="refreshbtn">查询</span>
+										<span class="refreshbtn">重置</span>
+									</td>
+								</tr>
+							</table>
+							<table id="dg" class="easyui-datagrid" style="width:100%;height:370px" data-options="rownumbers:true,singleSelect:true,pagination:true,pageList:[5,10,15,20],url:'../json/select_driver.json',method:'get'">
+				            	<thead>
+									<tr>
+										<th data-options="field:'ORG_NAME'" style="width: 200px;">所属单位</th>
+										<th data-options="field:'DRIVER_NAME'">驾驶员名称</th>
+										<th data-options="field:'MOBILEPHONE',align:'right'">移动电话</th>
+										<th data-options="field:'LEVEL_NAME',align:'right'">级别</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div style="width:100%; text-align: center;margin-top: 10px;">
+							<a href="#" class="easyui-linkbutton" onclick="$('#dlg2').window('close')">确定</a>
+							<a href="#" class="easyui-linkbutton" onclick="$('#dlg2').window('close')">关闭</a>
+						</div>
+					</div>
+					
+		
+		
+		</div>       
+        <span id="not_dispat" style="display: none;">not_dispat</span>
+	</body>
+<script type="text/javascript">
+//	高级调派
+  function body_layout(){
+     var id = $('#not_dispat').html();
+     var str = JSON.stringify(id);
+    window.sessionStorage.setItem('id', str);
+  	window.location.href='view_assign.html';
+  }
+//	展开收起
+	function more() {
+		$('.tasb1').show()
+		$('.less').show()
+		$('.more').hide()
+	}
+	function less() {
+		$('.tasb1').hide()
+		$('.less').hide()
+		$('.more').show()
+	}
+//	清空
+    $('.clear1').click(function(){
+    	$('#task_name').val(' ');
+    })
+	</script>
+
+</html>

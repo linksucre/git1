@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html style="width:100%;height:100%;">
+	<head>
+		<meta charset="UTF-8">
+		<title>安全管控</title>
+				 <!-- 引入EasyUI的样式文件-->
+		<link href="images/logo.png" rel="shortcut icon" />
+		<link rel="stylesheet" href="../css/easyui.css" type="text/css"/>
+		<link rel="stylesheet" href="../css/icon.css" type="text/css"/>
+		<link rel="stylesheet" href="../css/demo.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/other.css" />
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+		<!-- 引入EasyUI的中文国际化js，让EasyUI支持中文 -->
+		<script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+		<script src="../js/echarts.min.js"></script>
+		<script src="../js/index.js"></script>
+		<script src="../js/noContextMenu.js"></script>
+		<!--<script type="text/javascript" src="../js/loading.js"></script>-->
+	</head>
+	<body style="width:100%;height:100%;margin:0;padding:0;" class="easyui-layout" id="fenxianyujing">
+		<div  style="width:100%;height:30px;background: #95B8E7;" id="spanID">	
+  		 </div>
+  		
+		<!--上边-->
+		<!--center-->
+		
+		<div region="center" id="mainPanle" style="overflow: hidden;">
+			<div class="easyui-layout" data-options="fit:true">
+				
+				<div region="center"  style="overflow: hidden;">
+						<!--右边-->
+						<div id="mainPanle" region="center" title="" style="padding:5px;height:100%;">	
+								<div id="mainContainer" class="easyui-tabs" fit="true" border="false" style="overflow: hidden;">
+									<div title="主页" id="allmap" style="height:100%;overflow: hidden;">
+										<div data-options="region:'north',border:false" style="height: 65px; padding-top: 5px; padding-left: 5px; width: 100%;" title="" class="panel-body panel-body-noheader panel-body-noborder layout-body">
+											<div id="report_table_search" style="font-size:14px;height:auto">
+												<div id="orgPosition" style="text-align:left;display: none;">当前位置：<span class="span-current" id="currentposition0" onclick="AppTable.Getcurrentposition(this)">集团公司</span></div>
+												<div style="text-align:left;padding-top:5px">
+													单位：
+													<input type="text" class="easyui-combotree " comboname="orgCode" style="width:150px;height:20px;border:1px solid #95b8e7;" data-options="url:'get_data.php',url:'../json/alarmSwitchdanwei.json',method:'get'">
+			
+													
+								
+								时间：
+		<input class="easyui-datebox datebox-f combo-f" id="startDate" style="width: 100px; display: none;">
+
+	-
+	<input class="easyui-datebox datebox-f combo-f" id="endDate" style="width: 100px; display: none;">
+
+						
+													<a href="javascript:void(0)" id="search_btn" class="easyui-linkbutton l-btn l-btn-small" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">
+														查询
+													</a>
+													
+													<div id="turn_btn" title="转换报表展示形式" class="report_box" style="width:50px;height:50px;float:right;margin-right:20px;background:url(images/report.png) no-repeat"  onclick="addPanel('riskPre-warning/earlyWarningSend.html','预警发送记录')"></div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="anquanEarch-tab">
+											<div style="margin:20px 0;">
+											<div id="tt" class="easyui-tabs" style="width:100%;height:800px;">
+												<div title="日(区段)统计" style="padding:10px">
+													<!--earch表格-->
+													<div id="anquanEarch-day" style="width:100%;height:600px;">							
+													</div>
+												</div>
+												<div title="月统计" style="padding:10px;width:1500px;height:800px;">
+													<div id="anquanEarch-month" style="width:1500px;height:600px;">							
+													</div>
+												</div>
+												<div title="年统计" style="padding:10px;">
+													<div id="anquanEarch-year" style="width:100%;height:600px;">							
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>  	
+								</div>	
+								
+								
+								
+						</div>
+						<!--右边-->
+				</div>
+			
+			</div>
+		</div>
+	    <div id="tabsMenu" class="easyui-menu" style="width: 120px; height: 72px; display: none; left: 0px; top: 0px;">
+			<div name="close" class="menu-item">关闭</div>
+			<div name="Other" class="menu-item">关闭其他</div>
+			<div name="All" class="menu-item">关闭全部</div>
+		</div>
+		</div>
+	</body>
+	<script>
+		function showcontent(language){
+			$('#content').html('Introduction to ' + language + ' language');
+		};
+		
+			//tab切换
+			 $('#tt').tabs({
+		
+		    // 是否不显示控制面板背景。
+		    plain : false,
+		    // 选项卡是否将铺满它所在的容器
+		    fit : false,
+		    // 是否显示选项卡容器边框
+		    border : true,
+		    	tabPosition : 'bottom'
+		    // 选项卡标题宽度，在 tabPosition 属性设置为'left'或'right'的时候才有效
+		
+		   }) ;	
+		   
+		 // 基于准备好的dom，初始化echarts实例 day
+        var myChart = echarts.init(document.getElementById('anquanEarch-day'));
+		var colors = ['#5793f3', '#d14a61', '#675bba','#690'];
+		function refreshbtn(){
+			 // 基于准备好的dom，初始化echarts实例 day
+        var myChart = echarts.init(document.getElementById('anquanEarch-day'));
+		var colors = ['#5793f3', '#d14a61', '#675bba','#690'];
+		
+		// 指定图表的配置项和数据
+        var option1 = {
+    color: colors,
+	title: {
+			    	x:"center",
+			        text: '事件分析日统计'
+			    },
+    tooltip: {
+        trigger: 'none',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    legend: {
+    	x:'right',
+		y: 'center',  
+		itemGap:2 ,
+		   data:['事故事件','报警事件','预警事件','维修保养'],
+         orient: 'vertical', 
+    },
+    grid: {
+        top: 70,
+        bottom: 50
+    },
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+                onZero: false,
+                lineStyle: {
+                    color: colors[1]
+                }
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        return '降水量  ' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                    }
+                }
+            },
+            data: ["2015-1", "2015-2", "2015-3", "2015-4", "2015-5", "2015-6", "2015-7", "2015-8", "2015-9", "2015-10", "2015-11", "2015-12"]
+           
+        },
+        {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+                onZero: false,
+                lineStyle: {
+                    color: colors[0]
+                }
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        return '降水量  ' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                    }
+                }
+            },
+            data: ["2016-1", "2016-2", "2016-3", "2016-4", "2016-5", "2016-6", "2016-7", "2016-8", "2016-9", "2016-10", "2016-11", "2016-12"]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name:'事故事件',
+            type:'line',
+            xAxisIndex: 1,
+            smooth: true,
+            data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 46.6, 2.3]
+        },
+        {
+            name:'报警事件',
+            type:'line',
+            smooth: true,
+            data: [3.9, 5.9, 5.9, 18.7, 175.6, 69.2, 231.6, 46.6, 55.4, 18.4, 10.3, 46.6]
+        },{
+            name:'预警事件',
+            type:'line',
+            smooth: true,
+            data: [3.9, 5.9, 46.6, 18.7, 48.3, 69.2, 231.6, 46.6, 55.4, 18.4, 10.3, 46.6]
+        },{
+            name:'维修保养',
+            type:'line',
+            smooth: true,
+            data: [46.6, 5.9, 11.1, 18.7, 48.3, 175.6, 231.6, 46.6, 55.4, 18.4, 5.9, 0.7]
+        }
+    ]
+};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option1);
+		}
+		
+        // 指定图表的配置项和数据
+        var option1 = {
+    color: colors,
+	title: {
+			    	x:"center",
+			        text: '事件分析日统计'
+			    },
+    tooltip: {
+        trigger: 'none',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    legend: {
+    	x:'right',
+		y: 'center',  
+		itemGap:2 ,
+		   data:['事故事件','报警事件','预警事件','维修保养'],
+         orient: 'vertical', 
+    },
+    grid: {
+        top: 70,
+        bottom: 50
+    },
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+                onZero: false,
+                lineStyle: {
+                    color: colors[1]
+                }
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        return '降水量  ' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                    }
+                }
+            },
+            data: ["2015-1", "2015-2", "2015-3", "2015-4", "2015-5", "2015-6", "2015-7", "2015-8", "2015-9", "2015-10", "2015-11", "2015-12"]
+           
+        },
+        {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+                onZero: false,
+                lineStyle: {
+                    color: colors[0]
+                }
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        return '降水量  ' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                    }
+                }
+            },
+            data: ["2016-1", "2016-2", "2016-3", "2016-4", "2016-5", "2016-6", "2016-7", "2016-8", "2016-9", "2016-10", "2016-11", "2016-12"]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name:'事故事件',
+            type:'line',
+            xAxisIndex: 1,
+            smooth: true,
+            data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 46.6, 2.3]
+        },
+        {
+            name:'报警事件',
+            type:'line',
+            smooth: true,
+            data: [3.9, 5.9, 5.9, 18.7, 175.6, 69.2, 231.6, 46.6, 55.4, 18.4, 10.3, 46.6]
+        },{
+            name:'预警事件',
+            type:'line',
+            smooth: true,
+            data: [3.9, 5.9, 46.6, 18.7, 48.3, 69.2, 231.6, 46.6, 55.4, 18.4, 10.3, 46.6]
+        },{
+            name:'维修保养',
+            type:'line',
+            smooth: true,
+            data: [46.6, 5.9, 11.1, 18.7, 48.3, 175.6, 231.6, 46.6, 55.4, 18.4, 5.9, 0.7]
+        }
+    ]
+};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option1);
+		
+
+
+
+
+		
+	var worldMapContainer = document.getElementById('anquanEarch-month');
+
+		//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+		var resizeWorldMapContainer = function () {
+		
+		    worldMapContainer.style.width = (window.innerWidth-300)+'px';
+		    worldMapContainer.style.height = (window.innerHeight-300)+'px';
+		};
+		//设置容器高宽
+		resizeWorldMapContainer();
+	// 基于准备好的dom，初始化echarts实例  month
+        var myChart = echarts.init(document.getElementById('anquanEarch-month'));
+        // 指定图表的配置项和数据
+        var option2 = {
+    color: colors,
+	title: {
+			    	x:"center",
+			        text: '事件分析月统计'
+			    },
+    tooltip: {
+        trigger: 'none',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    legend: {
+    	x:'right',
+		y: 'center',  
+		itemGap:2 ,
+		   data:['事故事件','报警事件','预警事件','维修保养'],
+         orient: 'vertical', 
+    },
+    grid: {
+        top: 70,
+        bottom: 50
+    },
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+                onZero: false,
+                lineStyle: {
+                    color: colors[1]
+                }
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        return '降水量  ' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                    }
+                }
+            },
+            data: ["2015-1", "2015-2", "2015-3", "2015-4", "2015-5", "2015-6", "2015-7", "2015-8", "2015-9", "2015-10", "2015-11", "2015-12"]
+           
+        },
+        {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+                onZero: false,
+                lineStyle: {
+                    color: colors[0]
+                }
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        return '降水量  ' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                    }
+                }
+            },
+            data: ["2016-1", "2016-2", "2016-3", "2016-4", "2016-5", "2016-6", "2016-7", "2016-8", "2016-9", "2016-10", "2016-11", "2016-12"]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name:'事故事件',
+            type:'line',
+            xAxisIndex: 1,
+            smooth: true,
+            data: [2.6, 5.9, 10.3, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 46.6, 3.9]
+        },
+        {
+            name:'报警事件',
+            type:'line',
+            smooth: true,
+            data: [3.9, 5.9, 5.9, 10.3, 175.6, 182.2, 231.6, 46.6, 5.9, 18.4, 10.3, 46.6]
+        },{
+            name:'预警事件',
+            type:'line',
+            smooth: true,
+            data: [3.9, 5.9, 5.9, 18.7, 182.2, 69.2, 231.6, 46.6, 55.4, 5.9, 10.3, 46.6]
+        },{
+            name:'维修保养',
+            type:'line',
+            smooth: true,
+            data: [3.9, 5.9, 11.1, 18.7, 48.3, 175.6, 231.6, 46.6, 55.4, 18.4, 5.9, 3.9]
+        }
+    ]
+};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option2);
+        
+        //用于使chart自适应高度和宽度
+			window.onresize = function () {
+			    //重置容器高宽
+			    resizeWorldMapContainer();
+			    myChart.resize();
+			};
+			
+			
+			
+			//year
+			
+			var worldMapContainer = document.getElementById('anquanEarch-year');
+
+		//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+		var resizeWorldMapContainer = function () {
+		
+		    worldMapContainer.style.width = (window.innerWidth-300)+'px';
+		    worldMapContainer.style.height = (window.innerHeight-300)+'px';
+		};
+		//设置容器高宽
+		resizeWorldMapContainer();
+		// 基于准备好的dom，初始化echarts实例  month
+        var myChart = echarts.init(document.getElementById('anquanEarch-year'));
+        // 指定图表的配置项和数据
+ var option3 = {
+    color: colors,
+	title: {
+			    	x:"center",
+			        text: '事件分析年统计'
+			    },
+    tooltip: {
+        trigger: 'none',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    legend: {
+    	x:'right',
+		y: 'center',  
+		itemGap:2 ,
+		   data:['事故事件','报警事件','预警事件','维修保养'],
+         orient: 'vertical', 
+    },
+    grid: {
+        top: 70,
+        bottom: 50
+    },
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+                onZero: false,
+                lineStyle: {
+                    color: colors[1]
+                }
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        return '降水量  ' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                    }
+                }
+            },
+            data: ["2015-1", "2015-2", "2015-3", "2015-4", "2015-5", "2015-6", "2015-7", "2015-8", "2015-9", "2015-10", "2015-11", "2015-12"]
+           
+        },
+        {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+                onZero: false,
+                lineStyle: {
+                    color: colors[0]
+                }
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        return '降水量  ' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                    }
+                }
+            },
+            data: ["2016-1", "2016-2", "2016-3", "2016-4", "2016-5", "2016-6", "2016-7", "2016-8", "2016-9", "2016-10", "2016-11", "2016-12"]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name:'事故事件',
+            type:'line',
+            xAxisIndex: 1,
+            smooth: true,
+            data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 46.6, 2.3]
+        },
+        {
+            name:'报警事件',
+            type:'line',
+            smooth: true,
+            data: [3.9, 5.9, 5.9, 18.7, 175.6, 69.2, 231.6, 46.6, 55.4, 18.4, 10.3, 46.6]
+        },{
+            name:'预警事件',
+            type:'line',
+            smooth: true,
+            data: [3.9, 5.9, 46.6, 18.7, 48.3, 69.2, 231.6, 46.6, 55.4, 18.4, 10.3, 46.6]
+        },{
+            name:'维修保养',
+            type:'line',
+            smooth: true,
+            data: [46.6, 5.9, 11.1, 18.7, 48.3, 175.6, 231.6, 46.6, 55.4, 18.4, 5.9, 0.7]
+        }
+    ]
+};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option3);
+        
+        //用于使chart自适应高度和宽度
+			window.onresize = function () {
+			    //重置容器高宽
+			    resizeWorldMapContainer();
+			    myChart.resize();
+			};
+			
+		//点击左边菜单右边出现对应弹框
+		
+//点击添加选项卡
+function tabs1() {
+	$('#mainContainer').tabs('select', '主页');    //跳转到名为'消息'tab页
+
+}
+	</script>
+</html>

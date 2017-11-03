@@ -1,0 +1,57 @@
+{
+	"total": 81,
+	"rows": [
+		{
+			"typeId": "小客车",
+			"modelId": "1",
+			"vehNum": "4",
+			"authorizerCapacity": "43"
+		}, {
+			"typeId": "小客车",
+			"modelId": "1",
+			"vehNum": "141",
+			"authorizerCapacity": "47"
+		}, {
+			"typeId": "小客车(小轿车)",
+			"modelId": "1",
+			"vehNum": "344",
+			"authorizerCapacity": ""
+		}, {
+			"typeId": "小客车",
+			"modelId": "1",
+			"vehNum": "25",
+			"authorizerCapacity": "11"
+		}, {
+			"typeId": "小客车",
+			"modelId": "1",
+			"vehNum": "21",
+			"authorizerCapacity": "39"
+		}, {
+			"typeId": "小客车",
+			"modelId": "1",
+			"vehNum": "4",
+			"authorizerCapacity": "13"
+		}, {
+			"typeId": "小客车",
+			"modelId": "1",
+			"vehNum": "2",
+			"authorizerCapacity": "8"
+		}, {
+			"typeId": "小客车",
+			"modelId": "1",
+			"vehNum": "13",
+			"authorizerCapacity": "49"
+		}, {
+			"typeId": "中、大型客车(依维柯14座)",
+			"modelId": "1",
+			"vehNum": "38",
+			"authorizerCapacity": ""
+		}, {
+			"typeId": "小客车",
+			"modelId": "1",
+			"vehNum": "1",
+			"authorizerCapacity": "50"
+		}
+	],
+	"tableType": null
+}
