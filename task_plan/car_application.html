@@ -41,13 +41,18 @@
 								<input type="radio" name="isdistance" id="isdistance3" value="2"> &gt;=1000km
 							</td>
 						</tr>
+						<!--<tr>
+							<td align="right">任务名称：</td>
+							<td align="left" colspan="3">
+								<input class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:'length[1,125]'" placeholder="请填入任务名称" type="text" name="taskName" id="taskName" style="width: 100%;" title=""></td>
+						</tr>-->
 						<tr>
 							<td align="right">申请车型：</td>
 							<td align="left" colspan="3">
 								<input class="easyui-validatebox textbox validatebox-text validatebox-invalid" placeholder="请选择车型和数量" type="text" data-options="required:true" name="carCount" editable="false" readonly="" id="carCount" style="width: 100%;" title="">
 							</td>
 							<td align="left">
-								<button class="easyui-linkbutton clear_btn" data-options="iconCls:'icon-add'" onclick="alert('#w')">选择车型</button>
+								<button class="easyui-linkbutton clear_btn" style="margin:0;padding:0;" data-options="iconCls:'icon-add'" onclick="alert('#w')">选择车型</button>
 							</td>
 						</tr>
 						<tr>
@@ -56,7 +61,7 @@
 								<input class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true" placeholder="请选择出发地" type="text" style="width: 100%;" name="leaveAddress" id="leaveAddress" readonly="" title="">
 							</td>
 							<td align="left">
-								<button id="selectAddressbtnhref" type="button" class="easyui-linkbutton clear_btn" data-options="iconCls:'icon-add'" onclick="alert('#w1')">列表选择</button>
+								<button id="selectAddressbtnhref" type="button" style="margin:0;padding:0;" class="easyui-linkbutton clear_btn" data-options="iconCls:'icon-add'" onclick="alert('#w1')">列表选择</button>
 							</td>
 						</tr>
 						<tr>
@@ -65,7 +70,7 @@
 								<input class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true" placeholder="请选择目的地" type="text" style="width: 100%;" name="arriveAddress" id="arriveAddress" readonly="" title="">
 							</td>
 							<td align="left">
-								<button id="selectArriveAddressbtn" type="button" class="easyui-linkbutton clear_btn" data-options="iconCls:'icon-add'" onclick="alert('#w1')">列表选择</button>
+								<button id="selectArriveAddressbtn" type="button" style="margin:0;padding:0;" class="easyui-linkbutton clear_btn" data-options="iconCls:'icon-add'" onclick="alert('#w1')">列表选择</button>
 								<span class="more">更多>></span>
 								<span class="less" style="display: none;">收起<<</span>
 							</td>
@@ -163,9 +168,9 @@
 						</tr>
 						<tr>
 							<td align="center" colspan="5">
-								<button class="easyui-linkbutton clear_btn" data-options="iconCls:'icon-ok'" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;确认</button>
-								<button class="easyui-linkbutton clear_btn" data-options="iconCls:'icon-cz_reset'"  type="button" onclick="alert('#w4')">重置</button>
-								<button class="easyui-linkbutton clear_btn" data-options="iconCls:'icon-collect'" type="button" onclick="alert('#w5')">收藏业务点</button>
+								<button class="easyui-linkbutton" data-options="iconCls:'icon-ok'" type="submit">确认</button>
+								<button class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  type="button" onclick="alert('#w4')">重置</button>
+								<button class="easyui-linkbutton" data-options="iconCls:'icon-collect'" type="button" onclick="alert('#w5')">收藏业务点</button>
 							</td>
 						</tr>
 					</tbody>

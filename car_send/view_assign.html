@@ -419,7 +419,6 @@
 	            </div>
 		    </div>
 		</div>
-		<span id="not" style="display: none;">not_dispat</span>
 	</body>
 	<script type="text/javascript">
 //添加数据
@@ -440,16 +439,7 @@
 	 })
 //返回
     function child_layout(){
-    	var id = sessionStorage.getItem('id');
-        console.log(id)
-        var not = JSON.stringify($('#not').html());
-    	if(id == not){
-    		window.location.href='not_dispat.html';
-    		sessionStorage.removeItem('id');
-    	}else{
-    		window.location.href='../vehicleScheduling/taskDetails.html';
-    	}
-    	
+    	window.location.href='not_dispat.html';
     }
 // 删除车辆数据  
 $('.del_list').click(function() {

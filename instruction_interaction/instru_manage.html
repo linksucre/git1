@@ -50,19 +50,19 @@
 		<div region="center">
 			<div class="easyui-layout" data-options="fit:true">
 				<div data-options="region:'center',border:true" title="车辆列表">
-					<table id="dg1" title="" class="easyui-datagrid" style="width:100%;height:100%" data-options="fitColumns:true,rownumbers:true,toolbar:'#tb',singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../json/instru_data.json',method:'get'">
+					<table id="dg1" title="" class="easyui-datagrid" style="width:100%;height:100%" data-options="rownumbers:true,toolbar:'#tb',singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../json/instru_data.json',method:'get'">
 						<thead>
 							<tr>
-								<th data-options="field:'checkbox',checkbox:true"></th>
+								<th data-options="field:'checkbox',checkbox:true,width:60,align:'center',editor:{type:'checkbox',options:{on:'P',off:''}}"></th>
 								<th data-options="field:'terminalName',width:80">终端类型</th>
 								<th data-options="field:'status_flag',width:100">终端是否支持</th>
-								<th data-options="field:'idNumber',width:80,align:'right'">车牌号</th>
-								<th data-options="field:'orgName',width:80,align:'right'">单位</th>
-								<th data-options="field:'terminalCode',width:220">终端编码</th>
-								<th data-options="field:'sim',width:220">SIM卡</th>
-								<th data-options="field:'driver',width:220">状态</th>
-								<th data-options="field:'rInt',width:220">结果</th>
-								<th data-options="field:'blackFlag',width:220">终端返回信息</th>
+								<th data-options="field:'idNumber',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">车牌号</th>
+								<th data-options="field:'orgName',width:80,align:'right',editor:'numberbox'">单位</th>
+								<th data-options="field:'terminalCode',width:220,editor:'textbox'">终端编码</th>
+								<th data-options="field:'sim',width:220,editor:'textbox'">SIM卡</th>
+								<th data-options="field:'driver',width:220,editor:'textbox'">状态</th>
+								<th data-options="field:'rInt',width:220,editor:'textbox'">结果</th>
+								<th data-options="field:'blackFlag',width:220,editor:'textbox'">终端返回信息</th>
 							</tr>
 						</thead>
 					</table>

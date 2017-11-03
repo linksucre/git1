@@ -56,7 +56,7 @@ $('#pullBox').click(function () {
    if(!isPullBoxOpen) {
     map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
     var keyword = "车辆";
-     pullBox = new BMapLib.SearchInRectangle(map, keyword, {
+    var pullBox = new BMapLib.SearchInRectangle(map, keyword, {
         renderOptions: {
             map: map,
             strokeWeight: 3,
@@ -75,9 +75,7 @@ $('#pullBox').click(function () {
    }else{
   
     $(this).removeClass('select')
-    if(pullBox){
     pullBox.close()
-    }
     isPullBoxOpen = false;
    }
 })
@@ -110,7 +108,6 @@ $('#pullBox').click(function () {
 
 var myDrag1 = null;
 var myDrag2 = null;
-var pullBox = null;
 
 function clearAll() {
     if (myDrag2) {
@@ -119,10 +116,6 @@ function clearAll() {
     if (myDrag1) {
         myDrag1.close()
     }
-    if(pullBox) {
-        pullBox.close();
-    }
-    
     map.clearOverlays();
     $('#w').window('close');
     // isDisOpen = false;
@@ -137,7 +130,6 @@ function clearAll() {
 //拉框放大
 var isZoomMaxOpen = false;
 $('#zoomMax').click(function () {
-
     clearAll()
     if (!isZoomMaxOpen) {
         myDrag1 = new BMapLib.RectangleZoom(map, {
@@ -241,6 +233,7 @@ $('#distance').click(function () {
 //测量面积
 var isMeasureAreaOpen = false;
 $('#measureArea').click(function () {
+
     clearAll()
     if(!isMeasureAreaOpen){
         draw(BMAP_DRAWING_POLYGON);

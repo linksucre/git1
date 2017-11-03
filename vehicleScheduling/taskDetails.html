@@ -62,11 +62,11 @@
 			<!--上面的部分-->
 			<div style="height: 32px; line-height: 32px;">
 				&nbsp;
-				<!--<a href="#">-->
-					<button onclick="page()" class="easyui-linkbutton" id="btnback" data-options="iconCls:'icon-return'" style="background: #075EA2;color:#FFFFFF;" >
+				<a href="#" onclick="addTab('主页')">
+					<button class="easyui-linkbutton l-btn l-btn-small" id="btnback" data-options="iconCls:'icon-return'" style="background: #075EA2;color:#FFFFFF;" >
 						返回
 					</button>
-				<!--</a>-->
+				</a>
 				<a href="#" class="easyui-linkbutton l-btn l-btn-small" id="rcdp" style="display: none" group="" ><span class="l-btn-left"><span class="l-btn-text">人车调派</span></span></a>
 				<a href="#" class="easyui-linkbutton l-btn l-btn-small" id="tzpf" style="display: none" group=""><span class="l-btn-left"><span class="l-btn-text">通知派发</span></span></a> <a href="#" class="easyui-linkbutton l-btn l-btn-small" id="hcdj" style="display: none" onclick="showVehicleBackDialog()" group=""><span class="l-btn-left"><span class="l-btn-text">回车登记</span></span></a> <a href="#" class="easyui-linkbutton l-btn l-btn-small" id="dzld" style="display: none" group=""><span class="l-btn-left"><span class="l-btn-text">导出电子路单</span></span></a>
 				<a href="#" onclick="callParent()" id="chakanId" style="background: #075EA2;color:#FFFFFF;" class="easyui-linkbutton l-btn l-btn-small" id="ckdp" style="" group="">
@@ -280,7 +280,7 @@
 					</div>
 			</div>
 		</div>
-	    <span id="inner_task" style="display: none;">task</span>
+	
 		<script>
 	 
             //在iframe中查找父页面元素
@@ -290,17 +290,10 @@
 				window.location.href = "../car_send/view_assign.html";
 			} 
 			//点击返回按钮
-			function page(){
-				var name = sessionStorage.getItem('name');
-		        var not = JSON.stringify($('#inner_task').html());
-		    	if(name == not){
-		    		window.location.href = "../task_plan/taskTracking.html";
-		    		sessionStorage.removeItem('name');
-		    	}else{ 
-		    		addTab();
-		    	}				
+			 function addPanel(url){ 
+				window.location.href = "taskTracking.html";
 			}
-			function addTab(){
+			 function addTab(){
 				window.parent.tabs1();
 			}
 		</script>

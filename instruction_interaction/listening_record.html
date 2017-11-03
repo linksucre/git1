@@ -15,9 +15,9 @@
 	<script type="text/javascript" src="../js/fenye.js"></script>
 	<script type="text/javascript" src="../js/export.js"></script>
 	<script type="text/javascript" src="../js/loading.js"></script>
-	<body class="easyui-layout" style="overflow: hidden;">
-		
-			<div data-options="region:'center',border:true" title="车辆信息列表" style="overflow: hidden;">
+	<body>
+		<div class="easyui-layout" data-options="fit:true">
+			<div data-options="region:'center',border:true" title="车辆信息列表">
 				<table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
 					<tr>
 						<td>监听方式：</td>
@@ -70,6 +70,7 @@
 				</table>
 			</div>
 
+		</div>
 
 	</body>
 	<script type="text/javascript">
@@ -78,7 +79,6 @@
 		$(function() {
 			$('#dg').datagrid({
 				idField: 'itemid',
-				fitColumns:true,
 				columns: [
 					[{
 							field: 'action',
@@ -96,17 +96,17 @@
 					   {
 							field: 'vehicleRollCallName',
 							title: '监听方式',
-							width: 200
+							width: 560
 						},
 						{
 							field: 'userCode',
 							title: '监听用户',
-							width: 200
+							width: 560
 						},
 						{
 							field: 'vehicleRollCallTime',
 							title: '时间',
-							width: 200
+							width: 560
 						}					
 					]
 				]

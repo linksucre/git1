@@ -47,22 +47,22 @@
 			<p><span class="filter"></span>显示车辆自编号</p>
 		</div>
 		</div>
-		<div region="center" style="overflow: hide;">
-			<div class="easyui-layout" data-options="fit:true" style="overflow: hide;">
-				<div data-options="region:'center',border:true" title="车辆列表" style="overflow: hide;">
-				     <table id="dg" title="" class="easyui-datagrid" style="width:100%;height:100%" data-options="fitColumns:true,rownumbers:true,toolbar:'#tb',singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../json/datagrid_data1.json',method:'get'">
+		<div region="center">
+			<div class="easyui-layout" data-options="fit:true">
+				<div data-options="region:'center',border:true" title="车辆列表">
+				     <table id="dg" title="" class="easyui-datagrid" style="width:100%;height:100%" data-options="rownumbers:true,toolbar:'#tb',singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../json/datagrid_data1.json',method:'get'">
 						<thead>
 							<tr>
-								<th data-options="field:'checkbox',checkbox:true"></th>
-								<th data-options="field:'itemid',width:140">终端类型</th>
-								<th data-options="field:'productid',width:140">终端是否支持</th>
-								<th data-options="field:'listprice',width:140">车牌号</th>
-								<th data-options="field:'unitcost',width:140">单位</th>
-								<th data-options="field:'attr1',width:140">终端编码</th>
-								<th data-options="field:'attr1',width:140">SIM卡</th>
-								<th data-options="field:'attr1',width:140">状态</th>
-								<th data-options="field:'attr1',width:140">结果</th>
-								<th data-options="field:'attr1',width:140">终端返回信息</th>
+								<th data-options="field:'checkbox',checkbox:true,width:60,align:'center',editor:{type:'checkbox',options:{on:'P',off:''}}"></th>
+								<th data-options="field:'itemid',width:80">终端类型</th>
+								<th data-options="field:'productid',width:100">终端是否支持</th>
+								<th data-options="field:'listprice',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">车牌号</th>
+								<th data-options="field:'unitcost',width:80,align:'right',editor:'numberbox'">单位</th>
+								<th data-options="field:'attr1',width:220,editor:'textbox'">终端编码</th>
+								<th data-options="field:'attr1',width:220,editor:'textbox'">SIM卡</th>
+								<th data-options="field:'attr1',width:220,editor:'textbox'">状态</th>
+								<th data-options="field:'attr1',width:220,editor:'textbox'">结果</th>
+								<th data-options="field:'attr1',width:220,editor:'textbox'">终端返回信息</th>
 							</tr>
 						</thead>
 					</table>

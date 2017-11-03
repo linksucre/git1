@@ -34,92 +34,78 @@
     }
 
     #mapDiv1 {
-        height: 260px;
+        height: 312px;
         width: 635px;
-        border: 1px solid #ccc;
     }
 
     .textbox {
         position: relative;
+        top: 25px;
         z-index: 9999;
     }
 
     #mapDiv2 {
-        height: 260px;
+        height: 312px;
         width: 635px;
-        left: 640px;
-        top: -306px;
-        border: 1px solid #ccc;
+        left: 637px;
+        top: -328px;
     }
 
     #mapDiv3 {
-        height: 260px;
+        height: 312px;
         width: 635px;
-        top: -263px;
-        border: 1px solid #ccc;
+        top: -360px;
     }
 
     #mapDiv4 {
-        height: 260px;;
+        height: 312px;
         width: 635px;
-        left: 640px;
-        top: -525px;
-        border: 1px solid #ccc;
+        left: 637px;
+        top: -687px;
     }
 </style>
 
-<body style="background-color: #f3f0f2">
+<body>
 
-   <div class="box">
-        <div class="topbox" style="height: 38px;margin-top: 6px">
-                <div class="box1" style="display: inline-block; width: 632px">
-                    <span style="position: relative;z-index: 999">请输入车牌号 : </span>
-                    <select class="easyui-combobox" style="width:200px;"></select>
-                </div>
-                <div class="box2" style="display: inline-block; width: 632px">
-                    <span style="position: relative;z-index: 999">请输入车牌号 : </span>
-                    <select class="easyui-combobox" style="width:200px;"></select>
-                </div>
-            </div>
-            <div id="mapDiv1"></div>
-            <!-- <br /> -->          
-             <div class="bottombox" style="height: 38px;margin-top: 6px">
-                    <div class="box3" style="display: inline-block; width: 632px">
-                        <span style="position: relative;z-index: 999">请输入车牌号 : </span>
-                        <select class="easyui-combobox" style="width:200px;"></select>
-                    </div>
-                    <div class="box4" style="display: inline-block; width: 632px">
-                        <span style="position: relative;z-index: 999">请输入车牌号 : </span>
-                        <select class="easyui-combobox" style="width:200px;"></select>
-                    </div>
-                </div> 
-             <div id="mapDiv2"></div> 
-    
-           
-            
-            <div id="mapDiv3"></div>
-
-        
-            <div id="mapDiv4"></div>
-
-
-   </div>
+    <div class="box1">
+        <span style="position: relative; top: 25px;z-index: 999">请输入车牌号 : </span>
+        <select class="easyui-combobox" style="width:200px;"></select>
+    </div>
+    <div id="mapDiv1"></div>
+    <br />
+    <div class="box2">
+        <span style="position: relative; top: 25px;z-index: 999">请输入车牌号 : </span>
+        <select class="easyui-combobox" style="width:200px;"></select>
+    </div>
+    <div id="mapDiv2"></div>
+    <br>
+    <div class="box3">
+        <span style="position: relative; top: 25px;z-index: 999">请输入车牌号 : </span>
+        <select class="easyui-combobox" style="width:200px;"></select>
+    </div>
+    <div id="mapDiv3"></div>
+    <br />
+    <div class="box4">
+        <span style="position: relative; top: 25px;z-index: 999">请输入车牌号 : </span>
+        <select class="easyui-combobox" style="width:200px;"></select>
+    </div>
+    <div id="mapDiv4"></div>
 </body>
 <script type="text/javascript">
     //地图初始化 
 
     var map1 = new BMap.Map("mapDiv1");
-    map1.centerAndZoom(new BMap.Point(103.23, 35.33), 4);
+    map1.centerAndZoom(new BMap.Point(116.401394, 39.915156), 4);
     map1.enableScrollWheelZoom();
 
     var map2 = new BMap.Map("mapDiv2");
-    map2.centerAndZoom(new BMap.Point(103.23, 35.33), 4);
+    map2.centerAndZoom(new BMap.Point(116.401394, 39.915156), 4);
     map2.enableScrollWheelZoom();
     var map3 = new BMap.Map("mapDiv3");
-    map3.centerAndZoom(new BMap.Point(103.23, 35.33), 4);
+    map3.centerAndZoom(new BMap.Point(116.401394, 39.915156), 4);
     map3.enableScrollWheelZoom();
     var map4 = new BMap.Map("mapDiv4");
-    map4.centerAndZoom(new BMap.Point(103.23, 35.33), 4);
+    map4.centerAndZoom(new BMap.Point(116.401394, 39.915156), 4);
     map4.enableScrollWheelZoom();
 </script>
 

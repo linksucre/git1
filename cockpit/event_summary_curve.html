@@ -32,8 +32,7 @@
 				
 				<div region="center"  style="overflow: hidden;">
 						<!--右边-->
-						<div id="mainPanle" region="center" title="" style="padding:5px;height:100%;">	
-								<div id="mainContainer" class="easyui-tabs" fit="true" border="false" style="overflow: hidden;">
+	
 									<div title="主页" id="allmap" style="height:100%;overflow: hidden;">
 										<div data-options="region:'north',border:false" style="height: 65px; padding-top: 5px; padding-left: 5px; width: 100%;" title="" class="panel-body panel-body-noheader panel-body-noborder layout-body">
 											<div id="report_table_search" style="font-size:14px;height:auto">
@@ -54,8 +53,11 @@
 													<a href="javascript:void(0)" id="search_btn" class="easyui-linkbutton l-btn l-btn-small" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">
 														查询
 													</a>
-													
-													<div id="turn_btn" title="转换报表展示形式" class="report_box" style="width:50px;height:50px;float:right;margin-right:20px;background:url(images/report.png) no-repeat"  onclick="addPanel('riskPre-warning/earlyWarningSend.html','预警发送记录')"></div>
+													<a href="javascript:void(0)" id="search_btn" class="easyui-linkbutton l-btn l-btn-small" data-options="iconCls:'icon-search'" onclick="tiao(0)">
+														返回
+													</a>
+													<div id="turn_btn" title="转换报表展示形式" class="report_box" style="width:50px;height:50px;margin-top:10px;float:right;margin-right:20px;background:url(../images/report02.png) no-repeat" onclick="tiao(1)"></div>
+
 												</div>
 											</div>
 										</div>
@@ -83,9 +85,7 @@
 								
 								
 								
-						</div>
-						<!--右边-->
-				</div>
+				
 			
 			</div>
 		</div>
@@ -589,10 +589,20 @@
 			
 		//点击左边菜单右边出现对应弹框
 		
-//点击添加选项卡
-function tabs1() {
-	$('#mainContainer').tabs('select', '主页');    //跳转到名为'消息'tab页
-
-}
+		//点击添加选项卡
+		function tabs1() {
+			$('#mainContainer').tabs('select', '主页');    //跳转到名为'消息'tab页
+		
+		}
+		//跳转页面
+		function tiao(e) {
+			if(e==0){
+				window.location.href= 'event_summary_statistics.html'
+			}else if(e==1){
+				window.location.href= 'event_summary_histogram.html'
+					
+			}
+			
+		}
 	</script>
 </html>

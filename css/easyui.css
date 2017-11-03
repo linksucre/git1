@@ -1906,10 +1906,15 @@
 .datagrid-row-alt {
   background: #fafafa;
 }
-.datagrid-row-over,
-.datagrid-header td.datagrid-header-over {
-  background: #eaf2ff;
+.datagrid-row-over{
+	  background: #eaf2ff;
   color: #000000;
+  cursor: default;
+ 
+}
+.datagrid-header td.datagrid-header-over {
+ background: #89BCF1;
+  color: #ffffff;
   cursor: default;
 }
 .datagrid-row-selected {

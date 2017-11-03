@@ -23,7 +23,7 @@
 	<body class="easyui-layout">
     <!--模态框-->
 		<div id='w' class="easyui-window" closed='true' title="违规处理" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:350px;height:220px;">
-			<table cellpadding="5">
+			<table cellpadding="5" style="margin:auto;">
 				<tr data-options="field:'itemid',width:233">
 					<td>处理方式:</td>
 					<td><input style="width:171px;" class="easyui-textbox" type="text" name="name" data-options="required:true"></input>
@@ -137,21 +137,21 @@
 	            <div id="mm" class="easyui-menu" style="width:120px;height:25px;background: #FFFFFF;">
 					<i></i><span>报警轨迹</span>
 				</div>
-				<table id="dg" title="" style="width:100%;height:700px;" data-options="fitColumns:true,onRowContextMenu: onRowContextMenu,rownumbers:true,singleSelect:false,pagination:true,url:'../json/weiguixinxi.json',method:'get'">
+				<table id="dg" title="" style="width:100%;height:700px;" data-options="onRowContextMenu: onRowContextMenu,rownumbers:true,singleSelect:false,pagination:true,url:'../json/weiguixinxi.json',method:'get'">
 					<thead>
 						<tr>
 							<th data-options="field:'ck',checkbox:true"></th>
-							<th data-options="field:'orgName',width:180">单位</th>
+							<th data-options="field:'orgName',width:80">单位</th>
 							<th data-options="field:'orgCode',width:100">车牌号</th>
-							<th data-options="field:'listprice',width:100">自编号</th>
-							<th data-options="field:'alarmId',width:100">报警编号</th>
-							<th data-options="field:'alarmTypeName',width:100">报警类型</th>
-							<th data-options="field:'alarmLvl',width:100">报警级别</th>
-							<th data-options="field:'address',width:100">报警位置</th>
-							<th data-options="field:'alarmDesc',width:100">报警描述</th>
-							<th data-options="field:'processMode',width:100">处理状态</th>
-							<th data-options="field:'alarmDate',width:100">报警时间</th>
-							<th data-options="field:'endDate',width:100">报警结束时间</th>
+							<th data-options="field:'listprice',width:80,align:'right'">自编号</th>
+							<th data-options="field:'alarmId',width:80,align:'right'">报警编号</th>
+							<th data-options="field:'alarmTypeName',width:240">报警类型</th>
+							<th data-options="field:'alarmLvl',width:60,align:'center'">报警级别</th>
+							<th data-options="field:'address',width:240">报警位置</th>
+							<th data-options="field:'alarmDesc',width:240">报警描述</th>
+							<th data-options="field:'processMode',width:240">处理状态</th>
+							<th data-options="field:'alarmDate',width:240">报警时间</th>
+							<th data-options="field:'endDate',width:240">报警结束时间</th>
 
 						</tr>
 					</thead>

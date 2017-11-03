@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>未调派</title>
+		<title></title>
 	</head>
 	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
 	<link rel="stylesheet" type="text/css" href="../css/icon.css">
@@ -309,7 +309,7 @@
 							<table border="0" cellspacing="0" cellpadding="0" class="table_mes">
 								<tr>
 									<td align="right">单位：</td>
-									<td><input id="cc" style="width: 120px;" class="easyui-combotree" data-options="url:'../json/tree_data1.json',method:'get',required:false"></td>
+									<td><input id="cc" style="width: 120px;" class="easyui-combotree" data-options="url:'../tree_data1.json',method:'get',required:false"></td>
 						            <td align="right">车辆类型：</td>
 									<td colspan="2">
 										<select class="easyui-combobox width" name="language">
@@ -388,14 +388,10 @@
 		
 		
 		</div>       
-        <span id="not_dispat" style="display: none;">not_dispat</span>
-	</body>
+    </body>
 <script type="text/javascript">
 //	高级调派
   function body_layout(){
-     var id = $('#not_dispat').html();
-     var str = JSON.stringify(id);
-    window.sessionStorage.setItem('id', str);
   	window.location.href='view_assign.html';
   }
 //	展开收起

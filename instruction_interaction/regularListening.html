@@ -243,7 +243,7 @@
 			</div>
 
 			<!--车辆点名-->
-			<div id="dg_listening_task_table_search" style="padding: 5px; height: auto" class="datagrid-toolbar">
+			<div id="dg_listening_task_table_search" style="padding: 5px; height: auto" class="datagrid-toolbar clear_box">
 				<form id="searchForm">
 					监听期限：
 					<select id="search_deadline" class="easyui-combobox combobox-f combo-f" editable="false" style="display: none;">
@@ -263,7 +263,7 @@
 					</select>
 					
 					<a class="easyui-linkbutton c8" data-options="iconCls:'icon-search'"  onclick="refreshbtn('#dingshitt')">查询</a>
-					<a class="easyui-linkbutton c8" data-options="iconCls:'icon-cz_reset'" onclick="clearSearch('#clear_box')">重置</a>
+					<a class="easyui-linkbutton c8" data-options="iconCls:'icon-cz_reset'" onclick="clearSearch()">重置</a>
 					
 					<a id="listeningAddBtn" onclick="insert();" href="javascript:void(0)" class="easyui-linkbutton clear_btn" data-options="iconCls:'icon-add'" >
 						添加监听任务     

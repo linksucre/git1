@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
 <head>
 	<meta charset="utf-8" />
 	<title></title>
@@ -10,12 +9,8 @@
 	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
 	<link rel="stylesheet" type="text/css" href="../css/index.css">
 	<link rel="stylesheet" type="text/css" href="../css/switchbutton.css">
-	<!-- color picker -->
-	<link rel="stylesheet" href="../css/colorpicker.css">
-	<link rel="stylesheet" href="../css/layout.css">
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-	<script src="../js/colorpicker.js"></script>
 	<!--全屏/退出全屏-->
 	<script type="text/javascript" src="../js/full.js"></script>
 	<script type="text/javascript" src="../js/index.js"></script>
@@ -23,16 +18,17 @@
 	<script type="text/javascript" src="../js/loading.js"></script>
 	<script src="http://api.map.baidu.com/api?v=2.0&ak=YWdGplhYjUGQ3GtpKNeuTM2S"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/library/LuShu/1.2/src/LuShu_min.js"></script>
+
 </head>
 
-<body style="margin: 0;padding: 3px 0 0 3px;">
+<body style="margin: 0;padding: 0; padding-left: 3px">
 
 
 	<div class="left" style="width: 650px;display: inline-block;overflow: hidden">
 		<div style="display: inline-block">
 			<input id="dd" class="easyui-datetimebox" style="width:150px" /> —
 			<input id="ab" class="easyui-datetimebox" style="width:150px" />
-			<span  class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="height: 28px;">查询</span>
+			<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="height: 28px;background-color: #075EA2">查询</a>
 		</div>
 		<div style="width: 600px;">
 			<span class="textbox combo" style="width: 198px;">
@@ -45,8 +41,8 @@
 				<input type="hidden" class="textbox-value" name="" value="">
 			</span>
 			<img src="../images/treeset.png" id="shortcut_menu" style="cursor: pointer; position: relative;top: 5px">
-			<div id="shortcut_menu_k" style="width: 120px; height: 83px; display: none; border: 1px solid #ccc;box-shadow: 1px 1px #ccc; left: 205px; top: 40px;  position: absolute;   background-color: #fff; z-index: 1109021;">
-				<div class="menu-line" style="height: 81px; top: 1px"></div>
+			<div id="shortcut_menu_k" class="easyui-menu menu-top menu" style="width: 120px; height: 83px; display: block; left: 152px; top: 56px; z-index: 110021;">
+				<div class="menu-line" style="height: 81px;"></div>
 				<div class="menu-item" onclick="" data-options="iconCls:'icon-filter'">
 					<div class="menu-text">近1天</div>
 					<div class="menu-icon icon-filter"></div>
@@ -85,15 +81,14 @@
 	</div>
 
 
-	<div class="right" style="display: inline-block; width: 324px; height: 60px">
+	<div class="right" style="display: inline-block; width: 345px">
 
 		<table style="float: left">
 			<tbody>
 				<tr>
 					<td>
-						<div style="display: table-cell;position: relative;
-						top: -7px;">速度：</div>
-					</td>&nbsp;&nbsp;
+						<div style="display: table-cell;">速度：</div>
+					</td>
 					<td>
 						<div style="display: table-cell;">
 							<input class="easyui-slider" style="width:100px;height: 20px" data-options="showTip:false"> &nbsp;&nbsp;&nbsp;
@@ -103,12 +98,11 @@
 				</tr>
 				<tr>
 					<td>
-						<div style="display: table-cell; position: relative;
-						top: -22px;">进度：</div>
-					</td>&nbsp;&nbsp;
-					<td style="position: relative;top: -15px;">
+						<div style="display: table-cell;">进度：</div>
+					</td>
+					<td>
 						<div style="display: table-cell;">
-							<div class="easyui-slider" style="width:100px;height: 20px" data-options="showTip:false"> </div>&nbsp;&nbsp;&nbsp;
+							<input class="easyui-slider" style="width:100px;height: 20px" data-options="showTip:false"> &nbsp;&nbsp;&nbsp;
 						</div>
 
 
@@ -118,9 +112,8 @@
 			</tbody>
 
 		</table>
-		<div class="icon" style="float: right;position: relative;top: 2px;">
-			<img src="../images/play.png" id="play_btn" style="cursor: pointer; display: inline;position: relative;
-			top: -3px;" class="easyui-tooltip tooltip-f" title="播放">
+		<div class="icon" style="float: right;position: relative;top: 7px;">
+			<img src="../images/play.png" id="play_btn" style="cursor: pointer; display: inline;" class="easyui-tooltip tooltip-f" title="播放">
 			<img src="../images/stop.png" id="stop_btn" style="cursor: pointer; display: none;" title="暂停"> &nbsp;&nbsp;
 			<img src="../images/set.png" id="settingsBtn" style="cursor: pointer;" title="" class="tooltip-f"> &nbsp;&nbsp;
 			<img src="../images/export.png" id="exportBtn" style="cursor: pointer;" title="导出轨迹图" class="easyui-tooltip tooltip-f"> &nbsp;&nbsp;
@@ -128,105 +121,17 @@
 			<img src="../images/filter-export.png" id="exportListBtn" style="cursor: pointer;" title="导出轨迹列表" class="easyui-tooltip tooltip-f"> &nbsp;&nbsp;
 			<img src="../images/icon-da_ywd.png" id="showYWDBtn" style="cursor: pointer;" title="附近业务点" class="easyui-tooltip tooltip-f">
 		</div>
-		<div tabindex="-1" class="tooltip tooltip-bottom" style="left: 658px; top: 36px; z-index: 9003; display:none;">
-			<div class="tooltip-content">
-				<div class="panel" style="display: block; width: 370px;">
-					<div class="panel-header" style="width: 358px;">
-						<div class="panel-title">参数设置</div>
-						<div class="panel-tool"></div>
-					</div>
-					<div title="" class="panel-body" style="width: 368px; height: 167px;">
-						<div id="settings_div" style="padding: 10px 0px 0px 5px;">
-							<legend></legend>
-							<form id="settings_form">
-								<table width="100%" border="0">
-									<tbody>
-										<tr height="40px">
-											<td>
-												<div class="buttononbar">
-													轨迹线颜色：
-													<div id="colorSelector" class="colorSelector"></div>
-												</div>
-											</td>
-											<td>轨迹线粗细：</td>
-											<td>
-												<div id="track_line_width" style="width: 120px;" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-												    aria-disabled="false">
-													<input class="easyui-slider" style="width:100px;height: 20px" data-options="showTip:false">
-												</div>
-											</td>
-										</tr>
-										<tr height="40px">
-											<td>
-												<div class="buttononbar">
-													轨迹点颜色：
-													<div id="colorSelector2" class="colorSelector"></div>
-												</div>
-											</td>
-											<td>轨迹点大小：</td>
-											<td>
-												<div id="track_point_width" style="width: 120px;" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-												    aria-disabled="false">
-													<input class="easyui-slider" style="width:100px;height: 20px" data-options="showTip:false">
-												</div>
-											</td>
-										</tr>
-										<tr height="40px">
-											<td>
-												<div class="buttononbar">
-													轨迹点形状：
-													<select id="ponitSharp">
-														<option value="1">●</option>
-														<option value="2">■</option>
-														<option value="3">◆</option>
-													</select>
-
-												</div>
-											</td>
-											<td>点、线显示：</td>
-											<td>
-												<input id="showPonit" type="checkbox" name="show_point">轨迹点 &nbsp;
-												<input id="showLine" type="checkbox" name="show_line">轨迹线
-											</td>
-										</tr>
-
-									</tbody>
-								</table>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="tooltip-arrow-outer" style="border-bottom-color: rgb(212, 212, 212);"></div>
-			<div class="tooltip-arrow" style="border-bottom-color: rgb(255, 255, 255);"></div>
-		</div>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<div style="width: 420px;position: relative;top: -8px;">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前记录/总记录:0/0 当前里程/总里程:0/0</div>
+		<div style="width: 420px;margin-top: 15px;">当前记录/总记录:0/0 当前里程/总里程:0/0</div>
 
 	</div>
 
 
 	<div id="map_canvas" style="width:100%;height:500px"></div>
 	<div id="result" style="float:right;position:absolute;left:700px;top:0;"></div>
-	
-	<table class="easyui-datagrid" style="width:100%;height:100%;border: 1px solid red;" data-options="singleSelect:false,fitColumns:true,collapsible:true,url:'../json/datagrid_data_gj.json',method:'get'">
-		<thead>
-			<tr>								
-				<th data-options="field:'checkbox',width:80,checkbox:true"></th>
-				<th data-options="field:'itemid',width:235,align:'center'">GPS时间</th>
-				<th data-options="field:'listprice',width:98,align:'center'">速度（Km/h）</th>
-				<th data-options="field:'unitcost',width:98,align:'center'">方向</th>
-				<th data-options="field:'listprice',width:98,align:'center'">里程（Km）</th>
-				<th data-options="field:'listprice',width:98,align:'center'">相对里程（Km）</th>
-				<th data-options="field:'status',width:98,align:'center'">报警类型</th>
-				<th data-options="field:'productname',width:98,align:'center'">位置</th>
-				<th data-options="field:'lan',width:98,align:'center'">经度</th>
-				<th data-options="field:'lon',width:98,align:'center'">纬度</th>
-				<th data-options="field:'status',width:98,align:'center'">数据点类型</th>
-				<th data-options="field:'productid',width:98,align:'center'">驾驶员行为</th>
-			</tr>
-		</thead>
-	</table>
+	<!-- <button id="run">播放</button>
+	<button id="stop">stop</button>
+	<button id="pause">pause</button> -->
 	<script>
 		// 日期
 		$(function () {
@@ -255,7 +160,7 @@
 		//百度地图
 		var map = new BMap.Map('map_canvas');
 		map.enableScrollWheelZoom();
-		map.centerAndZoom(new BMap.Point(103.23, 35.33), 13);
+		map.centerAndZoom(new BMap.Point(116.404, 39.915), 13);
 		// 添加带有定位的导航控件
 		var navigationControl = new BMap.NavigationControl({
 			// 靠左上角位置
@@ -296,61 +201,6 @@
 			}
 		});
 		drv.search('天通苑地铁站', '华仪骏驰物联网技术有限公司');
-
-
-
-		//过滤条件
-		$('#shortcut_menu').mouseenter(function () {
-			$('#shortcut_menu_k').show()
-		}).mouseleave(function () {
-			$('#shortcut_menu_k').hide()
-		})
-
-
-		$('.menu-item').mouseenter(function () {
-			$('#shortcut_menu_k').show()
-			$(this).addClass('menu-active').siblings().removeClass('menu-active')
-		}).mouseleave(function () {
-			$('#shortcut_menu_k').hide()
-		})
-
-		// color picker
-		$("#colorSelector").ColorPicker({
-			color: '#0000ff',
-			onShow: function (colpkr) {
-				$(colpkr).fadeIn(100);
-				return false;
-			},
-			onHide: function (colpkr) {
-				$(colpkr).fadeOut(100);
-				return false;
-			},
-			onChange: function (hsb, hex, rgb) {
-				$('#colorSelector').css('backgroundColor', '#' + hex);
-			}
-		});
-		$("#colorSelector2").ColorPicker({
-			color: '#0000ff',
-			onShow: function (colpkr) {
-				$(colpkr).fadeIn(100);
-				return false;
-			},
-			onHide: function (colpkr) {
-				$(colpkr).fadeOut(100);
-				return false;
-			},
-			onChange: function (hsb, hex, rgb) {
-				$('#colorSelector2').css('backgroundColor', '#' + hex);
-			}
-		});
-
-
-		// 设置
-		$('#settingsBtn,.tooltip,.colorpicker').mouseenter(function () {
-			$('.tooltip').show();
-		}).mouseleave(function () {
-			$('.tooltip').hide();
-		})
 	</script>
 </body>
 

@@ -81,7 +81,7 @@ $(function() {
 	})
 });	
 
-//查询
+//重置查询
 function refreshbtn(dg) {
 	$(dg).datagrid("reload");
 }

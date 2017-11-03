@@ -25,7 +25,7 @@
 	<body class="easyui-layout" style="position: relative;">
 		<!--form表单及弹框-->
 		 <div id='dlg1' class="easyui-window" closed='true' title="提示" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:140px;">
-			<div class="message" style="margin-left:80px;margin-top:20px;"> 
+			<div style="margin-left:80px;margin-top:20px;height:1%;"> 
 				<label style="margin-right:20px;"><input name="Fruit" type="radio" value="" />加急 </label>
 				<label><input name="Fruit" type="radio" value="" />普通 </label>
 			</div>
@@ -35,7 +35,7 @@
 			</div>
 		</div>
 			<div id='dlg2' class="easyui-window" closed='true' title="任务进度查看" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:500px;height:400px;">
-			<div class="message"> 
+			<div> 
 				<table border="0" cellspacing="0" cellpadding="0" class="table_mes" style="width: 100%;height:100%;">
 					<tr>
 						<td align="center"><img src="../images/jindu.png" alt="" /></td>
@@ -141,7 +141,7 @@
 			
 			</div>
 		</div>
-      <span id="task" style="display: none;">task</span>
+
 		<script>
 			
 			
@@ -315,9 +315,6 @@
 			}
 
 			function editrow(target) {
-			    var id = $('#task').html();
-			    var str = JSON.stringify(id);
-			    window.sessionStorage.setItem('name', str);
 				window.location.href = "../vehicleScheduling/taskDetails.html";
 			}
 			function editrow1(target) {

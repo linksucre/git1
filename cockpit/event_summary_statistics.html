@@ -59,8 +59,8 @@
 			</tr>
 
 		<a href="#" onclick="addTab('主页')">
-			<div id="turn_btn" title="转换报表展示形式" class="report_box" style="width:50px;height:50px;margin-top:10px;float:right;margin-right:20px;background:url(../images/report02.png) no-repeat"  onclick="tiao()"></div>
-			<div id="turn_btn" title="转换报表展示形式" class="report_box" style="width:38px;height:50px;margin-top:10px;float:right;background:url(../images/report01.png) no-repeat"  onclick="tiao()"></div>
+			<div id="turn_btn" title="转换报表展示形式" class="report_box" style="width:50px;height:50px;margin-top:10px;float:right;margin-right:20px;background:url(../images/report02.png) no-repeat"  onclick="tiao(0)"></div>
+			<div id="turn_btn" title="转换报表展示形式" class="report_box" style="width:38px;height:50px;margin-top:10px;float:right;background:url(../images/report01.png) no-repeat"  onclick="tiao(1)"></div>
 			</a>
 		</tbody>
 		</table>
@@ -157,8 +157,13 @@ function addTab(){
 		}
 	//页面跳转
 	function tiao(e){
+		if(e==0){
+			window.location.href="event_summary_histogram.html";
+		}else{
+				
+				window.location.href="event_summary_curve.html";
+		}
 		
-			window.location.href="event_summary_curve.html";
 		
 	}
   </script>

@@ -6,11 +6,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style type="text/css" easyui="true">
+        .datagrid-cell-c4-id {
+            width: 92px
+        }
+
+        .datagrid-cell-c4-provinceName {
+            width: 92px
+        }
+
+        .datagrid-cell-c4-detailDate {
+            width: 92px
+        }
+
+        .datagrid-cell-c4-dayWeatherInfo {
+            width: 92px
+        }
+
+        .datagrid-cell-c4-dayTemperature {
+            width: 92px
+        }
+
+        .datagrid-cell-c4-dayDirect {
+            width: 92px
+        }
+
+        .datagrid-cell-c4-dayDirectPower {
+            width: 92px
+        }
+
+        .datagrid-cell-c4-nightWeatherInfo {
+            width: 92px
+        }
+
+        .datagrid-cell-c4-nightTemperature {
+            width: 92px
+        }
+
+        .datagrid-cell-c4-nightDirect {
+            width: 92px
+        }
+
+        .datagrid-cell-c4-nightDirectPower {
+            width: 92px
+        }
+
+        .datagrid-cell-c4-recordorName {
+            width: 92px
+        }
+
+        .datagrid-cell-c5-walarmId {
+            width: 52px
+        }
+
+        .datagrid-cell-c5-alarmDes {
+            width: 52px
+        }
+
+        .datagrid-cell-c5-imgNumber {
+            width: 52px
+        }
+
+        .datagrid-cell-c5-provinceName {
+            width: 150px
+        }
+
+        .datagrid-cell-c5-cityName {
+            width: 150px
+        }
+
+        .datagrid-cell-c5-alarmLvl {
+            width: 150px
+        }
+
+        .datagrid-cell-c5-alarmType {
+            width: 150px
+        }
+
+        .datagrid-cell-c5-alarmTime {
+            width: 150px
+        }
+
+        .datagrid-cell-c5-recordorName {
+            width: 150px
+        }
+        /* .datagrid-cell-c7-id {
+            width: 52px
+        }
+
+        .datagrid-cell-c7-cityName {
+            width: 52px
+        } */
+
+        .datagrid-cell-c7-address {
+            width: 200px
+        }
+
+        .datagrid-cell-c7-lon {
+            width: 200px
+        }
+
+        .datagrid-cell-c7-lat {
+            width: 200px
+        }
+
+        .datagrid-cell-c7-desaster_lvl {
+            width: 200px
+        }
+
+        .datagrid-cell-c7-alt {
+            width: 200px
+        }
+    </style>
     <link rel="stylesheet" type="text/css" href="../css/icon.css">
     <link rel="stylesheet" type="text/css" href="../css/demo.css">
     <link rel="stylesheet" type="text/css" href="../css/easyui.css">
     <link rel="stylesheet" type="text/css" href="../css/index.css">
     <link rel="stylesheet" type="text/css" href="../css/switchbutton.css">
+    <!-- 百度地图 -->
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css">
+    <link href="http://api.map.baidu.com/library/TrafficControl/1.2/src/TrafficControl_min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../js/index.js"></script>
@@ -216,6 +331,8 @@
             </div>
 
             <div title="恶劣天气预警" data-options="iconCls:'icon-s_police'" style="padding:0px">
+                <div class="panel datagrid" style="width: 1504px;">
+                    <div class="datagrid-wrap panel-body panel-body-noheader" title="" style="width: 1476px; height: 153px; border: 0">
                         <div id="weather_table_search1" style="padding: 5px; height: auto" class="datagrid-toolbar">
                             <input type="checkbox" class="isShow">显示图标&nbsp;&nbsp;&nbsp;&nbsp; 省份名称：
 
@@ -263,18 +380,110 @@
                             <span class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="">删除</span>
                             <span class="easyui-linkbutton" data-options="iconCls:'.icon-cz_reset'" onclick="clearSearch('#dg')">发送</span>
                         </div>
-                        <table class="easyui-datagrid" id="table_3" title="" style="width:100%;height:250px" data-options="singleSelect:true,fitColumns:true,collapsible:true,url:'../json/datagrid_data_gj.json',method:'get'">
-                            <thead>
-                                <tr>
-                                    <th data-options="field:'productid',width:214,align:'center'">省份名称</th>
-                                    <th data-options="field:'listprice',width:214,align:'center'">城市名称</th>
-                                    <th data-options="field:'unitcost',width:214,align:'center'">预警等级</th>
-                                    <th data-options="field:'attr1',width:214,align:'center'">预警类型</th>
-                                    <th data-options="field:'status',width:214,align:'center'">预警时间</th>
-                                    <th data-options="field:'status',width:214,align:'center'">数据来源</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        <div class="datagrid-view" style="width: 1476px; height: 115px; text-align: center;">
+                            <div class="datagrid-view1" style="width: 26px;">
+                                <div class="datagrid-header" style="width: 26px; height: 24px;">
+                                    <div class="datagrid-header-inner" style="display: block;">
+                                        <table class="datagrid-htable" border="0" cellspacing="0" cellpadding="0" style="height: 25px;">
+                                            <tbody>
+                                                <tr class="datagrid-header-row">
+                                                    <td rowspan="0">
+                                                        <div class="datagrid-header-rownumber"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="datagrid-body" style="width: 26px; margin-top: 0px; height: 90px;">
+                                    <div class="datagrid-body-inner">
+                                        <table class="datagrid-btable" cellspacing="0" cellpadding="0" border="0" style="table-layout: auto;">
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="datagrid-footer" style="width: 26px;">
+                                    <div class="datagrid-footer-inner" style="display: none;"></div>
+                                </div>
+                            </div>
+                            <div class="datagrid-view2" style="width: 1476px;">
+                                <div class="datagrid-header" style="width: 1476px; height: 24px;">
+                                    <div class="datagrid-header-inner" style="display: block;">
+                                        <table class="datagrid-htable" border="0" cellspacing="0" cellpadding="0" style="height: 25px;">
+                                            <tbody>
+                                                <tr class="datagrid-header-row">
+                                                    <td field="id" style="display: none;">
+                                                        <div class="datagrid-cell datagrid-cell-c4-id">
+                                                            <span>ID</span>
+                                                            <span class="datagrid-sort-icon">&nbsp;</span>
+                                                        </div>
+                                                    </td>
+
+
+                                                    <td field="provinceName" class="" style="width: 248px">
+                                                        <div class="datagrid-cell datagrid-cell-c4-provinceName" style="">
+                                                            <span>省份名称</span>
+                                                            <span class="datagrid-sort-icon">&nbsp;</span>
+                                                        </div>
+                                                    </td>
+                                                    <td field="detailDate" class="" style="width: 248px">
+                                                        <div class="datagrid-cell datagrid-cell-c4-detailDate" style="">
+                                                            <span>城市名称</span>
+                                                            <span class="datagrid-sort-icon">&nbsp;</span>
+                                                        </div>
+                                                    </td>
+                                                    <td field="dayWeatherInfo" class="" style="width: 120px">
+                                                        <div class="datagrid-cell datagrid-cell-c4-dayWeatherInfo" style="">
+                                                            <span>预警等级</span>
+                                                            <span class="datagrid-sort-icon">&nbsp;</span>
+                                                        </div>
+                                                    </td>
+                                                    <td field="dayTemperature" class="" style="width: 120px">
+                                                        <div class="datagrid-cell datagrid-cell-c4-dayTemperature" style="">
+                                                            <span>预警类型</span>
+                                                            <span class="datagrid-sort-icon">&nbsp;</span>
+                                                        </div>
+                                                    </td>
+                                                    <td field="dayDirect" style="width: 248px">
+                                                        <div class="datagrid-cell datagrid-cell-c4-dayDirect" style="">
+                                                            <span>预警时间</span>
+                                                            <span class="datagrid-sort-icon">&nbsp;</span>
+                                                        </div>
+                                                    </td>
+                                                    <td field="dayDirect" style="width: 248px">
+                                                        <div class="datagrid-cell datagrid-cell-c4-dayDirect" style="">
+                                                            <span>数据来源</span>
+                                                            <span class="datagrid-sort-icon">&nbsp;</span>
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="datagrid-body" style="width: 1476px; margin-top: 0px; height: 90px; overflow-x: hidden;">
+                                    <table class="datagrid-btable" cellspacing="0" cellpadding="0" border="0" style="table-layout: auto;">
+                                        <tbody>
+                                            <tr>
+                                                <!-- 模板 -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="datagrid-footer" style="width: 1476px;">
+                                    <div class="datagrid-footer-inner" style="display: none;"></div>
+                                </div>
+                            </div>
+                            <table id="badweather_table" data-options="fit:true" style="display: none;">
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
             <div title="路况信息" data-options="iconCls:'icon-search'">
 
@@ -289,17 +498,90 @@
                     <span class="easyui-linkbutton" data-options="iconCls:'.icon-send'" onclick="clearSearch('#dg')">发送</span>
                 </div>
 
-                <table class="easyui-datagrid" id="table_4" title="" style="width:100%;height:250px" data-options="singleSelect:true,fitColumns:true,collapsible:true,url:'../json/datagrid_data_gj.json',method:'get'">
-                    <thead>
-                        <tr>
-                            <th data-options="field:'productid',width:248,align:'center'">线路名称</th>
-                            <th data-options="field:'listprice',width:248,align:'center'">线路标识</th>
-                            <th data-options="field:'unitcost',width:248,align:'center'">开始时间</th>
-                            <th data-options="field:'attr1',width:248,align:'center'">结束时间</th>
-                            <th data-options="field:'status',width:248,align:'center'">数据来源</th>
-                        </tr>
-                    </thead>
-                </table>
+                <div class="datagrid-view" style="width: 1476px; height: 338px; text-align: center">
+                    <!-- <div class="datagrid-view1" style="width: 26px;">
+                                    <div class="datagrid-header" style="width: 26px; height: 24px;">
+                                        <div class="datagrid-header-inner" style="display: block;">
+                                            <table class="datagrid-htable" border="0" cellspacing="0" cellpadding="0" style="height: 25px;text-align: center">
+                                                <tbody>
+                                                    <tr class="datagrid-header-row">
+                                                        <td rowspan="0">
+                                                            <div class="datagrid-header-rownumber"></div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="datagrid-body" style="width: 26px; margin-top: 0px; height: 313px;">
+                                        <div class="datagrid-body-inner">
+                                            <table class="datagrid-btable" cellspacing="0" cellpadding="0" border="0" style="table-layout: auto;">
+                                                <tbody>
+                                                    我们.................................
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="datagrid-footer" style="width: 26px;">
+                                        <div class="datagrid-footer-inner" style="display: none;"></div>
+                                    </div>
+                                </div> -->
+                    <div class="datagrid-view2" style="width: 1476px;">
+                        <div class="datagrid-header" style="width: 1476px; height: 24px;">
+                            <div class="datagrid-header-inner" style="display: block;">
+                                <table class="datagrid-htable" border="0" cellspacing="0" cellpadding="0" style="height: 25px;">
+                                    <tbody>
+                                        <tr class="datagrid-header-row">
+                                            <td field="provinceName" class="" style="width: 248px">
+                                                <div class="datagrid-cell datagrid-cell-c5-provinceName">
+                                                    <span>线路名称</span>
+                                                    <span class="datagrid-sort-icon">&nbsp;</span>
+                                                </div>
+                                            </td>
+                                            <td field="cityName" class="" style="width: 248px">
+                                                <div class="datagrid-cell datagrid-cell-c5-cityName">
+                                                    <span>线路标识</span>
+                                                    <span class="datagrid-sort-icon">&nbsp;</span>
+                                                </div>
+                                            </td>
+                                            <td field="alarmLvl" class="" style="width: 248px">
+                                                <div class="datagrid-cell datagrid-cell-c5-alarmLvl">
+                                                    <span>开始时间</span>
+                                                    <span class="datagrid-sort-icon">&nbsp;</span>
+                                                </div>
+                                            </td>
+                                            <td field="alarmType" style="width: 248px">
+                                                <div class="datagrid-cell datagrid-cell-c5-alarmType">
+                                                    <span>结束时间</span>
+                                                    <span class="datagrid-sort-icon">&nbsp;</span>
+                                                </div>
+                                            </td>
+                                            <td field="alarmTime" class="" style="width: 248px">
+                                                <div class="datagrid-cell datagrid-cell-c5-alarmTime" style="text-align: center;">
+                                                    <span>数据来源</span>
+                                                    <span class="datagrid-sort-icon">&nbsp;</span>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="datagrid-body" style="width: 1476px; margin-top: 0px; height: 313px; overflow-x: hidden;">
+                            <table class="datagrid-btable" cellspacing="0" cellpadding="0" border="0" style="table-layout: auto;">
+                                <tbody>
+                                    数据
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="datagrid-footer" style="width: 1476px;">
+                            <div class="datagrid-footer-inner" style="display: none;"></div>
+                        </div>
+                    </div>
+                    <!-- <table id="alarm_weather_table" data-options="fit:true" style="display: none;">
+                                </table> -->
+                </div>
 
 
             </div>
@@ -314,20 +596,101 @@
                     <span class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="">删除</span>
                     <span class="easyui-linkbutton" data-options="iconCls:'.icon-send'" onclick="clearSearch('#dg')">发送</span>
                 </div>
-               
-                <table class="easyui-datagrid" id="table_5" title="" style="width:100%;height:250px" data-options="singleSelect:true,fitColumns:true,collapsible:true,url:'../json/datagrid_data_gj.json',method:'get'">
-                    <thead>
-                        <tr>
-                            <th data-options="field:'productid',width:270,align:'center'">发震地址</th>
-                            <th data-options="field:'listprice',width:270,align:'center'">经度</th>
-                            <th data-options="field:'unitcost',width:270,align:'center'">纬度</th>
-                            <th data-options="field:'attr1',width:270,align:'center'">地震等级</th>
-                            <th data-options="field:'status',width:270,align:'center'">深度</th>
-                            <th data-options="field:'status',width:270,align:'center'">发震时间</th>
-                            <th data-options="field:'status',width:270,align:'center'">数据来源</th>
-                        </tr>
-                    </thead>
-                </table>
+                <div class="datagrid-view" style="width: 1476px; height: 338px; text-align: center">
+                    <!-- <div class="datagrid-view1" style="width: 26px;">
+                                    <div class="datagrid-header" style="width: 26px; height: 24px;">
+                                        <div class="datagrid-header-inner" style="display: block;">
+                                            <table class="datagrid-htable" border="0" cellspacing="0" cellpadding"0" style="height: 25px;text-align: center">
+                                                <tbody>
+                                                    <tr class="datagrid-header-row">
+                                                        <td rowspan="0">
+                                                            <div class="datagrid-header-rownumber"></div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="datagrid-body" style="width: 26px; margin-top: 0px; height: 313px;=">
+                                        <div class="datagrid-body-inner">
+                                            <table class="datagrid-btable" cellspacing="0" cellpadding="0" border="0" style="table-layout: auto;">
+                                                <tbody>
+                                                    我们.................................
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="datagrid-footer" style="width: 26px;">
+                                        <div class="datagrid-footer-inner" style="display: none;"></div>
+                                    </div>
+                                </div> -->
+                    <div class="datagrid-view2" style="width: 1476px;">
+                        <div class="datagrid-header" style="width: 1476px; height: 24px;">
+                            <div class="datagrid-header-inner" style="display: block;">
+                                <table class="datagrid-htable" border="0" cellspacing="0" cellpadding="0" style="height: 25px;">
+                                    <tbody>
+                                        <tr class="datagrid-header-row">
+                                            <td field="provinceName" class="" style="width: 240px">
+                                                <div class="datagrid-cell datagrid-cell-c5-provinceName">
+                                                    <span>发震地址</span>
+                                                    <span class="datagrid-sort-icon">&nbsp;</span>
+                                                </div>
+                                            </td>
+                                            <td field="cityName" class="" style="width: 140px">
+                                                <div class="datagrid-cell datagrid-cell-c5-cityName">
+                                                    <span>经度</span>
+                                                    <span class="datagrid-sort-icon">&nbsp;</span>
+                                                </div>
+                                            </td>
+                                            <td field="alarmLvl" class="" style="width: 140px">
+                                                <div class="datagrid-cell datagrid-cell-c5-alarmLvl">
+                                                    <span>维度</span>
+                                                    <span class="datagrid-sort-icon">&nbsp;</span>
+                                                </div>
+                                            </td>
+                                            <td field="alarmType" style="width: 140px">
+                                                <div class="datagrid-cell datagrid-cell-c5-alarmType">
+                                                    <span>地震等级</span>
+                                                    <span class="datagrid-sort-icon">&nbsp;</span>
+                                                </div>
+                                            </td>
+                                            <td field="alarmTime" class="" style="width: 140px">
+                                                <div class="datagrid-cell datagrid-cell-c5-alarmTime" style="text-align: center;">
+                                                    <span>深度</span>
+                                                    <span class="datagrid-sort-icon">&nbsp;</span>
+                                                </div>
+                                            </td>
+                                            <td field="recordorName" class="" style="width: 180px">
+                                                <div class="datagrid-cell datagrid-cell-c5-recordorName" style="text-align: center;">
+                                                    <span>发震时间</span>
+                                                    <span class="datagrid-sort-icon">&nbsp;</span>
+                                                </div>
+                                            </td>
+                                            <td field="recordorName" class="" style="width: 180px">
+                                                <div class="datagrid-cell datagrid-cell-c5-recordorName" style="text-align: center;">
+                                                    <span>数据来源</span>
+                                                    <span class="datagrid-sort-icon">&nbsp;</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="datagrid-body" style="width: 1476px; margin-top: 0px; height: 313px; overflow-x: hidden;">
+                            <table class="datagrid-btable" cellspacing="0" cellpadding="0" border="0" style="table-layout: auto;">
+                                <tbody>
+                                    数据
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="datagrid-footer" style="width: 1476px;">
+                            <div class="datagrid-footer-inner" style="display: none;"></div>
+                        </div>
+                    </div>
+                    <!-- <table id="alarm_weather_table" data-options="fit:true" style="display: none;">
+                                </table> -->
+                </div>
 
             </div>
         </div>

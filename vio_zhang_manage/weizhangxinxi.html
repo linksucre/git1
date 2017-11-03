@@ -43,10 +43,9 @@
 
 	<body class="easyui-layout" style="position: relative;">
 		<!--form表单及弹框-->
-		<div style="width:100%;height:263px;display: none;position: absolute;left:0;top:0;bottom:0;right:0;margin:auto;z-index: 10;" id="formBlock">
-			<div class="easyui-panel" title="违规处理" style="width:400px;height:200px;overflow-x: hidden;">
-				<div style="padding:1px 5px 5px 5px">
-					<form id="ff" method="post">
+		<div id='w2' class="easyui-window" closed='true' title="违规处理" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:400px;height:200px;overflow: hidden;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 10px;">
+				<form id="ff" method="post">
 						<table>
 							<tbody style="width:350px;">
 
@@ -72,147 +71,111 @@
 						</table>
 
 					</form>
-					<div style="text-align:center;padding:5px;margin-top:10px;">
-						<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">确定</a>
-						<a href="javascript:void(0)" class="easyui-linkbutton" onclick="closeForm()">关闭</a>
-					</div>
-				</div>
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#w2').window('close')">确定</a>
+				<a href="#" class="easyui-linkbutton" onclick="$('#w2').window('close')">关闭</a>
 			</div>
 		</div>
-		<!--form删除-->
-		<div style="width:100%;height:263px;display: none;position: absolute;left:0;top:0;bottom:0;right:0;margin:auto;z-index: 10;" id="formBlockdelete">
-			<div class="easyui-panel" title="提示信息" style="width:400px;height:120px;overflow: hidden;">
-				<div style="padding:20px 5px 5px 5px;text-align: center;font-size: 16px;">
-					您确认要删除记录吗？
-					<div style="text-align:center;padding:5px;margin-top:10px;">
-						<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm1()">确定</a>
-						<a href="javascript:void(0)" class="easyui-linkbutton" onclick="closeForm()">关闭</a>
-					</div>
-				</div>
+	
+			<div id='w3' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 10px;">
+				您确认要删除记录吗？
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="submitForm1()">确定</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w3').window('close')">关闭</a>
 			</div>
 		</div>
 		<!--form修改-->
-		<div style="width:557px;height:350px;overflow: hidden;display: none;position: absolute;left:0;top:0;bottom:0;right:0;margin:auto;z-index: 10;" id="formBlockmodify">
-			<div class="easyui-panel" title="修改违章" style="width:550px;height:330px;overflow: hidden;">
-				<div class="panel" style="display: block; width: 550px;">
-					<div style="padding: 5px; width:550px; height: 330px;" title="" class="panel-body panel-body-noheader panel-body-noborder dialog-content">
-						<div>
-							<input type="hidden" id="violationId" value="-1345031743">
-							<table style="width:550px;height:250px;">
-								<tbody style="width:550px;height:250px;">
-									<tr>
-										<td>车牌号：</td>
-										<td>
-											<span class="combo" style="width: 148px; height: 20px;">
-														<input type="text" class="combo-text validatebox-text" value="京GAG372" autocomplete="off" style="width: 126px; height: 20px; line-height: 20px;">
-															<span class='carNumber'>
-																<span class="combo-arrow" style="height: 20px;"></span>
-											</span>
-											<!--<input type="hidden" class="combo-value" name="idNumber" value="请输入车牌号">-->
+		<div id='w1' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:630px;height:370px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 10px;">
+				<table style="width:550px;height:250px;">
+					<tbody style="width:550px;height:250px;">
+						<tr>
+							<td>车牌号：</td>
+							<td>
+								<select panelheight="auto" style="width: 153px; display: none;" editable="false" id="" class="easyui-combobox combobox-f combo-f" comboname="processStatus">
+									<option value="0">请输入车牌号</option>
+									<option value="1">京B4e8412</option>
+								</select>
 
-											</span>
-										</td>
-										<div class="carSelect" class="panel combo-p" style="position: absolute; z-index: 110017; display: none; width: 210px; left:80px; top: 64px;">
-											<div class="combo-panel panel-body panel-body-noheader" title="" style="width: 208px; height: 198px;">
+							</td>
+							<div class="carSelect" class="panel combo-p" style="position: absolute; z-index: 110017; display: none; width: 210px; left:80px; top: 64px;">
+								<div class="combo-panel panel-body panel-body-noheader" title="" style="width: 208px; height: 198px;">
 
-											</div>
-										</div>
-										<td style="width: 72px;">违章名称：</td>
-										<td>
-											<input type="text" class="easyui-validatebox" data-options="required:true,validType:'length[1,16]'" style="width: 126px; height: 20px; line-height: 20px;" maxlength="16"  value="醉酒驾驶机动车"/>
-											
-										</td>
-									</tr>
-									<tr>
-										<td style="width: 72px;">违法行为：</td>
-										<td colspan="3">
-											<select editable="false" style="width: 374px; display: none;" id="typeId3" class="easyui-combobox easyui-validatebox combobox-f combo-f validatebox-text" data-options="required:true" comboname="typeId">
-												<option value="">饮酒后驾驶机动车</option>
-											</select>
-
-										</td>
-									</tr>
-									<tr style="height: 50px;">
-										<td>驾驶员姓名：</td>
-										<td>
-											<input type="hidden" id="mainDirverHiddenId3" value="727694020">
-											<input type="hidden" id="mainDirverHiddenName3" value="王翊璋">
-											<input type="text" id="mainDirverId3" value="王翊璋" class="textbox easyui-validatebox validatebox-text combobox-f combo-f" style="width: 150px; display: none;">
-												<span class="combo" style="width: 148px; height: 20px;">
-													<input type="text" value="王翊璋" class="combo-text validatebox-text" autocomplete="off" style="width: 126px; height: 20px; line-height: 20px;">
-														<span class='driverName'>
-															<span class="combo-arrow" style="height: 20px;"></span>
-														</span>
-														<input type="hidden" class="combo-value" value="">
-													
-												</span>
-												<div class="driverSelect" class="panel combo-p" style="position: absolute; z-index: 110017; display: none; width: 210px; left:80px; top: 134px;">
-									<div class="combo-panel panel-body panel-body-noheader" title="" style="width: 208px; height: 198px;">
-
-									</div>
 								</div>
-										</td>
-										<td>违章时间：</td>
-										<td style="height:50px;">
+							</div>
+							<td style="width: 72px;">事件类型：</td>
+							<td>
+								<input type="text" class="easyui-validatebox" data-options="required:true,validType:'length[1,16]'" style="width: 126px; height: 20px; line-height: 20px;" maxlength="16" value="醉酒驾驶机动车" />
 
-											<!--<input type="text" class="combo-text validatebox-text" autocomplete="off" readonly="readonly" style="border:none;cursor: pointer; width: 129px; height: 20px; line-height: 20px;">-->
-											<span class="combo datebox" style="width: 151px; height: 20px;">
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 72px;">违法行为：</td>
+							<td colspan="3">
+								<select editable="false" style="width: 374px; display: none;" id="typeId3" class="easyui-combobox easyui-validatebox combobox-f combo-f validatebox-text" data-options="required:true" comboname="typeId">
+									<option value="">饮酒后驾驶机动车</option>
+								</select>
 
-														<input type="text" class="combo-text validatebox-text" autocomplete="off" readonly="readonly" style="border:none;cursor: pointer; width: 129px; height: 20px; line-height: 20px;">
-													
-																						<input class="easyui-datetimebox" value="10/11/2012 2:3:56" style="width:200px;">
-											</span>
-										</td>
-									</tr>
-									<tr>
-										<td>违章地点：</td>
-										<td>
-											<input type="text" value="北京天通苑东三旗" id="violationAddress3" name="violationAddress" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:'length[1,32]'" style="width: 126px; height: 25px; line-height: 20px;">
-											
-										</td>
-										<td>违章描述：</td>
-										<td>
-											<input value="醉酒驾驶机动车" type="text" id="violationDescription3" name="violationDescription" class="easyui-validatebox textbox validatebox-text" data-options="validType:'length[0,256]'" style="width: 150px">
-											
-										</td>
-									</tr>
-									<tr>
-										<td>处理状态：</td>
-										<td>
-											<select panelheight="auto" style="width: 153px; display: none;" editable="false" id="processStatus3" class="easyui-combobox combobox-f combo-f" comboname="processStatus">
-												<option value="0">未处理</option>
-												<option value="1">已处理</option>
-											</select>
-											<span class="combo" style="width: 151px; height: 20px;">
-														<input type="text" class="combo-text validatebox-text" autocomplete="off" readonly="readonly" style="border:none;cursor: pointer; width: 129px; height: 20px; line-height: 20px;">
-															
-															
-													</span>
-										</td>
-										<td>处理结果：</td>
-										<td>
-											<input type="text" id="processResult3" placeholder="状态未处理输入无效" name="processResult" class="easyui-validatebox textbox validatebox-text" data-options="validType:'length[0,25]'" maxlength="25" style="width: 126px; height: 20px; line-height: 20px;">
-											
-										</td>
-									</tr>
-									<tr>
-										<td>备注：</td>
-										<td colspan="3"><textarea id="alarmMessage3" name="alarmMessage" cols="2" rows="2" style="width: 370px;font-size:12px;resize:none" class="easyui-validatebox textbox validatebox-text" placeholder="状态未处理输入无效" data-options="validType:'length[0,256]'" maxlength="100"></textarea></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<div style="text-align:center;padding:5px;margin-top:10px;">
-							<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">确定</a>
-							<a href="javascript:void(0)" class="easyui-linkbutton" onclick="closeForm()">关闭</a>
-						</div>
-					</div>
-				</div>
+							</td>
+						</tr>
+						<tr style="height: 50px;">
+							<td>驾驶员：</td>
+							<td>
+								<select panelheight="auto" style="width: 153px; display: none;" editable="false" id="" class="easyui-combobox combobox-f combo-f" comboname="processStatus">
+									<option value="0">请输入车牌号</option>
+									<option value="1">京B4e8412</option>
+								</select>
 
-				<div style="text-align:center;padding:5px;margin-top:10px;">
-					<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">确定</a>
-					<a href="javascript:void(0)" class="easyui-linkbutton" onclick="closeForm()">关闭</a>
-				</div>
+							</td>
+							<td>违章时间：</td>
+							<td style="height:50px;">
+
+								<!--<input type="text" class="combo-text validatebox-text" autocomplete="off" readonly="readonly" style="border:none;cursor: pointer; width: 129px; height: 20px; line-height: 20px;">-->
+								<span class="combo datebox" style="width: 151px; height: 20px;">
+								<input class="easyui-datetimebox" value="10/11/2012 2:3:56" style="width:200px;">
+							</span>
+							</td>
+						</tr>
+						<tr>
+							<td>违章地点：</td>
+							<td>
+								<input type="text" value="北京天通苑东三旗" id="violationAddress3" name="violationAddress" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:'length[1,32]'" style="width: 126px; height: 25px; line-height: 20px;">
+
+							</td>
+							<td>违章描述：</td>
+							<td>
+								<input value="醉酒驾驶机动车" type="text" id="violationDescription3" name="violationDescription" class="easyui-validatebox textbox validatebox-text" data-options="validType:'length[0,256]'" style="width: 150px">
+
+							</td>
+						</tr>
+						<tr>
+							<td>处理状态：</td>
+							<td>
+								<select panelheight="auto" style="width: 153px; display: none;" editable="false" id="processStatus3" class="easyui-combobox combobox-f combo-f" comboname="processStatus">
+									<option value="0">未处理</option>
+									<option value="1">已处理</option>
+								</select>
+
+							</td>
+							<td>处理结果：</td>
+							<td>
+								<input type="text" id="processResult3" placeholder="状态未处理输入无效" name="processResult" class="easyui-validatebox textbox validatebox-text" data-options="validType:'length[0,25]'" maxlength="25" style="width: 126px; height: 20px; line-height: 20px;">
+
+							</td>
+						</tr>
+						<tr>
+							<td>备注：</td>
+							<td colspan="3"><textarea id="alarmMessage3" name="alarmMessage" cols="2" rows="2" style="width: 370px;font-size:12px;resize:none" class="easyui-validatebox textbox validatebox-text" placeholder="状态未处理输入无效" data-options="validType:'length[0,256]'" maxlength="100"></textarea></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#w1').window('close')">确定</a>
+				<a href="#" class="easyui-linkbutton" onclick="$('#w1').window('close')">关闭</a>
 			</div>
 		</div>
 
@@ -1015,91 +978,9 @@
 		
 		</div>
 		<!--添加弹框-->
-		<!--<div style="width:100%;height:263px;display: none;position: absolute;left:0;top:0;bottom:0;right:0;margin:auto;z-index: 10;" id="tianjiaBox">
-			<div class="easyui-panel" title="新增违章" style="width:550px;height:300px;overflow: hidden;">
-				<div style="padding: 5px; width: 516px; height: 217px;overflow-x:hidden"  class="panel-body panel-body-noheader panel-body-noborder dialog-content">
-
-					<table style="width:550px;height:100%;">
-						<tbody style="550px;height:100%;">
-							<tr>
-								<td>车牌号：</td>
-								<td>
-									<select panelheight="auto" style="width: 153px; display: none;" editable="false" id="" class="easyui-combobox combobox-f combo-f" comboname="processStatus">
-										<option value="0">京A47312</option>
-										<option value="1">京B4e8412</option>
-									</select>
-
-								</td>
-								<div class="carSelect" class="panel combo-p" style="position: absolute; z-index: 110017; display: none; width: 210px; left:80px; top: 64px;">
-									<div class="combo-panel panel-body panel-body-noheader" title="" style="width: 208px; height: 198px;">
-
-									</div>
-								</div>
-								<td>违章名称：</td>
-								<td><input type="text" id="violationName2" name="violationName" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:'length[1,16]'" maxlength="16" style="width: 150px" title=""></td>
-
-							</tr>
-
-							<tr>
-								<td style="width: 72px;">违法行为：</td>
-								<td colspan="3">
-									<select style="width: 374px; display: none;" id="typeId2" class="easyui-combobox easyui-validatebox combobox-f combo-f validatebox-text" editable="false" data-options="required:true" comboname="typeId"></select>
-								</td>
-							</tr>
-							<tr>
-								<td>驾驶员姓名：</td>
-								<td>
-									<select panelheight="auto" style="width: 153px; display: none;" editable="false" id="processStatus2" class="easyui-combobox combobox-f combo-f" comboname="processStatus">
-										<option value="0">王禹帆</option>
-										<option value="1">李闯</option>
-									</select>
-
-								</td>
-								<div class="driverSelect" class="panel combo-p" style="position: absolute; z-index: 110017; display: none; width: 210px; left:80px; top: 134px;">
-									<div class="combo-panel panel-body panel-body-noheader" title="" style="width: 208px; height: 198px;">
-
-									</div>
-								</div>
-								<td>违章时间：</td>
-								<td>
-									<input class="easyui-datetimebox combo-f datetimebox-f" id="startDate" editable="false" style="width: 120px; display: none;">
-								</td>
-							</tr>
-							<tr>
-								<td>违章地点：</td>
-								<td><input type="text" id="violationAddress2" name="violationAddress" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:'length[1,32]'" style="width: 150px" title=""></td>
-								<td>违章描述：</td>
-								<td><input type="text" id="violationDescription2" name="violationDescription" class="easyui-validatebox textbox validatebox-text" data-options="validType:'length[0,256]'" style="cursor: pointer; width: 129px; height: 20px; line-height: 20px;"></td>
-							</tr>
-							<tr>
-								<td>处理状态：</td>
-								<td>
-									<select panelheight="auto" style="width: 153px; display: none;" editable="false" id="processStatus2" class="easyui-combobox combobox-f combo-f" comboname="processStatus">
-										<option value="0">未处理</option>
-										<option value="1">已处理</option>
-									</select>
-
-								</td>
-								<td>处理结果：</td>
-								<td><input type="text" id="processResult2" placeholder="状态未处理输入无效" name="processResult" class="easyui-validatebox textbox validatebox-text" style="width: 150px" data-options="validType:'length[0,25]'" maxlength="25/" disabled="disabled"></td>
-							</tr>
-							<tr>
-								<td>备注：</td>
-								<td colspan="3"><textarea id="alarmMessage2" name="alarmMessage" cols="2" rows="2" style="width: 370px;font-size:12px;resize:none" class="easyui-validatebox textbox validatebox-text" placeholder="状态未处理输入无效" data-options="validType:'length[0,256]'" maxlength="100"></textarea></td>
-							</tr>
-						</tbody>
-					</table>
-
-				</div>
-
-				<div style="text-align:center;padding:5px;margin-top:10px;">
-					<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">确定</a>
-					<a href="javascript:void(0)" class="easyui-linkbutton" onclick="closeForm()">关闭</a>
-				</div>
-			</div>
-		</div>-->
+		
 		<div id='dlg3' class="easyui-window" closed='true' title="导入数据" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:550px;height:350px;">
-	<div class="message"> 
+	<div class="message" style="height:75%"> 
 			<div style="padding: 5px; width: 516px; height: 217px;overflow-x:hidden"  class="panel-body panel-body-noheader panel-body-noborder dialog-content">
 
 					<table style="width:550px;height:100%;">
@@ -1178,7 +1059,7 @@
 		
 	</div>
 			<div style="width:100%; text-align: center;margin-top: 10px;">
-				<a href="#" class="easyui-linkbutton add_list" onclick="$('#dlg3').window('close')">确定</a>
+				<a href="#" class="easyui-linkbutton add_list" onclick="submitForm()">确定</a>
 				<a href="#" class="easyui-linkbutton" onclick="$('#dlg3').window('close')">关闭</a>
 			</div>
 		</div>
@@ -1351,6 +1232,7 @@
 			});
 		//点击增加
 			function submitForm() {
+				$('#dlg3').window('close')
 				$('#dgweizhangxinxi').datagrid('insertRow', {
 					index: 10, // 索引从0开始
 					row: {
@@ -1370,9 +1252,11 @@
 		function submitForm1() {
 				//点击删除
 					deleteRows("#dgweizhangxinxi")
+					$('#w3').window('close');
 			}
 		
 			function closeForm() {
+				
 				$("#formBlock").css("display", "none");
 				$("#daoruOpen").css("display", "none");
 				$("#tianjiaBox").css("display", "none");
@@ -1394,25 +1278,14 @@
 			}
 
 			function prompt1a(e) {
-				console.log(e)
 				if(e == "0") {
-					$("#formBlockdelete").css({
-						"display": "block",
-						"width": "400px"
-					});
-					
+					$('#w3').window('open');
 					
 				} else if(e == "1") {
-					$("#formBlockmodify").css({
-						"display": "block",
-						"width": "550px"
-					});
+					$('#w1').window('open');
 
 				} else if(e == "2") {
-					$("#formBlock").css({
-						"display": "block",
-						"width": "400px"
-					});
+					$('#w2').window('open')
 				}
 			};
 

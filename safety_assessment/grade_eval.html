@@ -80,7 +80,7 @@
 						<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
 						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>							
 						<span class="easyui-linkbutton clear_btn" data-options="iconCls:'icon-return'"  onclick="back('.box_tab')">返回上一级</span>
-						<span style="cursor: pointer;" onclick="alert('#w1')" class="kaohe"><i class="ihelp"></i>考核算法说明</span>
+						<span onclick="alert('#w1')" class="kaohe"><i class="ihelp"></i>考核算法说明</span>
 					</td>
 				</tr>
 			</table>
@@ -241,12 +241,11 @@
 		$(function() {
 			$('#dg').datagrid({
 				idField: 'itemid',
-				fitColumns:true,
 				columns: [
 					[{
 							field: 'ORG_NAME',
 							title: '单位',
-							width: 200,
+							width: 150,
 							formatter: function(value, row, index) {
 								return '<a style="color:blue" class="a_text" onclick="tab_mes()" href="#">' + row.ORG_NAME + '</a>';
 
@@ -255,44 +254,43 @@
 						{
 							field: 'LEVELNAME',
 							title: '等级名称',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'RISK_VALUE',
 							title: '风险值',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'ALARM',
 							title: '报警次数',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'WEIZHANG',
 							title: '违章次数',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'SHIGU',
 							title: '事故次数',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'MILE',
 							title: '公里数',
-							width: 200
+							width: 300
 						}
 					]
 				]
 			});
 			$('#dg1').datagrid({
 				idField: 'itemid',
-				fitColumns:true,
 				columns: [
 					[{
 							field: 'ORG_NAME',
 							title: '单位',
-							width:200,
+							width: 150,
 							formatter: function(value, row, index) {
 								return '<a style="color:blue" class="a_text" onclick="tab_mes1()" href="#">' + row.ORG_NAME + '</a>';
 
@@ -301,44 +299,43 @@
 						{
 							field: 'LEVELNAME',
 							title: '等级名称',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'RISK_VALUE',
 							title: '风险值',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'ALARM',
 							title: '报警次数',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'WEIZHANG',
 							title: '违章次数',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'SHIGU',
 							title: '事故次数',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'MILE',
 							title: '公里数',
-							width: 200
+							width: 300
 						}
 					]
 				]
 			});
 			$('#dg2').datagrid({
 				idField: 'itemid',
-				fitColumns:true,
 				columns: [
 					[{
 							field: 'ORG_NAME',
 							title: '单位',
-							width: 200,
+							width: 150,
 							formatter: function(value, row, index) {
 								return '<a style="color:blue" class="a_text" onclick="tab_mes2()" href="#">' + row.ORG_NAME + '</a>';
 
@@ -347,32 +344,32 @@
 						{
 							field: 'LEVELNAME',
 							title: '等级名称',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'RISK_VALUE',
 							title: '风险值',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'ALARM',
 							title: '报警次数',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'WEIZHANG',
 							title: '违章次数',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'SHIGU',
 							title: '事故次数',
-							width: 200
+							width: 300
 						},
 						{
 							field: 'MILE',
 							title: '公里数',
-							width: 200
+							width: 300
 						}
 					]
 				]
