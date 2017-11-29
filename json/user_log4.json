@@ -1,0 +1,507 @@
+{
+	"total": 7064,
+	"rows": [
+		{
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:13:07",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928331,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:13:07执行单车轨迹播放操作"
+		}, {
+			"userId": "jxtced",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:12:55",
+			"departmentId": "011217130904",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927675,
+			"departmentName": "井下特车二队",
+			"logMessage": "用户在2017-11-23 16:12:55执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:12:53",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928330,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:12:53执行单车轨迹播放操作"
+		}, {
+			"userId": "TXXF",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:12:50",
+			"departmentId": "01121701",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928329,
+			"departmentName": "塔西南勘探开发公司",
+			"logMessage": "用户在2017-11-23 16:12:50执行单车轨迹播放操作"
+		}, {
+			"userId": "wangying",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:12:47",
+			"departmentId": "0112170119",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927480,
+			"departmentName": "销售部",
+			"logMessage": "用户在2017-11-23 16:12:47执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:12:23",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928326,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:12:23执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:12:11",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928324,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:12:11执行单车轨迹播放操作"
+		}, {
+			"userId": "kaifgs",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:12:01",
+			"departmentId": "0106070110",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928319,
+			"departmentName": "开发公司",
+			"logMessage": "用户在2017-11-23 16:12:01执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:11:54",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928317,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:11:54执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgscg01",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:11:40",
+			"departmentId": "01121504",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927670,
+			"departmentName": "沙运司",
+			"logMessage": "用户在2017-11-23 16:11:40执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:11:22",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928312,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:11:22执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:11:07",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928309,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:11:07执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgswuguojian",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:11:01",
+			"departmentId": "0112150G",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927474,
+			"departmentName": "河北分公司",
+			"logMessage": "用户在2017-11-23 16:11:01执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:10:44",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928308,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:10:44执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:10:30",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928307,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:10:30执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgsyxw",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:10:25",
+			"departmentId": "0112150c0B00",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927666,
+			"departmentName": "甘肃分公司庆阳配送中心",
+			"logMessage": "用户在2017-11-23 16:10:25执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:10:16",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928303,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:10:16执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgscqmaodong",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:10:13",
+			"departmentId": "01121506GP",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928237,
+			"departmentName": "长庆运输公司运输四大队",
+			"logMessage": "用户在2017-11-23 16:10:13执行单车轨迹播放操作"
+		}, {
+			"userId": "zoupengfei",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:10:10",
+			"departmentId": "0112150G02",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927899,
+			"departmentName": "大厂京通配送中心大厂京通配送中心",
+			"logMessage": "用户在2017-11-23 16:10:10执行单车轨迹播放操作"
+		}, {
+			"userId": "wangying",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:10:09",
+			"departmentId": "0112170119",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927473,
+			"departmentName": "销售部",
+			"logMessage": "用户在2017-11-23 16:10:09执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:10:03",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927898,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:10:03执行单车轨迹播放操作"
+		}, {
+			"userId": "TXXF",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:09:57",
+			"departmentId": "01121701",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927897,
+			"departmentName": "塔西南勘探开发公司",
+			"logMessage": "用户在2017-11-23 16:09:57执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgswuguojian",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:09:57",
+			"departmentId": "0112150G",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927472,
+			"departmentName": "河北分公司",
+			"logMessage": "用户在2017-11-23 16:09:57执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:09:37",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927894,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:09:37执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgscqmaodong",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:09:18",
+			"departmentId": "01121506GP",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928232,
+			"departmentName": "长庆运输公司运输四大队",
+			"logMessage": "用户在2017-11-23 16:09:18执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:09:10",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927887,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:09:10执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgsyxw",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:08:58",
+			"departmentId": "0112150c0B00",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927665,
+			"departmentName": "甘肃分公司庆阳配送中心",
+			"logMessage": "用户在2017-11-23 16:08:58执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:08:52",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927883,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:08:52执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgszhangjj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:08:32",
+			"departmentId": "01121506Gj",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927879,
+			"departmentName": "长庆运输公司苏里格运输大队",
+			"logMessage": "用户在2017-11-23 16:08:32执行单车轨迹播放操作"
+		}, {
+			"userId": "hn0731cl",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:08:22",
+			"departmentId": "0112150R",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927467,
+			"departmentName": "湖南分公司",
+			"logMessage": "用户在2017-11-23 16:08:22执行单车轨迹播放操作"
+		}, {
+			"userId": "hn0731cl",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:08:09",
+			"departmentId": "0112150R",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927466,
+			"departmentName": "湖南分公司",
+			"logMessage": "用户在2017-11-23 16:08:09执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgsliyajun",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:08:09",
+			"departmentId": "0112150c0C",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928126,
+			"departmentName": "甘肃分公司酒泉配送中心",
+			"logMessage": "用户在2017-11-23 16:08:09执行单车轨迹播放操作"
+		}, {
+			"userId": "zoupengfei",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:07:55",
+			"departmentId": "0112150G02",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927876,
+			"departmentName": "大厂京通配送中心大厂京通配送中心",
+			"logMessage": "用户在2017-11-23 16:07:55执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgscqmaodong",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:07:37",
+			"departmentId": "01121506GP",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928223,
+			"departmentName": "长庆运输公司运输四大队",
+			"logMessage": "用户在2017-11-23 16:07:37执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgskuangjunxian",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:07:33",
+			"departmentId": "0112150c0A00",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927661,
+			"departmentName": "甘肃分公司天水配送中心",
+			"logMessage": "用户在2017-11-23 16:07:33执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgskuangjunxian",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:07:19",
+			"departmentId": "0112150c0A00",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927660,
+			"departmentName": "甘肃分公司天水配送中心",
+			"logMessage": "用户在2017-11-23 16:07:19执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgsyxw",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:06:49",
+			"departmentId": "0112150c0B00",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927659,
+			"departmentName": "甘肃分公司庆阳配送中心",
+			"logMessage": "用户在2017-11-23 16:06:49执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgsjinxin02",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:06:15",
+			"departmentId": "0112150c0300",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928123,
+			"departmentName": "甘肃分公司兰州航油配送中心",
+			"logMessage": "用户在2017-11-23 16:06:15执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgsjinxin02",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:06:08",
+			"departmentId": "0112150c0300",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928122,
+			"departmentName": "甘肃分公司兰州航油配送中心",
+			"logMessage": "用户在2017-11-23 16:06:08执行单车轨迹播放操作"
+		}, {
+			"userId": "zoupengfei",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:05:52",
+			"departmentId": "0112150G02",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927863,
+			"departmentName": "大厂京通配送中心大厂京通配送中心",
+			"logMessage": "用户在2017-11-23 16:05:52执行单车轨迹播放操作"
+		}, {
+			"userId": "hbysljm",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:05:49",
+			"departmentId": "011215076m",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927862,
+			"departmentName": "华北运输公司燃气事业部",
+			"logMessage": "用户在2017-11-23 16:05:49执行单车轨迹播放操作"
+		}, {
+			"userId": "wangying",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:05:01",
+			"departmentId": "0112170119",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927463,
+			"departmentName": "销售部",
+			"logMessage": "用户在2017-11-23 16:05:01执行单车轨迹播放操作"
+		}, {
+			"userId": "hbysljm",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:04:58",
+			"departmentId": "011215076m",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927861,
+			"departmentName": "华北运输公司燃气事业部",
+			"logMessage": "用户在2017-11-23 16:04:58执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgsyxw",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:04:32",
+			"departmentId": "0112150c0B00",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927656,
+			"departmentName": "甘肃分公司庆阳配送中心",
+			"logMessage": "用户在2017-11-23 16:04:32执行单车轨迹播放操作"
+		}, {
+			"userId": "zoupengfei",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:04:06",
+			"departmentId": "0112150G02",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927856,
+			"departmentName": "大厂京通配送中心大厂京通配送中心",
+			"logMessage": "用户在2017-11-23 16:04:06执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgswml",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:03:36",
+			"departmentId": "0112150807",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927654,
+			"departmentName": "准噶尔分公司油田客运一大队",
+			"logMessage": "用户在2017-11-23 16:03:36执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgsjinxin02",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:03:34",
+			"departmentId": "0112150c0300",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928116,
+			"departmentName": "甘肃分公司兰州航油配送中心",
+			"logMessage": "用户在2017-11-23 16:03:34执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgsdaili",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:03:21",
+			"departmentId": "0112150W0D",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928202,
+			"departmentName": "云南分公司滇东北配送中心",
+			"logMessage": "用户在2017-11-23 16:03:21执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgsyxw",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:03:09",
+			"departmentId": "0112150c0B00",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156927653,
+			"departmentName": "甘肃分公司庆阳配送中心",
+			"logMessage": "用户在2017-11-23 16:03:09执行单车轨迹播放操作"
+		}, {
+			"userId": "ysgsjinxin02",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:02:55",
+			"departmentId": "0112150c0300",
+			"functionName": "单车轨迹播放",
+			"functionId": 192,
+			"userLogId": 2156928114,
+			"departmentName": "甘肃分公司兰州航油配送中心",
+			"logMessage": "用户在2017-11-23 16:02:55执行单车轨迹播放操作"
+		}
+	],
+	"tableType": null
+}

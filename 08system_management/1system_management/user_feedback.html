@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>用户建议反馈</title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<link rel="stylesheet" type="text/css" href="../../css/carous.css" />
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<!--轮播图-->
+	<script type="text/javascript" src="../../js/carousel.min.js"></script>
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<body class="easyui-layout" style="overflow: hidden;width:100%;height:100%;">
+            <table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
+				<tr>
+					<td>意见标题：</td>
+					<td>
+						<input type="text" name="" class="width"/>
+					</td>
+					<td>反馈时间：</td>
+					<td>
+						<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">
+						至
+						<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">				
+					</td>
+					<td colspan="6">
+						<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('#dg')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>
+					</td>
+				</tr>
+			</table>
+			<table id="dg" class="easyui-datagrid" style="width:100%;height:80%" data-options="fitColumns:true,rownumbers:true,singleSelect:true,pagination:true,pageList:[5,10,15,20],url:'../../json/user_feed.json',method:'get'">
+			    <thead>
+					<tr>
+						<th data-options="field:'opinionTitle',width:100">意见标题</th>
+						<th data-options="field:'moduleName',width:100">模块名称</th>
+						<th data-options="field:'userCode',width:100">用户名</th>
+						<th data-options="field:'userName',width:100">用户姓名</th>
+						<th data-options="field:'feedBackTime',width:100">反馈时间</th>
+						<th data-options="field:'opinionAdvise',width:100">意见及建议</th>
+						<th data-options="field:'caozuo',width:100,formatter:formatter">操作</th>
+					</tr>
+				</thead>
+			</table>			
+		    <div id='w' class="easyui-window" closed='true' title="照片查看" data-options="inline:true,iconCls:'icon-save'" style="width:650px;height:500px;">
+				<div class="banner" style="margin-top: 10px;">
+					<div class="large_box">
+						<ul>
+							<li>
+								<img src="../../images/img1.jpg" width="530" height="300">
+							</li>
+							<li>
+								<img src="../../images/img2.jpg" width="530" height="300">
+							</li>
+							<li>
+								<img src="../../images/img3.jpg" width="530" height="300">
+							</li>
+							<li>
+								<img src="../../images/img4.jpg" width="530" height="300">
+							</li>
+							<li>
+								<img src="../../images/img5.jpg" width="530" height="300">
+							</li>
+							<li>
+								<img src="../../images/img6.jpg" width="530" height="300">
+							</li>
+						</ul>
+					</div>
+					<div class="small_box">
+						<span class="btn1 left_btn"></span>
+						<div class="small_list">
+							<ul>
+								<li class="on">
+									<img src="../../images/thum1.jpg" width="110" height="70">
+									<div class="bun_bg"></div>
+								</li>
+								<li>
+									<img src="../../images/thum2.jpg" width="110" height="70">
+									<div class="bun_bg"></div>
+								</li>
+								<li>
+									<img src="../../images/thum3.jpg" width="110" height="70">
+									<div class="bun_bg"></div>
+								</li>
+								<li>
+									<img src="../../images/thum4.jpg" width="110" height="70">
+									<div class="bun_bg"></div>
+								</li>
+								<li>
+									<img src="../../images/thum5.jpg" width="110" height="73">
+									<div class="bun_bg"></div>
+								</li>
+								<li>
+									<img src="../../images/thum6.jpg" width="110" height="73">
+									<div class="bun_bg"></div>
+								</li>
+							</ul>
+						</div>
+						<span class="btn1 right_btn"></span>
+					</div>
+				</div>
+			</div>
+            
+	</body>
+	<script type="text/javascript">
+		$(function() {
+			/* 商品轮播图（带缩略图的轮播效果） */
+			$(".banner").thumbnailImg({
+				large_elem: ".large_box",
+				small_elem: ".small_list",
+				left_btn: ".left_btn",
+				right_btn: ".right_btn"
+			});
+		});
+		function formatter(value, row, index) {
+			if(value){
+				return "<a href='#' class='a_text' onclick='tab(this)' style='color:blue'>" + value + "</a>";		
+			}
+		}
+		function tab(){
+			$('#w').window('open');
+		}
+	</script>
+</html>

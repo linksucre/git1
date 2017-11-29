@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link href="../../images/logo.png" rel="shortcut icon" />
+	<link rel="import" href="../../public.html">
+	<script src="../../js/fenye.js"></script>
+	<!-- // 百度地图 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=h86KsPl6VGvedz2G3CGmR37Ah8oMUMcY"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/DistanceTool/1.2/src/DistanceTool_min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+	<!-- //加载鼠标绘制工具 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+	<!-- //拉框放大 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/library/RectangleZoom/1.2/src/RectangleZoom_min.js"></script>
+	<!-- //交通路况 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.2/src/TrafficControl_min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInRectangle/1.2/src/SearchInRectangle_min.js"></script>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+			border: 1px solid #FFFFFF;
+			overflow: hidden;
+		}
+		
+		.BMap_pop div:nth-child(1) {
+			border-radius: 8px 0 0 0;
+			background: #0063AC;
+		}
+		
+		.BMap_pop div:nth-child(1) div {
+			background: #0063AC!important;
+		}
+		
+		.BMap_pop div:nth-child(3) {
+			border-radius: 0 8px 0 0;
+		}
+		
+		.BMap_pop div:nth-child(3) div {
+			background: #0063AC!important;
+		}
+		
+		.BMap_pop div:nth-child(5) {
+			border-radius: 0 0 0 8px;
+		}
+		
+		.BMap_pop div:nth-child(7) {
+			border-radius: 0 0 8px 0;
+		}
+		
+		.BMap_pop div:nth-child(9) {
+			left: 7px!important;
+			top: 1px!important;
+		}
+		
+		.BMap_pop div:nth-child(9) .BMap_bubble_title {
+			background: #0063AC;
+			color: #FFFFFF;
+			border-radius: 0;
+		}
+		
+		.BMap_pop img {
+			top: 9px!important;
+			left: 262px!important;
+		}
+		.win p{
+			margin: 20px 0;
+		}
+	</style>
+
+	<body>
+		<div class="easyui-layout" style="width:100%; height:100%;">
+			<div region="center" id="mainPanle" style="width:100%; height:100%;overflow: hidden;">
+				<div id="allmap" style="width:100%;height:100%;"></div>
+				<div class="easyui-resizable" data-options="maxHeight:550,minHeight:100" style="overflow: hidden; box-sizing: border-box; background: #FFFFFF;width:100%;height:30%;position:absolute; bottom:0;left:0;right: 0;">
+					<div class="easyui-tabs" style="width:100%;height:550px;overflow: hidden;">
+						<div title="业务点管理" data-options="iconCls:'icon-s_road'" style="width:100%;height:100%;padding:10px;overflow: hidden;">
+							<table border="0" cellspacing="0" cellpadding="0" class="clear_box" style="height:20%；">
+								<tr>
+									<td>单位：</td>
+									<td>
+										<div class="clear_mes">
+											<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+											<span class="clearMess" style="display:none;"></span>
+									    </div>
+									</td>
+									<td>业务点类型：</td>
+									<td colspan="2">
+										<select class="easyui-combobox width">
+											<option value="ar">全部</option>
+											<option value="bg">中石油加油(气)站</option>
+											<option value="ca">中石化加油(气)站</option>
+											<option value="zh-cht">社会加油(气)站</option>
+											<option value="cs">油库</option>
+											<option value="da">炼油厂</option>
+											<option value="nl">未运输公司总部</option>
+											<option value="en" selected="selected">省分公司</option>
+											<option value="et">配送中心(车队)</option>
+										</select>
+									</td>
+									<td>业务点名称：</td>
+									<td><input type="text" class="width1"/></td>
+									<td>创建人：</td>
+									<td><input type="text" class="width1"/></td>
+									<td colspan="6">
+										<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+										<span class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="add_window()">添加</span>
+										<span class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="refreshbtn('#dg')">修改</span>
+										<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'" onclick="clearSearch('#dg')">重置</span>
+										<span class="easyui-linkbutton" data-options="iconCls:'icon-excel'"><a id="exportExcel" href="#">导出</a></span>
+									</td>
+								</tr>
+							</table>
+							<table id="dg" title="" class="easyui-datagrid" style="width:100%;height:70%" data-options="fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../../json/warn_record.json',method:'get'">
+								<thead>
+									<tr>
+										<th data-options="field:'checkbox',checkbox:true,width:'200'"></th>
+										<th data-options="field:'orgName',align:'center',width:'200'">单位</th>
+										<th data-options="field:'plate',align:'center',width:'200'">车牌号</th>
+										<th data-options="field:'warnType',align:'center',width:'200'">预警类型</th>
+										<th data-options="field:'address',align:'center',width:'200'">预警位置</th>
+										<th data-options="field:'warnDesc',align:'center',width:'200'">预警描述</th>
+										<th data-options="field:'warnDate',align:'center',width:'200'">预警时间</th>
+									</tr>
+								</thead>
+							</table>
+
+						</div>
+
+						<div title="业务区管理" data-options="iconCls:'icon-s_road'" style="width:100%;height:80%;padding:10px;overflow: hidden;">
+							<table border="0" cellspacing="0" cellpadding="0" class="clear_box">
+								<tr>
+									<td>单位：</td>
+									<td><input class="easyui-combotree width" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:120px;"></td>
+									<td>业务点类型：</td>
+									<td colspan="2">
+										<select class="easyui-combobox width" name="language">
+											<option value="ar">全部</option>
+											<option value="bg">中石油加油(气)站</option>
+											<option value="ca">中石化加油(气)站</option>
+											<option value="zh-cht">社会加油(气)站</option>
+											<option value="cs">油库</option>
+											<option value="da">炼油厂</option>
+											<option value="nl">未运输公司总部</option>
+											<option value="en" selected="selected">省分公司</option>
+											<option value="et">配送中心(车队)</option>
+										</select>
+									</td>
+									<td>业务区名称：</td>
+									<td><input type="text" class="width1" /></td>
+									<td>创建人：</td>
+									<td><input type="text" class="width1"/></td>
+									<td colspan="6">
+										<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg1')">查询</span>
+										<span class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="refreshbtn('#dg1')">添加</span>
+										<span class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="refreshbtn('#dg1')">修改</span>
+										<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'" onclick="clearSearch('#dg1')">重置</span>
+									</td>
+								</tr>
+							</table>
+							<table id="dg1" title="" class="easyui-datagrid" style="width:100%;" data-options="fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../../json/warn_record.json',method:'get'">
+								<thead>
+									<tr>
+										<th data-options="field:'checkbox',checkbox:true,width:'200'"></th>
+										<th data-options="field:'orgName',align:'center',width:'200'">单位</th>
+										<th data-options="field:'plate',align:'center',width:'200'">车牌号</th>
+										<th data-options="field:'warnType',align:'center',width:'200'">预警类型</th>
+										<th data-options="field:'address',align:'center',width:'200'">预警位置</th>
+										<th data-options="field:'warnDesc',align:'center',width:'200'">预警描述</th>
+										<th data-options="field:'warnDate',align:'center',width:'200'">预警时间</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="right_box" style="height: 20px; position: absolute;top:1px; right:0;width: 30px;">
+			<div class="box1">
+				<p class="p1"></p>
+			</div>
+		</div>
+		<div class="box1_float" style="top: 0;">
+			<ul class="box1_ul">
+				<li id="zoomMax">
+					<a href="#" title="点击后拉框即可放大地图，再次点击后可退出" class="easyui-tooltip"><span><img src="../../images/nav_zoomin.png"/></span>拉框放大</a>
+				</li>
+				<li id="zoomMin">
+					<a href="#" title="点击后拉框即可缩小地图，再次点击后可退出" class="easyui-tooltip"><span><img src="../../images/nav_zoomout.png"/></span>拉框缩小</a>
+				</li>
+				<li id="fullextent">
+					<a href="#" title="点击按钮地图缩放到全局范围" class="easyui-tooltip"><span><img src="../../images/nav_fullextent.png"/></span>全局</a>
+				</li>
+				<li>
+					<a href="#" title="点击按钮地图返回上一视图" class="easyui-tooltip"><span><img src="../../images/nav_previous.png"/></span>前一视图</a>
+				</li>
+				<li>
+					<a href="#" title="点击按钮地图返回下一视图" class="easyui-tooltip"><span><img src="../../images/nav_next.png"/></span>后一视图</a>
+				</li>
+				<li>
+					<a href="#" title="点击可进行地图拖拽" class="easyui-tooltip"><span><img src="../../images/nav_pan.png"/></span>平移</a>
+				</li>
+				<li id="distance">
+					<a href="#" title="点击可进行距离测量,再次点击后停止距离测量" class="easyui-tooltip"><span><img src="../../images/Measure_Distance.png"/></span>测距</a>
+				</li>
+				<li id="measureArea">
+					<a href="#" title="点击可进行面积测量,再次点击后停止面积测量" class="easyui-tooltip"><span><img src="../../images/Measure_Area.png"/></span>测面</a>
+				</li>
+			</ul>
+		</div>
+
+		<!--模态框-->
+		<div id='w1' class="easyui-window" closed='true' title="添加业务区" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:900px;height:450px;">
+			<div style="position:relative;height: 100%; width:100%;box-sizing: border-box; padding: 5px 0 0 20px;box-sizing: border-box;">
+				<div id="allmap1" style="overflow:hidden;zoom:1;position:relative;height: 100%; width:100%;">
+					<div id="all_map" style="height:100%;-webkit-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;"></div>
+				</div>
+				<div class="left_position" style=" width:284px;height: 100%; position: absolute;left: 0;top: 0;border: 1px solid #D4D4D4;box-sizing: border-box;background: #FFFFFF;">
+					<table width="100%" align="center">
+						<tbody>
+							<tr>
+								<td height="60px"></td>
+							</tr>
+							<tr>
+								<td>业务区名称：</td>
+								<td><input type="text" style="width: 126px;" data-options="required:true,validType:'selectValueRequired'" class="easyui-validatebox textbox"></td>
+							</tr>
+							<tr>
+								<td>业务区分类：</td>
+								<td>
+									<select class="easyui-combobox" data-options="required:true" style="width: 126px;">
+										<option value="" selected="selected">请选择</option>
+										<option value="1">禁止驶入范围</option>
+										<option value="2">禁止驶出范围</option>
+										<option value="3">盲区</option>
+										<option value="4">风险区</option>
+										<option value="5">允许停车范围</option>
+										<option value="6">禁止停车范围</option>
+										<option value="7">敏感区域</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>业务区形状：</td>
+								<td>
+									<select class="easyui-combobox" style="width: 126px;">
+										<option value="0">矩形</option>
+										<option value="1">圆形</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>是否共享：</td>
+								<td class="col-md-3">
+									<select class="easyui-combobox" style="width: 126px;">
+										<option value="0" selected="selected">不共享</option>
+										<option value="1">共享</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>允许停车时长(秒)：</td>
+								<td>
+									<input type="text" style="width: 126px; height: 20px; line-height: 20px;" data-options="required:true" class="easyui-numberbox" value="30" placeholder="停车时长10~259200秒">
+								</td>
+							</tr>
+							<tr>
+								<td>预警距离(米)：</td>
+								<td>
+									<input type="text" style="width: 126px; height: 20px; line-height: 20px;" data-options="required:true" class="easyui-numberbox" value="500" placeholder="预警距离50~9999米">
+								</td>
+							</tr>
+							<tr>
+								<td>备注：</td>
+								<td>
+									<input type="text" style="width: 126px;" data-options="validType:'length[0,500]'" class="easyui-validatebox textbox">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div style="width:100%; text-align: center;margin-top: 10px;">
+						<a href="#" class="easyui-linkbutton" onclick="$('#w1').window('close')">确定</a>
+						<a href="#" class="easyui-linkbutton" onclick="clearAll1()">关闭</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id='w2' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px;">
+				在地图上拖动绘制矩形业务区！
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="draw1(BMAP_DRAWING_RECTANGLE)">确定</a>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../js/mapTools.js"></script>
+
+	<script type="text/javascript">
+		//添加按钮
+		function add_window() {
+			$('#w1').window('open')
+			$('#w2').window('open')
+		}
+		// 百度地图allmap
+		map = new BMap.Map("allmap", {
+			enableMapClick: false
+		}); //去除默认信息框
+		map.enableScrollWheelZoom(true);
+		map.centerAndZoom(new BMap.Point(116.417854, 39.921988), 15);
+		// 添加带有定位的导航控件
+		var navigationControl = new BMap.NavigationControl({
+			// 靠左上角位置
+			anchor: BMAP_ANCHOR_TOP_LEFT,
+			// LARGE类型
+			type: BMAP_NAVIGATION_CONTROL_LARGE
+		});
+		map.addControl(navigationControl);
+		////获取覆盖物个数
+		var overlays = [];
+		//	信息框
+		var data_info = [
+			[
+			   116.417854, 39.921988,
+				{
+					"img": "../../images/oil.png"
+				},
+				"<p class='win'>"+
+				"<p>业务点名称：123团</p>" +
+				"<p>业务点分类：机构用户</p>" +
+				"<p>创建单位：</p>" +
+				"<p>业务点地址：</p>" +
+				"<p>允许停车时长：86400秒</p>" +
+				"<p>允许停车范围：500米</p>" +
+				"<p>备注：毛江</p>"+
+				"</p>"
+			],
+			[116.517854, 39.931988,
+//			116.406605, 39.921585,
+				{
+					"img": "../../images/park.png"
+				},
+				"<p class='win'>"+
+				"<p>业务点名称：九道弯配送中心</p>" +
+				"<p>业务点分类：食宿点</p>" +
+				"<p>创建单位：</p>" +
+				"<p>业务点地址：</p>" +
+				"<p>允许停车时长：86400秒</p>" +
+				"<p>允许停车范围：500米</p>" +
+				"<p>备注：无</p>"+
+				"</p>"
+			],
+			[116.427854, 39.925988,
+//			116.412222, 39.912345,
+				{
+					"img": "../../images/person1.png"
+				},
+				"<p class='win'>"+
+				"<p>业务点名称：延炼</p>" +
+				"<p>业务点分类：生产作业点</p>" +
+				"<p>创建单位：</p>" +
+				"<p>业务点地址：</p>" +
+				"<p>允许停车时长：86400秒</p>" +
+				"<p>允许停车范围：500米</p>" +
+				"<p>备注：无</p>"+
+				"</p>"
+			],
+			[116.417884, 39.928988,
+//			123.199364, 41.53486,
+				{
+					"img": "../../images/person.png"
+				},
+				"<p class='win'>"+
+				"<p>业务点名称：台安12站</p>" +
+				"<p>业务点分类：中国石油加油站</p>" +
+				"<p>创建单位：</p>" +
+				"<p>业务点地址：</p>" +
+				"<p>允许停车时长：86400秒</p>" +
+				"<p>允许停车范围：500米</p>" +
+				"<p>备注：无</p>"+
+				"</p>"
+			],
+			[116.447854, 39.924988,
+//			116.502748, 39.911304,
+				{
+					"img": "../../images/daocha.png"
+				},
+				"<p class='win'>"+
+				"<p>业务点名称：延炼</p>" +
+				"<p>业务点分类：生产作业点</p>" +
+				"<p>创建单位：</p>" +
+				"<p>业务点地址：</p>" +
+				"<p>允许停车时长：86400秒</p>" +
+				"<p>允许停车范围：500米</p>" +
+				"<p>备注：无</p>"+
+				"</p>"
+			],
+			[116.447854, 39.941988,
+//			112.234575, 37.606798,
+				{
+					"img": "../../images/pcar.png"
+				},
+				"<p class='win'>"+
+				"<p>业务点名称：延炼</p>" +
+				"<p>业务点分类：食宿</p>" +
+				"<p>创建单位：</p>" +
+				"<p>业务点地址：</p>" +
+				"<p>允许停车时长：86400秒</p>" +
+				"<p>允许停车范围：500米</p>" +
+				"<p>备注：无</p>"+
+				"</p>"
+			],
+			[116.457854, 39.925988,
+//			88.023732, 44.134042,
+				{
+					"img": "../../images/person1.png"
+				},
+				"<p class='win'>"+
+				"<p>业务点名称：名人</p>" +
+				"<p>业务点分类：停车场</p>" +
+				"<p>创建单位：</p>" +
+				"<p>业务点地址：</p>" +
+				"<p>允许停车时长：86400秒</p>" +
+				"<p>允许停车范围：500米</p>" +
+				"<p>备注：无</p>"+
+				"</p>"
+			]
+		];
+		var opts = {
+			width: 250, // 信息窗口宽度
+			height: 190, // 信息窗口高度
+			title: "业务点信息", // 信息窗口标题
+			enableMessage: true //设置允许信息窗发送短息
+		};
+		for(var i = 0; i < data_info.length; i++) {
+			//创建新图标
+			var myIcon = new BMap.Icon("" + data_info[i][2].img + "", new BMap.Size(16, 16), {
+				anchor: new BMap.Size(6, 12), //分别对应图标的一半宽度和高度
+				imageOffset: new BMap.Size(0 - 1, 0 - 1) //调整图片偏移量图片偏移
+			});
+			var marker = new BMap.Marker(new BMap.Point(data_info[i][0], data_info[i][1]), {
+				icon: myIcon
+			}); // 创建标注	
+			var content = data_info[i][3];
+			map.addOverlay(marker); // 将标注添加到地图中
+			addClickHandler(content, marker);
+		}
+
+		function addClickHandler(content, marker) {
+			marker.addEventListener("mouseover", function(e) {
+				openInfo(content, e)
+			});
+		}
+
+		function openInfo(content, e) {
+			var p = e.target;
+			var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+			var infoWindow = new BMap.InfoWindow(content, opts); // 创建信息窗口对象 
+			map.openInfoWindow(infoWindow, point); //开启信息窗口
+		}
+
+		//百度地图模态框allmap1   弹出框
+		var map1 = new BMap.Map('all_map', {
+			enableMapClick: false
+		});
+		var poi = new BMap.Point(113.948913, 22.530844);
+		map1.centerAndZoom(poi, 16);
+		map1.enableScrollWheelZoom();
+		var overlays1 = [];
+		var overlaycomplete = function(e) {
+			overlays1.push(e.overlay);
+		};
+		var style_Options = {
+			strokeColor: "red", //边线颜色。  
+			fillColor: "red", //填充颜色。当参数为空时，圆形将没有填充效果。  
+			strokeWeight: 3, //边线的宽度，以像素为单位。  
+			strokeOpacity: 0.8, //边线透明度，取值范围0 - 1。  
+			fillOpacity: 0.6, //填充的透明度，取值范围0 - 1。  
+			strokeStyle: 'solid' //边线的样式，solid或dashed。  
+		}
+		//实例化鼠标绘制工具  
+		var drawingManager = new BMapLib.DrawingManager(map1, {
+			isOpen: false, //是否开启绘制模式  
+			//enableDrawingTool: true, //是否显示工具栏  
+			drawingToolOptions: {
+				anchor: BMAP_ANCHOR_TOP_RIGHT, //位置  
+				offset: new BMap.Size(5, 5), //偏离值  
+			},
+			rectangleOptions: style_Options //矩形的样式  
+		});
+		//          添加鼠标绘制工具监听事件，用于获取绘制结果  
+		drawingManager.addEventListener('overlaycomplete', function() {
+			drawingManager.close();
+		});
+		drawingManager.addEventListener('overlaycomplete', overlaycomplete);
+		//          画矩形
+		function draw1(type) {
+			drawingManager.open();
+			drawingManager.setDrawingMode(type);
+			//			关闭模态框
+			$('#w2').window('close');
+		}
+		//          清除覆盖物
+		function clearAll1() {
+			for(var i = 0; i < overlays1.length; i++) {
+				map1.removeOverlay(overlays1[i]);
+			}
+			overlays1.length = 0;
+			//			关闭模态框并清除矩形
+			$('#w1').window('close');
+		}
+	</script>
+
+</html>

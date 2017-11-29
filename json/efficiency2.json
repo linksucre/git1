@@ -1,0 +1,116 @@
+{
+    "total": 10,
+    "rows": [
+        {
+            "number": null,
+            "orgName": "对外合作部",
+            "vehCount": "0",
+            "ownership": "",
+            "totalDay": "0",
+            "workDay": "0",
+            "workRatio": "0",
+            "hasSon": "1",
+            "orgCode": "010101"
+        },
+        {
+            "number": null,
+            "orgName": "综合处",
+            "vehCount": "0",
+            "ownership": "",
+            "totalDay": "0",
+            "workDay": "0",
+            "workRatio": "0",
+            "hasSon": "0",
+            "orgCode": "01010101"
+        },
+        {
+            "number": null,
+            "orgName": "计划发展处",
+            "vehCount": "0",
+            "ownership": "",
+            "totalDay": "0",
+            "workDay": "0",
+            "workRatio": "0",
+            "hasSon": "0",
+            "orgCode": "01010102"
+        },
+        {
+            "number": null,
+            "orgName": "财务资产处",
+            "vehCount": "0",
+            "ownership": "",
+            "totalDay": "0",
+            "workDay": "0",
+            "workRatio": "0",
+            "hasSon": "0",
+            "orgCode": "01010103"
+        },
+        {
+            "number": null,
+            "orgName": "法律事务处",
+            "vehCount": "0",
+            "ownership": "",
+            "totalDay": "0",
+            "workDay": "0",
+            "workRatio": "0",
+            "hasSon": "0",
+            "orgCode": "01010104"
+        },
+        {
+            "number": null,
+            "orgName": "项目管理处",
+            "vehCount": "0",
+            "ownership": "",
+            "totalDay": "0",
+            "workDay": "0",
+            "workRatio": "0",
+            "hasSon": "0",
+            "orgCode": "01010105"
+        },
+        {
+            "number": null,
+            "orgName": "新项目处",
+            "vehCount": "0",
+            "ownership": "",
+            "totalDay": "0",
+            "workDay": "0",
+            "workRatio": "0",
+            "hasSon": "0",
+            "orgCode": "01010106"
+        },
+        {
+            "number": null,
+            "orgName": "天然气项目管理处",
+            "vehCount": "0",
+            "ownership": "",
+            "totalDay": "0",
+            "workDay": "0",
+            "workRatio": "0",
+            "hasSon": "0",
+            "orgCode": "01010107"
+        },
+        {
+            "number": null,
+            "orgName": "12",
+            "vehCount": "0",
+            "ownership": "",
+            "totalDay": "0",
+            "workDay": "0",
+            "workRatio": "0",
+            "hasSon": "0",
+            "orgCode": "01010108"
+        },
+        {
+            "number": null,
+            "orgName": "12",
+            "vehCount": "0",
+            "ownership": "",
+            "totalDay": "0",
+            "workDay": "0",
+            "workRatio": "0",
+            "hasSon": "0",
+            "orgCode": "01010109"
+        }
+    ],
+    "tableType": null
+}

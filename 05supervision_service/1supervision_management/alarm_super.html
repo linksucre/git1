@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>报警督办</title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<style type="text/css">
+		.title{
+			width: 100%;
+			height:50px;
+			line-height: 50px;
+			box-sizing: border-box;
+			padding: 10px 0 10px 20px;
+		}
+		.title a{
+			color: #00CCFF;
+			display: inline-block;
+			margin-right: 30px;
+			font-size: 16px;
+		}
+		.title a:hover{
+			color: #0000EE;
+		}
+		a{
+			text-decoration: underline;
+		}
+	</style>
+	<body class="easyui-layout" style="overflow: hidden;width:100%;height:100%;">
+		    <div class="title">
+		    	<a href="#" onclick="clickA('../../json/alarm_super1.json')">未处理(20480)</a>
+		    	<a href="#" onclick="clickA('../../json/alarm_super2.json')">处理中(98)</a>
+		    	<a href="#" onclick="clickA('../../json/alarm_super3.json')">将来处理(3)</a>
+		    	<a href="#" onclick="clickA('../../json/alarm_super4.json')">不处理(1)</a>
+		    	<a href="#" onclick="clickA('../../json/alarm_super5.json')">已处理(310)</a>
+		    </div>
+            <table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
+				<tr>
+					<td>车牌号：</td>
+					<td>
+						<input type="text" class="width"/>
+					</td>
+					<td>督办处理：</td>
+					<td>
+						<select name="" class="easyui-combobox width">
+							<option value="0">全部</option>
+							<option value="1">(交通部)湖北省运管转发</option>
+							<option value="2">内蒙</option>
+						</select>
+					</td>
+					<td>报警时间：</td>
+					<td>
+						<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">
+						至
+						<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">				
+					</td>
+					<td colspan="6">
+						<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('#dg')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>
+					</td>
+				</tr>
+			</table>
+			<table id="dg" class="easyui-datagrid" style="width:100%;height:80%" data-options="fitColumns:true,rownumbers:true,singleSelect:true,pagination:true,pageList:[5,10,15,20],url:'../../json/alarm_super1.json',method:'get'">
+			    <thead>
+					<tr>
+						<th data-options="field:'vehicleNO',width:100">车牌号</th>
+						<th data-options="field:'superiorplatformName',width:100">上级平台</th>
+						<th data-options="field:'warnType',width:100,formatter:formatter1">报警类型</th>
+						<th data-options="field:'sendTime',width:100">报警时间</th>
+						<th data-options="field:'supervisionEndtime',width:100">督办截止时间</th>
+						<th data-options="field:'supervisionLevel',width:100">督办级别</th>
+						<th data-options="field:'supervison',width:100">督办人</th>
+						<th data-options="field:'supervisionTel',width:100">督办人电话</th>
+						<th data-options="field:'supervisionEmal',width:100">督办处理</th>
+						<th data-options="field:'caozuo',width:100,formatter:formatter2">操作</th>
+					</tr>
+				</thead>
+			</table>			
+		    <div id='w' class="easyui-window" closed='true' title="督办应答处理" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:200px;">
+			  <div style="box-sizing: border-box;padding: 5px 0 0 20px;">
+				  <table border="0" cellspacing="1" cellpadding="1" class="table_layout" style="width: 100%; height:80px;">
+				  	<tr>
+				  		<td>处理人：</td>
+				  		<td>刘少军</td>
+				  	</tr>
+				  	<tr>
+				  		<td>处理时间：</td>
+				  		<td>2017-11-24 10:15:24</td>
+				  	</tr>
+				  	<tr>
+				  		<td>督办处理：</td>
+				  		<td>
+				  			<select name="" class="easyui-combobox width">
+				  				<option value="">请选择</option>
+				  				<option value="">未处理</option>
+				  				<option value="">处理中</option>
+				  				<option value="">已处理</option>
+				  				<option value="">不处理</option>
+				  				<option value="">将来处理</option>
+				  			</select>
+				  		</td>
+				  	</tr>
+				  	
+				  </table>
+			  
+			  </div>
+				<div style="width:100%; text-align: center;margin-top: 20px;">
+					<a href="#" class="easyui-linkbutton" onclick="$('#w').window('close')">保存</a>
+					<a href="#" class="easyui-linkbutton" onclick="$('#w').window('close')">关闭</a>
+				</div>
+		    </div>
+            
+	</body>
+	<script type="text/javascript">
+		function formatter1(value, row, index) {
+			if(value == 2){
+				return value = '疲劳驾驶';
+			}else if(value == 14){
+				return value = '禁止停车区报警';
+			}		
+		}
+		function formatter2(value, row, index) {
+			return "<a href='#' class='a_text' onclick='tab(this)' style='color:blue'>督办处理</a>";					
+		}
+        function tab(){
+        	$('#w').window('open');
+        }
+        function clickA(url){
+        	$('#dg').datagrid({  
+				 url:url
+			})
+        }
+	</script>
+</html>

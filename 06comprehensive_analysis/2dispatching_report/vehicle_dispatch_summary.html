@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>车辆调派汇总统计</title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<!--<script type="text/javascript" src="../../js/more.js"></script>-->
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<style type="text/css">
+		a{
+			text-decoration: underline;
+		}
+		.search{
+				height: 13px;
+				width:150px;
+				display: inline-block;
+				position: relative;
+				padding-bottom: 10px;
+			}
+	</style>
+	<body class="easyui-layout" style="overflow: hidden;">
+		<div data-options="region:'center',border:false" style="width:100%;height:100%;overflow: hidden;">
+				<div id="mainPanle" region="center" title="" style="padding:5px;height:100%;">	
+                        <div id="tt" class="easyui-tabs" style="width:100%;height:100%;" >
+							<div title="日(区段)统计" style="padding:10px;position: relative;width: 100%;height:100%;">
+								<p id="titleBox1" style="height:3%;box-sizing: border-box; padding:14px 0 5px 10px;margin: 0px;">当前位置：
+								   <a href="#" style="color: blue;" class="remove_first" onclick="remove_first(arrObj1,'#dg1','.remove_first')">集团公司</a>
+							    </p>
+					            <table border="0" cellspacing="0" cellpadding="0" class="clear_box">
+									<tr>
+										<td>单位：
+											<div class="search">
+											 	<input type="text" class="easyui-combotree" comboname="orgCode" style="width:150px;height:20px;border:1px solid #95b8e7;" data-options="url:'get_data.php',url:'../../json/alarmSwitchdanwei.json',method:'get'">
+												<span class="combo-clear qingchu"></span>
+											</div>
+										</td>
+										<td>开始日期：</td>
+										<td>
+											<input type="text" editable="false" id="startDate" class="easyui-datebox datebox-f combo-f" style="width: 90px; display: none;" comboname="startDate">
+											结束日期
+											<input type="text" editable="false" id="startDate" class="easyui-datebox datebox-f combo-f" style="width: 90px; display: none;" comboname="startDate">				
+										</td>
+										<td colspan="6">
+											<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('.easyui-datagrid')">查询</span>
+											<a  id="exportExcel" style="text-align:right;margin-right:5px;" class="easyui-linkbutton l-btn l-btn-small" iconcls="icon-excel" group="">
+											导出
+										</a>	
+										</td>
+									</tr>
+								</table>
+								 <table id="dg1" class="easyui-datagrid load" style="width:100%;height:85%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/vehicle_dispatch1.json',method:'get'"></table>
+							</div>
+							<div title="月统计" style="padding:10px;width: 100%;height:100%;position: relative;">
+								<p id="titleBox2" style="height:3%;box-sizing: border-box; padding:14px 0 5px 10px;margin: 0px;">当前位置：
+								   <a href="#" style="color: blue;" class="remove_first2" onclick="remove_first(arrObj2,'#dg2','.remove_first2')">集团公司</a>
+							    </p>
+								<table border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td>
+											单位：
+										</td>
+										<td>
+											<div class="search">
+											 	<input type="text" class="easyui-combotree" comboname="orgCode" style="width:150px;height:20px;border:1px solid #95b8e7;" data-options="url:'get_data.php',url:'../../json/alarmSwitchdanwei.json',method:'get'">
+												<span class="combo-clear qingchu"></span>
+											</div>
+										</td>
+										<td>年份:</td>
+										<td>
+											<select class="easyui-combobox" style="width: 150px;">
+												<option value="0">2014</option>
+												<option value="1">2015</option>
+												<option value="2">2016</option>
+												<option value="3">2017</option>
+											</select>
+										</td>
+										<td>月份:</td>
+										<td>
+											<select class="easyui-combobox" style="width: 150px;">
+												<option value="0">1</option>
+												<option value="1">2</option>
+												<option value="2">3</option>
+												<option value="3">4</option>
+												<option value="0">5</option>
+												<option value="1">6</option>
+												<option value="2">7</option>
+												<option value="3">8</option>
+												<option value="0">9</option>
+												<option value="1">10</option>
+												<option value="2">11</option>
+												<option value="3">12</option>
+											</select>
+										</td>
+									    <td>
+									    	<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('.easyui-datagrid')">查询</span>
+											<a  id="exportExcel" style="text-align:right;margin-right:5px;" class="easyui-linkbutton l-btn l-btn-small" iconcls="icon-excel" group="">
+												导出
+											</a>
+									    </td>
+									</tr>
+								</table>
+								 <table id="dg2" class="easyui-datagrid load" style="height:85%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/vehicle_dispatch1.json',method:'get'">
+
+								 </table>
+							</div>
+							<div title="年统计" style="padding:10px;position: absolute; width: 100%;height:100%;">
+								<p id="titleBox3" style="height:3%;box-sizing: border-box; padding:14px 0 5px 10px;margin: 0px;">当前位置：
+								   <a href="#" style="color: blue;" class="remove_first3" onclick="remove_first(arrObj3,'#dg3','.remove_first3')">集团公司</a>
+							    </p>
+							<table border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td>
+											单位：
+										</td>
+										<td>
+											<div class="search">
+											 	<input type="text" class="easyui-combotree" comboname="orgCode" style="width:150px;height:20px;border:1px solid #95b8e7;" data-options="url:'get_data.php',url:'../../json/alarmSwitchdanwei.json',method:'get'">
+												<span class="combo-clear qingchu"></span>
+											</div>
+										</td>
+										<td>年份:</td>
+										<td>
+											<select class="easyui-combobox" style="width: 150px;">
+												<option value="0">2014</option>
+												<option value="1">2015</option>
+												<option value="2">2016</option>
+												<option value="3">2017</option>
+											</select>
+										</td>
+									    <td>
+									    	<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('.easyui-datagrid')">查询</span>
+											<a  id="exportExcel" style="text-align:right;margin-right:5px;" class="easyui-linkbutton l-btn l-btn-small" iconcls="icon-excel" group="">
+												导出
+											</a>
+									    </td>
+									</tr>
+								</table>
+								 <table id="dg3" class="easyui-datagrid load" style="height:85%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/vehicle_dispatch1.json',method:'get'">
+
+								 </table>
+							</div>
+						</div>
+			</div>
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(".easyui-tabs").width(screen.width * 0.99);
+		var arr = ['../../json/vehicle_dispatch2.json','../../json/vehicle_dispatch3.json','../../json/vehicle_dispatch4.json']
+		var arrIndex1 =1;
+		var arrIndex2 = 2;
+		var arrIndex3 = 3;
+		var index1 = 0;	
+		var c1 = 0;
+		var index2 = 0;	
+		var c2 = 0;
+		var index3 = 0;	
+		var c3 = 0;
+		var arrObj1=['#dg1','#titleBox1',index1,c1]
+		var arrObj2=['#dg2','#titleBox2',index2,c2]
+		var arrObj3=['#dg3','#titleBox3',index2,c3]
+		datagr('#dg1',formatter1)
+		datagr('#dg2',formatter2)
+		datagr('#dg3',formatter3)
+		function datagr(dg,formatter){
+			//表格
+			$(dg).datagrid({  
+		        columns: [[
+		                    {field:'ORG_NAME',title:'单位',width:170,rowspan:2,formatter:formatter},
+		                    {"title":"公务用车","colspan":5},
+			                {"title":"生产用车","colspan":5},
+							{"title":"班车","colspan":5},
+	                	],[ 
+			                {"field":"CARALLTASK","title":"单位",align:'center',"rowspan":1,align:'center',width:100},
+							{"field":"CARALLTASK","title":"预警发送总次数","rowspan":1,align:'center',width:100},	
+							{"field":"CARALLTASK","title":"天气预警发送次数","rowspan":1,align:'center',width:100},
+							{"field":"CARALLTASK","title":"路况预警发送次数","rowspan":1,align:'center',width:100},	
+							{"field":"CARALLTASK","title":"地质灾害发送次数","rowspan":1,align:'center',width:100},
+							{"field":"CARALLTASK","title":"危险路段发送次数","rowspan":1,align:'center',width:100},	
+							{"field":"CARALLTASK","title":"危险驾驶预警发送次数","rowspan":1,align:'center',width:100},
+							{"field":"CARALLTASK","title":"预警发送总次数","rowspan":1,align:'center',width:100},	
+							{"field":"CARALLTASK","title":"天气预警发送次数","rowspan":1,align:'center',width:100},
+							{"field":"CARALLTASK","title":"路况预警发送次数","rowspan":1,align:'center',width:100},	
+							{"field":"CARALLTASK","title":"地质灾害发送次数","rowspan":1,align:'center',width:100},
+							{"field":"CARALLTASK","title":"危险路段发送次数","rowspan":1,align:'center',width:100},	
+							{"field":"CARALLTASK","title":"危险驾驶预警发送次数","rowspan":1,align:'center',width:100},
+							{"field":"CARALLTASK","title":"预警发送总次数","rowspan":1,align:'center',width:100},	
+							{"field":"CARALLTASK","title":"天气预警发送次数","rowspan":1,align:'center',width:100}
+		                ]]
+		
+			});
+		}
+		
+		
+		
+
+         function formatter1(value, row, index) {
+			if(index == 0){
+				return value;
+			}else{
+			
+			    return "<a href='#' class='a_text' onclick='tab_mes(this,arrObj"+arrIndex1+",arrIndex1)'  style='color:blue'>" + value + "</a>";		
+			}
+		} 
+
+		 function formatter2(value, row, index) {
+			if(index == 0){
+				return value;
+			}else{
+			
+			    return "<a href='#' class='a_text' onclick='tab_mes(this,arrObj"+arrIndex2+",arrIndex2)'  style='color:blue'>" + value + "</a>";		
+			}
+		} 
+	function formatter3(value, row, index) {
+				if(index == 0){
+					return value;
+				}else{
+
+				    return "<a href='#' class='a_text' onclick='tab_mes(this,arrObj"+arrIndex3+",arrIndex3)'  style='color:blue'>" + value + "</a>";		
+				}
+			} 
+
+
+	function tab_mes(text,textobj,arrIndex){
+			$(textobj[1]).append("<a href='#' class='remove' data-do=true onclick='remove1(this,arrObj"+arrIndex+")' style='color: blue;'>/" +$(text).html() + "</a>");	
+			for(var k = 0;k<$(textobj[1]).find("a").length;k++){
+				$(textobj[1]).find("a")[k].setAttribute('data-do','true')
+			}
+			textobj[2]++;
+			
+			if(textobj[3]>1){
+				$(textobj[0]).datagrid({  
+					 url:arr[textobj[2]-textobj[3]]
+				})
+				textobj[2] = textobj[3]
+				
+				textobj[3] = 0
+			}else{
+				$(textobj[0]).datagrid({  
+					 url:arr[textobj[2]-1]
+					})
+			}
+			
+		}
+
+		function remove1(hide,hideObj) {
+				var Num = parseInt($(hideObj[1]).find("a").length)-1;
+				$(hideObj[1]).find("a")[Num].setAttribute('data-do','false')
+
+				if($(hide).attr("data-do")=="true"){
+					hideObj[2]--
+						var a = $(hideObj[1]).find("a").length
+						$(hide).nextAll().remove();
+						$(hide).attr("data-do","false")
+						var b = $(hideObj[1]).find("a").length
+						hideObj[3]=a-b
+						if(hideObj[3]>1){
+						$(hideObj[0]).datagrid({  
+							 	url:arr[hideObj[2]-hideObj[3]]
+						})
+						}else{
+							$(hideObj[0]).datagrid({  
+							 	url:arr[hideObj[2]-1]
+							})
+						}
+						
+				}
+				
+			}
+		
+		function remove_first(hideObj,dg,remove_first){
+			$(dg).datagrid({  
+				 url:'../../json/risk_early_warning1.json'
+			})
+			$(remove_first).nextAll().remove();
+			hideObj[2]=0
+			hideObj[3]=0
+		}
+ 
+		//tab切换
+	    $('#tt').tabs({tabPosition : 'bottom'});
+	</script>
+</html>

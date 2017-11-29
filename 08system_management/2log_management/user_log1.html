@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>用户日志</title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<body class="easyui-layout" style="overflow: hidden;width:100%;height:100%;">
+            <table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
+				<tr>
+					<td>单位：</td>
+					<td>
+						<div class="clear_mes">
+							<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+							<span class="clearMess" style="display:none;"></span>
+					    </div>
+					</td>
+					<td>功能名称：</td>
+					<td>
+						<div class="clear_mes">
+							<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+							<span class="clearMess" style="display:none;"></span>
+					    </div>
+					</td>
+					<td>开始时间：</td>
+					<td>
+						<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">
+					</td>
+					<td>结束时间：</td>
+					<td>
+						<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">
+					</td>
+					<td colspan="6">
+						<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('#dg')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>
+						<span class="easyui-linkbutton clear_btn" iconcls="icon-excel"><a id="exportExcel" href="#">导出当前页</a></span>
+						<span class="easyui-linkbutton clear_btn" iconcls="icon-excel"><a id="exportExce" href="#">导出全部</a></span>
+					</td>
+				</tr>				
+			</table>
+			
+			<div id="turn_btn1" title="转换报表展示形式" class="report_box" style="width:50px;height:30px;position: absolute;top: 10px;right: 20px; box-sizing:border-box;background:url(../../images/report.png) no-repeat"></div>
+			<div class="chart" style="width: 100%;height: 80%;">
+				<div id="charts" style="width: 100%;height:100%;"></div>
+			</div>	
+					
+		</div>
+	</body>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('charts'));
+			// 指定图表的配置项和数据
+			var option1 = {
+				title: {
+					x: "center",
+					text: '事件汇总日统计'
+				},
+				xAxis: {
+					data: ["超速", "异常停车", "疲劳驾驶", "闯红灯", "逆向行驶", "天气预警", "更换轮胎", "机油", "洗车", '喷漆']
+				},
+				yAxis: {
+					splitLine: {
+						show: false
+					} //改设置不显示坐标区域内的y轴分割线
+				},
+				series: [{
+					name: '手机品牌',
+					type: 'bar',
+					data: [19, 15, 40, 32, 50, 60, 65, 70, 75, 60],
+					//设置柱子的宽度
+					barWidth: 50,
+					//配置样式
+					itemStyle: {
+						//通常情况下：
+						normal: {　　　　　　　　　　　　 //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
+							color: function(params) {
+								var colorList = ['rgb(255,100,72)', 'rgb(253,194,38)', 'rgb(50,205,51)', 'rgb(255,153,0)', 'rgb(184,209,239)', 'rgb(140,101,8)', 'rgb(16,158,230)', 'rgb(90,92,255)', 'rgb(78,210,101)', 'rgb(255,240,115)'];
+								return colorList[params.dataIndex];
+							}
+						},
+						//鼠标悬停时：
+						emphasis: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					},
+				}],
+				　　　　　 //控制边距　
+				grid: {
+					left: '5%',
+					right: '10%',
+					containLabel: true,
+				},
+			};
+
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option1);
+			$('#turn_btn1').click(function(){
+				window.location.href = 'user_log.html';
+			})
+	</script>
+</html>
