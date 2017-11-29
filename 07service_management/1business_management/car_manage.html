@@ -24,7 +24,12 @@
 					<td>主驾名：</td>
 					<td><input type="text" name="" class="width1"/></td>
 					<td>单位：</td>
-					<td><input id="cc" name="" class="easyui-combotree width" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:120px;"></td>
+					<td>
+						<div class="clear_mes">
+							<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+							<span class="clearMess" style="display:none;"></span>
+					    </div>
+					</td>
 					<td>信息来源：</td>
 					<td>
 						<select class="easyui-combobox" name="sources">

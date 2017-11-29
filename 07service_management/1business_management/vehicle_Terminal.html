@@ -5,8 +5,8 @@
 		<title>终端管理</title>
 		<link href="../../images/logo.png" rel="shortcut icon" />
 		<link rel="import" href="../../public.html">
-			<script type="text/javascript" src="../../js/fenye.js"></script>
 		<script type="text/javascript" src="../../js/loading.js"></script>
+		<script type="text/javascript" src="../../js/fenye.js"></script>
 		  <style>
 		  	.search{
 				height: 13px;
@@ -39,7 +39,7 @@
 									<tr>
 									<td>终端编号：</td>
 									<td>
-										<input type="text" id="terminalCode" name="terminalNum" class="easyui-validatebox textbox validatebox-text validatebox-invalid" style="width: 150px" data-options="validType:['paramCode','length[1,30]']">
+										<input type="text" id="terminalCode" name="terminalNum" class="easyui-validatebox textbox validatebox-text validatebox-invalid" style="width: 150px" onblur="return CheckTerminalCode(this);" data-options="validType:['paramCode','length[1,30]']">
 										
 									</td>
 									<td>SIM卡号：</td>
@@ -52,14 +52,16 @@
 								<tr>
 									<td>终端类型：</td>
 									<td>
-										<input id="typeId" class="easyui-combobox" name="typeId" style="width:150px;" />	
+										<input id="typeId" class="easyui-combobox" name="simNum" style="width:150px;" />	
 										
 									</td>
 									
 									<td>单位：</td>
 									<td>
-									<input id="cc" name="company" class="easyui-combotree" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:120px;">
-						
+										<div class="clear_mes">
+											<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+											<span class="clearMess" style="display:none;"></span>
+									    </div>
 									</td>
 								</tr>
 								<tr>
@@ -68,17 +70,17 @@
 										<input type="text" id="rinterval" name="returnTime" data-options="validType:'length[0,10]'" style="width: 144px; height: 19px; line-height: 19px;" class="easyui-validatebox easyui-numberbox numberbox numberbox-f validatebox-text" numberboxname="rinterval">
 									</td>
 								<td>鉴权码：</td>
-									<td><input type="text" name="ratifyNum"  style="width: 150px;height:20px;margin-bottom:5px;" name="ratifyNum" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:'length[1,50]'"></td>
+									<td><input type="text" id="authenticationCode" style="width: 150px;height:20px;margin-bottom:5px;" name="ratifyNum" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:'length[1,50]'"></td>
 								</tr>
 								<tr>
 									<td>主ip：</td>
 									<td>
-										<input type="text" name="mainIp" class="easyui-validatebox" style="width:147px;height:17px;" data-options="validType:['ip','length[1,32]']">
+										<input type="text" id="ip" name="mainIp" class="easyui-validatebox" style="width:147px;height:17px;" data-options="validType:['ip','length[1,32]']">
 										
 									</td>
 									<td>主port：</td>
 									<td>
-										<input type="text" class="easyui-validatebox" name="mainPort" style="width: 147px; height: 20px; line-height: 20px;margin-bottom: 5px;" data-options="validType:['port','length[1,4]']" numberboxname="port">
+										<input type="text" class="easyui-validatebox " style="width: 147px; height: 20px; line-height: 20px;margin-bottom: 5px;" data-options="validType:['port','length[1,4]']" numberboxname="port">
 									</td>
 								</tr>
 								<tr>
@@ -88,7 +90,7 @@
 									</td>
 									<td>从port：</td>
 									<td>
-										<input type="sport" id="sport" name="salvePort" class="easyui-validatebox" style="width: 147px; height: 20px; line-height: 20px;" data-options="validType:['port','length[0,8]']" numberboxname="violationAddress">
+										<input type="sport" id="sport" class="easyui-validatebox" style="width: 147px; height: 20px; line-height: 20px;" data-options="validType:['port','length[0,8]']" numberboxname="violationAddress">
 									</td>
 								</tr>
 								<tr>
@@ -121,7 +123,7 @@
 		</div>
 			<div id='w3' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
 			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 10px;">
-				来自ERP的车辆数据不能删除！
+				数据来源为ERP的数据不可修改!
 			</div>
 			<div style="width:100%; text-align: center;margin-top: 10px;">
 				<a href="#" class="easyui-linkbutton" onclick="$('#w3').window('close')">确定</a>
@@ -137,13 +139,13 @@
 		</div>
 		<div id='w6' class="easyui-window" closed='true' title="修改终端(提示:该记录来自ERP系统，不能进行修改。)" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:500px;height:270px;overflow: hidden;">
 				<div style="padding: 10px; box-sizing: border-box;">
-					<form id="update" method="post">
+					<form id="ff" method="post">
 							<table>
 								<tbody>
 									<tr>
 									<td>终端编号：</td>
 									<td>
-										<input type="text" id="terminalCode" name="terminalNum" class="easyui-validatebox" style="width: 150px"   data-options="validType:['paramCode','length[1,30]']">
+										<input type="text" id="terminalCode" name="terminalNum" class="easyui-validatebox textbox validatebox-text validatebox-invalid" style="width: 150px" onblur="return CheckTerminalCode(this);" data-options="validType:['paramCode','length[1,30]']">
 									</td>
 									<td>SIM卡号：</td>
 									
@@ -155,7 +157,7 @@
 								<tr>
 									<td>终端类型：</td>
 									<td>
-										<input  class="easyui-combobox" name="typeId" style="width:150px;" disabled="disabled"/>	
+										<input id="typeId" class="easyui-combobox" name="simNum" style="width:150px;" disabled="disabled"/>	
 										
 									</td>
 									
@@ -173,7 +175,7 @@
 										<input type="text" id="rinterval" name="returnTime" data-options="validType:'length[0,10]'" style="width: 144px; height: 19px; line-height: 19px;" class="easyui-validatebox easyui-numberbox numberbox numberbox-f validatebox-text" numberboxname="rinterval">
 									</td>
 								<td>鉴权码：</td>
-									<td><input type="text" id="ratifyNum" style="width: 150px;height:20px;margin-bottom:5px;" name="ratifyNum" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:'length[1,50]'"></td>
+									<td><input type="text" id="authenticationCode" style="width: 150px;height:20px;margin-bottom:5px;" name="ratifyNum" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:'length[1,50]'"></td>
 								</tr>
 								<tr>
 									<td>主ip：</td>
@@ -183,7 +185,7 @@
 									</td>
 									<td>主port：</td>
 									<td>
-										<input type="text" name="mainPort" class="easyui-validatebox" style="width: 147px; height: 20px; line-height: 20px;margin-bottom: 5px;" data-options="validType:['port','length[1,4]']" numberboxname="port">
+										<input type="text" class="easyui-validatebox " style="width: 147px; height: 20px; line-height: 20px;margin-bottom: 5px;" data-options="validType:['port','length[1,4]']" numberboxname="port">
 									</td>
 								</tr>
 								<tr>
@@ -193,7 +195,7 @@
 									</td>
 									<td>从port：</td>
 									<td>
-										<input type="sport" name="salvePort" class="easyui-validatebox" style="width: 147px; height: 20px; line-height: 20px;" data-options="validType:['port','length[0,8]']" numberboxname="violationAddress">
+										<input type="sport" id="sport" class="easyui-validatebox" style="width: 147px; height: 20px; line-height: 20px;" data-options="validType:['port','length[0,8]']" numberboxname="violationAddress">
 									</td>
 								</tr>
 								<tr>
@@ -225,212 +227,172 @@
 					</form>
 				</div>
 			</div>
-					<!--导入box-->
-		<div id='dlg1' class="easyui-window" closed='true' title="新增违章" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:180px;">
-			<div class="message">
-
-				<form id="xlsForm" method="post" enctype="multipart/form-data" action="../../despatch/importUpload.do">
-					<table align="center">
-						<tbody>
-							<tr>
-								<td>
-									<a href="#" id="export_btn" class="easyui-linkbutton clear_btn" iconcls="icon-down">
-										下载导入模板
-									</a>
-								</td>
-								<td>
-									<a href="#" id="vvdataTable_helpbtn" class="easyui-linkbutton clear_btn" iconcls="icon-help" onclick="alert('#dlg2')">
-										导入模板说明
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<input id="upload" type="file" name="upload" onchange="importf(this)" style="width: 180px; height: 26px;">
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<a href="#" class="easyui-linkbutton up_data clear_btn" iconcls="icon-impo" onclick="daoru()">确定导入</a>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<input id="submitbtn" type="submit" style="display: none">
-				</form>
-			</div>
-		</div>
-		<div id='dlg2' class="easyui-window" closed='true' title="导入数据" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:650px;height:350px;">
-			<div class="panel" style="display: block; width: 636px;"><div style="width: 626px; height: 304px; padding: 5px;" title="" class="panel-body panel-body-noheader panel-body-noborder dialog-content">
-				<div style=" height:350px; width:100%">
-				<font color="red">
-				备注：<br>
-				&nbsp;&nbsp;1.文件名格式：文件名+当前时间（如aa201405140745.xls）。<br>
-				&nbsp;&nbsp;2.上传数据的时候，第一行的标题不能修改,数据列只能从第二行开始，不管是几个sheet,每个sheet都应该这样(即表头要相同)。<br>
-				&nbsp;&nbsp;3.第二行数据是例子数据。正式数据要把其覆盖。<br>
-				&nbsp;&nbsp;4.simNum(SIM卡号)，terminalCode(终端编码)，port(主端口)，authenticationCode(鉴权码)，rinterval(回传时间)及sport(从端口)用文本形式。<br>
-				&nbsp;&nbsp;5.批量导入时不绑定sim,直接修改时添加SIM卡号。<br>
-				</font>
+			<form  id="searchForm">
+				<div id="clear_box" style="padding: 5px; height: auto" class="datagrid-toolbar">
+				单位：
+				<div class="search">
+					<input type="text" class="easyui-combotree" name="unitId" comboname="orgCode" style="width:150px;height:20px;border:1px solid #95b8e7;" data-options="url:'get_data.php',url:'../../json/alarmSwitchdanwei.json',method:'get'">
+					<span class="combo-clear qingchu"></span>
 				</div>
+				SIM卡号：
+				<input type="text" name="simNum" id="simNum5" class="easyui-validatebox textbox validatebox-text" style="width: 96px">
+				 终端类型：
+				<select style="width: 140px; display: none;" name="typeId" id="terminalType5" class="easyui-combobox combobox-f combo-f" editable="false" comboname="terminalType"></select>
+				终端编号：
+				<input type="text" name="terminalNum" id="terminalCode6" class="easyui-validatebox textbox validatebox-text" style="width: 96px"> 
+					信息来源：
+				<select style="width: 150px; display: none;" id="dataFrom5" class="easyui-combobox combobox-f combo-f" editable="false" comboname="dataFrom5">
+					<option value="">请选择</option>
+					<option value="E">ERP</option>
+					<option value="V">VMS2.0</option>
+				</select>
+				<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+				<span class="easyui-linkbutton " iconcls="icon-cz_reset" onclick="clearSearch()">重置</span>
+				<span class="easyui-linkbutton " data-options="iconCls:'icon-add'" onclick="alert('#w1')">添加</span>
+				<span class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="xiugai('#dg')">修改</span>
+				<span class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="del()">删除</span>
+				<span class="easyui-linkbutton" data-options="iconCls:'icon-repo'"><a href="#" id="exportExcel">导出</a></span>
+				<span class="easyui-linkbutton" data-options="iconCls:'icon-impo'" onclick="alert('#w9')"><a href="#" >导入</a></span>
 			</div>
-			</div>
-
-		</div>
-		<form id="searchForm" method="post">		
-			<table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
-				<tr>
-					<td>单位：</td>
-					<td>
-						<div class="search">
-							<input type="text" class="easyui-combotree" name="name" comboname="orgCode" style="width:150px;height:20px;border:1px solid #95b8e7;">
-						</div>
-					</td>
-					<td>SIM卡号：</td>
-					<td>
-						<input type="text" name="simNum"  class="easyui-validatebox" style="width: 96px">
-					</td>
-					<td>终端类型：</td>
-					<td>
-						<input id="typeId2" class="easyui-combobox" name="typeId" style="width:150px;" />
-					</td>
-					<td>终端编号：</td>
-					<td>
-						<input type="text" name="terminalNum" id="terminalCode6" class="easyui-validatebox" style="width: 96px"> 
-					</td>
-					<td>信息来源：</td>
-					<td>
-						<select style="width: 150px; display: none;" name="source" class="easyui-combobox combobox-f combo-f" editable="false" comboname="dataFrom5">
-							<option value="">请选择</option>
-							<option value="">ERP</option>
-							<option value="">VMS2.0</option>
-						</select>
-					</td>
-					<td colspan="6" style="text-align: left;padding-left: 20px;position: relative;">
-						<span class="easyui-linkbutton" data-options="iconCls:'icon-search'"  onclick="query('#dg','#searchForm')">查询</span>
-						<span class="easyui-linkbutton " iconcls="icon-cz_reset" onclick="clearSearch('#dg')">重置</span>
-						<span class="easyui-linkbutton " data-options="iconCls:'icon-add'" onclick="addMes('#ff','#dg','#w1','http://dayan.huayitec.com/terminalController/insert')">添加</span>
-						<span class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="updateData('#dg','#w2','#w6','#w5','#update','http://dayan.huayitec.com/terminalController/update?id=','.add')">修改</span>
-						<span class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="del('#dg','#w2','#w3')">删除</span>
-						<span class="easyui-linkbutton" data-options="iconCls:'icon-repo'"><a href="#" id="exportExcel">导出</a></span>
-						<span class="easyui-linkbutton" data-options="iconCls:'icon-impo'" onclick="alert('#dlg1')"><a href="#" >导入</a></span>
-					</td>
-				</tr>
-				<tr>
-				</tr>
-			</table>
-		</form>
-			
+	</form>
     <div  style="width:100%;height:500px;">
     	<table id="dg" class="easyui-datagrid" title="" style="width:100%;height:600px" data-options=""></table>
 	
     </div> 
 	</body>
 	    <script type="text/javascript">
-	    	   var url;
-			 $(function() {
-						$('#dg').datagrid({
-							singleSelect: false,
-							collapsible: true,
-							rownumbers: true,
-							pagination: true,
-							url: 'http://dayan.huayitec.com/terminalController/getListPage	',
-							columns: [
-								[{
-										field: 'checkbox',
-										checkbox:true
-									},{
-										field: 'source',
-										title: '信息来源',
-										width: 130,
-										align: 'center',
-										sortable: true
-									},
-									{
-										field: 'terminalNum',
-										title: '终端编码',
-										width: 130,
-										align: 'center',
-										sortable: true
-									},
-									{
-										field: 'typeId',
-										title: '终端类型',
-										width: 200,
-										align: 'center',
-										sortable: true
-									},
-									{
-										field: 'simNum',
-										title: 'sim卡号',
-										width: 130,
-										align: 'center',
-										sortable: true
-									},
-									{
-										field: 'unitId',
-										title: '单位',
-										width: 130,
-										align: 'center',
-										sortable: true
-									},
-									{
-										field: 'terminalName',
-										title: '终端',
-										width: 210,
-										align: 'center',
-										sortable: true
-									},
-									{
-										field: 'openStatus',
-										title: '开户状态',
-										width: 150,
-										align: 'center',
-										sortable: true
-									},
-									{
-										field: 'mainIp',
-										title: '主ip',
-										width: 200,
-										align: 'center',
-										sortable: true
-									},
-									{
-										field: 'mainPort',
-										title: '主port',
-										width: 100,
-										align: 'center',
-										sortable: true
-									},
-									{
-										field: 'createTime',
-										title: '记录时间',
-										width: 100,
-										align: 'center',
-										sortable: true
-									}
-									
-								]
-							]
-						});
-					});
-
+ $(function() {
+			$('#dg').datagrid({
+				singleSelect: false,
+				collapsible: true,
+				rownumbers: true,
+				pagination: true,
+				url: 'http://dayan.huayitec.com/terminalController/getListPage',
+				columns: [
+					[{
+							field: 'checkbox',
+							checkbox:true
+						},{
+							field: 'userNameRel',
+							title: '信息来源',
+							width: 130,
+							align: 'center',
+							sortable: true
+						},
+						{
+							field: 'userName',
+							title: '终端编码',
+							width: 130,
+							align: 'center',
+							sortable: true
+						},
+						{
+							field: 'typeId',
+							title: '终端类型',
+							width: 200,
+							align: 'center',
+							sortable: true
+						},
+						{
+							field: 'simNum',
+							title: 'sim卡号',
+							width: 130,
+							align: 'center',
+							sortable: true
+						},
+						{
+							field: 'unitId',
+							title: '单位',
+							width: 130,
+							align: 'center',
+							sortable: true
+						},
+						{
+							field: 'terminalNum',
+							title: '终端',
+							width: 210,
+							align: 'center',
+							sortable: true
+						},
+						{
+							field: 'openStatus',
+							title: '开户状态',
+							width: 150,
+							align: 'center',
+							sortable: true
+						},
+						{
+							field: 'mainIp',
+							title: '主ip',
+							width: 200,
+							align: 'center',
+							sortable: true
+						},
+						{
+							field: 'userStatus',
+							title: '主port',
+							width: 100,
+							align: 'center',
+							sortable: true
+						},
+						{
+							field: 'returnTime',
+							title: '记录时间',
+							width: 100,
+							align: 'center',
+							sortable: true
+						}
+						
+					]
+				]
+			});
+		});
+		
+		//添加
+		$(".add").click(function(){
+			$('#ff').form({
+			url: 'http://dayan.huayitec.com/terminalController/insert',
+				success: function(data) {
+					$('#w1').window('close')
+					$('#dg').datagrid('reload');
+				}
+			});
+		})
+		//   查询		
+		function query() {
+			$("#dg").datagrid("load", sy.serializeObject($("#searchForm").form())); //将searchForm表单内的元素序列为对象传递到后台
+		}
 		//点击清空按钮出发事件
-		function clearSearch(dg) {
-		    $(dg).datagrid("load", {});//重新加载数据，无填写数据，向后台传递值则为空
-		    $(".clear_box").find("input").val("");//找到form表单下的所有input标签并清空
-		  }
+function clearSearch(dg) {
+    $(dg).datagrid("load", {});//重新加载数据，无填写数据，向后台传递值则为空
+    $(".clear_box").find("input").val("");//找到form表单下的所有input标签并清空
+  }
 		//下拉框
 		 initComboboxFn('#type', '../../json/vehicle_Terminal.json');
-		 initComboboxFn('#typeId', '../../json/vehicle_Terminal.json'); 
-       initComboboxFn('#typeId2', '../../json/vehicle_Terminal.json'); 
-		//导入
-		function daoru(data) {
-				$('#dlg1').window('close')
-				$("#dgweizhangBox").css("display", "none")
-				$("#dg_addTabBox").css({
-					"display": "block",
-					"height": "800px"
-				})
+		  initComboboxFn('#typeId', '../../json/vehicle_Terminal.json');
+		  
+		  	// 修改           
+		function xiugai() {
+			//判断是否选中了一条数据
+			var rowIndex = $('#dg').datagrid('getSelected');
+			if(rowIndex == null) { //没选中
+				$('#w2').window('open');
+			} else if(rowIndex != null) { //选中
+				//是否选中单元格中的未处理
+				var ids = [];
+				var rows = $('#dg').datagrid('getSelections');
+//				var getSelect = $('#dg').datagrid('getData');
+				for(var i = 0; i < rows.length; i++) {
+					ids.push(rows[i].id);
+				}
+//				var ids_data = jQuery.inArray('未处理', ids); //返回值 ：0存在  -1不存在
+				if(ids.length == 1) {
+					$('#w6').window('open');
+				} else {
+					$('#w5').window('open');
+				}
+				
 			}
+		}
       </script>
 </html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<body class="easyui-layout" style="overflow: hidden;">
+		<form method="post" id="searchForm1">
+			<table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
+				<tr>
+					<td>驾驶员：</td>
+					<td><input type="text" class="width1" name="driverName"/></td>
+					<td>车牌号：</td>
+					<td><input type="text" class="width1" name="carNum"/></td>
+					<td>单位：</td>
+					<td>
+						<div class="clear_mes">
+							<input class="easyui-combotree messagesData" name="unitId" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+							<span class="clearMess" style="display:none;"></span>
+					   </div>						
+					</td>
+					<td>原因：</td>
+					<td>
+						<select class="easyui-combobox" name="reason">
+							<option value="">请选择</option>
+							<option value="">频繁疲劳驾驶</option>
+							<option value="">频繁发生事故</option>
+							<option value="">频繁超速</option>
+							<option value="">其他</option>
+							<option value="">频繁越区</option>
+						</select>
+					</td>
+					<td colspan="6" style="text-align: left;padding-left: 20px;position: relative;">
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="query('#dg','#searchForm1')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>
+						<span class="easyui-linkbutton add" data-options="iconCls:'icon-add'" onclick="addMes('#add','#dg','#w','http://dayan.huayitec.com/blacklistController/insert')">添加</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="delData('#dg','#w2','#w3','.sure_btn','http://dayan.huayitec.com/blacklistController/deleteBatch?list=')">删除</span>
+					    <span class="easyui-linkbutton" data-options="iconCls:'icon-excel'" ><a id="exportExcel" href="#">导出</a></span>
+					</td>
+				</tr>
+			</table>			
+		</form>
+			<table id="dg" class="easyui-datagrid" style="width:100%;height:85%" data-options='fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:"http://dayan.huayitec.com/blacklistController/getListPage"'>
+				<thead>
+					<tr>
+						<th data-options="field:'checkbox',checkbox:true"></th>
+					    <th data-options="field:'unitId',width:'200'">单位</th>
+						<th data-options="field:'driverName',width:'200'">驾驶员</th>
+						<th data-options="field:'carNum',width:'200'">车牌号</th>
+						<th data-options="field:'reason',width:'200'">原因</th>
+						<th data-options="field:'details',width:'200'">详情</th>
+						<th data-options="field:'createTime',width:'200'">加入时间</th>
+						<th data-options="field:'creator',width:'200'">加入用户</th>
+						<th data-options="field:'modifyTime',width:'200'">记录时间</th>
+					</tr>
+				</thead>
+			</table>
+    <!--模态框-->
+		<div id='w' class="easyui-window" closed='true' title="添加黑名单" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:650px;height:450px;">
+			<div>
+				<form method="post" id="searchForm2">
+				    <table border="0" cellspacing="0" cellpadding="0" class="table_layout" style="margin: 15px 0 5px 0;">
+						<tr>
+							<td>驾驶员：</td>
+							<td><input type="text" class="width" name="userNameRel"/></td>
+							<td>车牌号：</td>
+							<td><input type="text" class="width" name="cardNum"/></td>
+							<td>单位：</td>
+							<td>
+								<input class="easyui-combotree width" name="userUnitName" data-options="url:'../../json/tree_data1.json',method:'get'">
+							</td>
+						</tr>
+						<tr>
+							<td class="btn" style="text-align: left;">
+								<span onclick="query('#dg1','#searchForm2')">查询</span>
+							</td>
+						</tr>
+					</table>
+				</form>
+			    <table id="dg1" class="easyui-datagrid" style="width:100%;height:200px" data-options='fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,url:"http://dayan.huayitec.com/driverController/getListPage"'>
+					<thead>
+						<tr>
+							<th data-options="field:'checkbox',checkbox:true,width:200"></th>
+						    <th data-options="field:'userNameRel',width:200">驾驶员</th>
+							<th data-options="field:'cardNum',width:200">车牌号</th>
+							<th data-options="field:'positionStatus',width:200">状态</th>
+							<th data-options="field:'userPhone',width:200">手机号</th>
+							<th data-options="field:'userEmail',width:200">邮箱</th>
+							<th data-options="field:'driverLvl',width:200">驾驶员级别</th>
+							<th data-options="field:'userUnitName',width:200">单位</th>
+						</tr>
+					</thead>
+				</table> 	
+				<form method="post" id="add">
+					<table border="0" cellspacing="0" cellpadding="0" class="table_layout addtr" style="height:150px;">
+	            	   <tr>
+			            	<td>原因：</td>
+								<td>
+									<select class="easyui-combobox" name="reason">
+										<option value="请选择">请选择</option>
+										<option value="频繁疲劳驾驶">频繁疲劳驾驶</option>
+										<option value="频繁发生事故">频繁发生事故</option>
+										<option value="频繁超速">频繁超速</option>
+										<option value="其他">其他</option>
+										<option value="频繁越区">频繁越区</option>
+									</select>
+								</td>
+			            	</tr>
+			            	<tr>
+			            		<td>详情：</td>
+								<td colspan="5"><textarea name="details" style="width:500px;"></textarea></td>
+			            	</tr>
+			            	<tr align="center">
+			            		<td colspan="7">
+			            			<input type="submit" value="确定" class="easyui-linkbutton brtn"/>
+			            			<input type="submit" value="关闭" class="easyui-linkbutton"/>
+			            		</td>
+			            	</tr>
+	                </table>
+                </form>
+		   </div>
+		</div>
+		<div id='w2' class="easyui-window" closed='true' title="提示框" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+					请选择要删除的记录！
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#w2').window('close')">确定</a>
+			</div>
+		</div>
+        <div id='w3' class="easyui-window" closed='true' title="提示框" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+					是否要删除该条信息？
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton sure_btn" onclick="$('#w3').window('close')">确定</a>
+				<a href="#" class="easyui-linkbutton" onclick="$('#w3').window('close')">关闭</a>
+			</div>
+		</div>
+	  
+	
+
+ </body>
+	<script type="text/javascript">
+
+	$('#dg1').datagrid({
+		onSelect:function(rowIndex, rowData){
+			var row = $('#dg1').datagrid('getSelected'); 
+            var driverName = row.userNameRel;//驾驶员
+            var cardNum = row.cardNum  //车牌号
+            var unitId = row.userUnitName //单位
+            var str = "<tr style='display:none;'>"+
+			    	   	  "<td><input type='text' name='driverName' value="+driverName+"></td>"+
+			    	   	  "<td><input type='text' name='carNum' value="+cardNum+"></td>"+
+			    	   	  "<td><input type='text' name='unitId' value="+unitId+"></td>"+
+		    	   	  "</tr>"
+    	   $('.addtr').append(str)
+		}
+	});
+	</script>
+
+</html>

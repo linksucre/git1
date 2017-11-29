@@ -19,7 +19,12 @@
 							<td>用户姓名：</td>
 							<td><input type="text" name="userName" class="width1" /></td>
 							<td>单位名称：</td>
-							<td><input id="cc" name="userUnitName" class="easyui-combotree" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:120px;"></td>
+							<td>
+								<div class="clear_mes">
+									<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+									<span class="clearMess" style="display:none;"></span>
+							    </div>
+							</td>
 							
 							<td>手机号</td>
 							<td><input type="text" name="userPhone" class="width1"></input>
@@ -451,7 +456,23 @@
 						});  
                 }   
             });
-
+//              $.messager.confirm('提示信息', '删除用户将导致该用户无法进入系统，是否删除?', function (r) {
+//                  if (r) {
+//                  	console.log(r)
+//                     $.ajax({
+//							method: 'GET',
+//							contentType: "application/json",
+//							url: 'http://dayan.huayitec.com/userController/delete?id='+row.id,
+//							success: function(data) {
+//                                deleteRows('#dg')  //前端删除数据
+//                                $('#dg').datagrid('reload');
+//							},
+//							error: function() {
+//								alert('error');
+//							}
+//						});
+//                  }
+//              });
             }
         } 
 	</script>

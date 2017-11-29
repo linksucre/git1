@@ -1,9 +1,9 @@
 {
-	"total": 7,
+	"total": 35,
 	"rows": [
 		{
-			"ORG_CODE": "010103",
-			"ORG_NAME": "政策研究室",
+			"ORG_CODE": "0101",
+			"ORG_NAME": "总部机关",
 			"TOTAL_SEND": null,
 			"WEATHER_WARN_COUNT": 0,
 			"ROAD_WARN_COUNT": 0,
@@ -12,8 +12,8 @@
 			"DEN_DRIVER_WARN_COUNT": 0,
 			"ROWNUMBER": 1
 		}, {
-			"ORG_CODE": "01010301",
-			"ORG_NAME": "综合处",
+			"ORG_CODE": "010103",
+			"ORG_NAME": "政策研究室",
 			"TOTAL_SEND": null,
 			"WEATHER_WARN_COUNT": 0,
 			"ROAD_WARN_COUNT": 0,
@@ -22,8 +22,8 @@
 			"DEN_DRIVER_WARN_COUNT": 0,
 			"ROWNUMBER": 2
 		}, {
-			"ORG_CODE": "01010304",
-			"ORG_NAME": "调研一处",
+			"ORG_CODE": "010108",
+			"ORG_NAME": "科技管理部",
 			"TOTAL_SEND": null,
 			"WEATHER_WARN_COUNT": 0,
 			"ROAD_WARN_COUNT": 0,
@@ -32,8 +32,8 @@
 			"DEN_DRIVER_WARN_COUNT": 0,
 			"ROWNUMBER": 3
 		}, {
-			"ORG_CODE": "01010302",
-			"ORG_NAME": "政策信息处",
+			"ORG_CODE": "010119",
+			"ORG_NAME": "安全环保与节能部",
 			"TOTAL_SEND": null,
 			"WEATHER_WARN_COUNT": 0,
 			"ROAD_WARN_COUNT": 0,
@@ -42,8 +42,8 @@
 			"DEN_DRIVER_WARN_COUNT": 0,
 			"ROWNUMBER": 4
 		}, {
-			"ORG_CODE": "01010306",
-			"ORG_NAME": "经济管理处",
+			"ORG_CODE": "010129",
+			"ORG_NAME": "股份公司监事会",
 			"TOTAL_SEND": null,
 			"WEATHER_WARN_COUNT": 0,
 			"ROAD_WARN_COUNT": 0,
@@ -52,8 +52,8 @@
 			"DEN_DRIVER_WARN_COUNT": 0,
 			"ROWNUMBER": 5
 		}, {
-			"ORG_CODE": "01010305",
-			"ORG_NAME": "调研二处",
+			"ORG_CODE": "010133",
+			"ORG_NAME": "维稳信访工作办公室",
 			"TOTAL_SEND": null,
 			"WEATHER_WARN_COUNT": 0,
 			"ROAD_WARN_COUNT": 0,
@@ -62,8 +62,8 @@
 			"DEN_DRIVER_WARN_COUNT": 0,
 			"ROWNUMBER": 6
 		}, {
-			"ORG_CODE": "01010303",
-			"ORG_NAME": "发展战略处",
+			"ORG_CODE": "010134",
+			"ORG_NAME": "集团公司副总师",
 			"TOTAL_SEND": null,
 			"WEATHER_WARN_COUNT": 0,
 			"ROAD_WARN_COUNT": 0,
@@ -71,6 +71,136 @@
 			"SEQ_ROAD_WARN_COUNT": 0,
 			"DEN_DRIVER_WARN_COUNT": 0,
 			"ROWNUMBER": 7
+		}, {
+			"ORG_CODE": "010104",
+			"ORG_NAME": "财务资产部",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 8
+		}, {
+			"ORG_CODE": "010115",
+			"ORG_NAME": "离退休职工管理局",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 9
+		}, {
+			"ORG_CODE": "010125",
+			"ORG_NAME": "物资采购管理部",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 10
+		}, {
+			"ORG_CODE": "010106",
+			"ORG_NAME": "人事部",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 11
+		}, {
+			"ORG_CODE": "010123",
+			"ORG_NAME": "规划计划部",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 12
+		}, {
+			"ORG_CODE": "010126",
+			"ORG_NAME": "预算管理部",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 13
+		}, {
+			"ORG_CODE": "010101",
+			"ORG_NAME": "对外合作部",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 14
+		}, {
+			"ORG_CODE": "010112",
+			"ORG_NAME": "党组纪检组、监察部",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 15
+		}, {
+			"ORG_CODE": "010122",
+			"ORG_NAME": "内控与风险管理部",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 16
+		}, {
+			"ORG_CODE": "010127",
+			"ORG_NAME": "财务部",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 17
+		}, {
+			"ORG_CODE": "010128",
+			"ORG_NAME": "股份公司董事会",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 18
+		}, {
+			"ORG_CODE": "010131",
+			"ORG_NAME": "监事会办公室",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 19
+		}, {
+			"ORG_CODE": "010113",
+			"ORG_NAME": "思想政治工作部",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 20
 		}
 	],
 	"tableType": "org"

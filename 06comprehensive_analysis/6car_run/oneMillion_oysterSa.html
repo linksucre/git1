@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>车辆百万公里油耗统计</title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<!-- // 百度地图 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=h86KsPl6VGvedz2G3CGmR37Ah8oMUMcY"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/DistanceTool/1.2/src/DistanceTool_min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+	<!-- //加载鼠标绘制工具 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+	<!-- //拉框放大 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/library/RectangleZoom/1.2/src/RectangleZoom_min.js"></script>
+	<!-- //交通路况 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.2/src/TrafficControl_min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInRectangle/1.2/src/SearchInRectangle_min.js"></script>
+	<style type="text/css">
+       /*信息框样式*/	
+       *{
+       	margin: 0;
+       	padding: 0;
+       }	
+		.tool {
+			width: 307px;
+			height: 213px;
+			border: 1px solid #D4D4D4;
+			border-radius: 5px;
+			background: #FAFAFA;
+			box-shadow: 7px 7px 18px -4px grey;
+		}
+		
+		.tool .tool_top {
+			width: 100%;
+			height: 26px;
+			line-height: 26px;
+			color: #000000;
+			background: url(../../images/tb_bg.png) repeat-x;
+			box-sizing: border-box;
+			padding: 0 5px;
+		}
+		
+		.tool .tool_top span {
+			display: inline-block;
+			float: right;
+			color: #85AADA;
+		}
+		
+		.tool .tool_div_border {
+			width: 100%;
+			height: 186px;
+			box-sizing: border-box;
+			padding: 0 5px;
+			background: #F4F4F4;
+		}
+		
+		.tool .tool_div {
+			width: 100%;
+			height: 179px;
+			box-sizing: border-box;
+			padding: 5px 5px 0 5px;
+			border: 1px solid #D4D4D4;
+			background: #FFFFFF;
+		}
+		
+		.tool .tool_div .tool_tab {
+			width: 100%;
+			border-left: 1px dashed #CCCCCC;
+		}
+		
+		.tool .tool_div .tool_tab tr th {
+			height: 30px;
+			background: #89BCF1;
+			text-align: center;
+			border-top: 1px dashed #CCCCCC;
+			border-right: 1px dashed #CCCCCC;
+		}
+		
+		.tool .tool_div .tool_tab tr td {
+			height: 30px;
+			color: #000000;
+			border-bottom: 1px dashed #CCCCCC;
+			border-right: 1px dashed #CCCCCC;
+			box-sizing: border-box;
+			padding-left: 5px;
+		}
+		
+		.parent {
+			padding: 0!important;
+		}
+		body,html{
+			padding: 0;
+			margin: 0;
+		}
+		#allmap div div:nth-child(2) div:nth-child(4){
+			z-index:-500!important;
+		}
+	</style>
+
+	<body>
+		<div class="easyui-layout" style="width:100%; height:100%;">
+			<div region="center" style="width:100%; height:100%;">
+				<div id="allmap" style="width:100%;height:100%;"></div>
+				<div class="easyui-resizable" data-options="maxHeight:550,minHeight:100" style="box-sizing: border-box; background: #FFFFFF;width:100%;height:30%;position:absolute; bottom:0;left:0;right: 0;">
+					<div class="easyui-tabs" style="width:100%;height:500px;overflow: hidden;">
+						<div title="日(区段)统计" style="width:100%; height:100%;overflow: hidden;">
+							<p class="title" style="height:3%;box-sizing: border-box; padding:14px 0 5px 10px;margin: 0px;">当前位置：
+								<a href="#" style="color: dodgerblue;" class="remove_first" onclick="remove_first('#dg','.remove_first','../../json/oysterSa1.json')">集团公司</a>
+							</p>
+							<table border="0" cellspacing="0" cellpadding="0" class="table_layout">
+								<tr>
+									<td>单位：</td>
+									<td>
+										<div class="clear_mes">
+											<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+											<span class="clearMess" style="display:none;"></span>
+									    </div>
+									</td>
+									<td>开始日期：</td>
+									<td>
+										<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">
+									</td>
+									<td>结束日期：</td>
+									<td>
+										<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">
+									</td>
+									<td>车辆类型</td>
+									<td>
+										<select name="" class="easyui-combobox width">
+											<option value="0">全部</option>
+											<option value="1">小客车</option>
+											<option value="2">中、大型客车</option>
+											<option value="3">危货（油罐车）</option>
+											<option value="4">普通货车</option>
+										</select>
+									</td>
+									<td colspan="6">
+										<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('.easyui-datagrid')">查询</span>
+										<span class="easyui-linkbutton" iconcls="icon-excel"><a id="exportExcel" href="#">导出</a></span>
+									</td>
+								</tr>
+							</table>
+							<table id="dg" class="easyui-datagrid" style="width:100%;height:80%" data-options="fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../../json/oysterSa1.json',method:'get'">
+							    <thead>
+									<tr>
+										<th data-options="field:'orgname',formatter:formatter,width:200">单位</th>
+										<th data-options="field:'org_name',width:200">车牌号</th>
+										<th data-options="field:'typeName',width:200">车辆类型</th>
+										<th data-options="field:'vehiclecount',width:200">车辆总数</th>
+										<th data-options="field:'daymileage',width:200">日里程</th>
+										<th data-options="field:'dayoil',width:200">日耗油</th>
+										<th data-options="field:'hundredoil',width:200">百公里耗油</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div title="月(区段)统计" style="width:100%; height:100%;overflow: hidden;">
+							<p class="title_mouth" style="height:3%;box-sizing: border-box; padding:14px 0 5px 10px;margin: 0px;">当前位置：
+								<a href="#" style="color: dodgerblue;" class="remove_mouth" onclick="remove_first('#dg1','.remove_mouth','../../json/oysterSa1.json')">集团公司</a>
+							</p>
+							<table border="0" cellspacing="0" cellpadding="0" class="table_layout">
+								<tr>
+									<td>单位：</td>
+									<td>
+										<div class="clear_mes">
+											<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+											<span class="clearMess" style="display:none;"></span>
+									    </div>
+									</td>
+									<td>开始日期：</td>
+									<td>
+										<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">
+									</td>
+									<td>结束日期：</td>
+									<td>
+										<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">
+									</td>
+									<td>车辆类型</td>
+									<td>
+										<select name="" class="easyui-combobox width">
+											<option value="0">全部</option>
+											<option value="1">小客车</option>
+											<option value="2">中、大型客车</option>
+											<option value="3">危货（油罐车）</option>
+											<option value="4">普通货车</option>
+										</select>
+									</td>
+									<td colspan="6">
+										<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('.easyui-datagrid')">查询</span>
+										<span class="easyui-linkbutton" iconcls="icon-excel"><a id="exportExcel1" href="#">导出</a></span>
+									</td>
+								</tr>
+							</table>
+							<table id="dg1" class="easyui-datagrid" style="width:100%;height:80%" data-options="fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../../json/oysterSa1.json',method:'get'">
+							    <thead>
+									<tr>
+										<th data-options="field:'orgname',formatter:formatter1,width:200">单位</th>
+										<th data-options="field:'org_name',width:200">车牌号</th>
+										<th data-options="field:'typeName',width:200">车辆类型</th>
+										<th data-options="field:'vehiclecount',width:200">车辆总数</th>
+										<th data-options="field:'daymileage',width:200">日里程</th>
+										<th data-options="field:'dayoil',width:200">日耗油</th>
+										<th data-options="field:'hundredoil',width:200">百公里耗油</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div title="年(区段)统计" style="width:100%; height:100%;overflow: hidden;">
+							<p class="title_year" style="height:3%;box-sizing: border-box; padding:14px 0 5px 10px;margin: 0px;">当前位置：
+								<a href="#" style="color: dodgerblue;" class="remove_year" onclick="remove_first('#dg2','.remove_year','../../json/oysterSa1.json')">集团公司</a>
+							</p>
+							<table border="0" cellspacing="0" cellpadding="0" class="table_layout">
+								<tr>
+									<td>单位：</td>
+									<td>
+										<div class="clear_mes">
+											<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+											<span class="clearMess" style="display:none;"></span>
+									    </div>
+									</td>
+									<td>开始日期：</td>
+									<td>
+										<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">
+									</td>
+									<td>结束日期：</td>
+									<td>
+										<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">
+									</td>
+									<td>车辆类型</td>
+									<td>
+										<select name="" class="easyui-combobox width">
+											<option value="0">全部</option>
+											<option value="1">小客车</option>
+											<option value="2">中、大型客车</option>
+											<option value="3">危货（油罐车）</option>
+											<option value="4">普通货车</option>
+										</select>
+									</td>
+									<td colspan="6">
+										<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('.easyui-datagrid')">查询</span>
+										<span class="easyui-linkbutton" iconcls="icon-excel"><a id="exportExcel2" href="#">导出</a></span>
+									</td>
+								</tr>
+							</table>
+							<table id="dg2" class="easyui-datagrid" style="width:100%;height:80%" data-options="fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../../json/oysterSa1.json',method:'get'">
+							    <thead>
+									<tr>
+										<th data-options="field:'orgname',formatter:formatter2,width:200">单位</th>
+										<th data-options="field:'org_name',width:200">车牌号</th>
+										<th data-options="field:'typeName',width:200">车辆类型</th>
+										<th data-options="field:'vehiclecount',width:200">车辆总数</th>
+										<th data-options="field:'daymileage',width:200">日里程</th>
+										<th data-options="field:'dayoil',width:200">日耗油</th>
+										<th data-options="field:'hundredoil',width:200">百公里耗油</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						
+					</div>
+				</div>			
+		    </div>
+		</div>
+		<div class="box1_float" style="top: 0;right: 0; display: block;">
+			<ul class="box1_ul">
+				<li id="zoomMax">
+					<a href="#" title="点击后拉框即可放大地图，再次点击后可退出" class="easyui-tooltip"><span><img src="../../images/nav_zoomin.png"/></span>拉框放大</a>
+				</li>
+				<li id="zoomMin">
+					<a href="#" title="点击后拉框即可缩小地图，再次点击后可退出" class="easyui-tooltip"><span><img src="../../images/nav_zoomout.png"/></span>拉框缩小</a>
+				</li>
+				<li id="fullextent">
+					<a href="#" title="点击按钮地图缩放到全局范围" class="easyui-tooltip"><span><img src="../../images/nav_fullextent.png"/></span>全局</a>
+				</li>
+				<li>
+					<a href="#" title="点击按钮地图返回上一视图" class="easyui-tooltip"><span><img src="../../images/nav_previous.png"/></span>前一视图</a>
+				</li>
+				<li>
+					<a href="#" title="点击按钮地图返回下一视图" class="easyui-tooltip"><span><img src="../../images/nav_next.png"/></span>后一视图</a>
+				</li>
+				<li>
+					<a href="#" title="点击可进行地图拖拽" class="easyui-tooltip"><span><img src="../../images/nav_pan.png"/></span>平移</a>
+				</li>
+				<li id="distance">
+					<a href="#" title="点击可进行距离测量,再次点击后停止距离测量" class="easyui-tooltip"><span><img src="../../images/Measure_Distance.png"/></span>测距</a>
+				</li>
+				<li id="measureArea">
+					<a href="#" title="点击可进行面积测量,再次点击后停止面积测量" class="easyui-tooltip"><span><img src="../../images/Measure_Area.png"/></span>测面</a>
+				</li>
+			</ul>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="../../js/mapTools.js"></script>
+    <script type="text/javascript" src="../../js/more_data.js"></script>
+	<script type="text/javascript">
+        var arr = ['../../json/oysterSa2.json','../../json/oysterSa3.json']
+        var hideShow=["oysterSa","orgname","org_name"]
+	</script>
+
+</html>

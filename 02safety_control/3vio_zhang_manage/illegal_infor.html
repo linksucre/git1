@@ -12,7 +12,12 @@
 		<table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
 			<tr>
 				<td>单位：</td>
-				<td><input id="cc" class="easyui-combotree width" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:200px;"></td>
+				<td>
+					<div class="clear_mes">
+						<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+						<span class="clearMess" style="display:none;"></span>
+				    </div>
+				</td>
 				<td>开始日期：</td>
 				<td>
 					<input class="easyui-datetimebox" editable="false" style="width: 140px; display: none;" comboname="useDate">
