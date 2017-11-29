@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>黑名单</title>
+    <link rel="import" href="../../public.html">
+    <script type="text/javascript" src="../../js/loading.js"></script>
+    <script src="../../js/fenye.js"></script>
+</head>
+
+<body class="easyui-layout">
+    <!--模态框-->
+    <div id='w' class="easyui-window" closed='true' title="添加黑名单" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:600px;height:400px;">
+        <div id="vblackdataTablesearch" style="padding: 5px; height: auto" class="datagrid-toolbar">
+            驾驶员：
+            <input type="text" name="mainDriverName" id="mainDriverName" class="easyui-validatebox textbox validatebox-text" style="width: 120px"> 车牌号：
+            <input type="text" name="idNumber" id="idNumber" class="easyui-validatebox textbox validatebox-text" style="width: 120px"> 单位：
+            <input type="text" id="cc" class="validatebox-text easyui-combotree combo-text" autocomplete="on" data-options="url:'../../json/index_tree.json',method:'get',required:false"
+                style="width:160px;" />
+            <span class="combo-clear qingchu" style="display: block; right: 45px; top:33px"></span>
+            <span class="easyui-linkbutton" style="margin: 0" data-options="iconCls:'icon-search'" onclick="query()">查询</span>
+            <form action="" id="#searchForm">
+                <table id="dg1" class="easyui-datagrid" title="" style="width:100%;height:140px" data-options=""></table>
+            </form>
+        </div>
+        <div id="south" data-options="region:'south',border:true" style="height: 110px; width: 584px;" title="" class="panel-body panel-body-noheader layout-body">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="col-md-3">原&nbsp;&nbsp;&nbsp;&nbsp;因</td>
+                        <td class="col-md-9">
+                            <select panelheight="auto" style="width: 128px; display: none;" id="reasonQuery" editable="false" data-options="validType:'selectValueRequired'"
+                                class="easyui-combobox easyui-validatebox combobox-f combo-f validatebox-text" comboname="reasonQuery">
+                                <option value="">请选择</option>
+                                <option value="">频繁疲劳驾驶</option>
+                                <option value="">频繁发生事故</option>
+                                <option value="">频繁超速</option>
+                                <option value="">其他</option>
+                                <option value="">频繁越区</option>
+                            </select>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-3">详&nbsp;&nbsp;&nbsp;&nbsp;情</td>
+                        <td class="col-md-9">
+                            <textarea name="detail" id="detail" style="width: 400px; height: 65px; font-size: 13px;" data-options="validType:'length[1,255]'"
+                                class="easyui-validatebox textbox validatebox-text"></textarea>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div id="addblacklist_dialog-button" style="text-align: center;" class="dialog-button">
+            <input class="easyui-linkbutton" style="margin: 0" type="submit" value="确定" onclick="$('#w').window('close')">
+            <input class="easyui-linkbutton" style="margin: 0" type="button" value="关闭" onclick="$('#w').window('close')">
+        </div>
+    </div>
+
+    <div id='w1' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:300px;height:150px;">
+        <div style="padding: 10px;margin-bottom:15px;">
+            请选择要删除的数据！
+        </div>
+
+        <div style="text-align:center;padding:5px">
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w1').window('close')">确定</a>
+        </div>
+    </div>
+    <div id="vblackdataTablesearch" style="padding: 5px; height: auto" class="datagrid-toolbar clear_box">
+        驾驶员：
+        <input type="text" name="mainDriverName" id="mainDriverName" class="easyui-validatebox textbox validatebox-text" style="width: 120px"> 车牌号：
+        <input type="text" name="idNumber" id="idNumber" class="easyui-validatebox textbox validatebox-text" style="width: 120px"> 单位：
+        <div class="search">
+            <input type="text" id="cc" class="validatebox-text easyui-combotree combo-text" autocomplete="on" data-options="url:'../../json/index_tree.json',method:'get',required:false"
+                style="width:180px;" />
+            <span class="combo-clear qingchu" style="display: block; right: 45px;"></span>
+        </div>
+
+        原因：
+        <select panelheight="auto" style="width: 120px; display: none;" id="reasonQuery" editable="false" data-options="validType:'selectValueRequired'"
+            class="easyui-combobox easyui-validatebox combobox-f combo-f validatebox-text" comboname="reasonQuery">
+            <option value="">请选择</option>
+            <option value="">频繁疲劳驾驶</option>
+            <option value="">频繁发生事故</option>
+            <option value="">频繁超速</option>
+            <option value="">其他</option>
+            <option value="">频繁越区</option>
+        </select>
+
+        <span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+        <a class="easyui-linkbutton " data-options="iconCls:'icon-search'" onclick="clearSearch('#dg')">重置</a>
+        <a href="#" id="amdataTable_dealbtn" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="$('#w').window('open')">添加</a>
+        <a href="#" id="amdataTable_dealbtn" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="deleteRows();">删除</a>
+        <a href="#" id="exportExcel" class="easyui-linkbutton ">
+            <span class="l-btn-left l-btn-icon-left">
+                <span class="l-btn-icon" style="display:inline-block; width:18px;height:18px;">
+                    <img src="../../images/excel.png" alt="" style="width:100%;height:100%;" />
+                </span>
+                &nbsp;导出
+            </span>
+        </a>
+        <table id="dg" title="" style="width:100%;height:700px;" data-options="onRowContextMenu: onRowContextMenu,rownumbers:true,singleSelect:false,pagination:true,url:'../../json/weiguixinxi.json',method:'get'">
+            <thead>
+                <tr>
+                    <th data-options="field:'ck',checkbox:true"></th>
+                    <th data-options="field:'orgName',width:80">单位</th>
+                    <th data-options="field:'orgCode',width:100">车牌号</th>
+                    <th data-options="field:'listprice',width:80,align:'right'">自编号</th>
+                    <th data-options="field:'alarmId',width:80,align:'right'">报警编号</th>
+                    <th data-options="field:'alarmTypeName',width:240">报警类型</th>
+                    <th data-options="field:'alarmLvl',width:60,align:'center'">报警级别</th>
+                    <th data-options="field:'address',width:240">报警位置</th>
+                    <th data-options="field:'alarmDesc',width:240">报警描述</th>
+                    <th data-options="field:'processMode',width:240">处理状态</th>
+                    <th data-options="field:'alarmDate',width:240">报警时间</th>
+                    <th data-options="field:'endDate',width:240">报警结束时间</th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <script>
+        $(function () {
+            $('#dg1').datagrid({
+                singleSelect: false,
+                fitColumns: true,
+                collapsible: true,
+                rownumbers: true,
+                pagination: true,
+                url: 'http://dayan.huayitec.com/userController/getListPage',
+                columns: [
+                    [{
+                            field: 'checkbox',
+                            checkbox: true
+                        },
+                        {
+                            field: 'userName',
+                            title: '驾驶员',
+                            width: 130,
+                            align: 'center',
+                            sortable: true
+                        },
+                        {
+                            field: 'userPhone',
+                            title: '车牌号',
+                            width: 130,
+                            align: 'center',
+                            sortable: true
+                        },
+                        {
+                            field: 'userStatus',
+                            title: '状态',
+                            width: 100,
+                            align: 'center',
+                            sortable: true
+                        },
+                        {
+                            field: 'userTel',
+                            title: '手机号',
+                            width: 130,
+                            align: 'center',
+                            sortable: true
+                        },
+                        {
+                            field: 'userEmail',
+                            title: '邮箱',
+                            width: 200,
+                            align: 'center',
+                            sortable: true
+                        },
+                        {
+                            field: 'positionName',
+                            title: '职务',
+                            width: 150,
+                            align: 'center',
+                            sortable: true
+                        },
+
+                        {
+                            field: 'userUnitName',
+                            title: '单位',
+                            width: 210,
+                            align: 'center',
+                            sortable: true
+                        }
+                    ]
+                ]
+            });
+        });
+
+
+        //   查询		
+        function query() {
+            $("#dg1").datagrid("load", sy.serializeObject($("#searchForm").form())); //将searchForm表单内的元素序列为对象传递到后台
+        }
+
+        function onRowContextMenu(e, rowIndex, rowData) {
+            e.preventDefault();
+            var selected = $("#dg").datagrid('getRows'); //获取所有行集合对象			
+            selected[rowIndex].id; //index为当前右键行的索引，指向当前行对象			
+            $('#mm').menu('show', {
+                left: e.pageX + 10,
+                top: e.pageY
+            });
+        }
+
+        function deleteRows() {
+            var deletedData = $("#dg").datagrid('getChecked');
+            if (deletedData == "") {
+                $("#w1").window('open')
+            }
+            for (var i = deletedData.length - 1; i >= 0; i--) {
+                var rowIndex = $("#dg").datagrid('getRowIndex', deletedData[i]);
+                if (deletedData.length > 0) {
+                    $("#dg").datagrid('deleteRow', rowIndex)
+                }
+
+            }
+        }
+    </script>
+</body>
+
+</html>

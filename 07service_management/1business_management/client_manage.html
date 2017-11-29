@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>客户管理</title>
+    <link rel="import" href="../../public.html">
+    <script type="text/javascript" src="../../js/loading.js"></script>
+    <script src="../../js/jquery.region.js"></script>
+    <script src="../../js/fenye.js"></script>
+</head>
+
+<body class="easyui-layout">
+    <!--模态框-->
+
+    <div id='w' class="easyui-window" closed='true' title="新增供应商" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:600px;height:300px; padding: 5px">
+
+        <table style="width:100%">
+            <tbody>
+
+                <tr id="tdDangerCategory">
+                    <td style="width:40%;text-align:left">
+                        <span style="width:30%;text-align:left">客户名：</span>
+                        <input type="text" class="easyui-numberbox easyui-validatebox numberbox numberbox-f validatebox-text" data-options="required:true,min:1,max:10"
+                            id="userName" style="width: 150px; height: 22px; line-height: 22px;" title="">
+                    </td>
+                    <td style="width:60%;text-align:center">
+                        <span style="width:25%;text-align:left">客户名类型：</span>
+                        <input type="text" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true" name="drivingLicensesInfo"
+                            id="userType" style="width:150px;height: 20px; line-height: 20px;">
+                    </td>
+                </tr>
+
+                <tr height="30px" id="JYcredcertDate">
+                    <td style="width:40%;text-align:left">
+                        <span style="width:30%;text-align:left">省份：</span>
+                        <div class="box" style="display: inline-block;">
+                            <select id="p1" style="padding: 0; width: 150px; height: 23px; outline-style: none;  border: 1px solid #95B8E7;">
+                                <option>全国</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td style="width:60%;text-align:center">
+                        <span style="width:25%;text-align:left">城市：</span>
+                        <div class="box" style="display: inline-block;">
+                            <select id="c" style="padding: 0; width: 150px; height: 23px;outline-style: none;  border: 1px solid #95B8E7;">
+                                <option>请选择</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr id="JYcredcertInspectDate">
+                    <td style="width:40%;text-align:left">
+                        <span style="width:30%;text-align:left">电话：</span>
+                        <input type="text" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:false"
+                            name="phone" id="phone" style="width:150px;height: 20px; line-height: 20px;">
+                    </td>
+                    <td style="width:60%;text-align:center">
+                        <span style="width:25%;text-align:left">传真：</span>
+                        <input type="text" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:false"
+                            name="chuanzhen" id="chuanzhen" style="width:150px;height: 20px; line-height: 20px;">
+                    </td>
+                </tr>
+                <tr id="">
+                    <td style="width:40%;text-align:left">
+                        <span style="width:30%;text-align:left">详细地址：</span>
+                        <input type="text" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:false"
+                            name="adress" id="adress" style="width:150px;height: 20px; line-height: 20px;">
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+        <tr>
+            <span style="width:12%;text-align:left">备注：</span>
+            <textarea name="remark" id="remark1" style="width: 420px; height: 60px; font-size: 10px;" data-options="validType:'length[0,500]'"
+                class="easyui-validatebox textbox validatebox-text">
+            </textarea>
+        </tr>
+        <div id="addCred-button" style="text-align:center;padding:0px;margin-top:32px" class="dialog-button">
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('close')">确定</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('close')">关闭</a>
+        </div>
+    </div>
+    <div id='w2' class="easyui-window" closed='true' title="修改客户" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:600px;height:300px; padding: 5px">
+
+        <table style="width:100%">
+            <tbody>
+
+                <tr>
+                    <td style="width:40%;text-align:left">
+                        <span style="width:30%;text-align:left">客户名：</span>
+                        <input type="text" class="easyui-numberbox easyui-validatebox numberbox numberbox-f validatebox-text" data-options="required:true,min:1,max:10"
+                            id="userName1" style="width: 150px; height: 22px; line-height: 22px;" title="">
+                    </td>
+                    <td style="width:60%;text-align:center">
+                        <span style="width:25%;text-align:left">客户名类型：</span>
+                        <input type="text" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true" name="drivingLicensesInfo"
+                            id="userType1" style="width:150px;height: 20px; line-height: 20px;">
+                    </td>
+                </tr>
+
+                <tr height="30px">
+                    <td style="width:40%;text-align:left">
+                        <span style="width:30%;text-align:left">省份：</span>
+                        <div class="box1" style="display: inline-block;">
+                            <select id="p11" style="padding: 0; width: 150px; height: 23px; outline-style: none;  border: 1px solid #95B8E7;">
+                                <option>全国</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td style="width:60%;text-align:center">
+                        <span style="width:25%;text-align:left">城市：</span>
+                        <div class="box1" style="display: inline-block;">
+                            <select id="c1" style="padding: 0; width: 150px; height: 23px;outline-style: none;  border: 1px solid #95B8E7;">
+                                <option>请选择</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:40%;text-align:left">
+                        <span style="width:30%;text-align:left">电话：</span>
+                        <input type="text" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:false"
+                            name="phone" id="phone1" style="width:150px;height: 20px; line-height: 20px;">
+                    </td>
+                    <td style="width:60%;text-align:center">
+                        <span style="width:25%;text-align:left">传真：</span>
+                        <input type="text" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:false"
+                            name="chuanzhen" id="chuanzhen1" style="width:150px;height: 20px; line-height: 20px;">
+                    </td>
+                </tr>
+                <tr id="">
+                    <td style="width:40%;text-align:left">
+                        <span style="width:30%;text-align:left">详细地址：</span>
+                        <input type="text" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:false"
+                            name="adress" id="adress1" style="width:150px;height: 20px; line-height: 20px;">
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+        <tr>
+            <span style="width:12%;text-align:left">备注：</span>
+            <textarea name="remark" id="remark11" style="width: 420px; height: 60px; font-size: 10px;" data-options="validType:'length[0,500]'"
+                class="easyui-validatebox textbox validatebox-text">
+            </textarea>
+        </tr>
+        <div id="addCred-button1" style="text-align:center;padding:0px;margin-top:32px" class="dialog-button">
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w2').window('close')">确定</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w2').window('close')">关闭</a>
+        </div>
+    </div>
+
+    <div id='w1' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:300px;height:150px;">
+        <div style="padding: 10px;margin-bottom:15px;">
+            请选择要操作的数据！
+        </div>
+
+        <div style="text-align:center;padding:5px">
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w1').window('close')">确定</a>
+        </div>
+    </div>
+
+    <!--导入box-->
+    <div id='dlg1' class="easyui-window" closed='true' title="新增违章" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:300px;height:180px;">
+        <div class="message">
+
+            <form id="xlsForm" method="post" enctype="multipart/form-data" action="../../despatch/importUpload.do">
+                <table align="center">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="#" id="export_btn" class="easyui-linkbutton clear_btn" iconcls="icon-down">
+                                    下载导入模板
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" id="vvdataTable_helpbtn" class="easyui-linkbutton clear_btn" iconcls="icon-help" onclick="alert('#dlg2')">
+                                    导入模板说明
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input id="upload" type="file" name="upload" onchange="importf(this)" style="width: 180px; height: 26px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <a href="#" class="easyui-linkbutton up_data clear_btn" iconcls="icon-impo" onclick="daoru()">确定导入</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input id="submitbtn" type="submit" style="display: none">
+            </form>
+        </div>
+    </div>
+    <div id='dlg2' class="easyui-window" closed='true' title="导入数据" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:650px;height:350px;">
+        <div class="message">
+            <div style=" height:350px; width:100%">
+                <font color="red">
+                    备注：
+                    <br> &nbsp;&nbsp;1.文件名格式：文件名+当前时间（如aa201405140745.xls）。
+                    <br> &nbsp;&nbsp;2.上传数据的时候，第一行的标题不能修改,数据列只能从第二行开始，不管是几个sheet,每个sheet都应该这样(即表头要相同)。
+                    <br> &nbsp;&nbsp;3.第二行数据是例子数据。正式数据要把其覆盖。
+                    <br> &nbsp;&nbsp;4.phone(电话)与faxNumber(传真)用文本形式。
+                    <br>
+                </font>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="vblackdataTablesearch" style="padding: 5px; height: auto" class="datagrid-toolbar clear_box">
+        单位：
+        <!-- <div class="search"> -->
+        <input type="text" id="cc" class="validatebox-text easyui-combotree combo-text" autocomplete="on" data-options="url:'../../json/index_tree.json',method:'get',required:false"
+            style="width:160px;" />
+        <span class="combo-clear qingchu" style="display: block; right: 45px;"></span>
+        <!-- </div> -->
+        <td>客户名：</td>
+        <td>
+            <input type="text" class="easyui-numberbox" data-options="" id="clientName" style="width: 100px; height: 22px; line-height: 22px;"
+                title="">
+        </td>
+        <td style="white-space:nowrap;">客户业务类型：</td>
+        <td style="width:55px;">
+            <input type="text" class="easyui-numberbox" data-options="" id="clientType" style="width: 100px; height: 22px; line-height: 22px;"
+                title="">
+
+        </td>
+        <span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+        <a class="easyui-linkbutton " data-options="iconCls:'icon-search'" onclick="clearSearch('#dg')">重置</a>
+        <a href="#" id="amdataTable_dealbtn" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="$('#w').window('open')">添加</a>
+        <a href="#" id="amdataTable_dealbtn" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="edit()">修改</a>
+        <a href="#" id="amdataTable_dealbtn" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="deleteRows();">删除</a>
+        <a href="#" id="exportExcel" class="easyui-linkbutton ">
+            <span class="l-btn-left l-btn-icon-left">
+                <span class="l-btn-icon" style="display:inline-block; width:18px;height:18px;">
+                    <img src="../../images/excel.png" alt="" style="width:100%;height:100%;" />
+                </span>
+                &nbsp;导出
+            </span>
+        </a>
+        <a href="#" id="violationTable_loadbtn" data-options="iconCls:'icon-impo'" class="easyui-linkbutton l-btn l-btn-small" style=""
+            onclick="alert('#dlg1')" group="">导入</a>
+        <table id="dg" title="" style="width:100%;height:700px;" data-options="onRowContextMenu: onRowContextMenu,rownumbers:true,fitColumns:true,singleSelect:false,pagination:true,url:'../../json/weizhangxinxi.json',method:'get'">
+            <thead>
+                <tr>
+                    <th data-options="field:'ck',checkbox:true"></th>
+                    <th data-options="field:'orgName',width:100,align:'center'">单位</th>
+                    <th data-options="field:'vioDesc',width:80,align:'center'">客户业务类型</th>
+                    <th data-options="field:'userName',width:70,align:'center'">客户名</th>
+                    <th data-options="field:'score',width:75,align:'center'">省份</th>
+                    <th data-options="field:'vioId',width:65,align:'center'">城市</th>
+                    <th data-options="field:'vioId',width:80,align:'center'">电话</th>
+                    <th data-options="field:'driverId',width:80,align:'center'">传真</th>
+                    <th data-options="field:'vioAddr',width:100,align:'center'">详细地址</th>
+                    <th data-options="field:'userName',width:100,align:'center'">备注</th>
+                    <th data-options="field:'recordTime',width:100,align:'center'">记录时间</th>
+                    <th data-options="field:'vioTime',width:100,align:'center'">修改时间</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <script>
+        $('.box').region({
+            url: '../../json/region.json'
+        })
+        $('.box1').region({
+            url: '../../json/region.json'
+        })
+        //   查询		
+        function query() {
+            $("#dg1").datagrid("load", sy.serializeObject($("#searchForm").form())); //将searchForm表单内的元素序列为对象传递到后台
+        }
+
+        function onRowContextMenu(e, rowIndex, rowData) {
+            e.preventDefault();
+            var selected = $("#dg").datagrid('getRows'); //获取所有行集合对象			
+            selected[rowIndex].id; //index为当前右键行的索引，指向当前行对象			
+            $('#mm').menu('show', {
+                left: e.pageX + 10,
+                top: e.pageY
+            });
+        }
+
+        function edit() {
+            var editdData = $("#dg").datagrid('getChecked');
+            if (editdData == "") {
+                $("#w1").window('open');
+            } else {
+                $("#w2").window('open');
+            }
+        }
+
+        function deleteRows() {
+            var deletedData = $("#dg").datagrid('getChecked');
+            if (deletedData == "") {
+                $("#w1").window('open')
+            }
+            for (var i = deletedData.length - 1; i >= 0; i--) {
+                var rowIndex = $("#dg").datagrid('getRowIndex', deletedData[i]);
+                if (deletedData.length > 0) {
+                    $("#dg").datagrid('deleteRow', rowIndex)
+                }
+
+            }
+        }
+    </script>
+</body>
+
+</html>

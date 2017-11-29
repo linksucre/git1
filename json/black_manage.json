@@ -1,0 +1,62 @@
+{
+	"total": 5,
+	"rows": [
+		{
+			"blackId": -1556835496,
+			"rgName": "华北运输公司",
+			"userName": "高连宝",
+			"reason": "频繁疲劳驾驶",
+			"detail": "",
+			"addTime": "2016-04-15 14:06",
+			"addUserName": "钟华北",
+			"recordTime": "2016-04-15 14:06",
+			"recordor": "ysgshbzh",
+			"idNumber": ""
+		}, {
+			"blackId": -1529587026,
+			"rgName": "大庆燃气运输分公司大庆CNG配送中心",
+			"userName": "潘振富",
+			"reason": "频繁疲劳驾驶",
+			"detail": "",
+			"addTime": "2016-10-14 14:19",
+			"addUserName": "李昕哲",
+			"recordTime": "2016-10-14 14:19",
+			"recordor": "cnpc20",
+			"idNumber": "黑E59310"
+		},{
+			"blackId": -1556835496,
+			"rgName": "华北运输公司",
+			"userName": "高连宝",
+			"reason": "频繁疲劳驾驶",
+			"detail": "",
+			"addTime": "2016-04-15 14:06",
+			"addUserName": "钟华北",
+			"recordTime": "2016-04-15 14:06",
+			"recordor": "ysgshbzh",
+			"idNumber": ""
+		}, {
+			"blackId": -1529587026,
+			"rgName": "大庆燃气运输分公司大庆CNG配送中心",
+			"userName": "潘振富",
+			"reason": "频繁疲劳驾驶",
+			"detail": "",
+			"addTime": "2016-10-14 14:19",
+			"addUserName": "李昕哲",
+			"recordTime": "2016-10-14 14:19",
+			"recordor": "cnpc20",
+			"idNumber": "黑E59310"
+		},{
+			"blackId": -1556835496,
+			"rgName": "华北运输公司",
+			"userName": "高连宝",
+			"reason": "频繁疲劳驾驶",
+			"detail": "",
+			"addTime": "2016-04-15 14:06",
+			"addUserName": "钟华北",
+			"recordTime": "2016-04-15 14:06",
+			"recordor": "ysgshbzh",
+			"idNumber": ""
+		}
+	],
+	"tableType": null
+}
