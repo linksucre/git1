@@ -1,0 +1,31 @@
+{
+	"total": 2,
+	"rows": [
+		{
+			"threeId": -758725515,
+			"vehicleId": 10312747,
+			"threeVehicleId": 259404973,
+			"orgCode": "0101",
+			"beginTime": "2017-12-30",
+			"threeName": "元旦",
+			"recordTime": "2017-08-14 17:04:36",
+			"orgName": "总部机关",
+			"endTime": "2018-01-02",
+			"idNumber": "京B12345",
+			"threeStatiId": -758725515
+		}, {
+			"threeId": -758725515,
+			"vehicleId": 10393732,
+			"threeVehicleId": 259404974,
+			"orgCode": "0101",
+			"beginTime": "2017-12-30",
+			"threeName": "元旦",
+			"recordTime": "2017-08-14 17:04:36",
+			"orgName": "总部机关",
+			"endTime": "2018-01-02",
+			"idNumber": "赣A10045",
+			"threeStatiId": -758725515
+		}
+	],
+	"tableType": null
+}

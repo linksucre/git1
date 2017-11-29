@@ -1,0 +1,19 @@
+{
+	"total": 115,
+	"rows": [
+		{
+			"couresId": 1913063642,
+			"couresName": "运行",
+			"memory": "1.2%",
+			"cpu": "5.9%",
+			"status": 0,
+			"startTime": "2016-10-09 09:10:49",
+			"terminationTime": null,
+			"serviceIp": "2017-03-11 16:35:32",
+			"serviceUsername": "coherence",
+			"servicePassword": "coherence@123",
+			"couresClassName": "com.cnpc.vms.coherence.timer.VmsAlarmTimerClient"
+		}
+	],
+	"tableType": null
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<script type="text/javascript" src="../../js/loading.js"></script>
+
+	<body class="easyui-layout" style="overflow: hidden;">
+
+			<table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box" style="margin-top: 10px;" >
+				<tr>
+					<td>车牌号：</td>
+					<td><input type="text" /></td>
+					<td>终端号：</td>
+					<td><input type="text" name="" /></td>
+					<td>SIM卡号：</td>
+					<td><input type="text" name="" /></td>
+					<td>单位：</td>
+					<td><input id="cc" class="easyui-combotree width" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:200px;"></td>
+				</tr>
+				<tr>
+					<td>车辆类型：</td>
+					<td>
+						<select class="easyui-combobox width" name="language">
+							<option value="ar">全部</option>
+							<option value="bg">普通货车(重型罐式货车)</option>
+							<option value="ca">危货(炸药车)</option>
+							<option value="ca">中、大型客车(依维柯14座)</option>
+							<option value="ca">普通货车(小型越野货车)</option>
+							<option value="ca">普通货车(奔驰U5000越野车)</option>
+							<option value="ca">普通货车(奔驰U4000越野车)</option>
+							<option value="ca">危货(东风天锦炸药车)</option>
+							<option value="ca">普通货车(重型斯太尔水罐车)</option>
+							<option value="ca">普通货车(依维柯双排)</option>
+							<option value="ca">普通货车(五十铃双排)</option>
+							<option value="ca">普通货车(沙漠车)</option>
+							<option value="ca">危货(炸药车红宇斯太尔)</option>
+						</select>
+					</td>
+					<td>终端型号：</td>
+					<td><input type="text" /></td>
+					<td><input type="checkbox" /> 下级单位</td>
+					<td colspan="8">
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>
+						<span class="easyui-linkbutton result_btn1 clear_btn">终端设备状态检测</span>
+						<span class="easyui-linkbutton clear_btn" onclick="alert('#w1')">显示检测结果</span>
+					</td>
+				</tr>
+			</table>
+			<table id="dg" title="" class="easyui-datagrid" style="width:100%;height:85%" data-options="fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../../json/type_jiance.json',method:'get'">
+				<thead>
+					<tr>
+						<th data-options="field:'checkbox',checkbox:true"></th>
+						<th data-options="field:'idNumber',width:'100'">车牌号</th>
+						<th data-options="field:'orgName',width:'100'">单位</th>				
+						<th data-options="field:'vehicleTypeName',width:'100'">车辆类型</th>
+						<th data-options="field:'terminalCode',width:'100'">终端号</th>
+						<th data-options="field:'simCardNo',width:'100'">SIM卡号</th>
+						<th data-options="field:'terminalModelName',width:'100'">终端型号</th>
+						<th data-options="field:'vehicleStatus',width:'100'">车辆状态</th>
+					</tr>
+				</thead>
+			</table>
+		
+		<!--模态框-->
+		<div id='w' class="easyui-window" closed='true' title="提示框" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:134px;">
+			<div  style="width:100%;box-sizing: border-box; padding: 5px 0 0 4px">
+				<div class="messager-icon messager-info"></div>
+				发送成功请耐心等待回复，大约需要10秒左右！
+			</div>
+			<div style="width:100%; text-align: center;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#w').window('close')">确定</a>
+			</div>
+		</div>
+		<div id='w2' class="easyui-window" closed='true' title="提示框" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+				请选择检测设备！
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#w2').window('close')">确定</a>
+			</div>
+		</div>
+		<div id='w1' class="easyui-window" closed='true' title="设备状态检测结果" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:700px;height:400px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+				无数据
+			</div>
+			<div style="width:100%; text-align: center;margin-top:280px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#w1').window('close')">关闭</a>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+			$(function() {
+					$('.result_btn1').click(function(){
+						var rowIndex = $('#dg').datagrid('getSelected');
+						if(rowIndex == null){
+							$('#w2').window('open');
+						}else if( rowIndex != null){
+							$('#w').window('open');
+						}
+				});
+			});
+		
+				 
+	</script>
+
+</html>

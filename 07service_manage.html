@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link href="images/logo.png" rel="shortcut icon" />
+	<link rel="import" href="public.html">
+	<script type="text/javascript" src="js/loading.js"></script>
+	<body class="easyui-layout" id="container">
+		<div data-options="region:'west',split:true,title:' '" style="width:240px;min-height:350px;">
+			<div class="easyui-accordion" data-options="fit:true,border:false">
+				<div title="业务数据管理" data-options="iconCls:'yewu_data',selected:true">
+					<ul class="left_menu ywgl">
+						<li>   
+							<a href="#" onclick="addPanel('07service_management/1business_management/sim.html','车辆终端sim快捷录入')"><span class="span-icon1"></span>车辆终端sim快捷录入</a>
+						</li>
+						<li>
+							<a href="#" onclick="addPanel('07service_management/1business_management/car_manage.html','车辆管理')"><span class="span-icon2"></span>车辆管理</a>
+						</li>
+						<li>
+							<a href="#" onclick="addPanel('07service_management/1business_management/driver_manage.html','驾驶员管理')"><span class="span-icon3"></span>驾驶员管理</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon4"></span>终端管理</a>
+						</li>
+						<li>
+							<a href="#" onclick="addPanel('07service_management/1business_management/sim_manage.html','SIM卡管理')"><span class="span-icon5"></span>SIM卡管理</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon6"></span>参数管理</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon7"></span>报警流程管理</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon8"></span>调度与任务流程管理</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon9"></span>评价指标管理</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon10"></span>sim缴费管理</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon11"></span>客户管理</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon12"></span>供应商管理</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon13"></span>黑名单管理</a>
+						</li>
+						<li>
+							<a href="#" onclick="addPanel('07service_management/1business_management/business_point.html','业务点(区)')"><span class="span-icon14"></span>业务点(区)</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon15"></span>公告信息管理</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon2"></span>车辆类型管理</a>
+						</li>
+						<li>
+							<a href="#" onclick="addPanel('07service_management/1business_management/alarmSwitch.html','报警开关管理')"><span class="span-icon6"></span>报警开关管理</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon6"></span>异常车辆记录</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon11"></span>百公里耗油</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon4"></span>终端类型管理</a>
+						</li>
+					</ul>
+				</div>
+				<div title="消息订阅管理" data-options="iconCls:'mes_read'">
+					<ul class="left_menu ywgl">
+						<li>
+							<a href="#"><span class="span-icon16"></span>查看个人订阅</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon17"></span>用户订阅管理</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon15"></span>消息记录管理</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon18"></span>历史消息管理</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon15"></span>短信发送记录</a>
+						</li>
+					</ul>
+				</div>
+				<div title="报警参数管理" data-options="iconCls:'ring_canshu'">
+					<ul class="left_menu ywgl">
+						<li>
+							<a href="#"><span class="span-icon19"></span>超速报警</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon20"></span>疲劳驾驶报警</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon21"></span>停车超时报警</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon22"></span>禁止驶入报警</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon23"></span>禁止驶出报警</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon24"></span>禁止停车报警</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon25"></span>路线关键点预警</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon25"></span>盲区预警</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon25"></span>风险区预警</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon19"></span>超速预警</a>
+						</li>
+						<li>
+							<a href="#"><span class="span-icon23"></span>限时行车报警</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-options="region:'center',title:''" id="center" style="height: 100%;">
+			<div id="mainContainer" class="easyui-tabs" fit="true" border="false" style="widows:100%;height: 100%;">
+				<div title="主页" style="widows:100%;height: 100%;" class="tab_win">
+					 <div id="main" style="width:80%;height:50%; margin-bottom:50px;"></div>
+					 <table class="easyui-datagrid" style="width:100%;height:auto; border: 1px solid red;">
+							<thead>
+								<tr>
+									<th field="name1" width="90">车辆数量 </th>
+									<th field="name2" width="90">驾驶员数量</th>
+									<th field="name3" width="90">终端数量</th>
+									<th field="name4" width="90">sim卡数量</th>
+								</tr>
+							</thead>                           
+							<tbody>                            
+								<tr>                           
+									<td>6222</td>            
+									<td>4697</td>            
+									<td>9314</td>            
+									<td>23892</td>                 
+								</tr>  
+							</tbody>                           
+						</table>
+					
+					 
+					 
+					 
+					 
+					 
+				</div>
+			</div>
+
+		</div>
+        <div id="tabsMenu" class="easyui-menu" style="width: 120px; height: 72px; display: none; left: 0px; top: 0px;">
+			<div name="close" class="menu-item">关闭</div>
+			<div name="Other" class="menu-item">关闭其他</div>
+			<div name="All" class="menu-item">关闭全部</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+     //子页面中点击按钮关闭左边菜单栏
+		function westClose_child() {
+			$('#container').layout('collapse', 'west');
+	    } 
+var myChart = echarts.init(document.getElementById('main'));
+   option = {
+   	 tooltip : {
+	        trigger: 'axis',
+	        axisPointer : {          
+	            type : 'shadow'      
+	        }
+	    },
+    legend: {
+    	x:'center',
+	    y:'bottom',  
+        data:['车辆','驾驶员','终端','sim']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+        	
+            type : 'category',
+            axisLabel: {interval:0},
+            data : ['炼化企业','销售企业','管道储运企业','工程技术服务企业','工程建设企业']
+        }
+        
+    ],
+    yAxis: {
+			type: 'value',
+			name: '水量',
+			min: 0,
+			max:25,
+			interval:5,
+			axisLabel: {
+				formatter: '{value}k'
+			}
+		},
+    series : [
+        {
+            name:'车辆',
+            type:'bar',
+            data:[20, 3, 2, 1, 6, 4]
+        },
+        {
+            name:'驾驶员',
+            type:'bar',
+            stack: '广告',
+            data:[9, 4, 2.3, 1, 7,3]
+        },
+        {
+            name:'终端',
+            type:'bar',
+            data:[20, 3, 2, 1, 6, 4]
+        },
+        {
+            name:'sim',
+            type:'bar',
+            data:[19, 2.5, 2, 1, 5.5,3.8]
+        }
+    ]
+};
+		 myChart.setOption(option);	
+
+	</script>
+
+</html>

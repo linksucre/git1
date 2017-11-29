@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>百万公里统计</title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<script type="text/javascript" src="../../js/more.js"></script>
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<style type="text/css">
+		a{
+			text-decoration: underline;
+		}
+		.search{
+				height: 13px;
+				width:150px;
+				display: inline-block;
+				position: relative;
+				padding-bottom: 10px;
+			}
+	</style>
+	<body class="easyui-layout" style="overflow: hidden;">
+		<div data-options="region:'center',border:false" style="width:100%;height:100%;overflow: hidden;">
+				<div id="mainPanle" region="center" title="" style="padding:5px;height:100%;">	
+                        <div id="tt" class="easyui-tabs" style="width:100%;height:100%;" >
+							<div title="日(区段)统计" style="padding:10px;position: relative;width: 100%;height:100%;">
+								<p id="titleBox1" style="height:3%;box-sizing: border-box; padding:14px 0 5px 10px;margin: 0px;">当前位置：
+								   <a href="#" style="color: blue;" class="remove_first" onclick="remove_first(arrObj1,'#dg1','.remove_first')">集团公司</a>
+							    </p>
+					            <table border="0" cellspacing="0" cellpadding="0" class="clear_box">
+									<tr>
+									<div style="text-align:left;padding-top:5px">
+										单位：
+										<input type="text" id="orgCode" class="easyui-combotree combotree-f combo-f validatebox-text" style="margin-right: 10px; display: none;" comboname="orgCode">
+										时间：
+										<select class="input1 easyui-combobox" id="cardStyleList" name="cardStyleList" style="width:200px" required editable="false" data-options="">
+											<option>2017</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											</select>
+										年 
+										<select class="input1 easyui-combobox" id="cardStyleList" name="cardStyleList" style="width:200px" required editable="false" data-options="">
+											<option>--请选择--</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											</select>
+										月&nbsp;&nbsp;&nbsp;&nbsp;  到 &nbsp;&nbsp;&nbsp;&nbsp;
+										<select class="input1 easyui-combobox" id="cardStyleList" name="cardStyleList" style="width:200px" required editable="false" data-options="">
+											<option>2017</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											</select>
+										年 
+										<select class="input1 easyui-combobox" id="cardStyleList" name="cardStyleList" style="width:200px" required editable="false" data-options="">
+											<option>11</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											</select>
+										月			
+										<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('.easyui-datagrid')">查询</span>
+										<a  id="exportExcel" style="text-align:right;margin-right:5px;" class="easyui-linkbutton l-btn l-btn-small" iconcls="icon-excel" group="">
+										导出</a>
+										</div>
+									</tr>
+								</table>
+								 <table id="dg1" class="easyui-datagrid load" style="width:100%;height:85%" data-options="singleSelect:false,fitColumns:true,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_early_warning1.json',method:'get'"></table>
+							</div>
+							<!--<div title="月统计" style="padding:10px;width: 100%;height:100%;position: relative;">
+								<p id="titleBox2" style="height:3%;box-sizing: border-box; padding:14px 0 5px 10px;margin: 0px;">当前位置：
+								   <a href="#" style="color: blue;" class="remove_first2" onclick="remove_first(arrObj2,'#dg2','.remove_first2')">集团公司</a>
+							    </p>
+								<table border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td>
+											单位：
+										</td>
+										<td>
+											<div class="search">
+											 	<input type="text" class="easyui-combotree" comboname="orgCode" style="width:150px;height:20px;border:1px solid #95b8e7;" data-options="url:'get_data.php',url:'../../json/alarmSwitchdanwei.json',method:'get'">
+												<span class="combo-clear qingchu"></span>
+											</div>
+										</td>
+										<td>年份:</td>
+										<td>
+											<select class="easyui-combobox" style="width: 150px;">
+												<option value="0">2014</option>
+												<option value="1">2015</option>
+												<option value="2">2016</option>
+												<option value="3">2017</option>
+											</select>
+										</td>
+										
+									    <td>
+									    	<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('.easyui-datagrid')">查询</span>
+											<a  id="exportExcel" style="text-align:right;margin-right:5px;" class="easyui-linkbutton l-btn l-btn-small" iconcls="icon-excel" group="">
+												导出
+											</a>
+									    </td>
+									</tr>
+								</table>
+								 <table id="dg2" class="easyui-datagrid load" style="height:85%" data-options="singleSelect:false,fitColumns:true,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_early_warning1.json',method:'get'">
+
+								 </table>
+							</div>-->
+							<div title="年统计" style="padding:10px;position: absolute; width: 100%;height:100%;">
+								<p id="titleBox3" style="height:3%;box-sizing: border-box; padding:14px 0 5px 10px;margin: 0px;">当前位置：
+								   <a href="#" style="color: blue;" class="remove_first3" onclick="remove_first(arrObj3,'#dg3','.remove_first3')">集团公司</a>
+							    </p>
+							<table border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td>
+											单位：
+										</td>
+										<td>
+											<div class="search">
+											 	<input type="text" class="easyui-combotree" comboname="orgCode" style="width:150px;height:20px;border:1px solid #95b8e7;" data-options="url:'get_data.php',url:'../../json/alarmSwitchdanwei.json',method:'get'">
+												<span class="combo-clear qingchu"></span>
+											</div>
+										</td>
+										<td>年份:</td>
+										<td>
+											<select class="easyui-combobox" style="width: 150px;">
+												<option value="0">2014</option>
+												<option value="1">2015</option>
+												<option value="2">2016</option>
+												<option value="3">2017</option>
+											</select>
+										</td>
+									    <td>
+									    	<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('.easyui-datagrid')">查询</span>
+											<a  id="exportExcel" style="text-align:right;margin-right:5px;" class="easyui-linkbutton l-btn l-btn-small" iconcls="icon-excel" group="">
+												导出
+											</a>
+									    </td>
+									</tr>
+								</table>
+								 <table id="dg3" class="easyui-datagrid load" style="height:85%" data-options="singleSelect:false,fitColumns:true,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_early_warning1.json',method:'get'">
+
+								 </table>
+							</div>
+						</div>
+			</div>
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(".easyui-tabs").width(screen.width * 0.99);
+		var arr = ['../../json/risk_early_warning2.json','../../json/risk_early_warning3.json','../../json/risk_early_warning4.json']
+		var arrIndex1 =1;
+//		var arrIndex2 = 2;
+		var arrIndex3 = 3;
+		var index1 = 0;	
+		var c1 = 0;
+//		var index2 = 0;	
+//		var c2 = 0;
+		var index3 = 0;	
+		var c3 = 0;
+		var arrObj1=['#dg1','#titleBox1',index1,c1]
+//		var arrObj2=['#dg2','#titleBox2',index2,c2]
+		var arrObj3=['#dg3','#titleBox3',index3,c3]
+		datagr('#dg1',formatter1)
+//		datagr('#dg2',formatter2)
+		datagr('#dg3',formatter3)
+		function datagr(dg,formatter){
+			//表格
+			$(dg).datagrid({  
+		        columns: [[ 
+			                {"field":"ORG_NAME","title":"单位",align:'center',width:100,formatter:formatter},
+							{"field":"WEATHER_WARN_COUNT","title":"预警发送总次数",align:'center',width:100},	
+							{"field":"ROAD_WARN_COUNT","title":"天气预警发送次数",align:'center',width:100},
+							{"field":"EQU_WARN_COUNT","title":"路况预警发送次数",align:'center',width:100},	
+							{"field":"SEQ_ROAD_WARN_COUNT","title":"地质灾害发送次数",align:'center',width:100},
+							{"field":"DEN_DRIVER_WARN_COUNT","title":"危险路段发送次数",align:'center',width:100},	
+							{"field":"DEN_DRIVER_WARN_COUNT","title":"危险驾驶预警发送次数",align:'center',width:100}
+		                ]]
+		
+			});
+		}
+		//tab切换
+	    $('#tt').tabs({tabPosition : 'bottom'});
+	</script>
+</html>

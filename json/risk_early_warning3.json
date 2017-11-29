@@ -1,0 +1,83 @@
+{
+    "total": 7,
+    "rows": [
+        {
+            "ORG_CODE": "010103",
+            "ORG_NAME": "政策研究室",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 1
+        },
+        {
+            "ORG_CODE": "01010301",
+            "ORG_NAME": "综合处",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 2
+        },
+        {
+            "ORG_CODE": "01010304",
+            "ORG_NAME": "调研一处",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 3
+        },
+        {
+            "ORG_CODE": "01010302",
+            "ORG_NAME": "政策信息处",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 4
+        },
+        {
+            "ORG_CODE": "01010306",
+            "ORG_NAME": "经济管理处",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 5
+        },
+        {
+            "ORG_CODE": "01010305",
+            "ORG_NAME": "调研二处",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 6
+        },
+        {
+            "ORG_CODE": "01010303",
+            "ORG_NAME": "发展战略处",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 7
+        }
+    ],
+    "tableType": "org"
+}

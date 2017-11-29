@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>驾驶舱</title>
+	</head>
+	<link href="images/logo.png" rel="shortcut icon" />
+	<link rel="import" href="public.html">
+	<script type="text/javascript" src="js/loading.js"></script>
+	<!-- // 百度地图 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=h86KsPl6VGvedz2G3CGmR37Ah8oMUMcY"></script>
+
+	<body class="easyui-layout">
+		<div region="west" split="true" title=" " style="width:14%;height:100%;box-sizing: border-box;min-width:250px;">
+			<div class="easyui-accordion" data-options="fit:true,border:false">
+				<div title="事件统计" data-options="iconCls:'weigui'">
+					<ul class="left_menu aqgk">
+						<li>
+							<a href="#" onclick="addPanel('09cockpit/1event_statistics/event_summary_statistics.html','事件汇总统计')"><span class="span-icon4"></span>事件汇总统计</a>
+						</li>
+   
+					</ul>
+				</div>
+				<div title="事件管理" data-options="iconCls:'jiaohu'">
+					<ul class="left_menu aqgk">
+						<li>
+							<a href="#" onclick="addPanel('09cockpit/2event_management/event_information_home.html','事件信息管理')"><span class="span-icon4"></span>事件信息管理</a>
+						</li>
+						<li>
+							<a href="#" onclick="addPanel('09cockpit/2event_management/event_information_management.html','事件信息')"><span class="span-icon4"></span>事件信息</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-options="region:'center'">
+			<div id="mainContainer" class="easyui-tabs" fit="true" border="false" style="width:100%;height:100%;overflow:hidden;">
+				<div title="主页" class="center_top">
+					<ul class="center_ul">
+						<li class="panel_01">
+							<div class="easyui-panel" title="驾驶人信息" style="width:100%;height:100%;background:#fafafa;" data-options="maximizable:true">
+								<table border="0" cellspacing="0" cellpadding="0" class="mes_tab">
+									<tbody>
+										<tr>
+											<td>标题</td>
+											<td>数据</td>
+										</tr>
+										<tr>
+											<td>姓名</td>
+											<td>王先生</td>
+										</tr>
+										<tr>
+											<td>性别</td>
+											<td>男</td>
+										</tr>
+										<tr>
+											<td>国籍</td>
+											<td>中国</td>
+										</tr>
+										<tr>
+											<td>出生日期</td>
+											<td>1991-04-01</td>
+										</tr>
+										<tr>
+											<td>血型</td>
+											<td>o型</td>
+										</tr>
+										<tr>
+											<td>联系方式</td>
+											<td>13569845215</td>
+										</tr>
+										<tr>
+											<td>车队(级)</td>
+											<td>某某大车队</td>
+										</tr>
+										<tr>
+											<td>证件</td>
+											<td>15984567459526</td>
+										</tr>
+										<tr>
+											<td>累计行驶时间</td>
+											<td>4555635公里</td>
+										</tr>
+										<tr>
+											<td>疾病史</td>
+											<td>无</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</li>
+						<li class="panel_02">
+							<div class="easyui-panel" title="车辆信息" style="width:100%;height:100%;background:#fafafa;" data-options="maximizable:true">
+								<table border="0" cellspacing="0" cellpadding="0" class="mes_tab">
+									<tbody>
+										<tr>
+											<td>标题</td>
+											<td>数据</td>
+										</tr>
+										<tr>
+											<td>姓名</td>
+											<td>王先生</td>
+										</tr>
+										<tr>
+											<td>性别</td>
+											<td>男</td>
+										</tr>
+										<tr>
+											<td>国籍</td>
+											<td>中国</td>
+										</tr>
+										<tr>
+											<td>出生日期</td>
+											<td>1991-04-01</td>
+										</tr>
+										<tr>
+											<td>血型</td>
+											<td>o型</td>
+										</tr>
+										<tr>
+											<td>联系方式</td>
+											<td>13569845215</td>
+										</tr>
+										<tr>
+											<td>车队(级)</td>
+											<td>某某大车队</td>
+										</tr>
+										<tr>
+											<td>证件</td>
+											<td>15984567459526</td>
+										</tr>
+										<tr>
+											<td>累计行驶时间</td>
+											<td>4555635公里</td>
+										</tr>
+										<tr>
+											<td>疾病史</td>
+											<td>无</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</li>
+						<li class="panel_03">
+							<div class="easyui-panel" title="货物信息" style="width:100%;height:100%;background:#fafafa;" data-options="maximizable:true">
+								<table border="0" cellspacing="0" cellpadding="0" class="mes_tab">
+									<tbody>
+										<tr>
+											<td>标题</td>
+											<td>数据</td>
+										</tr>
+										<tr>
+											<td>姓名</td>
+											<td>王先生</td>
+										</tr>
+										<tr>
+											<td>性别</td>
+											<td>男</td>
+										</tr>
+										<tr>
+											<td>国籍</td>
+											<td>中国</td>
+										</tr>
+										<tr>
+											<td>出生日期</td>
+											<td>1991-04-01</td>
+										</tr>
+										<tr>
+											<td>血型</td>
+											<td>o型</td>
+										</tr>
+										<tr>
+											<td>联系方式</td>
+											<td>13569845215</td>
+										</tr>
+										<tr>
+											<td>车队(级)</td>
+											<td>某某大车队</td>
+										</tr>
+										<tr>
+											<td>证件</td>
+											<td>15984567459526</td>
+										</tr>
+										<tr>
+											<td>累计行驶时间</td>
+											<td>4555635公里</td>
+										</tr>
+										<tr>
+											<td>疾病史</td>
+											<td>无</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</li>
+						<li>
+							<div class="top" style="width:100%;height:50%;">
+								<div class="easyui-panel" title="天气信息" style="width:100%;height:100%;background:#fafafa;" data-options="maximizable:true">
+									<table border="0" cellspacing="0" cellpadding="0" class="mes_tab">
+										<tbody>
+											<tr>
+												<td>标题</td>
+												<td>数据</td>
+											</tr>
+											<tr>
+												<td>姓名</td>
+												<td>王先生</td>
+											</tr>
+											<tr>
+												<td>性别</td>
+												<td>男</td>
+											</tr>
+											<tr>
+												<td>国籍</td>
+												<td>中国</td>
+											</tr>
+											<tr>
+												<td>出生日期</td>
+												<td>1991-04-01</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="bottom" style="width:100%;height:50%;">
+								<div class="easyui-panel" title="音视频" style="width:100%;height:100%;background:#fafafa;overflow: hidden;" data-options="maximizable:true">
+									<video src="css/music.mp4" controls="controls" style="width: 100%;height: 100%;background: #000;"></video>
+								</div>
+							</div>
+						</li>
+
+						<li id="dash">
+							<div class="hand1">
+								<div class="hang_icon1">
+									<span></span>
+								</div>
+							</div>
+							<div class="hand2">
+								<span class="hang_icon2">
+					    				<span></span>
+								</span>
+							</div>
+							<div class="bottom"></div>
+							<div class="hand3">
+								<span class="hang_icon3">
+					    				<span></span>
+								</span>
+							</div>
+							<div class="hand4">
+								<span class="hang_icon4">
+					    				<span></span>
+								</span>
+							</div>
+							<div class="map_box">
+								<div id="allmap"></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="win" class="easyui-window" closed="true" data-options="title:'驾驶人信息',inline:true" style="width:100%;height:100%;">
+		    <table border="0" cellspacing="0" cellpadding="0" class="mes_tab">
+				<tbody>
+					<tr>
+						<td>标题</td>
+						<td>数据</td>
+					</tr>
+					<tr>
+						<td>姓名</td>
+						<td>王先生</td>
+					</tr>
+					<tr>
+						<td>性别</td>
+						<td>男</td>
+					</tr>
+					<tr>
+						<td>国籍</td>
+						<td>中国</td>
+					</tr>
+					<tr>
+						<td>出生日期</td>
+						<td>1991-04-01</td>
+					</tr>
+					<tr>
+						<td>血型</td>
+						<td>o型</td>
+					</tr>
+					<tr>
+						<td>联系方式</td>
+						<td>13569845215</td>
+					</tr>
+					<tr>
+						<td>车队(级)</td>
+						<td>某某大车队</td>
+					</tr>
+					<tr>
+						<td>证件</td>
+						<td>15984567459526</td>
+					</tr>
+					<tr>
+						<td>累计行驶时间</td>
+						<td>4555635公里</td>
+					</tr>
+					<tr>
+						<td>疾病史</td>
+						<td>无</td>
+					</tr>
+					<tr>
+						<td>姓名</td>
+						<td>王先生</td>
+					</tr>
+					<tr>
+						<td>性别</td>
+						<td>男</td>
+					</tr>
+					<tr>
+						<td>国籍</td>
+						<td>中国</td>
+					</tr>
+					<tr>
+						<td>出生日期</td>
+						<td>1991-04-01</td>
+					</tr>
+					<tr>
+						<td>血型</td>
+						<td>o型</td>
+					</tr>
+					<tr>
+						<td>联系方式</td>
+						<td>13569845215</td>
+					</tr>
+					<tr>
+						<td>车队(级)</td>
+						<td>某某大车队</td>
+					</tr>
+					<tr>
+						<td>证件</td>
+						<td>15984567459526</td>
+					</tr>
+					<tr>
+						<td>累计行驶时间</td>
+						<td>4555635公里</td>
+					</tr>
+					<tr>
+						<td>疾病史</td>
+						<td>无</td>
+					</tr>
+				</tbody>
+			</table>
+
+        </div>
+		<div id="win1" class="easyui-window" closed="true" data-options="title:'车辆信息',inline:true" style="width:100%;height:100%;">
+		    <table border="0" cellspacing="0" cellpadding="0" class="mes_tab">
+				<tbody>
+					<tr>
+						<td>标题</td>
+						<td>数据</td>
+					</tr>
+					<tr>
+						<td>姓名</td>
+						<td>王先生</td>
+					</tr>
+					<tr>
+						<td>性别</td>
+						<td>男</td>
+					</tr>
+					<tr>
+						<td>国籍</td>
+						<td>中国</td>
+					</tr>
+					<tr>
+						<td>出生日期</td>
+						<td>1991-04-01</td>
+					</tr>
+					<tr>
+						<td>血型</td>
+						<td>o型</td>
+					</tr>
+					<tr>
+						<td>联系方式</td>
+						<td>13569845215</td>
+					</tr>
+					<tr>
+						<td>车队(级)</td>
+						<td>某某大车队</td>
+					</tr>
+					<tr>
+						<td>证件</td>
+						<td>15984567459526</td>
+					</tr>
+					<tr>
+						<td>累计行驶时间</td>
+						<td>4555635公里</td>
+					</tr>
+					<tr>
+						<td>疾病史</td>
+						<td>无</td>
+					</tr>
+					<tr>
+						<td>姓名</td>
+						<td>王先生</td>
+					</tr>
+					<tr>
+						<td>性别</td>
+						<td>男</td>
+					</tr>
+					<tr>
+						<td>国籍</td>
+						<td>中国</td>
+					</tr>
+					<tr>
+						<td>出生日期</td>
+						<td>1991-04-01</td>
+					</tr>
+					<tr>
+						<td>血型</td>
+						<td>o型</td>
+					</tr>
+					<tr>
+						<td>联系方式</td>
+						<td>13569845215</td>
+					</tr>
+					<tr>
+						<td>车队(级)</td>
+						<td>某某大车队</td>
+					</tr>
+					<tr>
+						<td>证件</td>
+						<td>15984567459526</td>
+					</tr>
+					<tr>
+						<td>累计行驶时间</td>
+						<td>4555635公里</td>
+					</tr>
+					<tr>
+						<td>疾病史</td>
+						<td>无</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+		<div id="win2" class="easyui-window" closed="true" data-options="title:'货物信息',inline:true" style="width:100%;height:100%;">
+		    <table border="0" cellspacing="0" cellpadding="0" class="mes_tab">
+				<tbody>
+					<tr>
+						<td>标题</td>
+						<td>数据</td>
+					</tr>
+					<tr>
+						<td>姓名</td>
+						<td>王先生</td>
+					</tr>
+					<tr>
+						<td>性别</td>
+						<td>男</td>
+					</tr>
+					<tr>
+						<td>国籍</td>
+						<td>中国</td>
+					</tr>
+					<tr>
+						<td>出生日期</td>
+						<td>1991-04-01</td>
+					</tr>
+					<tr>
+						<td>血型</td>
+						<td>o型</td>
+					</tr>
+					<tr>
+						<td>联系方式</td>
+						<td>13569845215</td>
+					</tr>
+					<tr>
+						<td>车队(级)</td>
+						<td>某某大车队</td>
+					</tr>
+					<tr>
+						<td>证件</td>
+						<td>15984567459526</td>
+					</tr>
+					<tr>
+						<td>累计行驶时间</td>
+						<td>4555635公里</td>
+					</tr>
+					<tr>
+						<td>疾病史</td>
+						<td>无</td>
+					</tr>
+					<tr>
+						<td>姓名</td>
+						<td>王先生</td>
+					</tr>
+					<tr>
+						<td>性别</td>
+						<td>男</td>
+					</tr>
+					<tr>
+						<td>国籍</td>
+						<td>中国</td>
+					</tr>
+					<tr>
+						<td>出生日期</td>
+						<td>1991-04-01</td>
+					</tr>
+					<tr>
+						<td>血型</td>
+						<td>o型</td>
+					</tr>
+					<tr>
+						<td>联系方式</td>
+						<td>13569845215</td>
+					</tr>
+					<tr>
+						<td>车队(级)</td>
+						<td>某某大车队</td>
+					</tr>
+					<tr>
+						<td>证件</td>
+						<td>15984567459526</td>
+					</tr>
+					<tr>
+						<td>累计行驶时间</td>
+						<td>4555635公里</td>
+					</tr>
+					<tr>
+						<td>疾病史</td>
+						<td>无</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+		<div id="win3" class="easyui-window" closed="true" data-options="title:'天气信息',inline:true" style="width:100%;height:100%;">
+		     <table border="0" cellspacing="0" cellpadding="0" class="mes_tab">
+				<tbody>
+					<tr>
+						<td>标题</td>
+						<td>数据</td>
+					</tr>
+					<tr>
+						<td>姓名</td>
+						<td>王先生</td>
+					</tr>
+					<tr>
+						<td>性别</td>
+						<td>男</td>
+					</tr>
+					<tr>
+						<td>国籍</td>
+						<td>中国</td>
+					</tr>
+					<tr>
+						<td>出生日期</td>
+						<td>1991-04-01</td>
+					</tr>
+					<tr>
+						<td>血型</td>
+						<td>o型</td>
+					</tr>
+					<tr>
+						<td>联系方式</td>
+						<td>13569845215</td>
+					</tr>
+					<tr>
+						<td>车队(级)</td>
+						<td>某某大车队</td>
+					</tr>
+					<tr>
+						<td>证件</td>
+						<td>15984567459526</td>
+					</tr>
+					<tr>
+						<td>累计行驶时间</td>
+						<td>4555635公里</td>
+					</tr>
+					<tr>
+						<td>疾病史</td>
+						<td>无</td>
+					</tr>
+					<tr>
+						<td>姓名</td>
+						<td>王先生</td>
+					</tr>
+					<tr>
+						<td>性别</td>
+						<td>男</td>
+					</tr>
+					<tr>
+						<td>国籍</td>
+						<td>中国</td>
+					</tr>
+					<tr>
+						<td>出生日期</td>
+						<td>1991-04-01</td>
+					</tr>
+					<tr>
+						<td>血型</td>
+						<td>o型</td>
+					</tr>
+					<tr>
+						<td>联系方式</td>
+						<td>13569845215</td>
+					</tr>
+					<tr>
+						<td>车队(级)</td>
+						<td>某某大车队</td>
+					</tr>
+					<tr>
+						<td>证件</td>
+						<td>15984567459526</td>
+					</tr>
+					<tr>
+						<td>累计行驶时间</td>
+						<td>4555635公里</td>
+					</tr>
+					<tr>
+						<td>疾病史</td>
+						<td>无</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+		<div id="win4" class="easyui-window" closed="true" data-options="title:'音视频',inline:true" style="width:100%;height:100%;">
+			<div class="video">
+				 <ul class="video_ul">
+				 	<li><video src="css/music.mp4" controls="controls" style="width: 100%;height: 100%;"></video></li>
+				 	<li><video src="css/music.mp4" controls="controls" style="width: 100%;height: 100%;"></video></li>
+				 </ul>
+				 <ul class="video_ul">
+				 	<li><video src="css/music.mp4" controls="controls" style="width: 100%;height: 100%;"></video></li>
+				 	<li><video src="css/music.mp4" controls="controls" style="width: 100%;height: 100%;"></video></li>
+				 </ul>
+		    </div>
+		</div>
+
+		</div>				
+		<div id="tabsMenu" class="easyui-menu" style="width: 120px; height: 72px; display: none; left: 0px; top: 0px;">
+			<div name="close" class="menu-item">关闭</div>
+			<div name="Other" class="menu-item">关闭其他</div>
+			<div name="All" class="menu-item">关闭全部</div>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		$(function(){
+			$('.panel_01 .panel-tool-max').click(function() {
+				$('#win').window('open');
+			})
+			$('.panel_02 .panel-tool-max').click(function() {
+				$('#win1').window('open');
+			})
+			$('.panel_03 .panel-tool-max').click(function() {
+				$('#win2').window('open');
+			})
+			$('.top .panel-tool-max').click(function() {
+				$('#win3').window('open');
+			})
+			$('.bottom .panel-tool-max').click(function() {
+				$('#win4').window('open');
+
+			})
+		})
+		//      指针转动
+		setInterval(function() {
+			$('.hang_icon1 span').css({
+				"transition": '1s',
+				"transform": "rotate(" + parseInt(Math.random() * 100) + "deg)"
+			});
+			$('.hang_icon2 span').css({
+				"transition": '1s',
+				"transform": "rotate(" + parseInt(-Math.random() * 100) + "deg)"
+			});
+			$('.hang_icon3 span').css({
+				"transition": '1s',
+				"transform": "rotate(" + parseInt(Math.random() * 100) + "deg)"
+			});
+			$('.hang_icon4 span').css({
+				"transition": '1s',
+				"transform": "rotate(" + parseInt(Math.random() * 100) + "deg)"
+			});
+
+		}, 1000)
+
+		// 百度地图API功能
+		var map = new BMap.Map("allmap"); // 创建Map实例
+		map.centerAndZoom(new BMap.Point(116.404, 39.915), 11); // 初始化地图,设置中心点坐标和地图级别
+		//添加地图类型控件
+		map.addControl(new BMap.MapTypeControl({
+			mapTypes: [
+				BMAP_NORMAL_MAP,
+				BMAP_HYBRID_MAP
+			]
+		}));
+		map.setCurrentCity("北京"); // 设置地图显示的城市 此项是必须设置的
+		map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+	</script>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8 />
+		<title>指令交互记录</title>
+		<link rel="import" href="../../public.html">
+	
+	</head>
+    <body class="easyui-layout" style="overflow: hidden;">
+    		<div id='w1' class="easyui-window" closed='true' title="权重设置" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:109px;overflow: hidden;">
+				<div  title="" class="panel-body panel-body-noheader panel-body-noborder dialog-content">
+					<div id="divWeight" style="padding:10px;box-sizing: border-box;">
+						您没有查询权限
+					</div>
+					<div style="width: 94%; text-align: center;position: absolute;bottom: 5px;">
+					<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w1').window('close')">确定</a>
+				</div>
+				</div>
+				
+			</div>
+			<div class="div_approval_search clear_box" style="padding: 5px; height: auto">
+						上级平台：
+						<input type="text" name="plateId" id="plateId" class="easyui-validatebox textbox validatebox-text" maxlength="200" style="height:18px;width:150px">
+						指令类型：
+						<input id="cc" name="dept" value="aa">
+						发送时间：
+						<input class="easyui-datebox datebox-f combo-f" id="startDate" style="width: 100px; display: none;">
+						返回时间
+						<input class="easyui-datebox datebox-f combo-f" id="endDate" style="width: 100px; display: none;">	
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch()">重置</span>
+						
+			</div>
+			<table id="dg" style="width:100%;height:92%;margin-top:20px;" data-options="fitColumns:true,rownumbers:true,singleSelect:true,pagination:true,url:'../../json/instruction_interaction.json',method:'get'">
+				<thead>
+					<tr>
+						<th data-options="field:'COMMAND',width:151">指令类型</th>
+						<th data-options="field:'UPPER_PLATEFORM',width:151" >上级平台</th>
+						<th data-options="field:'BACK_CONTENT',width:151">返回内容</th>
+						<th data-options="field:'SEND_TIME',width:151">发送时间</th>
+						<th data-options="field:'BACK_TIME',width:151">返回时间</th>
+						<th data-options="field:'SEND_PARAM',width:151">指令参数</th>
+					</tr>
+				</thead>
+			</table>
+		<script>
+			$(function() {
+				var pager = $('#dg').datagrid().datagrid('getPager'); // get the pager of datagrid
+				pager.pagination({
+					buttons: [{
+						iconCls: 'icon-search',
+						handler: function() {
+							alert('search');
+						}
+					}, {
+						iconCls: 'icon-add',
+						handler: function() {
+							alert('add');
+						}
+					}, {
+						iconCls: 'icon-edit',
+						handler: function() {
+							alert('edit');
+						}
+					}]
+//				});
+
+			});
+			
+		});
+		
+		$('#cc').combobox({
+		    url:'../../json/instruction_interaction1.json',
+		    valueField:'id',
+		    method:"get",
+		    textField:'text'
+		});
+	
+		</script>
+	</body>
+
+</html>

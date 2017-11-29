@@ -1,0 +1,25 @@
+[{
+		"id": 1,
+		"text": "集团总部",
+		"children": [
+		{
+		"id": 11,
+		"text": "默认组（可右键添加组或车辆）",
+		"state": "closed",
+		"children": [
+			{
+				"id": 111,
+				"text": "Friend"
+			}, {
+				"id": 112,
+				"text": "Wife"
+			}, {
+				"id": 113,
+				"text": "Company"
+			}
+		]
+	}
+	]
+}
+]
+

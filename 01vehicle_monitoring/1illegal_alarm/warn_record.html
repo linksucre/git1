@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link href="../../images/logo.png" rel="shortcut icon" />
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+    <script type="text/javascript" src="../../js/loading.js"></script>
+    <style type="text/css">
+		body,html{
+			overflow: hidden;
+		}
+	</style>
+	<body class="easyui-layout">
+		<div region="center" style="overflow: hidden;">
+	        <table border="0" cellspacing="0" cellpadding="0" class="clear_box table_layout">
+				<tr>
+					<td>单位：</td>
+					<td><input id="cc" class="easyui-combotree width" data-options="url:'../../json/tree_data1.json',method:'get',required:false"></td>
+					<td>车牌号：</td>
+					<td><input type="text" name="number" class="width1"/></td>
+					<td>预警类型：</td>
+					<td colspan="2">
+						<select class="easyui-combobox width">
+							<option value="ar">全部</option>
+							<option value="bg">禁止停车区报警（平台）</option>
+							<option value="ca">平台超速报警（平台）</option>
+							<option value="zh-cht">限时行车报警（平台）</option>
+							<option value="cs">三交一封报警（平台）</option>
+							<option value="da">丢失网络信号报警（平台）</option>
+							<option value="nl">未按时离开报警（平台）</option>
+							<option value="en" selected="selected">未按时到达报警（平台）</option>
+							<option value="et">停车超时报警（平台）</option>
+						</select>
+					</td>
+					<td>报警时间：</td>
+					<td>
+						<input placeholder="请填入用车时间" id="useDate" class="easyui-datetimebox" editable="false" style="width: 100px; display: none;" comboname="useDate">
+					</td>
+					<td>
+						<input placeholder="请填入用车时间" id="useDate" class="easyui-datetimebox" editable="false" style="width: 100px; display: none;" comboname="useDate">				
+					</td>
+					<td style="position: relative;" id="tree_set">
+						<img src="../../images/treeset.png"/>
+					    <div class="tree_show_set yujing">
+							<p><span class="filter"></span>近1天</p>
+							<p><span class="filter"></span>近3天</p>
+							<p><span class="filter"></span>近5天</p>
+							<p><span class="filter"></span>近7天</p>
+						</div>
+					
+					</td>
+					<td colspan="4">
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-excel'" ><a id="exportExcel" href="#">导出</a></span>
+					</td>
+				</tr>
+			</table>
+			<table id="dg" title="" class="easyui-datagrid" style="width:100%;height:88%;" data-options="fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../../json/warn_record.json',method:'get'">
+				<thead>
+					<tr>
+						<th data-options="field:'checkbox',checkbox:true"></th>
+						<th data-options="field:'orgName',align:'center',width:200">单位</th>
+						<th data-options="field:'plate',align:'center',width:200">车牌号</th>
+						<th data-options="field:'warnType',align:'center',width:200">预警类型</th>
+						<th data-options="field:'address',align:'center',width:200">预警位置</th>
+						<th data-options="field:'warnDesc',align:'center',width:200">预警描述</th>
+						<th data-options="field:'warnDate',align:'center',width:200">预警时间</th>
+					</tr>
+				</thead>
+			</table>
+	    </div>
+	</body>
+	<script type="text/javascript">
+//		设置
+		$('#tree_set').mouseenter(function() {
+			$('.tree_show_set').show();
+		})
+		$('.tree_show_set').mouseleave(function() {
+			$('.tree_show_set').hide();
+		})
+	</script>
+</html>
