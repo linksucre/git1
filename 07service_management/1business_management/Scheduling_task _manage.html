@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>调度与任务流程管理</title>
+</head>
+<link rel="import" href="../../public.html">
+<script type="text/javascript" src="../../js/fenye.js"></script>
+<script type="text/javascript" src="../../js/loading.js"></script>
+
+<body class="easyui-layout" style="overflow: hidden;">
+    <form id="searchForm" method="post">
+        <table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
+            <tr>
+                <td>流程类型</td>
+                <td>
+                    <select id="taskType" class="easyui-combobox combobox-f combo-f" style="width: 140px; display: none;" editable="false" comboname="taskType">
+                        <option value="">-----请选择-----</option>
+                        <option value="">公务车审批流程</option>
+                        <option value="">生产用车审批流程</option>
+                        <option value="">班车审批流程</option>
+                        <option value="">特殊车辆审批流程</option>
+                    </select>
+                </td>
+
+                <td>单位：</td>
+                <td>
+                    <input id="cc" name="" class="easyui-combotree width" data-options="url:'get_data.php',url:'../../json/alarmSwitchdanwei.json',method:'get',required:false"
+                        style="width:140px;">
+                </td>
+
+                <td colspan="" style="text-align: left;padding-left: 20px;position: relative;">
+                    <span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="query('#dg','#searchForm')">查询</span>
+                    <span class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="window.open('http://www.baidu.com','_blank','width=1100,height=600,menubar=no,toolbar=yes,status=no,top=50,left=150,scrollbars=yes')">添加</span>
+                    <span class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="deleteRows()">删除</span>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <table id="dg" class="easyui-datagrid" style="width:100%;height:90%" data-options="singleSelect:false,collapsible:true,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/renwugenzong.json',method:'get'"></table>
+    <!--模态框-->
+    <div id='w2' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:300px;height:120px;">
+        <div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+            请选择要删除的记录！
+        </div>
+        <div style="width:100%; text-align: center;margin-top: 10px;">
+            <a href="#" class="easyui-linkbutton" onclick="$('#w2').window('close')">确定</a>
+        </div>
+    </div>
+    <div id='w4' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:300px;height:120px;">
+        <div style="width:100%;box-sizing: border-box;padding: 5px 0 0 20px">
+            是否要删除该条信息？
+        </div>
+        <div style="width:100%; text-align: center;margin-top: 10px;">
+            <a href="#" class="easyui-linkbutton sure_btn" onclick="$('#w4').window('close')">确定</a>
+            <a href="#" class="easyui-linkbutton" onclick="$('#w4').window('close')">关闭</a>
+        </div>
+    </div>
+
+    <div id='dlg2' class="easyui-window" closed='true' title="短信修改" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:200px;height:250px;">
+        <div style="padding: 10px; box-sizing: border-box;">
+            <div class="easyui-panel" style="height: 250;">
+                <div id="messagesDiv" align="center">
+                    <div>
+                        <span>用车申请</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" value="用车申请" name="messages" checked="checked">
+                        <br>
+                    </div>
+                    <div id="bumen">
+                        <span>部门审批</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" value="部门审批" name="messages" checked="checked">
+                        <br>
+                    </div>
+                    <div>
+                        <span>人车调派</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" value="人车调派" name="messages" checked="checked">
+                        <br>
+                    </div>
+                    <div id="diaopai">
+                        <span>调派审批</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" value="调派审批" name="messages" checked="checked">
+                        <br>
+                    </div>
+                    <div>
+                        <span>通知派发</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" value="通知派发" name="messages" checked="checked">
+                        <br>
+                    </div>
+                    <div>
+                        <span>任务进行中</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" value="任务进行中" name="messages" checked="checked">
+                        <br>
+                    </div>
+                    <div>
+                        <span>任务完成</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" value="任务完成" name="messages" checked="checked">
+                        <br>
+                    </div>
+                    <div>
+                        <span>回车登记</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" value="回车登记" name="messages" checked="checked">
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modifyMessage-button" style="text-align: center;" class="dialog-button">
+                <a href="#" class="easyui-linkbutton" onclick="$('#dlg2').window('close')">保存</a>
+                <a href="#" class="easyui-linkbutton" onclick="$('#dlg2').window('close')">关闭</a>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript">
+    //以下很长一段表格数据
+    $(function () {
+        $('#dg').datagrid({
+            singleSelect: false,
+            fitColumns: true,
+            collapsible: true,
+            rownumbers: true,
+            pagination: true,
+            columns: [
+                [{
+                        field: 'checkbox',
+                        checkbox: true
+                    },
+                    {
+                        field: 'taskId',
+                        title: '流程ID',
+                        width: 100,
+                        align: 'center'
+                    },
+                    {
+                        field: 'applyOrgCode',
+                        title: '流程KEY',
+                        width: 100,
+                        align: 'center'
+                    },
+                    {
+                        field: 'taskName',
+                        title: '流程名称',
+                        width: 100,
+                        align: 'center',
+                        editor: 'numberbox'
+                    },
+                    {
+                        field: 'applyOrgName',
+                        title: '所属单位',
+                        width: 100,
+                        align: 'center'
+                    },
+                    {
+                        field: 'applyDate',
+                        title: '模板类型',
+                        width: 100,
+                        editor: 'text',
+                        align: 'center'
+                    },
+
+                    {
+                        field: 'taskStatus',
+                        title: '流程类型',
+                        width: 100,
+                        align: 'center'
+                    },
+
+                    {
+                        field: 'templateType',
+                        title: '节点数量',
+                        width: 100,
+                        align: 'center',
+                    },
+                    {
+                        field: 'action',
+                        title: '操作',
+                        width: 100,
+                        align: 'center',
+
+
+                        formatter: function (value, row, index) {
+                            var p =
+                                '<a href="#" onclick=alert("#dlg2")  style="color: dodgerblue;">修改短信开关</a>';
+                            return p;
+                        }
+                    }
+                ]
+            ]
+        });
+    });
+
+
+
+    function deleteRows() {
+        var deletedData = $("#dg").datagrid('getChecked');
+        if (deletedData == "") {
+            $("#w2").window('open')
+        } else {
+            $("#w4").window('open')
+        }
+
+    }
+    $('#sure_btn').click(function () {
+        $('#w4').window('close');
+        for (var i = deletedData.length - 1; i >= 0; i--) {
+            var rowIndex = $("#dg").datagrid('getRowIndex', deletedData[i]);
+            if (deletedData.length > 0) {
+                $("#dg").datagrid('deleteRow', rowIndex)
+            }
+
+        }
+    })
+
+
+    function Wopen(){  
+      window.open('http://www.baidu.com','_blank','width=1100,height=600,menubar=no,toolbar=yes,status=no,top=50,left=150,scrollbars=yes')  
+  
+  }   
+</script>
+
+</html>

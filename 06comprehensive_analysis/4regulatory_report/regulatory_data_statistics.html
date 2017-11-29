@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<link href="../../images/logo.png" rel="shortcut icon" />
+<link rel="import" href="../../public.html">
+<script type="text/javascript" src="../../js/fenye.js"></script>
+<script type="text/javascript" src="../../js/loading.js"></script>
+<style type="text/css">
+    body,
+    html {
+        overflow: hidden;
+    }
+</style>
+
+<body class="easyui-layout">
+    <div region="center" style="overflow: hidden;">
+        <table border="0" cellspacing="0" cellpadding="0" class="clear_box table_layout">
+            <tr>
+                <td>开始时间：</td>
+                <td>
+                    <input placeholder="请填入用车时间" id="useDate" class="easyui-datetimebox" editable="false" style="width: 180px; display: none;"
+                        comboname="useDate">
+                </td>
+                <td>结束时间：</td>
+                <td>
+                    <input placeholder="请填入用车时间" id="useDate" class="easyui-datetimebox" editable="false" style="width: 180px; display: none;"
+                        comboname="useDate">
+                </td>
+                <td colspan="4">
+                    <span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+                    <span class="easyui-linkbutton" data-options="iconCls:'icon-excel'">
+                        <a id="exportExcel" href="#">导出</a>
+                    </span>
+                </td>
+            </tr>
+        </table>
+        <table id="dg" class="easyui-datagrid" style="width:100%;height:80%" data-options="singleSelect:true,fitColumns:true,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/busuness_platform_data.json',method:'get'">
+        </table>
+    </div>
+</body>
+<script type="text/javascript">
+    //表格
+    $('#dg').datagrid({
+        columns: [
+            [{
+                    field: 'ORG_NAME',
+                    title: '平台名称',
+                    width: 100,
+                    rowspan: 2,
+                    formatter: formatter
+                },
+                {
+                    "title": "巡查指令",
+                    "colspan": 4
+                },
+                {
+                    "title": "督办指令",
+                    "colspan": 4
+                },
+
+
+            ],
+            [{
+                    "field": "ALARM_47",
+                    "title": "巡查指令总数",
+                    "rowspan": 1,
+                    align: 'center',
+                    width: 100
+                },
+                {
+                    "field": "ALARM_47_HIS",
+                    "title": "巡查指令处理数",
+                    "rowspan": 1,
+                    align: 'center',
+                    width: 100
+                },
+                {
+                    "field": "ALARM_15",
+                    "title": "巡查指令未处理数",
+                    "rowspan": 1,
+                    align: 'center',
+                    width: 100
+                },
+                {
+                    "field": "ALARM_15_HIS",
+                    "title": "巡查指令处理率(%)",
+                    "rowspan": 1,
+                    align: 'center',
+                    width: 100
+                },
+                {
+                    "field": "ALARM_29",
+                    "title": "督办指令总数",
+                    "rowspan": 1,
+                    align: 'center',
+                    width: 100
+                },
+                {
+                    "field": "ALARM_29_HIS",
+                    "title": "督办指令处理数",
+                    "rowspan": 1,
+                    align: 'center',
+                    width: 100
+                },
+                {
+                    "field": "ALARM_12",
+                    "title": "督办指令未处理数",
+                    "rowspan": 1,
+                    align: 'center',
+                    width: 100
+                },
+                {
+                    "field": "ALARM_12_HIS",
+                    "title": "督办指令处理率(%)",
+                    "rowspan": 1,
+                    align: 'center',
+                    width: 100
+                }
+
+            ]
+        ]
+
+    });
+
+    function formatter(value, row, index) {
+        if (index == 0) {
+            return value;
+        }
+    }
+</script>
+
+</html>

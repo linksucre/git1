@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>限时行车预警</title>
+    <link rel="import" href="../../public.html">
+    <script type="text/javascript" src="../../js/loading.js"></script>
+    <script src="../../js/fenye.js"></script>
+</head>
+
+<body class="easyui-layout">
+    <!--模态框-->
+
+    <div id='w' class="easyui-window" closed='true' title="添加" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:500px;height:117px; padding: 5px">
+        <table id="addAlarmTimeTable">
+            <tbody>
+                <tr>
+                    <input type="hidden" id="addAlarmTimeOrgCode" value="0108030111">
+                    <input type="hidden" id="addAlarmTimeEfectObject" value="0">
+                    <td>报警开始时间：
+                        <!-- <span class="spinner" style="width: 138px; height: 20px;"> -->
+                            <input class="easyui-datetimespinner" style="width:130px;cursor: pointer;height: 22px;line-height: 22px;" data-options="
+                                        <!-- value: '6/24/2014 17:23:56', -->
+                                        showSeconds: true,
+                                        icons:[{
+                                            iconCls:'icon-clear',
+                                            handler: function(e){
+                                                $(e.data.target).datetimespinner('clear');
+                                            }
+                                        }]
+                                        ">
+                        <!-- </span> -->
+                    </td>
+                    <td>报警结束时间：
+                        <span class="spinner" style="width: 138px; height: 20px;">
+                            <input class="easyui-datetimespinner" style="width:130px;cursor: pointer;height: 22px;line-height: 22px;" data-options="
+                                            <!-- value: '6/24/2014 17:23:56', -->
+                                            showSeconds: true,
+                                            icons:[{
+                                                iconCls:'icon-clear',
+                                                handler: function(e){
+                                                    $(e.data.target).datetimespinner('clear');
+                                                }
+                                            }]
+                                            ">
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="addRoadCondition-button" style="text-align:center;" class="dialog-button">
+            <a href="javascript:void(0)" class="easyui-linkbutton" style="margin:0px;" onclick="$('#w').window('close')">确定</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" style="margin:0px;" onclick="$('#w').window('close')">关闭</a>
+        </div>
+    </div>
+    <div id='w1' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:300px;height:150px;">
+        <div style="padding: 10px;margin-bottom:15px;">
+            请选择要操作的数据！
+        </div>
+
+        <div style="text-align:center;padding:5px">
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w1').window('close')">确定</a>
+        </div>
+    </div>
+
+
+    <div id="vblackdataTablesearch" style="padding: 5px; height: auto" class="datagrid-toolbar clear_box">
+        <table>
+            <tbody>
+                <tr>
+                    <td>作用对象：
+                        <select id="efectObject" class="easyui-combobox combobox-f combo-f" style="width: 140px;" editable="false">
+                            <option value="">全部</option>
+                            <option value="0">组织机构</option>
+                            <option value="1">车辆</option>
+                        </select>
+                    </td>
+                    <td>组织机构：
+                        <input type="text" id="cc22" class="validatebox-text easyui-combotree combo-text" autocomplete="on" data-options="url:'../../json/index_tree.json',method:'get',required:false"
+                            style="width:130px;" />
+                        <span class="combo-clear qingchu" style="display: block; right: 45px;"></span>
+                    </td>
+
+                    <td>车牌号码：
+                        <input type="text" id="idNumber1" class="easyui-validatebox textbox validatebox-text" style="width:100px;height:22px">
+                    </td>
+                    <td>
+                        <span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+                        <a class="easyui-linkbutton " data-options="iconCls:'icon-search'" onclick="clearSearch('#dg')">重置</a>
+                        <a href="#" id="amdataTable_dealbtn" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="$('#w').window('open')">添加</a>
+                        <a href="#" id="amdataTable_dealbtn" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="deleteRows();">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>开始时间：
+                        <span class="spinner" style="width: 138px; height: 20px;">
+                            <input class="easyui-datetimespinner" style="width:140px;cursor: pointer;height: 22px;line-height: 22px;" data-options="
+                                <!-- value: '6/24/2014 17:23:56', -->
+                                showSeconds: true,
+                                icons:[{
+                                    iconCls:'icon-clear',
+                                    handler: function(e){
+                                        $(e.data.target).datetimespinner('clear');
+                                    }
+                                }]
+                                ">
+                        </span>
+                    </td>
+                    <td>结束时间：
+                        <span class="spinner" style="width: 138px; height: 20px;">
+                            <input class="easyui-datetimespinner" style="width:140px;cursor: pointer;height: 22px;line-height: 22px;" data-options="
+                                    <!-- value: '6/24/2014 17:23:56', -->
+                                    showSeconds: true,
+                                    icons:[{
+                                        iconCls:'icon-clear',
+                                        handler: function(e){
+                                            $(e.data.target).datetimespinner('clear');
+                                        }
+                                    }]
+                                    ">
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+
+
+        <table id="dg" title="" style="width:100%;height:700px;" data-options="onRowContextMenu: onRowContextMenu,rownumbers:true,fitColumns:true,singleSelect:false,pagination:true,url:'../../json/alarm_record.json',method:'get'">
+            <thead>
+                <tr>
+                    <th data-options="field:'ck',checkbox:true"></th>
+                    <th data-options="field:'orgCode',width:100,align:'center'">作用对象</th>
+                    <th data-options="field:'alarmTypeName',width:100,align:'center'">作用对象值</th>
+                    <th data-options="field:'idNumber',formatter:formatter_caozuo,width:100,align:'center'">操作</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <script>
+        //   查询		
+        function query() {
+            $("#dg1").datagrid("load", sy.serializeObject($("#searchForm").form())); //将searchForm表单内的元素序列为对象传递到后台
+        }
+
+        function onRowContextMenu(e, rowIndex, rowData) {
+            e.preventDefault();
+            var selected = $("#dg").datagrid('getRows'); //获取所有行集合对象			
+            selected[rowIndex].id; //index为当前右键行的索引，指向当前行对象			
+            $('#mm').menu('show', {
+                left: e.pageX + 10,
+                top: e.pageY
+            });
+        }
+
+    
+
+        function deleteRows() {
+            var deletedData = $("#dg").datagrid('getChecked');
+            if (deletedData == "") {
+                $("#w1").window('open')
+            }
+            for (var i = deletedData.length - 1; i >= 0; i--) {
+                var rowIndex = $("#dg").datagrid('getRowIndex', deletedData[i]);
+                if (deletedData.length > 0) {
+                    $("#dg").datagrid('deleteRow', rowIndex)
+                }
+
+            }
+        }
+
+        function formatter_caozuo(value, row, index) {
+            var e = '<a href="#" onclick=alert("#dlg")  style="color: dodgerblue;margin-right:5px">添加预警时间</a>';
+            return e;
+        }
+    </script>
+</body>
+
+</html>

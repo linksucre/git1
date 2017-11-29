@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>车辆类型管理</title>
+    <link rel="import" href="../../public.html">
+    <script type="text/javascript" src="../../js/loading.js"></script>
+    <script src="../../js/fenye.js"></script>
+</head>
+
+<body class="easyui-layout">
+    <!--模态框-->
+
+    <div id='w' class="easyui-window" closed='true' title="自定义车辆类型" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:540px;height:280px; padding: 5px">
+
+        <table style="width:100%">
+            <tbody>
+
+                <tr>
+                    <td style="width:40%;text-align:left">
+                        <span style="width:30%;text-align:left">标题：</span>
+                        <input type="text" class="easyui-numberbox easyui-validatebox numberbox numberbox-f validatebox-text" data-options="required:true,min:1,max:10"
+                            id="supplierName" style="width: 150px; height: 22px;text-align:left; line-height: 22px;" title="">
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <div id="addCred-button" style="text-align:center;padding:0px;margin-top:58px" class="dialog-button">
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('close')">确定</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('close')">关闭</a>
+        </div>
+    </div>
+    <div id="vblackdataTablesearch" style="padding: 5px; height: auto" class="datagrid-toolbar clear_box">
+        <td>车辆类型：</td>
+        <td>
+            <input type="text" class="easyui-numberbox" data-options="" id="clientName" style="width: 100px; height: 22px; line-height: 22px;"
+                title="">
+        </td>
+        <span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+        <a class="easyui-linkbutton " data-options="iconCls:'icon-search'" onclick="clearSearch('#dg')">重置</a>
+        <a href="#" id="amdataTable_dealbtn" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="$('#w').window('open')">添加</a>
+        <table id="dg" title="" style="width:100%;height:800px;" data-options="onRowContextMenu: onRowContextMenu,rownumbers:true,fitColumns:true,singleSelect:true,pagination:true,url:'../../json/weizhangxinxi.json',method:'get'">
+            <thead>
+                <tr>
+                    <th data-options="field:'vioDesc',width:2,align:'center'">标题</th>
+                    <th data-options="field:'orgName',width:200,align:'left'">车辆类型</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <script>
+        //   查询		
+        function query() {
+            $("#dg1").datagrid("load", sy.serializeObject($("#searchForm").form())); //将searchForm表单内的元素序列为对象传递到后台
+        }
+
+        function onRowContextMenu(e, rowIndex, rowData) {
+            e.preventDefault();
+            var selected = $("#dg").datagrid('getRows'); //获取所有行集合对象			
+            selected[rowIndex].id; //index为当前右键行的索引，指向当前行对象			
+            $('#mm').menu('show', {
+                left: e.pageX + 10,
+                top: e.pageY
+            });
+        }
+    </script>
+</body>
+
+</html>
