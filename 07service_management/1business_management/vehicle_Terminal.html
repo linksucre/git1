@@ -6,7 +6,6 @@
 		<link href="../../images/logo.png" rel="shortcut icon" />
 		<link rel="import" href="../../public.html">
 		<script type="text/javascript" src="../../js/loading.js"></script>
-		<script type="text/javascript" src="../../js/fenye.js"></script>
 		  <style>
 		  	.search{
 				height: 13px;
@@ -58,10 +57,10 @@
 									
 									<td>单位：</td>
 									<td>
-										<div class="clear_mes">
-											<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
-											<span class="clearMess" style="display:none;"></span>
-									    </div>
+									<div class="search">
+									 	<input type="text" class="easyui-combotree" name="unitId" comboname="orgCode" style="width:150px;height:20px;border:1px solid #95b8e7;" data-options="url:'get_data.php',url:'../../json/alarmSwitchdanwei.json',method:'get'">
+										<span class="combo-clear qingchu"></span>
+									</div>
 									</td>
 								</tr>
 								<tr>

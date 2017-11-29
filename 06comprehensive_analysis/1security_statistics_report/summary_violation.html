@@ -3,18 +3,22 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>违规汇总统计</title>
+		<title></title>
 	</head>
 	<link rel="import" href="../../public.html">
 	<script type="text/javascript" src="../../js/fengxian.js"></script>
 	<script type="text/javascript" src="../../js/loading.js"></script>
-	<script type="text/javascript" src="../../js/more_data.js"></script>
+	<style>	
+		.combo-arrow {
+		    background: url(images/combo_arrow.png) no-repeat center center;
+		}
+	</style>
 	<body class="easyui-layout">		
 	    <div data-options="region:'center',border:false" style="width:100%;height:90%">
 	        <div id="tab" class="easyui-tabs" style="width:100%;height:100%">			
 				<div title="日(区段)统计" style="width: 100%; height: 100%; padding:0 0 0 10px;">
 					<p class="title" style="display: none;height:3%;box-sizing: border-box; padding:14px 0 5px 5px;margin: 0px;">当前位置：
-					   <a href="#" style="color: dodgerblue;" class="remove_first" onclick="remove_first('#dg','.remove_first','../../json/risk_warn1.json')">集团公司</a>
+					   <a href="#" style="color: dodgerblue;" class="remove">集团公司</a>
 				    </p>
 					<p class="title_day" style="height:3%;box-sizing: border-box; padding:14px 0 5px 5px;margin: 0px;">当前位置：
 					   <a href="#" style="color: dodgerblue;" class="remove_day">集团公司</a>
@@ -22,15 +26,11 @@
 					<table border="0" cellspacing="0" cellpadding="0" style="width: 100%;">
 						<tr>
 							<td style="white-space: nowrap;">单位：</td>
-							<td>
-								<div class="clear_mes">
-									<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
-									<span class="clearMess" style="display:none;"></span>
-							    </div>
-							</td>
+							<td><input id="cc" class="easyui-combotree" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:200px;"></td>
 					        <td style="white-space: nowrap;">开始日期：</td>
 						    <td>
 						    	<input type="text" id="start-dateQuery" class="easyui-datebox datebox-f combo-f validatebox-text" editable="false" style="margin-right: 10px; display: none;" comboname="start-dateQuery">
+						    	<!--<input type="text" id="start-dateQuery" class="easyui-datebox" editable="false" comboname="start-dateQuery">--> 
 						    </td>
 						    <td style="white-space: nowrap;">结束日期：</td>
 						    <td><input type="text" id="end-dateQuery" class="easyui-datebox" editable="false" comboname="end-dateQuery"></td>
@@ -45,27 +45,73 @@
 					</table>
 					<div id="main" style="width:100%;height:80%;"></div>
 			        <!--表格开始-->
-				        <div class="hide_dg" style="width:100%;height:85%;display: none;overflow: hidden;">
-						<table id="dg" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn1.json',method:'get'">
+			        <div>
+				        <div class="div-dg0 hide_dg" style="width:100%;height:85%;display: none;overflow: hidden;">
+						<table id="dg0" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false, fitColumns :true,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn.json',method:'get'">
 							<thead>
 								<tr>
-									<th data-options="field:'ORG_NAME',formatter:formatter,width:200">单位</th>
-									<th data-options="field:'ORG_NAME1',width:200">车牌号</th>
-									<th data-options="field:'TOTAL_SEND',width:200">预警发送总次数</th>
-									<th data-options="field:'WEATHER_WARN_COUNT',width:200">天气预警发送次数</th>
-									<th data-options="field:'ROAD_WARN_COUNT',width:200">路况预警发送次数</th>
-									<th data-options="field:'EQU_WARN_COUNT',width:200">地质灾害发送次数</th>
-									<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:200">危险路段发送次数</th>
-									<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:200">危险驾驶预警发送次数</th>
+									<th data-options="field:'ORG_NAME',formatter:myFormatter0,width:270">单位</th>
+									<th data-options="field:'TOTAL_SEND',width:260">预警发送总次数</th>
+									<th data-options="field:'WEATHER_WARN_COUNT',width:260">天气预警发送次数</th>
+									<th data-options="field:'ROAD_WARN_COUNT',width:260">路况预警发送次数</th>
+									<th data-options="field:'EQU_WARN_COUNT',width:260">地质灾害发送次数</th>
+									<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:260">危险路段发送次数</th>
+									<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:260">危险驾驶预警发送次数</th>
 								</tr>
 							</thead>
 						</table>
-					</div>				
+					</div>
+						<div class="div-dg1" style="width:100%;height:85%;display: none;">
+							<table id="dg1" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false,fitColumns :true,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn1.json',method:'get'">
+								 <thead>
+									<tr>
+										<th data-options="field:'ORG_NAME',formatter:myFormatter1,width:270">单位</th>
+										<th data-options="field:'TOTAL_SEND',width:260">预警发送总次数</th>
+										<th data-options="field:'WEATHER_WARN_COUNT',width:260">天气预警发送次数</th>
+										<th data-options="field:'ROAD_WARN_COUNT',width:260">路况预警发送次数</th>
+										<th data-options="field:'EQU_WARN_COUNT',width:260">地质灾害发送次数</th>
+										<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:260">危险路段发送次数</th>
+										<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:260">危险驾驶预警发送次数</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div class="div-dg2" style="width:100%;height:85%;display: none;">
+							<table id="dg2" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false,fitColumns :true,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn2.json',method:'get'">
+								 <thead>
+									<tr>
+										<th data-options="field:'ORG_NAME',formatter:myFormatter2,width:270">单位</th>
+										<th data-options="field:'TOTAL_SEND',width:260">预警发送总次数</th>
+										<th data-options="field:'WEATHER_WARN_COUNT',width:260">天气预警发送次数</th>
+										<th data-options="field:'ROAD_WARN_COUNT',width:260">路况预警发送次数</th>
+										<th data-options="field:'EQU_WARN_COUNT',width:260">地质灾害发送次数</th>
+										<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:260">危险路段发送次数</th>
+										<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:260">危险驾驶预警发送次数</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div class="div-dg3" style="width:100%;height:85%;display: none;">
+							<table id="dg3" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn3.json',method:'get'">
+								  <thead>
+									<tr>
+										<th data-options="field:'ORG_NAME',width:270">单位</th>
+										<th data-options="field:'TOTAL_SEND',width:260">预警发送总次数</th>
+										<th data-options="field:'WEATHER_WARN_COUNT',width:260">天气预警发送次数</th>
+										<th data-options="field:'ROAD_WARN_COUNT',width:260">路况预警发送次数</th>
+										<th data-options="field:'EQU_WARN_COUNT',width:260">地质灾害发送次数</th>
+										<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:260">危险路段发送次数</th>
+										<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:260">危险驾驶预警发送次数</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+	                </div>
 				    <!--表格结束-->
 				</div>
 				<div title="月统计" style="width: 100%; height: 100%; padding: 10px;">
 					<p class="title_mouth" style="display:none;height:3%;box-sizing: border-box; padding:14px 0 5px 5px;margin: 0px;">当前位置：
-					   <a href="#" style="color: dodgerblue;" class="remove_mouth" onclick="remove_first('#dg1','.remove_mouth','../../json/risk_warn1.json')">集团公司</a>
+					   <a href="#" style="color: dodgerblue;" class="remove_mouth">集团公司</a>
 				    </p>
 					<p class="title_mouth_mo" style="height:3%;box-sizing: border-box; padding:14px 0 5px 5px;margin: 0px;">当前位置：
 					   <a href="#" style="color: dodgerblue;" class="remove_mouth_mo">集团公司</a>
@@ -73,12 +119,7 @@
 					<table border="0" cellspacing="0" cellpadding="0" >
 						<tr>
 							<td style="white-space: nowrap;">单位：</td>
-							<td>
-								<div class="clear_mes">
-									<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
-									<span class="clearMess" style="display:none;"></span>
-							    </div>
-							</td>
+							<td><input type="text" id="orgCode" class="easyui-combotree" style="margin-right: 10px;" comboname="orgCode"></td>
 						    <td style="white-space: nowrap;">年份：</td>
 						    <td>
 						    	<select class="easyui-combobox" style="width: 120px;">
@@ -113,30 +154,74 @@
 					</table>
 					<div id="main1" style="width:100%;height:80%;"></div>
 					<!--表格开始-->
-				
-					<div class="hide_dg1" style="width:100%;height:85%;display: none;">
-						<table id="dg1" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn1.json',method:'get'">
+					<div>
+					    <div class="div-dg_mouth0 hide_dg1" style="width:100%;height:85%;display: none;">
+						<table id="dg_mouth0" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn.json',method:'get'">
 							<thead>
 								<tr>
-									<th data-options="field:'ORG_NAME',formatter:formatter1,width:200">单位</th>
-									<th data-options="field:'ORG_NAME1',width:200">车牌号</th>
-									<th data-options="field:'TOTAL_SEND',width:200">预警发送总次数</th>
-									<th data-options="field:'WEATHER_WARN_COUNT',width:200">天气预警发送次数</th>
-									<th data-options="field:'ROAD_WARN_COUNT',width:200">路况预警发送次数</th>
-									<th data-options="field:'EQU_WARN_COUNT',width:200">地质灾害发送次数</th>
-									<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:200">危险路段发送次数</th>
-									<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:200">危险驾驶预警发送次数</th>
+									<th data-options="field:'ORG_NAME',formatter:myFormatter_mouth0,width:270">单位</th>
+									<th data-options="field:'TOTAL_SEND',width:260">预警发送总次数</th>
+									<th data-options="field:'WEATHER_WARN_COUNT',width:260">天气预警发送次数</th>
+									<th data-options="field:'ROAD_WARN_COUNT',width:260">路况预警发送次数</th>
+									<th data-options="field:'EQU_WARN_COUNT',width:260">地质灾害发送次数</th>
+									<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:260">危险路段发送次数</th>
+									<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:260">危险驾驶预警发送次数</th>
 								</tr>
 							</thead>
 						</table>
 					</div>
-						
+						<div class="div-dg_mouth1" style="width:100%;height:85%;display: none;">
+							<table id="dg_mouth1" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn1.json',method:'get'">
+								 <thead>
+									<tr>
+										<th data-options="field:'ORG_NAME',formatter:myFormatter_mouth1,width:270">单位</th>
+										<th data-options="field:'TOTAL_SEND',width:260">预警发送总次数</th>
+										<th data-options="field:'WEATHER_WARN_COUNT',width:260">天气预警发送次数</th>
+										<th data-options="field:'ROAD_WARN_COUNT',width:260">路况预警发送次数</th>
+										<th data-options="field:'EQU_WARN_COUNT',width:260">地质灾害发送次数</th>
+										<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:260">危险路段发送次数</th>
+										<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:260">危险驾驶预警发送次数</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div class="div-dg_mouth2" style="width:100%;height:85%;display: none;">
+							<table id="dg_mouth2" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn2.json',method:'get'">
+								 <thead>
+									<tr>
+										<th data-options="field:'ORG_NAME',formatter:myFormatter_mouth2,width:270">单位</th>
+										<th data-options="field:'TOTAL_SEND',width:260">预警发送总次数</th>
+										<th data-options="field:'WEATHER_WARN_COUNT',width:260">天气预警发送次数</th>
+										<th data-options="field:'ROAD_WARN_COUNT',width:260">路况预警发送次数</th>
+										<th data-options="field:'EQU_WARN_COUNT',width:260">地质灾害发送次数</th>
+										<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:260">危险路段发送次数</th>
+										<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:260">危险驾驶预警发送次数</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div class="div-dg_mouth3" style="width:100%;height:85%;display: none;">
+							<table id="dg_mouth3" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn3.json',method:'get'">
+								  <thead>
+									<tr>
+										<th data-options="field:'ORG_NAME',width:270">单位</th>
+										<th data-options="field:'TOTAL_SEND',width:260">预警发送总次数</th>
+										<th data-options="field:'WEATHER_WARN_COUNT',width:260">天气预警发送次数</th>
+										<th data-options="field:'ROAD_WARN_COUNT',width:260">路况预警发送次数</th>
+										<th data-options="field:'EQU_WARN_COUNT',width:260">地质灾害发送次数</th>
+										<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:260">危险路段发送次数</th>
+										<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:260">危险驾驶预警发送次数</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+					</div>
 					<!--表格结束-->
 				</div>
 				
 				<div title="年统计" style="width: 100%; height: 100%; padding: 10px;">
 					<p class="title_year" style="display: none; height:3%;box-sizing: border-box; padding:14px 0 5px 5px;margin: 0px;">当前位置：
-					   <a href="#" style="color: dodgerblue;" class="remove_year" onclick="remove_first('#dg2','.remove_year','../../json/risk_warn1.json')">集团公司</a>
+					   <a href="#" style="color: dodgerblue;" class="remove_year">集团公司</a>
 				    </p>
 					<p class="title_year_ye" style="height:3%;box-sizing: border-box; padding:14px 0 5px 5px;margin: 0px;">当前位置：
 					   <a href="#" style="color: dodgerblue;" class="remove_year_ye">集团公司</a>
@@ -144,12 +229,7 @@
 					<table border="0" cellspacing="0" cellpadding="0" >
 						<tr>
 							<td style="white-space: nowrap;">单位：</td>
-							<td>
-								<div class="clear_mes">
-									<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
-									<span class="clearMess" style="display:none;"></span>
-							    </div>
-							</td>
+							<td><input type="text" id="orgCode" class="easyui-combotree" style="margin-right: 10px;" comboname="orgCode"></td>
 						    <td style="white-space: nowrap;">年份：</td>
 						    <td>
 						    	<select class="easyui-combobox" style="width: 120px;">
@@ -170,23 +250,68 @@
 					</table>
 					<div id="main2" style="width:100%;height:80%;"></div>
 				    <!--表格开始-->
-				         <div class="hide_dg2" style="width:100%;height:85%;display: none;">
-							 <table id="dg2" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn1.json',method:'get'">
+				    <div>
+				         <div class="div-dg_year0 hide_dg2" style="width:100%;height:85%;display: none;">
+							 <table id="dg_year0" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn.json',method:'get'">
 								<thead>
 									<tr>
-										<th data-options="field:'ORG_NAME',formatter:formatter2,width:200">单位</th>
-										<th data-options="field:'ORG_NAME1',width:200">车牌号</th>
-										<th data-options="field:'TOTAL_SEND',width:200">预警发送总次数</th>
-										<th data-options="field:'WEATHER_WARN_COUNT',width:200">天气预警发送次数</th>
-										<th data-options="field:'ROAD_WARN_COUNT',width:200">路况预警发送次数</th>
-										<th data-options="field:'EQU_WARN_COUNT',width:200">地质灾害发送次数</th>
-										<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:200">危险路段发送次数</th>
-										<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:200">危险驾驶预警发送次数</th>
+										<th data-options="field:'ORG_NAME',formatter:myFormatter_year0,width:270">单位</th>
+										<th data-options="field:'TOTAL_SEND',width:260">预警发送总次数</th>
+										<th data-options="field:'WEATHER_WARN_COUNT',width:260">天气预警发送次数</th>
+										<th data-options="field:'ROAD_WARN_COUNT',width:260">路况预警发送次数</th>
+										<th data-options="field:'EQU_WARN_COUNT',width:260">地质灾害发送次数</th>
+										<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:260">危险路段发送次数</th>
+										<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:260">危险驾驶预警发送次数</th>
 									</tr>
 								</thead>
 							</table>
 						</div>
-						
+						 <div class="div-dg_year1" style="width:100%;height:85%;display: none;">
+							<table id="dg_year1" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn1.json',method:'get'">
+								 <thead>
+									<tr>
+										<th data-options="field:'ORG_NAME',formatter:myFormatter_year1,width:270">单位</th>
+										<th data-options="field:'TOTAL_SEND',width:260">预警发送总次数</th>
+										<th data-options="field:'WEATHER_WARN_COUNT',width:260">天气预警发送次数</th>
+										<th data-options="field:'ROAD_WARN_COUNT',width:260">路况预警发送次数</th>
+										<th data-options="field:'EQU_WARN_COUNT',width:260">地质灾害发送次数</th>
+										<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:260">危险路段发送次数</th>
+										<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:260">危险驾驶预警发送次数</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						 <div class="div-dg_year2" style="width:100%;height:85%;display: none;">
+							<table id="dg_year2" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn2.json',method:'get'">
+								 <thead>
+									<tr>
+										<th data-options="field:'ORG_NAME',formatter:myFormatter_year2,width:270">单位</th>
+										<th data-options="field:'TOTAL_SEND',width:260">预警发送总次数</th>
+										<th data-options="field:'WEATHER_WARN_COUNT',width:260">天气预警发送次数</th>
+										<th data-options="field:'ROAD_WARN_COUNT',width:260">路况预警发送次数</th>
+										<th data-options="field:'EQU_WARN_COUNT',width:260">地质灾害发送次数</th>
+										<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:260">危险路段发送次数</th>
+										<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:260">危险驾驶预警发送次数</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						 <div class="div-dg_year3" style="width:100%;height:85%;display: none;">
+							<table id="dg_year3" class="easyui-datagrid" style="width:100%;height:100%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/risk_warn3.json',method:'get'">
+								  <thead>
+									<tr>
+										<th data-options="field:'ORG_NAME',width:270">单位</th>
+										<th data-options="field:'TOTAL_SEND',width:260">预警发送总次数</th>
+										<th data-options="field:'WEATHER_WARN_COUNT',width:260">天气预警发送次数</th>
+										<th data-options="field:'ROAD_WARN_COUNT',width:260">路况预警发送次数</th>
+										<th data-options="field:'EQU_WARN_COUNT',width:260">地质灾害发送次数</th>
+										<th data-options="field:'SEQ_ROAD_WARN_COUNT',width:260">危险路段发送次数</th>
+										<th data-options="field:'DEN_DRIVER_WARN_COUNT',width:260">危险驾驶预警发送次数</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+					</div>
 				    <!--表格结束-->
 				</div>
 				
@@ -195,8 +320,66 @@
 	
 	</body>
 	<script type="text/javascript">
-     var arr=['../../json/risk_warn2.json','../../json/risk_warn3.json','../../json/risk_warn4.json']
-     var hideShow=["risk_warn","ORG_NAME","ORG_NAME1"]
+//	表图切换1
+	 $('.report_box').click(function() {
+			if($(this).attr('class') == 'report_box') {
+				$(this).attr('class', 'chart_box');
+				$('.title').show();
+	 	        $('.title_day').hide();
+				$('#main').hide();
+				$('.hide_dg').show();
+				$("#dg0").datagrid('reload');  
+			} else if($(this).attr('class') == 'chart_box') {
+				$(this).attr('class', 'report_box');
+				$('.title').hide();
+	 	        $('.title_day').show();
+				$('.hide_dg').hide();
+				$('.hide_dg').nextAll().hide();
+				$('#main').show();
+				
+			}
+		});
+	 $('.report_box1').click(function() {
+			if($(this).attr('class') == 'report_box1') {
+				$(this).attr('class', 'chart_box1');
+				$('.title_mouth').show();
+	 	        $('.title_mouth_mo').hide();
+				$('#main1').hide();
+				$('.hide_dg1').show();
+				$("#dg_mouth0").datagrid('reload');  
+			} else if($(this).attr('class') == 'chart_box1') {
+				$(this).attr('class', 'report_box1');
+				$('.title_mouth').hide();
+	 	        $('.title_mouth_mo').show();
+				$('.hide_dg1').hide();
+				$('.hide_dg1').nextAll().hide();
+				$('#main1').show();
+				
+			}
+		})
+	 $('.report_box2').click(function() {
+			if($(this).attr('class') == 'report_box2') {
+				$(this).attr('class', 'chart_box2');
+				$('.title_year').show();
+	 	        $('.title_year_ye').hide();
+				$('#main2').hide();
+				$('.hide_dg2').show();
+				$("#dg_year0").datagrid('reload');  
+			} else if($(this).attr('class') == 'chart_box2') {
+				$(this).attr('class', 'report_box2');
+				$('.title_year').hide();
+	 	        $('.title_year_ye').show();
+				$('.hide_dg2').hide();
+				$('.hide_dg2').nextAll().hide();
+				$('#main2').show();
+				
+			}
+		})
+		$(document).ready(function() {
+			$('#tab').tabs({
+				tabPosition: "bottom"
+			})
+		});
 //		日统计
 		var myChart = echarts.init(document.getElementById('main'));
 		option = {

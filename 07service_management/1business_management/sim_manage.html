@@ -16,12 +16,10 @@
 		<table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
 			<tr>
 				<td>单位：</td>   
-				<td>
-					<div class="clear_mes">
-						<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
-						<span class="clearMess" style="display:none;"></span>
-				    </div>
-				</td>
+				
+					<td><input id="cc" name="company" class="easyui-combotree" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:120px;"></td>
+							
+			
 				<td>SIM卡号：</td>
 				<td><input type="text" name="simNum" class="width1"/></td>
 				<td>运营商：</td>
@@ -377,6 +375,9 @@
 				
 			}
 		}
+
+
+		
 //	上传数据
     //上传excel数据 在本地获取改数据内容
 		var wb; //读取完成的数据
