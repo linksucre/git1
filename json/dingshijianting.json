@@ -1,0 +1,287 @@
+[
+	{
+		"id": 1,
+		"text": "集团总部",
+		"children": [
+			{
+				"myCode": null,
+				"id": "0101",
+				"text": "总部机关",
+				"state": "closed",
+				"iconCls": null,
+				"terminal_code": null,
+				"attributes": {
+					"total": 5,
+					"online": 0,
+					"offline": 0,
+					"run": 0,
+					"stop": 0,
+					"unused": 0
+				},
+				"checked": false,
+				"children": [
+					{
+						"id": 101,
+						"text": "京B12345"
+					}, {
+						"id": 102,
+						"text": "赣A19045"
+					}, {
+						"id": 103,
+						"text": "赣A19046"
+					}, {
+						"id": 104,
+						"text": "赣A10045"
+					}, {
+						"id": 105,
+						"text": "赣A10045"
+					}
+				]
+			}, {
+				"myCode": null,
+				"id": "0105",
+				"text": "油气田企业",
+				"state": "closed",
+				"iconCls": null,
+				"terminal_code": null,
+				"attributes": {
+					"total": 20374,
+					"online": 0,
+					"offline": 0,
+					"run": 0,
+					"stop": 0,
+					"unused": 0
+				},
+				"checked": false,
+				"children": [
+					{
+						"id": "0115",
+						"text": "青海油田",
+						"state": "closed",
+						"iconCls": null,
+						"terminal_code": null,
+						"attributes": {
+							"total": 5
+						},
+						"checked": false,
+						"children": [
+							{
+								"id": "0115",
+								"text": "客运服务-公司",
+								"state": "closed",
+								"iconCls": null,
+								"terminal_code": null,
+								"attributes": {
+									"total": 7
+								},
+								"checked": false,
+								"children": [
+									{
+										"id": 101,
+										"text": "青HA5965"
+									}, {
+										"id": 102,
+										"text": "青A19045"
+									}, {
+										"id": 103,
+										"text": "青A19046"
+									}, {
+										"id": 104,
+										"text": "青A10045"
+									}, {
+										"id": 105,
+										"text": "青A10045"
+									}, {
+										"id": 105,
+										"text": "青A10045"
+									}, {
+										"id": 105,
+										"text": "青A10045"
+									}
+								]
+							}
+						]
+					}, {
+						"id": "0115",
+						"text": "浙江油田",
+						"state": "closed",
+						"iconCls": null,
+						"terminal_code": null,
+						"attributes": {
+							"total": 5
+						},
+						"checked": false,
+						"children": []
+					}, {
+						"id": "0115",
+						"text": "长庆油田",
+						"state": "closed",
+						"iconCls": null,
+						"terminal_code": null,
+						"attributes": {
+							"total": 5
+						},
+						"checked": false,
+						"children": []
+					}, {
+						"id": "0115",
+						"text": "吉林油田",
+						"state": "closed",
+						"iconCls": null,
+						"terminal_code": null,
+						"attributes": {
+							"total": 5
+						},
+						"checked": false,
+						"children": []
+					}, {
+						"id": "0115",
+						"text": "西南汽油田",
+						"state": "closed",
+						"iconCls": null,
+						"terminal_code": null,
+						"attributes": {
+							"total": 5
+						},
+						"checked": false,
+						"children": []
+					}, {
+						"id": "0115",
+						"text": "辽河油田公司",
+						"state": "closed",
+						"iconCls": null,
+						"terminal_code": null,
+						"attributes": {
+							"total": 5
+						},
+						"checked": false,
+						"children": []
+					}, {
+						"id": "0115",
+						"text": "新疆油田公司",
+						"state": "closed",
+						"iconCls": null,
+						"terminal_code": null,
+						"attributes": {
+							"total": 5
+						},
+						"checked": false,
+						"children": []
+					}
+				]
+			}, {
+				"myCode": null,
+				"id": "0106",
+				"text": "炼化企业",
+				"state": "closed",
+				"iconCls": null,
+				"terminal_code": null,
+				"attributes": {
+					"total": 1825,
+					"online": 0,
+					"offline": 0,
+					"run": 0,
+					"stop": 0,
+					"unused": 0
+				},
+				"checked": false
+			}, {
+				"myCode": null,
+				"id": "0107",
+				"text": "销售企业",
+				"state": "closed",
+				"iconCls": null,
+				"terminal_code": null,
+				"attributes": {
+					"total": 959,
+					"online": 0,
+					"offline": 0,
+					"run": 0,
+					"stop": 0,
+					"unused": 0
+				},
+				"checked": false
+			}, {
+				"myCode": null,
+				"id": "0108",
+				"text": "管道储运企业",
+				"state": "closed",
+				"iconCls": null,
+				"terminal_code": null,
+				"attributes": {
+					"total": 579,
+					"online": 0,
+					"offline": 0,
+					"run": 0,
+					"stop": 0,
+					"unused": 0
+				},
+				"checked": false
+			}, {
+				"myCode": null,
+				"id": "0109",
+				"text": "工程技术服务企业",
+				"state": "closed",
+				"iconCls": null,
+				"terminal_code": null,
+				"attributes": {
+					"total": 7219,
+					"online": 0,
+					"offline": 0,
+					"run": 0,
+					"stop": 0,
+					"unused": 0
+				},
+				"checked": false
+			}, {
+				"myCode": null,
+				"id": "0110",
+				"text": "工程建设企业",
+				"state": "closed",
+				"iconCls": null,
+				"terminal_code": null,
+				"attributes": {
+					"total": 2070,
+					"online": 0,
+					"offline": 0,
+					"run": 0,
+					"stop": 0,
+					"unused": 0
+				},
+				"checked": false
+			}, {
+				"myCode": null,
+				"id": "0111",
+				"text": "装备制造企业",
+				"state": "closed",
+				"iconCls": null,
+				"terminal_code": null,
+				"attributes": {
+					"total": 22,
+					"online": 0,
+					"offline": 0,
+					"run": 0,
+					"stop": 0,
+					"unused": 0
+				},
+				"checked": false
+			}, {
+				"myCode": null,
+				"id": "0112",
+				"text": "其他单位",
+				"state": "closed",
+				"iconCls": null,
+				"terminal_code": null,
+				"attributes": {
+					"total": 21842,
+					"online": 0,
+					"offline": 0,
+					"run": 0,
+					"stop": 0,
+					"unused": 0
+				},
+				"checked": false
+			}
+		]
+	}
+]

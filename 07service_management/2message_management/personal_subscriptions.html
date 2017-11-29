@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=utf-8 />
+	<title>查看个人订阅</title>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<script src="../../js/fenye.js"></script>
+</head>
+
+<body class="easyui-layout">
+	<!--模态框-->
+
+	<div id='w' class="easyui-window" closed='true' title="添加" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+	    style="width:550px;height:250px; padding: 5px">
+		<div style="width: 506px; height: 110px; padding: 12px;" title="" class="panel-body panel-body-noheader panel-body-noborder dialog-content">
+			<form>
+				<table width="100%">
+					<tbody>
+						<tr height="40px">
+							<td width="110px" align="left">通知类型：
+								<font color="red" size="3">*</font>
+							</td>
+							<td width="80%">
+
+								<input name="noticeTypeName" id="noticeType6" type="checkbox" value="1006">车辆业务提醒
+								<input name="noticeTypeName" id="noticeType2" type="checkbox" value="1005">业务提醒
+								<input name="noticeTypeName" id="noticeType8" type="checkbox" value="1007">天气预警发送
+								<input name="noticeTypeName" id="noticeType9" type="checkbox" value="1008">路况信息发送
+								<br>
+								<input name="noticeTypeName" id="noticeType10" type="checkbox" value="1009">地震灾害发送
+								<input name="noticeTypeName" id="noticeType11" type="checkbox" value="1010">危险路段预警
+								<input name="noticeTypeName" id="noticeType7" type="checkbox" value="1011">危险驾驶预警
+							</td>
+						</tr>
+						<tr height="40px">
+							<td align="left">接收方式：
+								<font color="red" size="3">*</font>
+							</td>
+							<td>
+								<input name="receiveWay" onclick="addWay();" id="receiveWay1" type="checkbox" value="1">短信
+								<input name="receiveWay" id="receiveWay2" type="checkbox" value="1">邮件
+								<input name="receiveWay" id="receiveWay3" type="checkbox" value="1">页面信息
+							</td>
+						</tr>
+						<tr height="40px" id="addTR" style="display:none">
+							<td align="left">短信发送类型：
+								<font color="red" size="3">*</font>
+							</td>
+							<td>
+								<input type="radio" name="isdistance" id="isdistance" group="isdistance" value="WORK" checked="">工作时间发送
+								<input type="radio" name="isdistance" id="isdistance" group="isdistance" value="REAL">实时发送</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+
+		</div>
+		<div id="addRoadCondition-button" style="text-align:center;" class="dialog-button">
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('close')">确定</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('close')">关闭</a>
+		</div>
+	</div>
+	<div id='w2' class="easyui-window" closed='true' title="修改" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+	    style="width:550px;height:250px; padding: 5px">
+		<div style="width: 506px; height: 110px; padding: 12px;" title="" class="panel-body panel-body-noheader panel-body-noborder dialog-content">
+			<form>
+				<table width="100%">
+					<tbody>
+						<tr height="40px">
+							<td width="110px" align="left">通知类型：
+								<font color="red" size="3">*</font>
+							</td>
+							<td width="80%">
+
+								<input name="noticeTypeName"  type="checkbox" value="1006">车辆业务提醒
+								<input name="noticeTypeName"  type="checkbox" value="1005">业务提醒
+								<input name="noticeTypeName"  type="checkbox" value="1007">天气预警发送
+								<input name="noticeTypeName"  type="checkbox" value="1008">路况信息发送
+								<br>
+								<input name="noticeTypeName"  type="checkbox" value="1009">地震灾害发送
+								<input name="noticeTypeName"  type="checkbox" value="1010">危险路段预警
+								<input name="noticeTypeName"  type="checkbox" value="1011">危险驾驶预警
+							</td>
+						</tr>
+						<tr height="40px">
+							<td align="left">接收方式：
+								<font color="red" size="3">*</font>
+							</td>
+							<td>
+								<input name="receiveWay" onclick="" id="receiveWay11" type="checkbox" value="1">短信
+								<input name="receiveWay"  type="checkbox" value="1">邮件
+								<input name="receiveWay"  type="checkbox" value="1">页面信息
+							</td>
+						</tr>
+						<tr height="40px" id="addTR1" style="display:none">
+							<td align="left">短信发送类型：
+								<font color="red" size="3">*</font>
+							</td>
+							<td>
+								<input type="radio" name="isdistance" id="isdistance1" group="isdistance" value="WORK" checked="">工作时间发送
+								<input type="radio" name="isdistance" id="isdistance2" group="isdistance" value="REAL">实时发送</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+
+		</div>
+
+		<div id="addCred-button" style="text-align:center;padding:0px;" class="dialog-button">
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w2').window('close')">确定</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w2').window('close')">关闭</a>
+		</div>
+	</div>
+
+	<div id='w1' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+	    style="width:300px;height:150px;">
+		<div style="padding: 10px;margin-bottom:15px;">
+			请选择要操作的数据！
+		</div>
+
+		<div style="text-align:center;padding:5px">
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w1').window('close')">确定</a>
+		</div>
+	</div>
+
+
+	<div id="vblackdataTablesearch" style="padding: 5px; height: auto" class="datagrid-toolbar clear_box">
+		<td>通知类型：</td>
+		<select style="width: 100px;" id="terminalType5" class="easyui-combobox combobox-f combo-f" editable="false" comboname="terminalType">
+			<option value="">全部</option>
+			<option value="">业务提醒</option>
+			<option value="">车辆业务提醒</option>
+			<option value="">危险驾驶预警</option>
+			<option value="">天气预警发送</option>
+			<option value="">路况信息发送</option>
+			<option value="">地震灾害发送</option>
+			<option value="">危险路段预警</option>
+			<option value="">欧亚北斗星V2.1</option>
+			<option value="">油量提醒</option>
+		</select>
+		<td>开始时间：</td>
+		<td>
+			<input class="easyui-datetimebox" editable="false" style="width: 100px" comboname="useDate">
+		</td>
+		<td>结束时间：</td>
+		<td>
+			<input class="easyui-datetimebox" editable="false" style="width: 100px" comboname="useDate1">
+		</td>
+
+		<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+		<a class="easyui-linkbutton " data-options="iconCls:'icon-search'" onclick="clearSearch('#dg')">重置</a>
+		<a href="#" id="amdataTable_dealbtn" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="$('#w').window('open')">添加</a>
+		<a href="#" id="amdataTable_dealbtn1" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="edit()">修改</a>
+		<a href="#" id="amdataTable_dealbtn" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="deleteRows();">删除</a>
+		<table id="dg" title="" style="width:100%;height:700px;" data-options="onRowContextMenu: onRowContextMenu,rownumbers:true,fitColumns:true,singleSelect:false,pagination:true,url:'../../json/alarm_record.json',method:'get'">
+			<thead>
+				<tr>
+					<th data-options="field:'ck',checkbox:true"></th>
+					<th data-options="field:'vehicleId',width:60,align:'center'">组织机构</th>
+					<th data-options="field:'idNumber',width:60,align:'center'">通知类型</th>
+					<th data-options="field:'orgCode',width:60,align:'center'">接收方式</th>
+					<th data-options="field:'alarmTypeName',width:60,align:'center'">短信发送类型</th>
+					<th data-options="field:'alarmDate',width:60,align:'center'">记录时间</th>
+					<th data-options="field:'endDate',width:60,align:'center'">修改时间</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+	<script>
+		//   查询		
+		function query() {
+			$("#dg1").datagrid("load", sy.serializeObject($("#searchForm").form())); //将searchForm表单内的元素序列为对象传递到后台
+		}
+
+		function onRowContextMenu(e, rowIndex, rowData) {
+			e.preventDefault();
+			var selected = $("#dg").datagrid('getRows'); //获取所有行集合对象			
+			selected[rowIndex].id; //index为当前右键行的索引，指向当前行对象			
+			$('#mm').menu('show', {
+				left: e.pageX + 10,
+				top: e.pageY
+			});
+		}
+
+		function edit() {
+			var editdData = $("#dg").datagrid('getChecked');
+			if (editdData == "") {
+				$("#w1").window('open');
+			} else {
+				$("#w2").window('open');
+			}
+		}
+
+		function deleteRows() {
+			var deletedData = $("#dg").datagrid('getChecked');
+			if (deletedData == "") {
+				$("#w1").window('open')
+			}
+			for (var i = deletedData.length - 1; i >= 0; i--) {
+				var rowIndex = $("#dg").datagrid('getRowIndex', deletedData[i]);
+				if (deletedData.length > 0) {
+					$("#dg").datagrid('deleteRow', rowIndex)
+				}
+
+			}
+		}
+		// 点击短信展开
+		function addWay() {
+			$('#receiveWay1').click(function() {
+				// if($(this).attr("checked")==true) {
+					$('#addTR').css("display","table-row")
+				// }
+			})
+		}
+	</script>
+</body>
+
+</html>

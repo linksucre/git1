@@ -1,0 +1,26 @@
+{
+    "total": 4,
+    "rows": [
+        {
+            "userLogin": "ysgspanx",
+            "userName": "潘鑫",
+            "time": "2017-09-15 13:25:20"
+        },
+        {
+            "userLogin": "abc123",
+            "userName": "李红",
+            "time": "2017-09-15 15:5:20"
+        },
+        {
+            "userLogin": "789gred",
+            "userName": "张亮",
+            "time": "2017-09-15 9:15:20"
+        },
+        {
+            "userLogin": "ghdrtdc",
+            "userName": "赵航",
+            "time": "2017-09-15 18:20:20"
+        }
+    ],
+    "tableType": null
+}
