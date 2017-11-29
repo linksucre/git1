@@ -1,0 +1,139 @@
+{
+    "total": 19,
+    "rows": [
+        {
+            "org_name": "其他单位",
+            "rownum": 1,
+            "vehicle_count": 21834,
+            "total_alarm": 1913275,
+            "org_code": "0112"
+        },
+        {
+            "org_name": "工程技术服务企业",
+            "rownum": 2,
+            "vehicle_count": 7236,
+            "total_alarm": 18540,
+            "org_code": "0109"
+        },
+        {
+            "org_name": "管道储运企业",
+            "rownum": 3,
+            "vehicle_count": 579,
+            "total_alarm": 964,
+            "org_code": "0108"
+        },
+        {
+            "org_name": "工程建设企业",
+            "rownum": 4,
+            "vehicle_count": 2070,
+            "total_alarm": 118,
+            "org_code": "0110"
+        },
+        {
+            "org_name": "新疆配送主动安全管控",
+            "rownum": 5,
+            "vehicle_count": 0,
+            "total_alarm": 72,
+            "org_code": "0124"
+        },
+        {
+            "org_name": "销售企业",
+            "rownum": 6,
+            "vehicle_count": 958,
+            "total_alarm": 29,
+            "org_code": "0107"
+        },
+        {
+            "org_name": "炼化企业",
+            "rownum": 7,
+            "vehicle_count": 1846,
+            "total_alarm": 15,
+            "org_code": "0106"
+        },
+        {
+            "org_name": "油气田企业",
+            "rownum": 8,
+            "vehicle_count": 20370,
+            "total_alarm": 12,
+            "org_code": "0105"
+        },
+        {
+            "org_name": "总部机关",
+            "rownum": 9,
+            "vehicle_count": 5,
+            "total_alarm": 1,
+            "org_code": "0101"
+        },
+        {
+            "org_name": "装备制造企业",
+            "rownum": 10,
+            "vehicle_count": 22,
+            "total_alarm": 0,
+            "org_code": "0111"
+        },
+        {
+            "org_name": "集团公司",
+            "rownum": 11,
+            "vehicle_count": 0,
+            "total_alarm": 0,
+            "org_code": "01"
+        },
+        {
+            "org_name": "总部挂靠单位",
+            "rownum": 12,
+            "vehicle_count": 0,
+            "total_alarm": 0,
+            "org_code": "0102"
+        },
+        {
+            "org_name": "专业公司",
+            "rownum": 13,
+            "vehicle_count": 0,
+            "total_alarm": 0,
+            "org_code": "0103"
+        },
+        {
+            "org_name": "未列入机构序列的单位",
+            "rownum": 14,
+            "vehicle_count": 0,
+            "total_alarm": 0,
+            "org_code": "0104"
+        },
+        {
+            "org_name": "科研及事业单位",
+            "rownum": 15,
+            "vehicle_count": 0,
+            "total_alarm": 0,
+            "org_code": "0113"
+        },
+        {
+            "org_name": "参股企业",
+            "rownum": 16,
+            "vehicle_count": 0,
+            "total_alarm": 0,
+            "org_code": "0114"
+        },
+        {
+            "org_name": "海外企业",
+            "rownum": 17,
+            "vehicle_count": 0,
+            "total_alarm": 0,
+            "org_code": "0115"
+        },
+        {
+            "org_name": "终端接入",
+            "rownum": 18,
+            "vehicle_count": 0,
+            "total_alarm": 0,
+            "org_code": "0117"
+        },
+        {
+            "org_name": "工程建设企业",
+            "rownum": 19,
+            "vehicle_count": 0,
+            "total_alarm": 0,
+            "org_code": "0119"
+        }
+    ],
+    "tableType": "org"
+}

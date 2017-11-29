@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>假日管理</title>
+    <link rel="import" href="../../public.html">
+    <script type="text/javascript" src="../../js/loading.js"></script>
+    <script src="../../js/fenye.js"></script>
+</head>
+
+<body class="easyui-layout">
+    <!--模态框-->
+    <div id='w' class="easyui-window" closed='true' title="新增资质" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:300px;height:222px;">
+
+        <table class="car_shenqing">
+            <tbody>
+                <tr>
+                    <td align="center">假期名：</td>
+                    <td align="left">
+                        <input data-options="required:true" type="text" id="userDefinedCode" style="width: 75%" class=""> </td>
+                </tr>
+
+                <tr>
+                    <td align="right" width="30%">放假开始时间：</td>
+                    <td align="left" width="100%">
+                        <input data-options="required:true" placeholder="请填入用车时间" id="useDate" class="easyui-datetimebox" editable="false" style="width: 140px; display: none;"
+                            comboname="useDate">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="35%">放假结束时间：</td>
+                    <td align="left" width="25%">
+                        <input data-options="required:true" placeholder="请填入用车时间" id="backDate" class="easyui-datetimebox combo-f datetimebox-f datebox-f"
+                            editable="false" style="width: 140px; display: none;" comboname="backDate">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">备注：</td>
+                    <td>
+                        <textarea type="text" id="remark" name="remark" class="easyui-validatebox textbox validatebox-text" style="width:149px;font-size:12px;resize:none"
+                            maxlength="25"></textarea>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="addCred-button" style="text-align:center;" class="dialog-button">
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('close')">确定</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('close')">关闭</a>
+        </div>
+    </div>
+
+
+
+
+
+    <div id='w1' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:300px;height:150px;">
+        <div style="padding: 10px;margin-bottom:15px;">
+            选择数据为空，请选择未处理数据！
+        </div>
+
+        <div style="text-align:center;padding:5px">
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w1').window('close')">确定</a>
+        </div>
+    </div>
+    <div style="width:100%;height:100px;padding-top:15px;box-sizing: border-box;" class="violaBox">
+        <table data-options="fit:true" style="border:none" class="table_layout">
+            <tbody>
+                <tr>
+                    <td>假期名：</td>
+                    <td>
+                        <input type="text" id="userDefinedCode" style="width: 120px" class=""> </td>
+                    <td colspan="4" style="text-align: left;padding-left: 20px;position: relative;">
+                        <span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="query('#dg','#searchForm')">查询</span>
+                        <span class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="addMes('#add','#dg','#w','http://dayan.huayitec.com/driverController/insert')">添加</span>
+                        <span class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="deleteData()">删除</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="dg" title="" style="width:100%;height:800px;" data-options="onRowContextMenu: onRowContextMenu,rownumbers:true,fitColumns:true,singleSelect:false,pagination:true,url:'../../json/weiguixinxi.json',method:'get'">
+            <thead>
+                <tr>
+                    <th data-options="field:'checkbox',checkbox:true"></th>
+                    <th data-options="field:'orgName',width:300,align:'center'">单位</th>
+                    <th data-options="field:'drvName',width:300,align:'center'">假期名</th>
+                    <th data-options="field:'startDate',width:300,align:'center'">放假开始时间</th>
+                    <th data-options="field:'endDate',width:300,align:'center'">放假结束时间</th>
+                    <th data-options="field:'other',width:600,align:'center'">备注</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <script>
+        // 删除
+        function deleteData() {
+
+            var deletedData = $("#dg").datagrid('getChecked');
+            if (deletedData == "") {
+                $("#w1").window('open')
+            }
+            for (var i = deletedData.length - 1; i >= 0; i--) {
+                var rowIndex = $("#dg").datagrid('getRowIndex', deletedData[i]);
+                if (deletedData.length > 0) {
+                    $("#dg").datagrid('deleteRow', rowIndex)
+                }
+            }
+        }
+
+        function onRowContextMenu(e, rowIndex, rowData) {
+            e.preventDefault();
+            var selected = $("#dg").datagrid('getRows'); //获取所有行集合对象			
+            selected[rowIndex].id; //index为当前右键行的索引，指向当前行对象			
+            $('#mm').menu('show', {
+                left: e.pageX + 10,
+                top: e.pageY
+            });
+        }
+    </script>
+</body>
+
+</html>
