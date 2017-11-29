@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<body class="easyui-layout" style="overflow: hidden;">
+		<form id="searchForm" method="post">		
+			<table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
+				<tr>
+					<td>驾驶员：</td>
+					<td><input type="text" class="width1" name="userNameRel"/></td>
+					<td>身份证号：</td>
+					<td><input type="text" class="width1" name="idCard"/></td>
+					<td>单位：</td>
+					<td>
+						<div class="clear_mes">
+							<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+							<span class="clearMess" style="display:none;"></span>
+					    </div>
+					</td>
+					<td>手机号：</td>
+					<td><input type="text" class="width1" name="userPhone"/></td>
+					<td>信息来源：</td>
+					<td>
+						<select class="easyui-combobox">
+							<option value="">请选择</option>
+							<option value="">频繁疲劳驾驶</option>
+							<option value="">频繁发生事故</option>
+							<option value="">频繁超速</option>
+							<option value="">其他</option>
+							<option value="">频繁越区</option>
+						</select>
+					</td>
+					<td colspan="6" style="text-align: left;padding-left: 20px;position: relative;">
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="query('#dg','#searchForm')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="addMes('#add','#dg','#w','http://dayan.huayitec.com/driverController/insert')">添加</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-add'"  onclick="windowData('.lizhi','#w5')">离职</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="windowData('.xiugai','#w6')">修改</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="delData('#dg','#w2','#w3','.sure_btn','http://dayan.huayitec.com/driverController/deleteBatch?list=')">删除</span>
+					    <span class="easyui-linkbutton" data-options="iconCls:'icon-excel'" ><a id="exportExcel" href="#">导出</a></span>
+				        <span class="easyui-linkbutton" data-options="iconCls:'icon-impo'" onclick="alert('#w9')"><a href="#" >导入</a></span>
+					</td>                                                              
+				</tr>
+				<tr>
+				</tr>
+			</table>
+		</form>
+			<table id="dg" class="easyui-datagrid" style="width:100%;height:85%" data-options='fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:"http://dayan.huayitec.com/driverController/getListPage"'>
+				<thead>
+					<tr>
+						<th data-options="field:'checkbox',checkbox:true"></th>
+					    <th data-options="field:'userNameRel',width:'200'">驾驶员</th>
+						<th data-options="field:'unitId1',width:'200'">信息来源</th>
+						<th data-options="field:'userUnitName',width:'200'">单位</th>
+						<th data-options="field:'idCard',width:'200'">身份证号</th>
+						<th data-options="field:'userPhone',width:'200'">手机号</th>
+						<th data-options="field:'cerNum',width:'200'">从业资格证号</th>
+						<th data-options="field:'positionStatus',width:'200'">状态</th>
+						<th data-options="field:'entryTime',width:'200'">入职时间</th>
+						<th data-options="field:'leaveTime',width:'200'">离职时间</th>
+					</tr>
+				</thead>
+			</table>
+    <!--模态框-->
+		<div id='w' class="easyui-window" closed='true' title="新增驾驶员" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:600px;height:300px;">
+		   <form method="post" id="add">
+				<table border="0" cellspacing="1" cellpadding="1" style="width: 100%; height:260px;">
+					<tr>
+						<td colspan="4">
+							驾驶员从用户列表中选择：<button class="easyui-linkbutton clear_btn" data-options="iconCls:'icon-search'" onclick="alert('#w0')">选择系统用户</button>
+						</td>
+					</tr>
+					<tr>
+						<td>驾驶员姓名：</td>
+						<td><input type="text" name="userNameRel" class="easyui-validatebox" data-options="required:true"></td>
+						<td>单位：</td>
+						<td>
+							<input class="easyui-combotree" name="userUnitName" data-options="url:'../../json/tree_data1.json',method:'get',required:true">
+						</td>
+					</tr>
+					<tr>
+						<td>驾驶员级别：</td>
+						<td>
+							<select name="driverLvl" class="easyui-combobox" style="width:170px;">
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</td>
+						<td>身份证号：</td>
+						<td><input type="text" name="idCard" class="easyui-validatebox" data-options="required:true"></td>
+					</tr>
+					<tr>
+						<td>手机号：</td>
+						<td><input type="text" name="userPhone" class="easyui-validatebox" data-options="required:true"></td>
+					    <td>固定电话：</td>
+					    <td><input type="text" name="userTel"/></td>
+					</tr>
+					<tr>
+						<td>邮箱：</td>
+						<td><input type="text" name="userEmail" /></td>
+						<td>入职时间：</td>
+						<td><input type="text" class="easyui-datebox" name="entryTime" editable="false" comboname="start-dateQuery" data-options="required:true"></td>
+					</tr>
+					<tr>
+						<td>从业资格证编号：</td>
+						<td><input type="text" name="cerNum"/></td>
+						<td>认证机构名：</td>
+						<td><input type="text" name="certifBody"/></td>
+					</tr>
+					<tr align="center">
+						<td colspan="4">
+							<input type="submit" class="easyui-linkbutton" value="确定"/>
+							<input type="submit" class="easyui-linkbutton" onclick="$('#w').window('close')" value="关闭"/>
+						</td>
+					</tr>
+				</table>				
+			</form>	
+		</div>
+	 <!--选择系统用户-->
+		<div id='w0' class="easyui-window" closed='true' title="选择用户" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:800px;height:500px;">
+			<form method="post" id="search">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td>用户姓名：</td>
+						<td><input type="text" name="userNameRel"/></td>
+						<td>单位：</td>
+						<td><input class="easyui-combotree width" name="userUnitName" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:120px;"></td>
+						<td><span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="query('#dg1','#search')">查询</span></td>
+					</tr>					
+				</table>				
+			</form>	
+				<table id="dg1" class="easyui-datagrid" style="width:100%;height:350px" data-options='fitColumns:true,rownumbers:true,singleSelect:true,pagination:true,url:"http://dayan.huayitec.com/userController/getListPage"'>
+					<thead>
+						<tr>
+						    <th data-options="field:'userNameRel',width:'200'">用户姓名</th>
+							<th data-options="field:'userUnitName',width:'200'">单位</th>
+							<th data-options="field:'userTel',width:'200'">固定电话</th>
+							<th data-options="field:'userPhone',width:'200'">手机号</th>
+							<th data-options="field:'userEmail',width:'200'">邮箱</th>
+						</tr>
+					</thead>
+				</table>
+			<div style="width:100%; text-align: center;margin-top: 5px;">
+				<a href="#" class="easyui-linkbutton" onclick="infor('#dg1','#add','http://dayan.huayitec.com/userController/update?id=','#w0')">确定</a>
+				<a href="#" class="easyui-linkbutton" onclick="$('#w0').window('close')">关闭</a>
+			</div>
+		</div>
+		
+        <div id='w2' class="easyui-window" closed='true' title="提示框" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+					请选择要删除的记录！
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#w2').window('close')">确定</a>
+			</div>
+		</div>
+        <div id='w3' class="easyui-window" closed='true' title="提示框" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+					是否要删除该条信息？
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton sure_btn" onclick="$('#w3').window('close')">确定</a>
+				<a href="#" class="easyui-linkbutton" onclick="$('#w3').window('close')">关闭</a>
+			</div>
+		</div>
+        <div id='w4' class="easyui-window" closed='true' title="提示框" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+					请选择一条记录!
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton sure_btn" onclick="$('#w4').window('close')">确定</a>
+			</div>
+		</div>
+        <div id='w5' class="easyui-window" closed='true' title="提示框" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:400px;height:140px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+				<p>驾驶员:<span class="lizhi"></span> 信息来自ERP系统,无法进行离职操作!</p>
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 20px;">
+				<a href="#" class="easyui-linkbutton" onclick="closeBtn('#w5','.lizhi')">确定</a>
+			</div>
+		</div>
+        <div id='w6' class="easyui-window" closed='true' title="提示框" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:400px;height:140px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+				<p>驾驶员:<span class="xiugai"></span> 信息来自ERP系统,无法进行修改操作!</p>
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 20px;">
+				<a href="#" class="easyui-linkbutton" onclick="closeBtn('#w6','.xiugai')">确定</a>
+			</div>
+		</div>
+ </body>
+</html>

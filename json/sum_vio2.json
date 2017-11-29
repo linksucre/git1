@@ -1,0 +1,18 @@
+{
+	"total": 1,
+	"rows": [
+		{
+			"ORG_CODE": "0124",
+			"ORG_NAME": "新疆配送主动安全管控",
+			"TOTAL_VIOLATION": 0,
+			"OVER_SPEED": 0,
+			"NOT_LOGO_DRIVER": 0,
+			"STOP_VIOLATION": 0,
+			"RUNNING_RED_LIGHTS": 0,
+			"REVERSE_DRIVING": 0,
+			"OTHER__VIOLATION": 0,
+			"ROWNUMBER": 1
+		}
+	],
+	"tableType": "vehicle"
+}

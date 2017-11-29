@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link href="../../images/logo.png" rel="shortcut icon" />
+		<link rel="import" href="../../public.html">
+<script type="text/javascript" src="../../js/loading.js"></script>
+	<body class="easyui-layout">
+		<table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
+			<tr>
+				<td>单位：</td>
+				<td>
+					<div class="clear_mes">
+						<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+						<span class="clearMess" style="display:none;"></span>
+				    </div>
+					
+				</td>
+				<td>开始日期：</td>
+				<td>
+					<input class="easyui-datetimebox" editable="false" style="width: 140px; display: none;" comboname="useDate">
+				</td>
+				<td>结束日期：</td>
+				<td>
+					<input class="easyui-datetimebox" editable="false" style="width: 140px; display: none;" comboname="useDate">
+				</td>
+				<td colspan="6">
+					<span class="easyui-linkbutton ser_btn" iconcls="icon-search" onclick="disposeAndRun()">查询</span>
+					<span class="easyui-linkbutton ser_btn" iconcls="icon-cz_reset" onclick="clearSearch('#dg')">重置</span>
+				</td>
+			</tr>
+		</table>
+     <div id="main" style="width:100%;height:65%;"></div>
+   <p>默认显示事故数量最多的100条记录 当前共2条记录  </p>    
+	</body>
+	<script type="text/javascript">
+		function disposeAndRun(){
+			 var myChart = echarts.init(document.getElementById('main'));
+		option = {
+			color: ['#3398DB'],
+			tooltip: {
+				trigger: 'axis',
+				axisPointer: { // 坐标轴指示器，坐标轴触发有效
+					type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+				}
+			},
+			legend: {
+				data: ['事故统计图']
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			xAxis: [{
+				type: 'category',
+				data: ['蒙A63899其他单位', '蒙A60031其他单位'],
+				axisLabel: {
+					interval: 0,
+					rotate: 30, //倾斜度 -90 至 90 默认为0  
+					formatter: function(params) {
+						var newParamsName = "";
+						var paramsNameNumber = params.length;
+						var provideNumber = 7;
+						var rowNumber = Math.ceil(paramsNameNumber / provideNumber);
+						if(paramsNameNumber > provideNumber) {
+							for(var p = 0; p < rowNumber; p++) {
+								var tempStr = "";
+								var start = p * provideNumber;
+								var end = start + provideNumber;
+								if(p == rowNumber - 1) {
+									tempStr = params.substring(start, paramsNameNumber);
+								} else {
+									tempStr = params.substring(start, end) + "\n";
+								}
+								newParamsName += tempStr;
+							}
+
+						} else {
+							newParamsName = params;
+						}
+						return newParamsName
+					}
+
+				}
+			}],
+			yAxis: {
+				type: 'value',
+				min: 0,
+				max: 1.25,
+				interval: 0.25
+			},
+			series: [{
+				name: '事故统计图',
+				type: 'bar',
+				barWidth: '60%',
+				data: [1,1]
+			}]
+		};
+	myChart.setOption(option);	
+		}
+     var myChart = echarts.init(document.getElementById('main'));
+		option = {
+			color: ['#3398DB'],
+			tooltip: {
+				trigger: 'axis',
+				axisPointer: { // 坐标轴指示器，坐标轴触发有效
+					type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+				}
+			},
+			legend: {
+				data: ['事故统计图']
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			xAxis: [{
+				type: 'category',
+				data: ['蒙A63899其他单位', '蒙A60031其他单位'],
+				axisLabel: {
+					interval: 0,
+					rotate: 30, //倾斜度 -90 至 90 默认为0  
+					formatter: function(params) {
+						var newParamsName = "";
+						var paramsNameNumber = params.length;
+						var provideNumber = 7;
+						var rowNumber = Math.ceil(paramsNameNumber / provideNumber);
+						if(paramsNameNumber > provideNumber) {
+							for(var p = 0; p < rowNumber; p++) {
+								var tempStr = "";
+								var start = p * provideNumber;
+								var end = start + provideNumber;
+								if(p == rowNumber - 1) {
+									tempStr = params.substring(start, paramsNameNumber);
+								} else {
+									tempStr = params.substring(start, end) + "\n";
+								}
+								newParamsName += tempStr;
+							}
+
+						} else {
+							newParamsName = params;
+						}
+						return newParamsName
+					}
+
+				}
+			}],
+			yAxis: {
+				type: 'value',
+				min: 0,
+				max: 1.25,
+				interval: 0.25
+			},
+			series: [{
+				name: '事故统计图',
+				type: 'bar',
+				barWidth: '60%',
+				data: [1,1]
+			}]
+		};
+	myChart.setOption(option);	
+	</script>
+
+</html>

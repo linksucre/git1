@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>车辆分类报警统计表</title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<style type="text/css">
+		a{
+			text-decoration: underline;
+		}
+	</style>
+	<body class="easyui-layout" style="overflow: hidden;width:100%;height:100%;">
+		<div data-options="region:'center',border:false" style="width:100%;height:100%;overflow: hidden;">
+			<p class="title" style="height:3%;box-sizing: border-box; padding:14px 0 5px 10px;margin: 0px;">当前位置：
+			   <a href="#" style="color: dodgerblue;" class="remove_first" onclick="remove_first('#dg','.remove_first','../../json/carClass1.json')">集团公司</a>
+		    </p>
+            <table border="0" cellspacing="0" cellpadding="0" class="table_layout">
+				<tr>
+					<td>单位：</td>
+					<td>
+						<div class="clear_mes">
+							<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+							<span class="clearMess" style="display:none;"></span>
+					    </div>
+					</td>
+					<td>开始日期：</td>
+					<td>
+						<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">
+					</td>
+					<td>结束日期：</td>
+					<td>
+						<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">				
+					</td>
+					<td colspan="6">
+						<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('.easyui-datagrid')">查询</span>
+						<span class="easyui-linkbutton" iconcls="icon-excel"><a id="exportExcel" href="#">导出</a></span>
+					</td>
+				</tr>
+			</table>
+			<table id="dg" class="easyui-datagrid" style="width:100%;height:80%" data-options="rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../../json/carClass1.json',method:'get'">
+			    <thead>
+					<tr>
+						<th data-options="field:'ORG_NAME',formatter:formatter">所属单位</th>
+						<th data-options="field:'VEHI_SUM'">违规车次</th>
+						<th data-options="field:'VEHI_COUNT'">违章车数</th>
+						<th data-options="field:'ALARM_31'">疲劳驾驶(平台)</th>
+						<th data-options="field:'ALARM_35'">定位异常(平台)</th>
+						<th data-options="field:'ALARM_15'">异常停车(平台)</th>
+						<th data-options="field:'ALARM_47'">超速(平台)</th>
+						<th data-options="field:'ALARM_30'">禁止驶出(平台)</th>
+						<th data-options="field:'ALARM_30'">禁止驶入(平台)</th>
+						<th data-options="field:'ALARM_30'">风险点提示(平台)</th>
+						<th data-options="field:'ALARM_30'">偏离路线(平台)</th>
+						<th data-options="field:'ALARM_30'">劫警(终端)</th>
+						<th data-options="field:'ALARM_30'">非法点火(终端)</th>
+						<th data-options="field:'ALARM_30'">GPS天线开路报警(终端)</th>
+						<th data-options="field:'ALARM_32'">停车超时(平台)</th>
+						<th data-options="field:'ALARM_30'">路线关键点(平台)</th>
+						<th data-options="field:'ALARM_30'">敏感区报警(平台)</th>
+						<th data-options="field:'ALARM_30'">盲区提醒(平台)</th>
+						<th data-options="field:'ALARM_30'">禁止停车区报警(平台)</th>
+						<th data-options="field:'ALARM_30'">盗警(终端)</th>
+						<th data-options="field:'ALARM_30'">偏离路线(终端)</th>
+						<th data-options="field:'ALARM_30'">终端故障(终端)</th>
+						<th data-options="field:'ALARM_30'">断电报警(终端)</th>
+						<th data-options="field:'ALARM_30'">停车超时(终端)</th>
+						<th data-options="field:'ALARM_30'">电瓶欠压(终端)</th>
+						<th data-options="field:'ALARM_30'">预警(终端)</th>
+						<th data-options="field:'ALARM_30'">进出区域(终端)</th>
+						<th data-options="field:'ALARM_30'">进出路线(终端)</th>
+						<th data-options="field:'ALARM_30'">终端异常(平台)</th>
+						<th data-options="field:'ALARM_30'">碰撞报警(终端)</th>
+						<th data-options="field:'ALARM_30'">超速(终端)</th>
+						<th data-options="field:'ALARM_2'">疲劳驾驶(终端)</th>
+						<th data-options="field:'ALARM_30'">分路段限速报警(平台)</th>
+						<th data-options="field:'ALARM_30'">超速报警(政府)</th>
+						<th data-options="field:'ALARM_30'">疲劳驾驶报警(政府)</th>
+						<th data-options="field:'ALARM_30'">紧急报警(政府)</th>
+						<th data-options="field:'ALARM_30'">进入指定区域报警(政府)</th>
+						<th data-options="field:'ALARM_30'">离开指定区域报警(政府)</th>
+						<th data-options="field:'ALARM_30'">路段堵塞报警(政府)</th>
+						<th data-options="field:'ALARM_30'">危险路段报警(政府)</th>
+						<th data-options="field:'ALARM_30'">越界报警(政府)</th>
+						<th data-options="field:'ALARM_30'">盗警(政府)</th>
+						<th data-options="field:'ALARM_30'">劫警(政府)</th>
+						<th data-options="field:'ALARM_30'">偏离路线报警(政府)</th>
+						<th data-options="field:'ALARM_30'">车辆移动报警(政府)</th>
+						<th data-options="field:'ALARM_30'">超时驾驶报警(政府)</th>
+						<th data-options="field:'ALARM_30'">其他报警(政府)</th>
+						<th data-options="field:'ALARM_30'">GPS天线短路报警(终端)</th>
+						<th data-options="field:'ALARM_30'">终端LCD或显示器故障(终端)</th>
+						<th data-options="field:'ALARM_30'">TTS模块故障(终端)</th>
+						<th data-options="field:'ALARM_30'">摄像头故障(终端)</th>
+						<th data-options="field:'ALARM_30'">当天累计驾驶超时(终端)</th>
+						<th data-options="field:'ALARM_30'">路段行驶时间不足/过长(终端)</th>
+						<th data-options="field:'ALARM_30'">车辆VSS故障(终端)</th>
+						<th data-options="field:'ALARM_30'">车辆油量异常(终端)</th>
+						<th data-options="field:'ALARM_30'">车辆非法位移(终端)</th>
+						
+					</tr>
+				</thead>
+			</table>			
+		</div>
+	</body>
+	<script type="text/javascript" src="../../js/more_data_noHide.js"></script>
+	<script type="text/javascript">
+		//表格
+		
+         function formatter(value, row, index) {
+			if(index < 2){
+				return value;
+			}else{
+			    return "<a href='#' class='a_text' onclick='tab_mes(this," + '"#dg"' + "," + '".title"' + ")' style='color:blue'>" + value + "</a>";		
+			}
+		} 
+		var arr = ['../../json/carClass2.json','../../json/carClass3.json','../../json/carClass4.json']
+        var hideShow=["carClass"]
+		 
+	</script>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<body class="easyui-layout" style="overflow: hidden;">
+		<form id="searchForm" method="post">		
+			<table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
+				<tr>
+					<td>终端类型：</td>
+					<td>
+						<select class="easyui-combobox" name="terminalName">
+							<option value="华强V36">华强V36</option>
+							<option value="华强V37">华强V37</option>
+							<option value="易特08">易特08</option>
+							<option value="易特09(部标)">易特09(部标)</option>
+							<option value="天琴">天琴</option>
+							<option value="欧亚北斗星V1.0">欧亚北斗星V1.0</option>
+						</select>
+					</td>
+					<td colspan="6" style="text-align: left;padding-left: 20px;position: relative;">
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="query('#dg','#searchForm')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="addMes('#add','#dg','#w','http://dayan.huayitec.com/termtypehController/insert?id=')">添加</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="updateData('#dg','#w5','#w1','#w6','#modify','http://dayan.huayitec.com/termtypehController/update?id=','.sureBtn')">修改</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="delData('#dg','#w2','#w4','.sure_btn','http://dayan.huayitec.com/termtypehController/delete?id=')">删除</span>
+					</td>
+				</tr>
+				<tr>
+				</tr>
+			</table>
+		</form>
+			<table id="dg" title="" class="easyui-datagrid" style="width:100%;height:85%" data-options='fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,url:"http://dayan.huayitec.com/termtypehController/getListPage"'>
+				<thead>
+					<tr>
+						<th data-options="field:'checkbox',checkbox:true"></th>
+					    <th data-options="field:'terminalName',width:'200'">终端类型</th>
+						<th data-options="field:'stanTerminal',width:'200',formatter:formatter">部标终端</th>
+						<th data-options="field:'protNum',width:'200'">协议码</th>
+					</tr>
+				</thead>
+			</table>
+    <!--模态框-->
+		<div id='w' class="easyui-window" closed='true' title="新增终端" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:500px;height:200px;">
+		    <form method="post" id="add">
+		   	    <table border="0" cellspacing="0" cellpadding="0" style="width: 100%; height: 160px;">
+		   	    	<tr>
+		   	    		<td>终端名称：</td>
+		   	    		<td><input type="text" name="terminalName" class="easyui-validatebox textbox width" data-options="required:true"/></td>
+		   	    		<td>部标终端：</td>
+		   	    		<td>
+		   	    			<select name="stanTerminal" class="easyui-combobox width">
+		   	    				<option value="0">否</option>
+		   	    				<option value="1">是</option>
+		   	    			</select>
+		   	    		</td>
+		   	    	</tr>
+		   	    	<tr>
+		   	    		<td>协议码：</td>
+		   	    		<td><input type="text" name="protNum" class="easyui-validatebox textbox width" data-options="required:true"/></td>
+		   	    		<td>品牌编号：</td>
+		   	    		<td>
+		   	    			<select name="brandNum" class="easyui-combobox width">
+		   	    				<option value="0">请选择</option>
+		   	    				<option value="1">华晨</option>
+		   	    			</select>
+		   	    		</td>
+		   	    	</tr>
+		   	    	<tr>
+		   	    		<td>标志位：</td>
+		   	    		<td>
+		   	    			<select name="flag" class="easyui-combobox width">
+		   	    				<option value="0">未通过</option>
+		   	    				<option value="1">已通过审核</option>
+		   	    				<option value="1">其他</option>
+		   	    			</select>
+		   	    		</td>
+		   	    	</tr>
+		   	    	<tr align="center">
+		   	    		<td colspan="4">
+		   	    			<input type="submit" class="easyui-linkbutton" value="确定" />
+		   	    			<input type="submit" class="easyui-linkbutton" value="关闭" />
+		   	    		</td>
+		   	    	</tr>
+		   	    </table>
+		    </form>	
+		</div>
+	    
+		<div id='w1' class="easyui-window" closed='true' title="修改终端" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:500px;height:200px;">
+		    <form method="post" id="modify">
+		   	    <table border="0" cellspacing="0" cellpadding="0" style="width: 100%; height: 160px;">
+		   	    	<tr>
+		   	    		<td>终端名称：</td>
+		   	    		<td><input type="text" value="欧亚北斗星V2.1" name="terminalName" class="easyui-validatebox textbox width" data-options="required:true"/></td>
+		   	    		<td>部标终端：</td>
+		   	    		<td>
+		   	    			<select name="stanTerminal" class="easyui-combobox width">
+		   	    				<option value="0">否</option>
+		   	    				<option value="1">是</option>
+		   	    			</select>
+		   	    		</td>
+		   	    	</tr>
+		   	    	<tr>
+		   	    		<td>协议码：</td>
+		   	    		<td><input type="text" name="protNum" value="OY" class="easyui-validatebox textbox width" data-options="required:true"/></td>
+		   	    	</tr>
+		   	    	<tr>
+		   	    		<td>标志位：</td>
+		   	    		<td>
+		   	    			<select name="flag" class="easyui-combobox width">
+		   	    				<option value="0">未通过</option>
+		   	    				<option value="1">已通过审核</option>
+		   	    				<option value="1">其他</option>
+		   	    			</select>
+		   	    		</td>
+		   	    	</tr>
+		   	    	<tr align="center">
+		   	    		<td colspan="4">
+		   	    			<input type="submit" class="easyui-linkbutton sureBtn" value="确定" />
+		   	    			<input type="submit" class="easyui-linkbutton" value="关闭" onclick="$('#w1').window('close')"/>
+		   	    		</td>
+		   	    	</tr>
+		   	    </table>
+		    </form>	
+		</div>
+	    <div id='w2' class="easyui-window" closed='true' title="提示框" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+					请选择要删除的记录！
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#w2').window('close')">确定</a>
+			</div>
+		</div>
+		<div id='w4' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box;padding: 5px 0 0 20px">
+					是否要删除该条信息？
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton sure_btn" onclick="$('#w4').window('close')">确定</a>
+				<a href="#" class="easyui-linkbutton" onclick="$('#w4').window('close')">关闭</a>
+			</div>
+		</div>
+	    <div id='w5' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+				        请选择一条记录！     
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#w5').window('close')">确定</a>
+			</div>
+		</div>
+	    <div id='w6' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+				        你选择的数据过多，修改只能一次修改一条数据！ 
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#w6').window('close')">确定</a>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function formatter(value, row, index){
+			if(value == 0){
+	           return value = '否'		
+	       }else if(value == 1){
+	           return value = '是'	
+	       }
+	   }
+	</script>
+</html>

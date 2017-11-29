@@ -1,0 +1,27 @@
+{
+	"total": 2,
+	"rows": [
+		{
+			"ORG_CODE": 10390141,
+			"ORG_NAME1": "云A513DC",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 1
+		}, {
+			"ORG_CODE": 10385187,
+			"ORG_NAME1": "云ANR958",
+			"TOTAL_SEND": null,
+			"WEATHER_WARN_COUNT": 0,
+			"ROAD_WARN_COUNT": 0,
+			"EQU_WARN_COUNT": 0,
+			"SEQ_ROAD_WARN_COUNT": 0,
+			"DEN_DRIVER_WARN_COUNT": 0,
+			"ROWNUMBER": 1
+		}
+	],
+	"tableType": "vehicle"
+}

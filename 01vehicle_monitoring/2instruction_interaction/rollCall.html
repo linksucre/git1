@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8 />
+		<title>定时点名</title>
+		<link rel="import" href="../../public.html">
+		<script type="text/javascript" src="../../js/fenye.js"></script>
+		<script type="text/javascript" src="../../js/loading.js"></script>
+	</head>
+	<body class="easyui-layout">
+		<div id="DATA_TABLE_SEARCH" style="padding: 5px; height:100%" class="datagrid-toolbar">
+			<!--form表单及弹框-->
+			<div id='w' class="easyui-window" closed='true' title="添加自动点名" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:780px;height:450px;">
+				<div style="width:100%;position: relative;">
+					<div style="display:none;width:146px;height:110px;box-shadow: 0 2px 5px #DCDCDC,2px 0 5px #DCDCDC;position: absolute;left:171px;top:54px;z-index: 1000;background:#ffffff;" id="mm1">
+						<ul class="mm1left" style="border-right:1px solid #DCDCDC;float:left;width:20%;height:100%;">
+							<li style="display:inline-block;width:30px;height:20px;background:url('../../images/filter.png') no-repeat 5px 5px;"></li>
+							<li style="display:inline-block;width:30px;height:20px;background:url('../../images/filter.png') no-repeat 5px 5px;"></li>
+							<li style="display:inline-block;width:30px;height:20px;background:url('../../images/filter.png') no-repeat 5px 5px;"></li>
+							<li style="display:inline-block;width:30px;height:20px;background:url('../../images/filter.png') no-repeat 5px 5px;"></li>
+							<li style="display:inline-block;width:30px;height:20px;background:url('../../images/filter.png') no-repeat 5px 5px;"></li>
+						</ul>
+						<ul class="mm1right" style="float:left;width:75%;height:100%;line-height:23px;">
+							<li>显示驾驶员</li>
+							<li>显示终端号</li>
+							<li>显示SIM卡号</li>
+							<li>显示驾驶员</li>
+							<li>显示驾驶员</li>
+						</ul>
+					</div>
+					<div class="easyui-layout" style="width:100%;height:360px;">
+						<div data-options="region:'west',split:true" title="选择车辆" style="width:260px;height:80%;">
+							<div class="easyui-accordion" style="width:252px;height:100%;">
+								<div style="text-align: center;height:100%;position: relative;" id="shishi" selected="false" data-options="iconCls:'icon-search'">
+									<div class="easyui-panel" style="border:none;height:100%;overflow: hidden;">
+										<!--选项卡-->
+										<div class="VsearchBar" style="margin-left:15px;">
+											<div class="statusFileDiv" style="margin-left:5px;">
+												<label><input name="v_status" class="v_status" type="radio" value="0" checked="">所有</label>&nbsp;
+												<label><input name="v_status" class="v_status" type="radio" value="1">在线</label>&nbsp;
+												<label><input name="v_status" class="v_status" type="radio" value="2">行驶</label>&nbsp;
+												<span title="设置树显示" class="span-icon icon-treestatus treeShowSet v_status"></span>&nbsp;
+												<span title="重置树" class="span-icon icon-treerefsh treeReflshBtn v_status"></span>&nbsp;
+											</div>
+											<div class="search">
+												<input autocomplete="off" class="easyui-combobox monitorSearch" type="text">
+												<input type="text" class="combo-text validatebox-text" autocomplete="off" placeholder="请输入车牌号、自编号">
+												<span class="combo-clear qingchu" style="right:39px"></span>
+											</div>
+										</div>
+										<div class="easyui-panel" style="padding-left:15px;">
+											<ul class="easyui-tree" id="corp-tree" class="tree" data-options="url:'../../json/dingshijianting.json',method:'get',animate:true,checkbox:true"></ul>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<div data-options="region:'center',title:'车辆列表'" style="width:400px;height:400px;overflow: hidden;">
+							<div class='liebiaoTop' style="width:100%;height:200px;overflow: auto;">
+								<table class="easyui-datagrid" id="dingshiTable" data-options="url:'../../json/dingshidianmingalert.json',method:'get',border:false,singleSelect:true,fit:true,fitColumns:true">
+									<thead>
+										<tr>
+											<th data-options="field:'itemid'" width="40">终端是否支持</th>
+											<th data-options="field:'productid'" width="50">车牌号</th>
+											<th data-options="field:'listprice',align:'right'" width="40">单位</th>
+											<th data-options="field:'unitcost',align:'right'" width="40">终端编码</th>
+
+										</tr>
+									</thead>
+								</table>
+							</div>
+							<div class='liebiaoBottom' style="width:100%;height:200px;border-top:1px solid #444444;">
+								<div id="south" data-options="region:'south',border:true" style="height: 148px;" title="" class="panel-body panel-body-noheader layout-body">
+									<form id="call_param_form">
+										<input type="hidden" id="instructFuncCode" name="instructFuncCode" value="1">
+										<input type="hidden" id="instrtaskId" name="instrtaskId" value="">
+										<div id="instrtaskName_div" style="margin-top:15px;">
+											<p>
+												&nbsp;&nbsp;任务名称：<input id="instrtaskName" name="instrtaskName" type="text" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:'length[1,100]'">
+											</p>
+										</div>
+										<p style="margin-top:15px;">
+											&nbsp;&nbsp;启动频率：
+											<input type="radio" name="deadline" id="deadline2" value="2" checked="checked">定时单次
+											<input type="radio" name="deadline" id="deadline1" value="1">每天多次
+										</p>
+										<div id="executeDate_div" style="margin-top:15px;">
+											<p>
+												&nbsp;&nbsp;单次启动时间：
+
+												<input class="easyui-datetimebox" value="10/11/2012 2:3:56" style="width:200px">
+
+											</p>
+										</div>
+										<div id="frequency_div" style="display:none;" style="margin-top:15px;">
+											<p>
+												&nbsp;&nbsp;每天多次：<input id="frequency" name="frequency" class="easyui-validatebox textbox validatebox-text validatebox-invalid" data-options="required:true,validType:['dateTime','length[1,100]']" type="text">(如：08:00,09:00,多个用','隔开)
+											</p>
+										</div>
+									</form>
+								</div>
+							</div>
+
+						</div>
+						<div class="tree_show_set" style="top:55px;">
+							<p><span class="filter"></span>显示车辆状态</p>
+							<p><span class="filter"></span>显示终端号</p>
+							<p><span class="filter"></span>显示SIM卡号</p>
+							<p><span class="filter"></span>显示驾驶员</p>
+							<p><span class="filter"></span>显示车辆自编号</p>
+						</div>
+					</div>
+				</div>
+				<div style="width: 100%; text-align: center;">
+					<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('close')">保存</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('close')">关闭</a>
+				</div>
+			</div>
+			<!--车辆点名弹框-->
+			
+			<div id='w2' class="easyui-window" closed='true' title="违规处理" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:550px;height:430px;">
+				<div style="height:100%;">
+					<div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+
+						<div data-options="region:'center',border:true,title:'车辆列表'" title="" class="" style="width: 534px; height: 236px;">
+
+							<table class="easyui-datagrid" id="dingshiTable" data-options="url:'../../json/dianjicheliang.json',method:'get',border:false,singleSelect:true,fit:true,fitColumns:true">
+								<thead>
+									<tr>
+										<th data-options="field:'itemid'" width="40">车牌号</th>
+										<th data-options="field:'productid'" width="50">单位</th>
+										<th data-options="field:'listprice',align:'right'" width="40">终端编码</th>
+										<th data-options="field:'unitcost',align:'right'" width="40">终端类型</th>
+										<th data-options="field:'unitcost',align:'right'" width="40">SIM卡</th>
+									</tr>
+								</thead>
+							</table>
+
+						</div>
+					</div>
+
+					<div id="south" data-options="region:'south',border:true" style="height: 148px; width: 534px;margin-top: 10px;" title="" class="">
+						<input type="hidden" id="instrtaskId" name="instrtaskId">
+						<p>
+							&nbsp;&nbsp;任务名称： <label id="show_instrtaskName">定时点名PANX</label>
+						</p>
+						<p style="margin-top:10px;">
+							&nbsp;&nbsp;启动频率：
+							<input type="radio" name="show_deadline" disabled="disabled" id="show_deadline2" value="2">定时单次
+							<input type="radio" name="show_deadline" disabled="disabled" id="show_deadline1" value="1">每天多次
+						</p>
+						<div id="show_executeDate_div" style="margin-top:10px;">
+							<p>
+								&nbsp;&nbsp;单次执行时间：<label id="show_executeDate">2015-06-17 16:19</label>
+							</p>
+						</div>
+						<div id="show_frequency_div" style="display: none;margin-top:10px">
+							<p>
+								&nbsp;&nbsp;每天多次：<label id="show_frequency"></label>
+							</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!--车辆点名-->
+			<div id="dg_call_task_table_search" class="clear_box" style="padding: 5px; height: auto" class="datagrid-toolbar">
+				<form id="searchForm">
+					定制人：<input id="search_recordorName"> 启动频率：
+
+					<select id="search_deadline" class="easyui-combobox combobox-f combo-f" editable="false" style="display: none;">
+						<option value="">全部</option>
+						<option value="2">定时单次</option>
+						<option value="1">每天多次</option>
+					</select>
+
+					状态：
+					<select id="search_status" class="easyui-combobox" editable="false" style="display: none;">
+						<option value="">全部</option>
+						<option value="0">禁用</option>
+						<option value="1">新建</option>
+						<option value="2">启用</option>
+						<option value="3">已完成</option>
+					</select>
+					 
+					<a class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</a>
+					<a class="easyui-linkbutton " data-options="iconCls:'icon-cz_reset'" onclick="clearSearch()">重置</a>
+					<a id="callAddBtn" href="javascript:void(0)" onclick="insert();" class="easyui-linkbutton clear_btn" iconcls="icon-add" style="" group="">
+						添加自动点名
+					</a>
+					
+				</form>
+			</div>
+		<table id="dg" class="easyui-datagrid" style="width:100%;height:90%" data-options="fitColumns:true,singleSelect:false,collapsible:true,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/camera_time.json',method:'get'">
+				<thead>
+					<tr>
+						<th data-options="field:'checkbox',checkbox:true"></th>
+						<th data-options="field:'instrtaskName',width:200">任务名称</th>
+						<th data-options="field:'recordorName',width:200">制定人</th>
+						<th data-options="field:'instructParam',width:200">启动频率</th>
+						<th data-options="field:'executeDate',width:200">启动时间</th>
+						<th data-options="field:'status',width:200">状态</th>
+						<th data-options="field:'snpashotOrgName',width:300,align:'center'" formatter="myFormatter0">操作</th>
+					</tr>
+				</thead>
+		</table>
+		</div>
+		<script>
+			var editIndex = undefined;
+			function closeForm() {
+				$("#dianmingformBlock").css("display", "none");
+			}
+			function prompt1a() {
+				$('#w').window('open')
+			};
+
+			function myFormatter0(value, row, index) {
+				var rows = $('#dg').datagrid('getRows')//获取当前页的数据行  
+		     var total = rows[index]['status']; 
+		    	if(rows){
+					var e = "<a href='#' class='a_text' onclick='tab_mes(this)' style='color:blue;margin-right:10px;'>" + row.endDate + "</a>";
+					var d = "<a href='#' onclick='del(this)' style='color:#0000EE;margin-right:10px;'>"+row.sendFreq+"</a><a href='#' class='a_text' onclick='qiyong(this)' style='color:blue'>"+row.status+"</a>";
+					return   e+d;
+
+				} else {
+					return value;
+				}
+			}
+			function tab_mes() {
+				$('#w2').window('open')
+			}
+
+			function getRowIndex(change){
+			var tr = $(change).closest('tr.datagrid-row');
+			return parseInt(tr.attr('datagrid-row-index'));
+		}
+			function del(change){
+			$.messager.confirm('Confirm','Are you sure?',function(r){
+				if (r){
+					console.log(getRowIndex(change))
+					var ii = getRowIndex(change)
+					$('#dg').datagrid('deleteRow', getRowIndex(change));
+					
+				}
+			});
+		}
+
+
+			function qiyong(change){
+				var ii =getRowIndex(change)
+				if($(change).html()=="禁用"){
+					$('#dg').datagrid('updateRow',{
+								        index: ii,
+								        row: {
+								             'status':'启用',
+								             'sendFreq':''
+								        }
+								   });		     
+				}else{                                                          
+					$('#dg').datagrid('updateRow',{
+								        index: ii,
+								        row: {
+								             'status':'禁用',
+								             'sendFreq':'删除'
+								        }
+								    });
+				}
+				
+			}
+			function editrow(target) {
+				$('#w2').window('open')
+			}
+
+			function insert() {
+				prompt1a();
+			}
+			//		分页
+			var pager = $('#dg').datagrid().datagrid('getPager'); // get the pager of datagrid
+			pager.pagination({
+				buttons: [{
+					iconCls: 'icon-search',
+					handler: function() {
+						alert('search');
+					}
+				}, {
+					iconCls: 'icon-add',
+					handler: function() {
+						alert('add');
+					}
+				}, {
+					iconCls: 'icon-edit',
+					handler: function() {
+						alert('edit');
+					}
+				}]
+			});
+
+			function pagerFilter(data) {
+				if(typeof data.length == 'number' && typeof data.splice == 'function') { // is array  
+					data = {
+						total: data.length,
+						rows: data
+					}
+				}
+				var dg = $(this);
+				var opts = dg.datagrid('options');
+				var pager = dg.datagrid('getPager');
+				pager.pagination({
+					onSelectPage: function(pageNum, pageSize) {
+						opts.pageNumber = pageNum;
+						opts.pageSize = pageSize;
+						pager.pagination('refresh', {
+							pageNumber: pageNum,
+							pageSize: pageSize
+						});
+						dg.datagrid('loadData', data);
+					}
+				});
+				if(!data.originalRows) {
+					data.originalRows = (data.rows);
+				}
+				var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
+				var end = start + parseInt(opts.pageSize);
+				data.rows = (data.originalRows.slice(start, end));
+				return data;
+			}
+
+			$('#dg').datagrid({
+				loadFilter: pagerFilter
+			});
+			//以下很长一段表格数据结束
+
+			//点击所有按钮事件
+			$(".v_status").click(function() {
+				$(window.top.document).find("#corp-tree").tree('reload');
+			});
+			$("#treeReflshBtn").click(function() {
+				$(window.top.document).find("#corp-tree").tree('reload');
+			});
+
+			//给树添加点击事件刷新
+			$("#corp-tree").tree({
+				checkbox: true,
+				cascadeCheck: false,
+				onCheck: function(node, checked) {
+					if(checked) {
+						var nodes = $('#corp-tree').tree('getChecked');
+						//        	var nodes = $(this).tree('getChecked');
+						var s = '';
+						for(var i = 0; i < nodes.length; i++) {
+							if(s != '') s += ',';
+							s += nodes[i].text;
+						}
+						$("#dingshiTable").datagrid("reload");
+					
+					} else {
+						
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

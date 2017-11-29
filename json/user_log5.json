@@ -1,0 +1,507 @@
+{
+	"total": 1327,
+	"rows": [
+		{
+			"userId": "ysgscjxb",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:13:46",
+			"departmentId": "011217160701",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928258,
+			"departmentName": "昌吉市新宝液化气有限责任公司",
+			"logMessage": "用户在2017-11-23 16:13:46登录"
+		}, {
+			"userId": "ysgsxuanfeng",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:13:44",
+			"departmentId": "0112150f03",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928138,
+			"departmentName": "新疆配送公司克拉玛依配送中心",
+			"logMessage": "用户在2017-11-23 16:13:44登录"
+		}, {
+			"userId": "xs_flfgs2",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:12:43",
+			"departmentId": "01071703",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927478,
+			"departmentName": "涪陵分公司",
+			"logMessage": "用户在2017-11-23 16:12:43登录"
+		}, {
+			"userId": "ysgscjxb",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:12:34",
+			"departmentId": "011217160701",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928254,
+			"departmentName": "昌吉市新宝液化气有限责任公司",
+			"logMessage": "用户在2017-11-23 16:12:34登录"
+		}, {
+			"userId": "jxtced",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:12:18",
+			"departmentId": "011217130904",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927672,
+			"departmentName": "井下特车二队",
+			"logMessage": "用户在2017-11-23 16:12:18登录"
+		}, {
+			"userId": "jxtced",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:12:17",
+			"departmentId": "011217130904",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927671,
+			"departmentName": "井下特车二队",
+			"logMessage": "用户在2017-11-23 16:12:17执行用户登录操作"
+		}, {
+			"userId": "zjytxncqc1",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:12:11",
+			"departmentId": "010514",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927476,
+			"departmentName": "浙江油田",
+			"logMessage": "用户在2017-11-23 16:12:11登录"
+		}, {
+			"userId": "ysgspengch",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:12:11",
+			"departmentId": "01121506GW",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928322,
+			"departmentName": "长庆运输公司运输二大队",
+			"logMessage": "用户在2017-11-23 16:12:11登录"
+		}, {
+			"userId": "ysgspengch",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:12:10",
+			"departmentId": "01121506GW",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928321,
+			"departmentName": "长庆运输公司运输二大队",
+			"logMessage": "用户在2017-11-23 16:12:10执行用户登录操作"
+		}, {
+			"userId": "ysgspengch",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:12:07",
+			"departmentId": "01121506GW",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928320,
+			"departmentName": "长庆运输公司运输二大队",
+			"logMessage": "用户在2017-11-23 16:12:07登录"
+		}, {
+			"userId": "mayuhai",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:11:19",
+			"departmentId": "0112170114",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928310,
+			"departmentName": "油田管道技术服务公司",
+			"logMessage": "用户在2017-11-23 16:11:19登录"
+		}, {
+			"userId": "ysgsdaihui",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:11:16",
+			"departmentId": "0112150f07",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928247,
+			"departmentName": "新疆配送公司泽普配送中心",
+			"logMessage": "用户在2017-11-23 16:11:16登录"
+		}, {
+			"userId": "ysgsabdjp",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:09:17",
+			"departmentId": "0112150f",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927890,
+			"departmentName": "新疆配送公司",
+			"logMessage": "用户在2017-11-23 16:09:17登录"
+		}, {
+			"userId": "ysgsabdjp",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:09:16",
+			"departmentId": "0112150f",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927889,
+			"departmentName": "新疆配送公司",
+			"logMessage": "用户在2017-11-23 16:09:16执行用户登录操作"
+		}, {
+			"userId": "zjyt_1",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:09:14",
+			"departmentId": "010514",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927470,
+			"departmentName": "浙江油田",
+			"logMessage": "用户在2017-11-23 16:09:14登录"
+		}, {
+			"userId": "TXXF",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:09:05",
+			"departmentId": "01121701",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927885,
+			"departmentName": "塔西南勘探开发公司",
+			"logMessage": "用户在2017-11-23 16:09:05登录"
+		}, {
+			"userId": "ysgswuchaohui",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:08:44",
+			"departmentId": "0112150Z3a",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928129,
+			"departmentName": "四川分公司攀枝花配送中心",
+			"logMessage": "用户在2017-11-23 16:08:44登录"
+		}, {
+			"userId": "ysgsmiaozhiping",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:08:18",
+			"departmentId": "01121506GP",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928224,
+			"departmentName": "长庆运输公司运输四大队",
+			"logMessage": "用户在2017-11-23 16:08:18登录"
+		}, {
+			"userId": "ysgstzg",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:06:43",
+			"departmentId": "0112150c08",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927872,
+			"departmentName": "甘肃分公司陇南配送中心",
+			"logMessage": "用户在2017-11-23 16:06:43登录"
+		}, {
+			"userId": "ysgstzg",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:06:43",
+			"departmentId": "0112150c08",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927871,
+			"departmentName": "甘肃分公司陇南配送中心",
+			"logMessage": "用户在2017-11-23 16:06:43执行用户登录操作"
+		}, {
+			"userId": "kmaqk_1",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:06:37",
+			"departmentId": "0108030107",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928221,
+			"departmentName": "昆明输油气分公司",
+			"logMessage": "用户在2017-11-23 16:06:37登录"
+		}, {
+			"userId": "ysgskuangjunxian",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:06:25",
+			"departmentId": "0112150c0A00",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927657,
+			"departmentName": "甘肃分公司天水配送中心",
+			"logMessage": "用户在2017-11-23 16:06:25登录"
+		}, {
+			"userId": "ysgswangjian025",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:06:11",
+			"departmentId": "0112150K03",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927868,
+			"departmentName": "江苏分公司苏中配送中心",
+			"logMessage": "用户在2017-11-23 16:06:11登录"
+		}, {
+			"userId": "ysgswbp",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:06:11",
+			"departmentId": "01121506Gq",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928219,
+			"departmentName": "长庆运输公司顺宁运输大队",
+			"logMessage": "用户在2017-11-23 16:06:11登录"
+		}, {
+			"userId": "ysgsqw",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:05:57",
+			"departmentId": "0112150R",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927864,
+			"departmentName": "湖南分公司",
+			"logMessage": "用户在2017-11-23 16:05:57登录"
+		}, {
+			"userId": "fujianzm",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:05:29",
+			"departmentId": "0112150S0200",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927464,
+			"departmentName": "福建分公司厦门配送中心",
+			"logMessage": "用户在2017-11-23 16:05:29登录"
+		}, {
+			"userId": "nnwqxzx_1",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:05:13",
+			"departmentId": "010803010909",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928120,
+			"departmentName": "南宁维抢修中心",
+			"logMessage": "用户在2017-11-23 16:05:13登录"
+		}, {
+			"userId": "ysgsxy1",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:05:00",
+			"departmentId": "0112150b3S",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927461,
+			"departmentName": "陕西分公司咸阳配送中心",
+			"logMessage": "用户在2017-11-23 16:05:00登录"
+		}, {
+			"userId": "ysgsliulk",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:04:52",
+			"departmentId": "01121503DZ",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927859,
+			"departmentName": "塔运司特车运输大队",
+			"logMessage": "用户在2017-11-23 16:04:52登录"
+		}, {
+			"userId": "jiazhaohe",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:03:24",
+			"departmentId": "01",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928203,
+			"departmentName": "集团公司",
+			"logMessage": "用户在2017-11-23 16:03:24登录"
+		}, {
+			"userId": "ysgscg01",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:03:00",
+			"departmentId": "01121504",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927651,
+			"departmentName": "沙运司",
+			"logMessage": "用户在2017-11-23 16:03:00登录"
+		}, {
+			"userId": "ysgslongjie",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:03:00",
+			"departmentId": "0112150E1i",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927456,
+			"departmentName": "内蒙古分公司锡林郭勒配送中心",
+			"logMessage": "用户在2017-11-23 16:03:00登录"
+		}, {
+			"userId": "ysgswml",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:02:35",
+			"departmentId": "0112150807",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927649,
+			"departmentName": "准噶尔分公司油田客运一大队",
+			"logMessage": "用户在2017-11-23 16:02:35登录"
+		}, {
+			"userId": "ysgsluoyong",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:02:32",
+			"departmentId": "0112150Z3W",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927454,
+			"departmentName": "四川分公司泸州配送中心",
+			"logMessage": "用户在2017-11-23 16:02:32登录"
+		}, {
+			"userId": "wangying",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:02:27",
+			"departmentId": "0112170119",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927452,
+			"departmentName": "销售部",
+			"logMessage": "用户在2017-11-23 16:02:27登录"
+		}, {
+			"userId": "ysgsliaoyo",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:02:06",
+			"departmentId": "0112150f05",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928087,
+			"departmentName": "新疆配送公司库尔勒配送中心",
+			"logMessage": "用户在2017-11-23 16:02:06登录"
+		}, {
+			"userId": "ysgskouwj",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:01:30",
+			"departmentId": "01121503",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927644,
+			"departmentName": "塔运司",
+			"logMessage": "用户在2017-11-23 16:01:30登录"
+		}, {
+			"userId": "ysgsabdjp",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:01:28",
+			"departmentId": "0112150f",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927851,
+			"departmentName": "新疆配送公司",
+			"logMessage": "用户在2017-11-23 16:01:28登录"
+		}, {
+			"userId": "ysgswangzhen",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:01:16",
+			"departmentId": "01121506",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927849,
+			"departmentName": "长庆运输公司",
+			"logMessage": "用户在2017-11-23 16:01:16登录"
+		}, {
+			"userId": "ysgstzg",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:00:54",
+			"departmentId": "0112150c08",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927846,
+			"departmentName": "甘肃分公司陇南配送中心",
+			"logMessage": "用户在2017-11-23 16:00:54登录"
+		}, {
+			"userId": "ysgstzg",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:00:54",
+			"departmentId": "0112150c08",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927845,
+			"departmentName": "甘肃分公司陇南配送中心",
+			"logMessage": "用户在2017-11-23 16:00:54执行用户登录操作"
+		}, {
+			"userId": "hzsqz_1",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 16:00:18",
+			"departmentId": "010803010913",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928105,
+			"departmentName": "贺州输气站",
+			"logMessage": "用户在2017-11-23 16:00:18登录"
+		}, {
+			"userId": "cqyshejch",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 16:00:15",
+			"departmentId": "01121506Gq",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927640,
+			"departmentName": "长庆运输公司顺宁运输大队",
+			"logMessage": "用户在2017-11-23 16:00:15登录"
+		}, {
+			"userId": "hcsqz_1",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 15:59:29",
+			"departmentId": "010803010927",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156928101,
+			"departmentName": "河池输气站",
+			"logMessage": "用户在2017-11-23 15:59:29登录"
+		}, {
+			"userId": "ysgsyyg01",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 15:58:41",
+			"departmentId": "0112150453",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927445,
+			"departmentName": "沙运司小车服务大队",
+			"logMessage": "用户在2017-11-23 15:58:41登录"
+		}, {
+			"userId": "ysgswangyonggs",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 15:58:28",
+			"departmentId": "0112150c",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927443,
+			"departmentName": "甘肃分公司",
+			"logMessage": "用户在2017-11-23 15:58:28登录"
+		}, {
+			"userId": "ysgsxiaojialong",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 15:58:27",
+			"departmentId": "0112150Z",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927095,
+			"departmentName": "四川分公司",
+			"logMessage": "用户在2017-11-23 15:58:27登录"
+		}, {
+			"userId": "ysgszhengjia",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 15:57:35",
+			"departmentId": "0112150Z3O",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927087,
+			"departmentName": "四川分公司绵阳配送中心",
+			"logMessage": "用户在2017-11-23 15:57:35登录"
+		}, {
+			"userId": "TXXF",
+			"requestIp": "11.8.35.223",
+			"logDate": "2017-11-23 15:57:24",
+			"departmentId": "01121701",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927837,
+			"departmentName": "塔西南勘探开发公司",
+			"logMessage": "用户在2017-11-23 15:57:24登录"
+		}, {
+			"userId": "ysgswangbo",
+			"requestIp": "11.8.35.224",
+			"logDate": "2017-11-23 15:56:14",
+			"departmentId": "0112150c0C",
+			"functionName": "用户登录",
+			"functionId": 1801,
+			"userLogId": 2156927830,
+			"departmentName": "甘肃分公司酒泉配送中心",
+			"logMessage": "用户在2017-11-23 15:56:14登录"
+		}
+	],
+	"tableType": null
+}

@@ -1,0 +1,117 @@
+{
+    "error": 0,
+    "status": "success",
+    "results": [{
+        "currentCity": "北京市",
+        "weather_data": [{
+            "date": "周一 10月23日",
+            "dayPictureUrl": "http://api.map.baidu.com/images/weather/day/qing.png",
+            "nightPictureUrl": "http://api.map.baidu.com/images/weather/night/qing.png",
+            "dayweather": "晴",
+            "nightweather": "晴转多云",
+            "daywindlev": "3级",
+            "nightwindlev": "4级",
+            "daywind": "西北风微风",
+            "nightwind": "爱情就像龙卷风",
+            "daytemperature": "15 ~ 3℃",
+            "nighttemperature": "8 ~ -3℃",
+            "datasource": "嘻嘻天气"
+        }, {
+            "date": "周二 10月24日",
+            "dayPictureUrl": "http://api.map.baidu.com/images/weather/day/qing.png",
+            "nightPictureUrl": "http://api.map.baidu.com/images/weather/night/duoyun.png",
+            "dayweather": "晴转多云",
+            "nightweather": "多云转晴",
+            "daywindlev": "1级",
+            "nightwindlev": "4级",
+            "daywind": "无持续风向微风",
+            "nightwind": "无持续风向微风",
+            "daytemperature": "18 ~ 7℃",
+            "nighttemperature": "3 ~ -3℃",
+            "datasource": "嘻嘻天气"
+
+        }, {
+            "date": "周三 10月25日",
+            "dayPictureUrl": "http://api.map.baidu.com/images/weather/day/duoyun.png",
+            "nightPictureUrl": "http://api.map.baidu.com/images/weather/night/yin.png",
+            "dayweather": "多云转阴",
+            "nightweather": "多云转小雨",
+            "daywindlev": "4级",
+            "nightwindlev": "2级",
+            "daywind": "东南风微风",
+            "nightwind": "爱情龙卷风",
+            "daytemperature": "17 ~ 8℃",
+            "nighttemperature": "-3 ~ -12℃",
+            "datasource": "嘻嘻天气"
+        }, {
+            "date": "周四 10月26日",
+            "dayPictureUrl": "http://api.map.baidu.com/images/weather/day/duoyun.png",
+            "nightPictureUrl": "http://api.map.baidu.com/images/weather/night/qing.png",
+            "dayweather": "多云转晴",
+            "nightweather": "小雨转大雪",
+            "daywindlev": "5级",
+            "nightwindlev": "6级",
+            "daywind": "无持续风向微风",
+            "nightwind": "西南风微风",
+            "daytemperature": "19 ~ 8℃",
+            "nighttemperature": "2 ~ -5℃",
+            "datasource": "嘻嘻天气"
+        }]
+    }, {
+        "currentCity": "天津市",
+        "weather_data": [{
+            "date": "周一 10月23日",
+            "dayPictureUrl": "http://api.map.baidu.com/images/weather/day/qing.png",
+            "nightPictureUrl": "http://api.map.baidu.com/images/weather/night/qing.png",
+            "dayweather": "晴",
+            "nightweather": "晴转多云",
+            "daywindlev": "3级",
+            "nightwindlev": "4级",
+            "daywind": "西北风微风",
+            "nightwind": "爱情就像龙卷风",
+            "daytemperature": "15 ~ 3℃",
+            "nighttemperature": "8 ~ -3℃",
+            "datasource": "嘻嘻天气"
+        }, {
+            "date": "周二 10月24日",
+            "dayPictureUrl": "http://api.map.baidu.com/images/weather/day/qing.png",
+            "nightPictureUrl": "http://api.map.baidu.com/images/weather/night/duoyun.png",
+            "dayweather": "晴转多云",
+            "nightweather": "多云转晴",
+            "daywindlev": "1级",
+            "nightwindlev": "4级",
+            "daywind": "无持续风向微风",
+            "nightwind": "无持续风向微风",
+            "daytemperature": "18 ~ 7℃",
+            "nighttemperature": "3 ~ -3℃",
+            "datasource": "嘻嘻天气"
+
+        }, {
+            "date": "周三 10月25日",
+            "dayPictureUrl": "http://api.map.baidu.com/images/weather/day/duoyun.png",
+            "nightPictureUrl": "http://api.map.baidu.com/images/weather/night/yin.png",
+            "dayweather": "多云转阴",
+            "nightweather": "多云转小雨",
+            "daywindlev": "4级",
+            "nightwindlev": "2级",
+            "daywind": "东南风微风",
+            "nightwind": "爱情龙卷风",
+            "daytemperature": "17 ~ 8℃",
+            "nighttemperature": "-3 ~ -12℃",
+            "datasource": "嘻嘻天气"
+        }, {
+            "date": "周四 10月26日",
+            "dayPictureUrl": "http://api.map.baidu.com/images/weather/day/duoyun.png",
+            "nightPictureUrl": "http://api.map.baidu.com/images/weather/night/qing.png",
+            "dayweather": "多云转晴",
+            "nightweather": "小雨转大雪",
+            "daywindlev": "5级",
+            "nightwindlev": "6级",
+            "daywind": "无持续风向微风",
+            "nightwind": "西南风微风",
+            "daytemperature": "19 ~ 8℃",
+            "nighttemperature": "2 ~ -5℃",
+            "datasource": "嘻嘻天气"
+        }]
+    }]
+}

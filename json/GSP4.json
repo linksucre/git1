@@ -1,0 +1,22 @@
+{
+	"total": 1,
+	"rows": [
+		{
+			"ALARM_0_HIS": 0,
+			"ALARM_31_HIS": 0,
+			"ALARM_47_HIS": 0,
+			"ORG_NAME": "综合处",
+			"ALARM_15_HIS": 0,
+			"ALARM_12_HIS": 0,
+			"ALARM_31": 0,
+			"ALARM_15": 0,
+			"ALARM_12": 0,
+			"ALARM_47": 0,
+			"ALARM_29": 0,
+			"ORG_CODE": "01010101",
+			"ALARM_29_HIS": 0,
+			"ALARM_0": 0
+		}
+	],
+	"tableType": 0
+}
