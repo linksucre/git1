@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>GPS报警情况统计表</title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<script type="text/javascript" src="../../js/more_data_noHide.js"></script>
+	<style type="text/css">
+		a{
+			text-decoration: underline;
+		}
+	</style>
+	<body class="easyui-layout" style="overflow: hidden;width:100%;height:100%;">
+		<div data-options="region:'center',border:false" style="width:100%;height:100%;overflow: hidden;">
+			<p class="title" style="height:3%;box-sizing: border-box; padding:14px 0 5px 10px;margin: 0px;">当前位置：
+			   <a href="#" style="color: dodgerblue;" class="remove_first" onclick="remove_first('#dg','.remove_first','../../json/GSP1.json')">集团公司</a>
+		    </p>
+            <table border="0" cellspacing="0" cellpadding="0" class="table_layout">
+				<tr>
+					<td>单位：</td>
+					<td>
+						<div class="clear_mes">
+							<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+							<span class="clearMess" style="display:none;"></span>
+					    </div>
+					</td>
+					<td>开始日期：</td>
+					<td>
+						<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">
+					</td>
+					<td>结束日期：</td>
+					<td>
+						<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">				
+					</td>
+					<td colspan="6">
+						<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('.easyui-datagrid')">查询</span>
+						<span class="easyui-linkbutton" iconcls="icon-excel"><a id="exportExcel" href="#">导出</a></span>
+					</td>
+				</tr>
+			</table>
+			<table id="dg" class="easyui-datagrid" style="width:100%;height:80%" data-options="singleSelect:false,fitColumns:true,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/GSP1.json',method:'get'">
+			</table>			
+		</div>
+	</body>
+	<script type="text/javascript">
+		//表格
+		$('#dg').datagrid({  
+	        columns: [[
+	                    {field:'ORG_NAME',title:'单位',width:100,rowspan:2,formatter:formatter},
+	                    {"title":"超速处理","colspan":2},
+		                {"title":"异常停车处理","colspan":2},
+						{"title":"越区报警处理","colspan":2},
+						{"title":"偏航报警处理","colspan":2},
+						{"title":"紧急报警处理","colspan":2},
+						{"title":"疲劳驾驶处理","colspan":2},
+	                    {field:'ORG_CODE',title:'黑名单车辆',width:100,align:'center', rowspan:2},
+	                ],[ 
+		                {"field":"ALARM_47","title":"报警总数","rowspan":1,align:'center',width:100},
+						{"field":"ALARM_47_HIS","title":"处理总数","rowspan":1,align:'center',width:100},	
+						{"field":"ALARM_15","title":"报警总数","rowspan":1,align:'center',width:100},
+						{"field":"ALARM_15_HIS","title":"处理总数","rowspan":1,align:'center',width:100},	
+						{"field":"ALARM_29","title":"报警总数","rowspan":1,align:'center',width:100},
+						{"field":"ALARM_29_HIS","title":"处理总数","rowspan":1,align:'center',width:100},	
+						{"field":"ALARM_12","title":"报警总数","rowspan":1,align:'center',width:100},
+						{"field":"ALARM_12_HIS","title":"处理总数","rowspan":1,align:'center',width:100},	
+						{"field":"ALARM_0","title":"报警总数","rowspan":1,align:'center',width:100},
+						{"field":"ALARM_0_HIS","title":"处理总数","rowspan":1,align:'center',width:100},	
+						{"field":"ALARM_31","title":"报警总数","rowspan":1,align:'center',width:100},
+						{"field":"ALARM_31_HIS","title":"处理总数","rowspan":1,align:'center',width:100}	
+	                ]]
+	
+		});
+		
+         function formatter(value, row, index) {
+			if(index == 0){
+				return value;
+			}else{
+			    return "<a href='#' onclick='tab_mes(this," + '"#dg"' + "," + '".title"' + ")' style='color:blue'>" + value + "</a>";		
+			}
+		} 
+		var arr = ['../../json/GSP2.json','../../json/GSP3.json','../../json/GSP4.json']
+		var hideShow=["GSP"]
+
+	</script>
+</html>

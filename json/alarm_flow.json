@@ -1,0 +1,24 @@
+{
+    "total": 2,
+    "rows": [
+        {
+            "flowDetailsId": 444296441,
+            "processId": 15201,
+            "alarmLevel": "1",
+            "levelTime": "5分钟",
+            "orgCodes": "辽河油田公司",
+            "lTime": "300000",
+            "orgCode": "010518"
+        },
+        {
+            "flowDetailsId": 444296440,
+            "processId": 15201,
+            "alarmLevel": "2",
+            "levelTime": "--",
+            "orgCodes": "集团公司",
+            "lTime": "",
+            "orgCode": "01"
+        }
+    ],
+    "tableType": null
+}

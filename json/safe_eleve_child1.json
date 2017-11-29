@@ -1,0 +1,37 @@
+{
+	"total": 3,
+	"rows": [
+		{
+			"RISK_VALUE": 0,
+			"LEVELNAME": "甲级",
+			"ORG_NAME": "渤海装备公司",
+			"WEIZHANG": 0,
+			"ALARM": 0,
+			"ORG_CODE": "011102",
+			"HAS_SON": 1,
+			"SHIGU": 0,
+			"MILE": 77453.91
+		}, {
+			"RISK_VALUE": 0,
+			"LEVELNAME": "丙级",
+			"ORG_NAME": "渤海",
+			"WEIZHANG": 0,
+			"ALARM": 0,
+			"ORG_CODE": "011101",
+			"HAS_SON": 1,
+			"SHIGU": 0,
+			"MILE": 0
+		}, {
+			"RISK_VALUE": 0,
+			"LEVELNAME": "丙级",
+			"ORG_NAME": "装备制造企业",
+			"WEIZHANG": 0,
+			"ALARM": 0,
+			"ORG_CODE": "0111",
+			"HAS_SON": 1,
+			"SHIGU": 0,
+			"MILE": 0
+		}
+	],
+	"tableType": null
+}

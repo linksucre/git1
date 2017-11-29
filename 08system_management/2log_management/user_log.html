@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>用户日志</title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<body class="easyui-layout" style="overflow: hidden;width:100%;height:100%;">
+            <table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
+				<tr>
+					<td>用户名：</td>
+					<td><input type="text" name="" class="width"/></td>
+					<td>单位：</td>
+					<td>
+						<div class="clear_mes">
+							<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+							<span class="clearMess" style="display:none;"></span>
+					    </div>
+					</td>
+					<td>功能名称：</td>
+					<td>
+						<div class="clear_mes">
+							<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+							<span class="clearMess" style="display:none;"></span>
+					    </div>
+					</td>
+					<td>内容：</td>
+					<td><input type="text" name="" class="width"/></td>
+					<td>开始时间：</td>
+					<td>
+						<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">
+					</td>
+					<td>结束时间：</td>
+					<td>
+						<input type="text" class="easyui-datebox width" name="entryTime" editable="false" comboname="start-dateQuery">
+					</td>
+					<td colspan="6">
+						<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('#dg')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>
+						<span class="easyui-linkbutton clear_btn" iconcls="icon-excel"><a id="exportExcel" href="#">导出当前页</a></span>
+						<span class="easyui-linkbutton clear_btn" iconcls="icon-excel"><a id="exportExce" href="#">导出全部</a></span>
+					</td>
+				</tr>				
+			</table>
+			
+			<div id="turn_btn1" title="转换报表展示形式" class="report_box" style="width:50px;height:30px;position: absolute;top: 10px;right: 20px; box-sizing:border-box;background:url(../../images/highchart.png) no-repeat"></div>
+					
+			<table id="dg" class="easyui-datagrid" style="width:100%;height:80%" data-options="fitColumns:true,rownumbers:true,singleSelect:true,pagination:true,pageList:[5,10,15,20],url:'../../json/user_log1.json',method:'get'">
+			    <thead>
+					<tr>
+						<th data-options="field:'userId',width:100,formatter:formatter1,sortable:true">用户名</th>
+						<th data-options="field:'departmentName',width:100">单位名称</th>
+						<th data-options="field:'requestIp',width:100">用户IP</th>
+						<th data-options="field:'functionName',width:100,formatter:formatter2">功能名称</th>
+						<th data-options="field:'logMessage',width:100">日志内容</th>
+						<th data-options="field:'logDate',width:100">日志时间</th>
+					</tr>
+				</thead>
+			</table>			
+		</div>
+	</body>
+	<script type="text/javascript">
+		 function formatter1(value, row, index) {
+			    return "<a href='#' class='a_text' onclick='tab_mes1(this)' style='color:blue'>" + value + "</a>";					
+		}
+		 function formatter2(value, row, index) {
+			    return "<a href='#' class='a_text' onclick='tab_mes2(this)' style='color:blue'>" + value + "</a>";					
+		} 
+		
+		function tab_mes1(name){
+			var inner = name.innerHTML;
+			if(inner == 'ysgswangy'){
+				$('#dg').datagrid({
+					url:'../../json/user_log2.json'
+				});
+			}else if(inner == 'zhuwei'){
+				$('#dg').datagrid({
+					url:'../../json/user_log3.json'
+				});
+			}
+		}
+		function tab_mes2(name){
+			var inner = name.innerHTML;
+			if(inner == '单车轨迹播放'){
+				$('#dg').datagrid({
+					url:'../../json/user_log4.json'
+				});
+			}else if(inner == '用户登录'){
+				$('#dg').datagrid({
+					url:'../../json/user_log5.json'
+				});
+			}
+		}
+		$('#turn_btn1').click(function(){
+				window.location.href = 'user_log1.html';
+			})
+	</script>
+</html>

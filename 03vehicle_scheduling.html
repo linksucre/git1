@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html style="width:100%;height:100%;">
+
+	<head>
+		<meta charset="UTF-8">  
+		<title>车辆调度</title>
+		<!-- 引入EasyUI的样式文件-->
+		<link href="images/logo.png" rel="shortcut icon" />
+		<link rel="import" href="public.html">
+		<script type="text/javascript" src="js/index_loading.js"></script>
+		<style>
+			.datagrid-header td{
+				  background: #89BCF1;   
+				  color: #ffffff;
+				  cursor: default;
+				}
+		</style>
+	</head>
+
+	<body style="width:100%;height:100%;margin:0;padding:0;" class="easyui-layout" id="cheliangdiaodu">
+		<!--上边-->
+		<!--center-->
+		<div region="center" style="overflow: hidden;">
+			<div class="easyui-layout" data-options="fit:true">
+				<!--左边-->
+				<div data-options="region:'west',split:true,title:' ' " style="width:240px;">
+					<div class="easyui-accordion" data-options="fit:true,border:false">
+						<div title="任务计划" data-options="iconCls:'icon_rwjh',selected:true">
+							<ul class="left_menu cldd">
+								<li>
+									<a href="#" onclick="addPanel('03vehicle_scheduling/1task_plan/car_application.html','公务用车申请')"><span class="span-icon1"></span>公务用车申请</a>
+								</li>
+								<li>
+									<a href="#" onclick="addPanel('03vehicle_scheduling/1task_plan/pro_appli.html','生产用车申请')"><span class="span-icon2"></span>生产用车申请</a>
+								</li>
+								<li>
+									<a href="#"><span class="span-icon3"></span>班车计划制定</a>
+								</li>
+								<li>
+									<a href="#" onclick="addPanel('03vehicle_scheduling/1task_plan/task_plan.html','任务计划导入')"><span class="span-icon4"></span>任务计划导入</a>
+								</li>
+								<li>
+									<a href="#" onclick="addPanel('03vehicle_scheduling/1task_plan/taskTracking.html','任务管理')"><span class="span-icon5"></span>任务管理</a>
+								</li>
+							</ul>
+						</div>
+						<div title="运能运力分析" data-options="iconCls:'icon_ynyl'">
+							<ul class="left_menu cldd">
+								<li>
+									<a href="#"><span class="span-icon6"></span>运能运力查询</a>
+								</li>
+								<li>
+									<a href="#"><span class="span-icon7"></span>效率分析</a>
+								</li>
+
+							</ul>
+						</div>
+						<div title="路线管理" data-options="iconCls:'icon_lxgl'">
+							<ul class="left_menu cldd">
+								<li>
+									<a href="#" onclick="addPanel('03vehicle_scheduling/3router_manage/router_manage.html','路线管理')"><span class="span-icon9"></span>路线管理</a>
+								</li>
+
+							</ul>
+						</div>
+						<div title="车辆调派" data-options="iconCls:'icon_cldp'">
+							<ul class="left_menu cldd">
+								<li>
+									<a href="#" onclick="addPanel('03vehicle_scheduling/4car_send/not_dispat.html','未调派')"><span class="span-icon9"></span>未调派</a>
+								</li>
+								<li>
+									<a href="#"><span class="span-icon10"></span>调派审批列表</a>
+								</li>
+
+							</ul>
+						</div>
+						<div title="油耗管理" data-options="iconCls:'icon_yhgl'">
+							<ul class="left_menu cldd">
+								<li>
+									<a href="#"><span class="span-icon11"></span>车辆油耗监测</a>
+								</li>
+								<li>
+									<a href="#"><span class="span-icon12"></span>任务油耗监测</a>
+								</li>
+
+							</ul>
+						</div>
+						<div title="任务统计" data-options="iconCls:'icon_rwtj'">
+							<ul class="left_menu cldd">
+								<li>
+									<a href="#"><span class="span-icon13"></span>单位任务统计</a>
+								</li>
+								<li>
+									<a href="#"><span class="span-icon14"></span>单车任务统计</a>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<!--右边-->
+				<div id="mainPanle" region="center" title="" style="padding:5px;height:100%;" >
+					<!--tab选项卡-->
+					<div id="mainContainer" class="easyui-tabs tabs" fit="true" border="false" style="width:100%;height:100%;">
+
+						<div title="主页" style="padding:10px">
+
+							<table height="60px" width="90%" align="center" style="margin-top:10px;margin-bottom: 10px;">
+								<tbody>
+									<tr>
+										<td>
+
+											<a href="#" onclick="addPanel('task_plan/car_application.html','公务用车申请')" style="width:152px;text-align:center;border-radius:5px;height:42px;line-height: 42px;display:table-cell;align:center;vertical-align:middle;background: SteelBlue;width:150px;height:40px;">
+												<span style="display:inline-block;vertical-align:middle;width:18px;height:18px;margin-right:5px;background:url('images/model03_level02.png') no-repeat 0px -32px;"></span>
+												<font color="white" size="3">公务用车申请</font>
+
+											</a>
+
+										</td>
+										<td>
+
+											<a href="#" onclick="addPanel('task_plan/car_application.html','生产用车')" style="width:152px;text-align:center;border-radius:5px;height:42px;line-height: 42px;display:table-cell;align:center;vertical-align:middle;background: SteelBlue;width:150px;height:40px;">
+												<span style="display:inline-block;vertical-align:middle;width:18px;height:18px;margin-right:5px;background:url('images/model03_level02.png') no-repeat 0px -32px;"></span>
+												<font color="white" size="3">生产用车申请</font>
+
+											</a>
+										</td>
+										<td>
+											<a href="#" onclick="addPanel('task_plan/car_application.html','班车计划')" style="width:152px;text-align:center;border-radius:5px;height:42px;line-height: 42px;display:table-cell;align:center;vertical-align:middle;background: SteelBlue;width:150px;height:40px;">
+												<span style="display:inline-block;vertical-align:middle;width:18px;height:18px;margin-right:5px;background:url('images/model03_level02.png') no-repeat 0px -32px;"></span>
+												<font color="white" size="3">班车计划制定</font>
+
+											</a>
+
+										</td>
+										<td>
+											<a href="#" onclick="addPanel('vehicleScheduling/taskTracking.html','任务跟踪')" style="width:152px;text-align:center;border-radius:5px;height:42px;line-height: 42px;display:table-cell;align:center;vertical-align:middle;background: SteelBlue;width:150px;height:40px;">
+												<span style="display:inline-block;vertical-align:middle;width:18px;height:18px;margin-right:5px;background:url('images/model03_level02.png') no-repeat 0px -32px;"></span>
+												<font color="white" size="3">任务跟踪</font>
+
+											</a>
+										</td>
+									</tr>
+
+								</tbody>
+							</table>
+							<div class="diaoduTop" style="width:90%;height:220px;border:1px solid #dcdcdc;margin:auto;">
+								<div id="div_ydp_search" style="padding: 5px 0px; height: auto;width:100%;margin:auto;background: #F0F0FF;" class="datagrid-toolbar">
+									<table width="90%" align="center" >
+										<tbody>  
+											<tr>
+												<td>
+													<font size="3">已调派列表</font>
+												</td>
+												<td></td>
+												<td style="text-align:right;">
+													
+													<a href="#" onclick="addPanel('vehicleScheduling/taskTracking.html','任务管理')" style="color: #;">查看更多</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!--表格-->
+								<div class="datagrid-view" style="width: 100%; height: 150px;margin:auto;">
+									<table id="cheliangtt" class="easyui-datagrid" style="width:100%;height:100%;overflow: hidden;" data-options="singleSelect:true,collapsible:true,rownumbers:true,url:'json/cheliangdiaoduT.json',method:'get'">
+									</table>
+								</div>
+							</div>
+							<div class="diaoduBottom" style="width:90%;height:220px;border:1px solid #dcdcdc;border-bottom:none;margin:auto;">
+								<div id="div_rwgz_search" style="padding: 5px 0px; height: auto;width:100%;margin:auto;background: #F0F0FF;" class="datagrid-toolbar">
+									<table width="97%" align="center">
+										<tbody>
+											<tr>
+												<td>
+													<font size="3">任务跟踪列表</font>
+												</td>
+												<td></td>
+												<td style="text-align:right;">
+													<a href="#" onclick="addPanel('vehicleScheduling/taskTracking.html','任务管理')">查看更多</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+
+								<!--表格-->
+								<div class="datagrid-view" style="width: 100%; height: 150px;margin: auto;">
+									<table id="cheliangttBottom" class="easyui-datagrid" style="width:100%;height:100%;overflow: hidden;" data-options="singleSelect:true,collapsible:true,rownumbers:true,url:'json/cheliangdiaoduB.json',method:'get'">
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+				<!--右边-->
+
+			</div>
+		</div>
+		<div id="tabsMenu" class="easyui-menu" style="width: 120px; height: 72px; display: none; left: 0px; top: 0px;">
+			<div name="close" class="menu-item">关闭</div>
+			<div name="Other" class="menu-item">关闭其他</div>
+			<div name="All" class="menu-item">关闭全部</div>
+		</div>
+		<!--底部-->
+		<iframe name="mainFrame" scrolling="auto" frameborder="0" src="index.html" style="width:100%;height:100%;overflow-y:hidden;"></iframe>
+
+	</body>
+	<script>		
+		$(function() {
+			$('#cheliangtt').datagrid({
+				idField: 'itemid',
+				fitColumns : "true",
+				columns: [
+					[{
+							field: 'taskId',
+							title: '任务编号1',
+							width: 100,
+							align: 'center',
+							formatter: function(value, row, index) {
+								if(row.editing) {} else {
+									var e = '<a href="#" onclick="editrowTop(this)"  style="color: blue;">'+value+'</a> ';
+									return e;
+								}
+							}
+						},
+						{
+							field: 'taskName',
+							title: '任务名称',
+							width: 200,
+							align: 'right',
+							editor: {
+								type: 'numberbox',
+								options: {
+									precision: 1
+								}
+							}
+						},
+						{
+							field: 'isLongDistance',
+							title: '任务类型',
+							width: 100,
+							align: 'right',
+							editor: 'numberbox'
+						},
+						{
+							field: 'taskStatusString',
+							title: '任务状态',
+							width: 80,
+							editor: 'text'
+						},
+						{
+							field: 'applyDate',
+							title: '申请日期',
+							width: 150,
+							editor: 'text'
+						},
+						{
+							field: 'useDate',
+							title: '用车时间',
+							width: 150,
+							editor: 'text'
+						},
+						{
+							field: 'leaveAddress',
+							title: '出发地',
+							width: 250,
+							editor: 'text'
+						},
+						{
+							field: 'arriveAddress',
+							title: '目的地',
+							width: 250,
+							editor: 'text'
+						},
+						{
+							field: 'id',
+							title: '操作',
+							width: 100,
+							align: 'center',
+							formatter: function(value, row, index) {
+								if(row.editing) {} else {
+									var e = '<a href="#" onclick="editrowTop(this)"  style="color: blue;">查看调派</a> ';
+									return e;
+								}
+							}
+						}
+
+					]
+				]
+			});
+
+			
+		});
+
+		function getRowIndex(target) {
+			var tr = $(target).closest('tr.datagrid-row');
+			return parseInt(tr.attr('datagrid-row-index'));
+		}
+
+		function editrowTop(target) {
+			$('#cheliangtt').datagrid('beginEdit', getRowIndex(target));
+//			console.log(target.innerHTML)
+			if(target.innerHTML != "查看调派") {
+
+				addPanel('vehicleScheduling/taskDetails.html', '任务详情')
+			}
+			if(target.innerHTML == "查看调派") {
+				addPanel('car_send/view_assign.html', '查看调派')
+			}
+			//点击添加选项卡
+			function addPanel(url, tabTitle) {
+				$('.easyui-accordion li div').removeClass("selected");
+				addTab(tabTitle, url);
+				$(this).parent().addClass("selected");
+			}
+
+//
+//			function createFrame(url) {
+//				var s = '<iframe name="mainFrame" scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height:100%;overflow-y:hidden;"></iframe>';
+//				return s;
+//			}
+//
+//			function tabClose() {
+//				/*双击关闭TAB选项卡*/
+//				$(".tabs-inner").dblclick(function() {
+//					var subtitle = $(this).children("span").text();
+//					$('.tabs').tabs('close', subtitle);
+//				})
+//				$(".tabs-inner").bind('contextmenu', function(e) {
+//					$('#mm').menu('show', {
+//						left: e.pageX,
+//						top: e.pageY,
+//					});
+//					var subtitle = $(this).children("span").text();
+//					$('#mm').data("currtab", subtitle);
+//					return false;
+//				});
+//			}
+
+		}
+
+		//以下很长一段表格数据2
+		var username = $("#form_username").val();
+		$('#cheliangttBottom').datagrid({
+			 fitColumns : "true",
+			iconCls: 'icon-edit',
+			singleSelect: true,
+			columns: [
+				[{
+						field: 'taskId',
+						title: '任务编号2',
+						width: 100,
+						//添加超级链 
+						formatter: function(value, rowData, rowIndex) {
+							return '<a href="#" onclick="editrowBottom(this)"  style="color: blue;">'+value+'</a>';
+
+						}
+					},
+					{
+						field: 'taskName',
+						title: '任务名称',
+						width: 200,
+						align: 'right',
+						editor: {
+							type: 'numberbox',
+							options: {
+								precision: 1
+							}
+						}
+					},
+					{
+						field: 'isLongDistance',
+						title: '任务类型',
+						width: 100,
+						align: 'right',
+						editor: 'numberbox'
+					},
+					{
+						field: 'taskStatusString',
+						title: '任务状态',
+						width: 80,
+						editor: 'text'
+					},
+					{
+						field: 'applyDate',
+						title: '申请日期',
+						width: 150,
+						editor: 'text'
+					},
+					{
+						field: 'useDate',
+						title: '用车时间',
+						width: 150,
+						editor: 'text'
+					},
+					{
+						field: 'leaveAddress',
+						title: '出发地',
+						width: 200,
+						editor: 'text'
+					},
+					{
+						field: 'arriveAddress',
+						title: '目的地',
+						width: 200,
+						editor: 'text'
+					},
+					{
+						field: 'id',
+						title: '操作',
+						align: 'left',
+						width: 80,
+						//添加超级链 
+						formatter: function(value, rowData, rowIndex) {
+							//function里面的三个参数代表当前字段值，当前行数据对象，行号（行号从0开始）
+							//alert(rowData.username);  
+							return '<a href="#" onclick="editrowBottom(this)"  style="color: blue;">任务跟踪详情</a>';
+						}
+					}
+				]
+			]
+		});
+
+		//以下很长一段表格数据结束
+		function editrowBottom(target) {
+			$('#cheliangttBottom').datagrid('beginEdit', getRowIndex(target));
+//			console.log(target.innerHTML)
+			if(target.innerHTML != "任务跟踪详情") {
+
+				addPanel('vehicleScheduling/taskDetails.html', '任务详情')
+			}
+			if(target.innerHTML == "任务跟踪详情") {
+
+				addPanel('vehicleScheduling/renwugenzongDetail.html', '任务跟踪详情')
+			}
+
+		}
+		
+		//点击柱状图跳回主页面
+		function tabs1() {
+			$('#mainContainer').tabs('select', '主页');    //跳转到名为'消息'tab页
+		
+		}
+	</script>
+
+</html>
+

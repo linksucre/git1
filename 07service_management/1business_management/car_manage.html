@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<body class="easyui-layout" style="overflow: hidden;">
+		<form id="searchForm" method="post">
+		    <table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
+				<tr>
+					<td>车牌号：</td>
+					<td><input type="text" name="cardNum" class="width1"/></td>
+					<td>终端号：</td>
+					<td><input type="text" name="terminaltypeId" class="width1"/></td>
+					<td>自编号：</td>
+					<td><input type="text" name="number" class="width1"/></td>
+					<td>SIM卡：</td>
+					<td><input type="text" name="" class="width1"/></td>
+					<td>车辆类型：</td>
+					<td><input type="text" name="typeId" class="width1"/></td>
+					<td>主驾名：</td>
+					<td><input type="text" name="" class="width1"/></td>
+					<td>单位：</td>
+					<td>
+						<div class="clear_mes">
+							<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+							<span class="clearMess" style="display:none;"></span>
+					    </div>
+					</td>
+					<td>信息来源：</td>
+					<td>
+						<select class="easyui-combobox" name="sources">
+							<option value="">请选择</option>
+							<option value="">频繁疲劳驾驶</option>
+							<option value="">频繁发生事故</option>
+							<option value="">频繁超速</option>
+							<option value="">其他</option>
+							<option value="">频繁越区</option>
+						</select>
+					</td>
+					<td colspan="6" style="text-align: left;padding-left: 20px;position: relative;">
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="query('#dg','#searchForm')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'"  onclick="clearSearch('#dg')">重置</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="addMes('#EditForm','#dg','#w','http://dayan.huayitec.com/carController/insert')">添加</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="updateData('#dg','#w5','#w3','#w6','#update','http://dayan.huayitec.com/carController/update?id=','.modify')">修改</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="delData('#dg','#w2','#w4','.sure_btn','http://dayan.huayitec.com/carController/delete?id=')">删除</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-excel'" ><a id="exportExcel" href="#">导出</a></span>
+				        <span class="easyui-linkbutton" data-options="iconCls:'icon-impo'" onclick="alert('#w9')"><a href="#" >导入</a></span>				
+					</td>
+				</tr>
+			</table>
+		</form>		
+		<table id="dg" class="easyui-datagrid" style="width:100%;height:85%" data-options="fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'http://dayan.huayitec.com/carController/getListPage'">
+			<thead>
+				<tr>
+					<th data-options="field:'checkbox',checkbox:true"></th>
+				    <th data-options="field:'sources',width:'200'">信息来源</th>
+					<th data-options="field:'number',width:'200'">自编号</th>
+					<th data-options="field:'cardNum',width:'200'">车牌号</th>
+					<th data-options="field:'terminaltypeId',width:'200'">终端</th>
+					<th data-options="field:'creator',width:'200'">SIM卡号</th>
+					<th data-options="field:'typeId',width:'200'">车辆类型</th>
+					<th data-options="field:'addUserName',width:'200'">主驾名</th>
+					<th data-options="field:'use',width:'200'">用途</th>
+					<th data-options="field:'unitId',width:'200'">单位</th>
+					<th data-options="field:'colourId',width:'200'">车牌颜色</th>
+					<th data-options="field:'frameNum',width:'200'">车架号</th>
+					<th data-options="field:'fuelId',width:'200'">燃油类型</th>
+					<th data-options="field:'recordTime',width:'200'">营运性质</th>
+					<th data-options="field:'appCargo',width:'200'">核定载质量(T)</th>
+					<th data-options="field:'nullCar',width:'200'">空车质量(T)</th>
+				</tr>
+			</thead>
+		</table>
+<!--模态框-->
+		<div id='w' class="easyui-window" closed='true' title="新增车辆" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:770px;height:600px;">
+			<div>
+				<form method="post" id="EditForm">
+					<table border="0" cellspacing="0" cellpadding="0" class="win_list">
+						<tr>
+							<td>信息来源：</td>
+							<td><input type="text" disabled="disabled" name="sources" value="VMS2.0"/></td>
+							<td>自编号：</td>
+							<td><input type="text" name="number" /></td>
+						</tr>
+						<tr>
+							<td>车牌号：</td>
+							<td><input type="text" name="cardNum" data-options="required:true" class="easyui-validatebox textbox"/></td>
+							<td>车牌颜色：</td>
+							<td><input class="easyui-combotree" name="colourId" data-options="url:'../../json/tree_data1.json',method:'get',required:true"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="checkbox"/> 是否为临时车辆</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>主驾：</td>
+							<td>
+								<select class="easyui-combobox width2" name="mainDriver" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+							<td>副驾：</td>
+							<td>
+								<select class="easyui-combobox width2" name="viceDriver" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>车辆类型：</td>
+							<td>
+								<input class="easyui-combotree" name="typeId" data-options="url:'../../json/tree_data1.json',method:'get',required:true">
+						    </td>
+							<td>押运员：</td>
+							<td>
+								<select class="easyui-combobox width2" name="escort" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>车挂号：</td>
+							<td>
+								<input type="text" name="carRegis"/>
+							</td>
+							<td>单位：</td>
+							<td>
+								<input class="easyui-combotree" name="unitId" data-options="url:'../../json/tree_data1.json',method:'get',required:true">
+						    </td>
+						</tr>
+						<tr>
+							<td>车架号：</td>
+							<td>
+								<input type="text" name="frameNum"/>
+							</td>
+							<td>道路运输许可证：</td>
+							<td>
+								<input type="text" name="transportNum"/>
+							</td>
+						</tr>
+						<tr>
+							<td>燃油类型：</td>
+							<td>
+								<select class="easyui-combobox width2" name="fuelId" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+							<td>是否报废：</td>
+							<td>
+								<select class="easyui-combobox width2" name="scrap" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>营运性质：</td>
+							<td>
+								<select class="easyui-combobox width2" name="operId" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+							<td>运输行业类型：</td>
+							<td>
+								<input class="easyui-combotree" name="industryId" id="use_cum3" data-options="url:'../../json/tree_data1.json',method:'get',required:true">
+						    </td>
+						</tr>
+						<tr class="last_list">
+							<td>终端：</td>
+							<td>
+								<select class="easyui-combobox width2" name="terminaltypeId" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+							<td>行驶证号：</td>
+							<td>
+							  <input type="text" name="drivingNum"/> 
+							  <span class="more" style="display: none;">更多</span>
+							  <span class="less">收起</span>
+							</td>
+						</tr>
+						<tr>
+							<td>生产厂家：</td>
+							<td>
+								 <input type="text" name="producer"/>
+							</td>
+							<td>品牌：</td>
+							<td>
+							 
+							  <select class="easyui-combobox width2" name="brandId" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>引擎类型：</td>
+							<td>						 
+							  <select class="easyui-combobox width2" name="egetypeId" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+							<td>引擎编号：</td>
+							<td>
+								 <input type="text" name="egetypeNum" />
+							</td>
+						</tr>
+						<tr>
+							<td>车身颜色：</td>
+							<td>						 
+							  <select class="easyui-combobox width2" name="carcolorId" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+							<td>是否进口：</td>
+							<td>
+								<select class="easyui-combobox width2" name="isImport" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>发动机功率：</td>
+							<td>
+								 <input type="text" name="power"/>
+							</td>
+							<td>罐体材质：</td>
+							<td>
+							 
+							  <select class="easyui-combobox width2" name="tkmlId" data-options="required:true" >
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>总质量(吨)：</td>
+							<td>
+								 <input type="text" name="totalQua" />
+							</td>
+							<td>核定载货量(吨)：</td>
+							<td>
+							   <input type="text" name="appCargo"/>
+							</td>
+						</tr>
+						<tr>
+							<td>空车质量(吨)：</td>
+							<td>
+								 <input type="text" name="nullCar"/>
+							</td>
+							<td>实载质量(吨)：</td>
+							<td>
+							   <input type="text" name="realLoad"/>
+							</td>
+						</tr>
+						<tr>
+							<td>初期里程(公里)：</td>
+							<td>
+								 <input type="text" name="earlyKm"/>
+							</td>
+							<td>罐体容积(立方米)：</td>
+							<td>
+							   <input type="text" name="bodayNum"/>
+							</td>
+						</tr>
+						<tr>
+							<td>核定载客：</td>
+							<td>
+								 <input type="text" name="appPassenger"/>
+							</td>
+							<td>驾驶室载客：</td>
+							<td>
+							   <input type="text" name="cabPassenger"/>
+							</td>
+						</tr>
+						<tr>
+							<td>油料重车定额(立方米)：</td>
+							<td>
+								 <input type="text" name="oilQuota"/>
+							</td>
+							<td>油料空车定额(立方米)：</td>
+							<td>
+							   <input type="text" name="oilNull"/>
+							</td>
+						</tr>
+						<tr>
+							<td>是否带泵：</td>
+							<td>
+								 <select class="easyui-combobox width2" name="pump" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+							<td>带下装油系统(是/否)：</td>
+							<td>
+							    <select class="easyui-combobox width2" name="oilLoaded" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>出厂时间：</td>
+							<td>
+								<input type="text" class="easyui-datebox" name="factoryTime" editable="false" comboname="start-dateQuery">
+							</td>
+							<td>购买时间：</td>
+							<td>
+							    <input type="text" class="easyui-datebox" name="buyTime" editable="false" comboname="start-dateQuery">
+							</td>
+						</tr>
+						<tr>
+							<td>报废年限：</td>
+							<td>
+								<input type="text" name="scrappLife">
+							</td>
+							<td>有效时间：</td>
+							<td>
+							    <input type="text" class="easyui-datebox" name="effTime" editable="false" comboname="start-dateQuery">
+							</td>
+						</tr>
+						<tr>
+							<td>最近年检时间：</td>
+							<td>
+								<input type="text" class="easyui-datebox" name="lastcensorTime" editable="false" comboname="start-dateQuery">
+							</td>
+							<td>下次年检时间：</td>
+							<td>
+							    <input type="text" class="easyui-datebox" name="nextcensorTime" editable="false" comboname="start-dateQuery">
+							</td>
+						</tr>
+						<tr>
+							<td>最近交强险时间：</td>
+							<td>
+								<input type="text" class="easyui-datebox" name="lastinsuTime" editable="false" comboname="start-dateQuery">
+							</td>
+							<td>交强险到期时间：</td>
+							<td>
+							    <input type="text" class="easyui-datebox" name="endinsuTime" editable="false" comboname="start-dateQuery">
+							</td>
+						</tr>
+						<tr>
+							<td>最近商业险时间：</td>
+							<td>
+								<input type="text" class="easyui-datebox" name="lasttradTime" editable="false" comboname="start-dateQuery">
+							</td>
+							<td>商业险到期时间：</td>
+							<td>
+							    <input type="text" class="easyui-datebox" name="endtradTime" editable="false" comboname="start-dateQuery">
+							</td>
+						</tr>
+						<tr>
+							<td>隶属关系：</td>
+							<td>
+								<select class="easyui-combobox width2" name="affiliation" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+							<td>运输许可证有效时间：</td>
+							<td>
+							    <input type="text" class="easyui-datebox" name="transportTime" editable="false" comboname="start-dateQuery">
+							</td>
+						</tr>
+						<tr>
+							<td>地域属性：</td>
+							<td>
+								<select class="easyui-combobox width2" name="addressId" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+							<td>车库信息：</td>
+							<td> 
+							    <select class="easyui-combobox width2" name="garageId" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>发证机构：</td>
+							<td>
+								<input type="text" name="issuName"/>
+							</td>
+							<td>备注：</td>
+							<td>
+							    <input type="text" name="remarks"/>
+							</td>
+							
+						</tr>
+						<tr>
+							
+							<td>用途：</td>
+							<td>
+								<select class="easyui-combobox width2" name="use" data-options="required:true">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</td>
+							<td>发动机型号：</td>
+							<td>
+							    <input type="text" name="engineNum"/>
+							</td>
+						</tr>
+						<tr align="center">
+								<td colspan="4">
+									<input type="submit" value="提交" class="add easyui-linkbutton"></input>
+									<input type="button" value="关闭" class="easyui-linkbutton" onclick="$('#w').window('close')"></input>
+								</td>
+							</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+		<div id='w3' class="easyui-window" closed='true' title="修改信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:770px;height:600px;">
+			<div>
+				<form method="post" id="update">
+					<table border="0" cellspacing="0" cellpadding="0" class="win_list">
+						<tr>
+							<td>信息来源：</td>
+							<td><input type="text" disabled="disabled" name="sources" value="VMS2.0"/></td>
+							<td>自编号：</td>
+							<td><input type="text" name="number" /></td>
+						</tr>
+						<tr>
+							<td>车牌号：</td>
+							<td>
+								<input type="text" name="cardNum" />
+							</td>
+							<td>车牌颜色：</td>
+							<td>
+								<input type="text" name="colourId" />
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="checkbox"/> 是否为临时车辆</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>主驾：</td>
+							<td>
+								<input type="text" name="mainDriver" />
+							</td>
+							<td>副驾：</td>
+							<td>
+								<input type="text" name="viceDriver" />
+							</td>
+						</tr>
+						<tr>
+							<td>车辆类型：</td>
+							<td>
+								<input type="text" name="typeId" />
+						    </td>
+							<td>押运员：</td>
+							<td>
+								<input type="text" name="escort" />
+							</td>
+						</tr>
+						<tr>
+							<td>车挂号：</td>
+							<td>
+								<input type="text" name="carRegis"/>
+							</td>
+							<td>单位：</td>
+							<td>
+								<input type="text" name="unitId"/>
+							</td>
+						</tr>
+						<tr>
+							<td>车架号：</td>
+							<td>
+								<input type="text" name="frameNum"/>
+							</td>
+							<td>道路运输许可证：</td>
+							<td>
+								<input type="text" name="transportNum"/>
+							</td>
+						</tr>
+						<tr>
+							<td>燃油类型：</td>
+							<td>
+								<input type="text" name="fuelId"/>
+							</td>
+							<td>是否报废：</td>
+							<td>
+								<input type="text" name="scrap"/>
+							</td>
+						</tr>
+						<tr>
+							<td>营运性质：</td>
+							<td>
+								<input type="text" name="operId"/>
+							</td>
+							<td>运输行业类型：</td>
+							<td>
+								<input type="text" name="industryId"/>
+							</td>
+						</tr>
+						<tr class="last_list">
+							<td>终端：</td>
+							<td>
+								<input type="text" name="terminaltypeId"/>
+							</td>
+							<td>行驶证号：</td>
+							<td>
+							  <input type="text" name="drivingNum"/> 
+							  <span class="more" style="display: none;">更多</span>
+							  <span class="less">收起</span>
+							</td>
+						</tr>
+						<tr>
+							<td>生产厂家：</td>
+							<td>
+								 <input type="text" name="producer"/>
+							</td>
+							<td>品牌：</td>
+							<td>
+							  <input type="text" name="brandId"/>
+							</td>
+						</tr>
+						<tr>
+							<td>引擎类型：</td>
+							<td>
+								 <input type="text" name="egetypeId"/>
+							</td>
+							<td>引擎编号：</td>
+							<td>
+								 <input type="text" name="egetypeNum" />
+							</td>
+						</tr>
+						<tr>
+							<td>车身颜色：</td>
+							<td>
+								<input type="text" name="carcolorId" />
+							</td>
+							<td>是否进口：</td>
+							<td>
+								<input type="text" name="isImport" />
+							</td>
+						</tr>
+						<tr>
+							<td>发动机功率：</td>
+							<td>
+								 <input type="text" name="power"/>
+							</td>
+							<td>罐体材质：</td>
+							<td>
+								 <input type="text" name="tkmlId"/>
+							</td>
+						</tr>
+						<tr>
+							<td>总质量(吨)：</td>
+							<td>
+								 <input type="text" name="totalQua" />
+							</td>
+							<td>核定载货量(吨)：</td>
+							<td>
+							   <input type="text" name="appCargo"/>
+							</td>
+						</tr>
+						<tr>
+							<td>空车质量(吨)：</td>
+							<td>
+								 <input type="text" name="nullCar"/>
+							</td>
+							<td>实载质量(吨)：</td>
+							<td>
+							   <input type="text" name="realLoad"/>
+							</td>
+						</tr>
+						<tr>
+							<td>初期里程(公里)：</td>
+							<td>
+								 <input type="text" name="earlyKm"/>
+							</td>
+							<td>罐体容积(立方米)：</td>
+							<td>
+							   <input type="text" name="bodayNum"/>
+							</td>
+						</tr>
+						<tr>
+							<td>核定载客：</td>
+							<td>
+								 <input type="text" name="appPassenger"/>
+							</td>
+							<td>驾驶室载客：</td>
+							<td>
+							   <input type="text" name="cabPassenger"/>
+							</td>
+						</tr>
+						<tr>
+							<td>油料重车定额(立方米)：</td>
+							<td>
+								 <input type="text" name="oilQuota"/>
+							</td>
+							<td>油料空车定额(立方米)：</td>
+							<td>
+							   <input type="text" name="oilNull"/>
+							</td>
+						</tr>
+						<tr>
+							<td>是否带泵：</td>
+							<td>
+								<input type="text" name="pump"/>
+							</td>
+							<td>带下装油系统(是/否)：</td>
+							<td>
+								<input type="text" name="oilLoaded"/>
+							</td>
+						</tr>
+						<!--<tr>
+							<td>出厂时间：</td>
+							<td>
+								<input type="text" name="factoryTime"/>
+							</td>
+							<td>购买时间：</td>
+							<td>
+								<input type="text" name="buyTime"/>
+							</td>
+						</tr>-->
+						<!--<tr>
+							<td>报废年限：</td>
+							<td>
+								<input type="text" name="scrappLife">
+							</td>
+							<td>有效时间：</td>
+							<td>
+								<input type="text" name="effTime">
+							</td>
+						</tr>-->
+						<!--<tr>
+							<td>最近年检时间：</td>
+							<td>
+								<input type="text" name="lastcensorTime">
+							</td>
+							<td>下次年检时间：</td>
+							<td>
+								<input type="text" name="nextcensorTime">
+							</td>
+						</tr>-->
+						<!--<tr>
+							<td>最近交强险时间：</td>
+							<td>
+								<input type="text" name="lastinsuTime">
+							</td>
+							<td>交强险到期时间：</td>
+							<td>
+								<input type="text" name="endinsuTime">
+							</td>
+						</tr>-->
+						<!--<tr>
+							<td>最近商业险时间：</td>
+							<td>
+								<input type="text" name="lasttradTime">
+							</td>
+							<td>商业险到期时间：</td>
+							<td>
+								<input type="text" name="endtradTime">
+							</td>
+						</tr>-->
+						<!--<tr>
+							<td>隶属关系：</td>
+							<td>
+								<input type="text" name="affiliation">
+							</td>
+							<td>运输许可证有效时间：</td>
+							<td>
+								<input type="text" name="transportTime">
+							</td>
+						</tr>-->
+						<tr>
+							<td>地域属性：</td>
+							<td>
+								<input type="text" name="addressId">
+							</td>
+							<td>车库信息：</td>
+							<td> 
+								<input type="text" name="garageId">
+							</td>
+						</tr>
+						<tr>
+							<td>发证机构：</td>
+							<td>
+								<input type="text" name="issuName"/>
+							</td>
+							<td>备注：</td>
+							<td>
+							    <input type="text" name="remarks"/>
+							</td>
+							
+						</tr>
+						<tr>
+							
+							<td>用途：</td>
+							<td>
+								<input type="text" name="use"/>
+							</td>
+							<td>发动机型号：</td>
+							<td>
+							    <input type="text" name="engineNum"/>
+							</td>
+						</tr>
+						<tr align="center">
+								<td colspan="4">
+									<input type="submit" value="保存" class="modify easyui-linkbutton"></input>
+									<input type="button" value="关闭" class="easyui-linkbutton" onclick="$('#w3').window('close')"></input>
+								</td>
+							</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+		<div id='w2' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+				         请选择要删除的记录！     
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#w2').window('close')">确定</a>
+			</div>
+		</div>
+		<div id='w4' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box;padding: 5px 0 0 20px">
+					是否要删除该条信息？
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton sure_btn" onclick="$('#w4').window('close')">确定</a>
+				<a href="#" class="easyui-linkbutton" onclick="$('#w4').window('close')">关闭</a>
+			</div>
+		</div>
+	    <div id='w5' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+				         请选择一条记录！     
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#w5').window('close')">确定</a>
+			</div>
+		</div>
+	    <div id='w6' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+				       你选择的数据过多，修改只能一次修改一条数据！
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#w6').window('close')">确定</a>
+			</div>
+		</div>
+</body>
+	<script type="text/javascript">
+		$('.more').click(function(){
+			$(this).hide();
+			$('.less').show();
+			$('.last_list').nextAll().show();
+			$('.win_list').css('height','800px')
+		})		
+		$('.less').click(function(){
+			$(this).hide();
+			$('.more').show();
+			$('.last_list').nextAll().hide();
+			$('.win_list').css('height','300px')
+		})	
+	</script>
+
+</html>

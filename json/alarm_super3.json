@@ -1,0 +1,25 @@
+{
+	"total": 1,
+	"rows": [
+		{
+			"supervisionEmal": "将来处理",
+			"supervisionBianHao": "4131506",
+			"warnTime": "1508509342",
+			"status": 1,
+			"supervisionTel": "18089017789",
+			"vehicleNO": "藏AC3930",
+			"sendTime": "2017-10-20 23:01:56",
+			"supervisionLevel": "一般",
+			"superiorplatformName": "(交通部)西藏运管转发",
+			"warnType": "2",
+			"responseContent": "3",
+			"vehicleColor": "2",
+			"warnSrc": "2",
+			"supervison": "索朗白姆",
+			"supervisionEndtime": "1508513516",
+			"responseTime": "2017-10-24 11:32:36",
+			"regulatoryOrderId": 428111300
+		}
+	],
+	"tableType": null
+}

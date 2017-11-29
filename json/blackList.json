@@ -1,0 +1,23 @@
+{
+	"total": 2,
+	"rows": [
+		{
+			"ID_NUMBER": null,
+			"DRIVER_NAME": "高连宝",
+			"REASON": "频繁疲劳驾驶",
+			"ORG_NAME": "华北运输公司",
+			"DETAIL": null,
+			"ORG_CODE": "01121507",
+			"ADD_TIME": "2016-04-15 14:06:17"
+		}, {
+			"ID_NUMBER": "黑E59310",
+			"DRIVER_NAME": "潘振富",
+			"REASON": "频繁疲劳驾驶",
+			"ORG_NAME": "大庆燃气运输分公司大庆CNG配送中心",
+			"DETAIL": null,
+			"ORG_CODE": "0112150A0100",
+			"ADD_TIME": "2016-10-14 14:19:12"
+		}
+	],
+	"tableType": null
+}

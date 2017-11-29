@@ -1,0 +1,365 @@
+[
+  {
+    "id": 1,
+    "name": "车辆监控",
+    "date1": "/home.do",
+    "date2": "/images/menu/m-1.png",
+    "date3": "1",
+   "state":"closed",
+    "children": [
+      {
+        "id": 11,
+        "name": "实时监控",
+        "date2": "icon-mm4",
+        "date3": "1",
+        "children":[{
+					"id":111,
+					"name":"报警记录",
+						"date1": "/safety/alarmdata.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "1",
+
+					"date": "2015-05-10"
+				},{
+					"id":112,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      },{
+      	"id": 12,
+        "name": "重点关注",
+        "date2": "icon-mm4",
+        "date3": "2",
+        "children":[{
+					"id":121,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      },
+      {
+      	"id": 13,
+        "name": "违规报警",
+        "date2": "icon-mm4",
+        "date3": "3",
+       "children":[{
+					"id":131,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "安全管控",
+    "date1": "/safety/home.jsp",
+   "state":"closed",
+   "date3": "2",
+    "children": [
+      {
+        "id": 22,
+        "name": "风险预警",
+        "date2": "/images/menu/m-2.png",
+        "children":[{
+					"id":211,
+					"name":"风险预警",
+					"date1": "/safety/Risk_Alarm.do",
+				    "date2": "icon-bjjl",
+				    "date3": "1"
+				},{
+					"id":212,
+					"name":"危险驾驶预警",
+					"date1": "/safety/AlarmDangerousDrive.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "车辆调度",
+    "date1": "/home.do",
+    "date2": "/despatch/home_template.jsp",
+    "date3": "3",
+   "state":"closed",
+    "children": [
+      {
+        "id": 31,
+        "name": "实时监控",
+        "date2": "icon-mm4",
+        "date3": "1",
+        "children":[{
+					"id":311,
+					"name":"报警记录",
+						"date1": "/safety/alarmdata.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "1",
+
+					"date": "2015-05-10"
+				},{
+					"id":312,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      },{
+      	"id": 32,
+        "name": "重点关注",
+        "date2": "icon-mm4",
+        "date3": "2",
+        "children":[{
+					"id":321,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      },
+      {
+      	"id": 33,
+        "name": "违规报警",
+        "date2": "icon-mm4",
+        "date3": "3",
+       "children":[{
+					"id":331,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "综合服务",
+    "date1": "/home.do",
+    "date2": "/infomation/infomation_home.js",
+    "date3": "4",
+   "state":"closed",
+    "children": [
+      {
+        "id": 41,
+        "name": "实时监控",
+        "date2": "icon-mm4",
+        "date3": "1",
+        "children":[{
+					"id":411,
+					"name":"报警记录",
+						"date1": "/safety/alarmdata.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "1",
+
+					"date": "2015-05-10"
+				},{
+					"id":412,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      },{
+      	"id": 42,
+        "name": "重点关注",
+        "date2": "icon-mm4",
+        "date3": "2",
+        "children":[{
+					"id":421,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      },
+      {
+      	"id": 43,
+        "name": "违规报警",
+        "date2": "icon-mm4",
+        "date3": "3",
+       "children":[{
+					"id":431,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "监管服务",
+    "date1": "/supervision/supervision_home.jsp",
+    "date2": "/infomation/infomation_home.js",
+    "date3": "5",
+   "state":"closed",
+    "children": [
+      {
+        "id": 51,
+        "name": "实时监控",
+        "date2": "icon-mm4",
+        "date3": "1",
+        "children":[{
+					"id":511,
+					"name":"报警记录",
+						"date1": "/safety/alarmdata.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "1",
+
+					"date": "2015-05-10"
+				},{
+					"id":512,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      },{
+      	"id": 52,
+        "name": "重点关注",
+        "date2": "icon-mm4",
+        "date3": "2",
+        "children":[{
+					"id":521,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      },
+      {
+      	"id": 53,
+        "name": "违规报警",
+        "date2": "icon-mm4",
+        "date3": "3",
+       "children":[{
+					"id":531,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "综合分析",
+    "date1": "/analysis/analysis_home.jsp",
+    "date2": "/infomation/infomation_home.js",
+    "date3": "6",
+   "state":"closed",
+    "children": [
+      {
+        "id": 61,
+        "name": "实时监控",
+        "date2": "icon-mm4",
+        "date3": "1",
+        "children":[{
+					"id":611,
+					"name":"报警记录",
+						"date1": "/safety/alarmdata.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "1",
+
+					"date": "2015-05-10"
+				},{
+					"id":612,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      },{
+      	"id": 62,
+        "name": "重点关注",
+        "date2": "icon-mm4",
+        "date3": "2",
+        "children":[{
+					"id":621,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      },
+      {
+      	"id": 63,
+        "name": "违规报警",
+        "date2": "icon-mm4",
+        "date3": "3",
+       "children":[{
+					"id":631,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "业务管理",
+    "date1": "/datamanage/home.jsp",
+    "date2": "/infomation/infomation_home.js",
+    "date3": "7",
+   "state":"closed",
+    "children": [
+      {
+        "id": 71,
+        "name": "实时监控",
+        "date2": "icon-mm4",
+        "date3": "1",
+        "children":[{
+					"id":711,
+					"name":"报警记录",
+						"date1": "/safety/alarmdata.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "1",
+
+					"date": "2015-05-10"
+				},{
+					"id":712,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      },{
+      	"id": 72,
+        "name": "重点关注",
+        "date2": "icon-mm4",
+        "date3": "2",
+        "children":[{
+					"id":721,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      },
+      {
+      	"id": 73,
+        "name": "违规报警",
+        "date2": "icon-mm4",
+        "date3": "3",
+       "children":[{
+					"id":731,
+					"name":"预警记录",
+					"date1": "/safety/overspeedWarnData.jsp",
+				    "date2": "icon-bjjl",
+				    "date3": "2"
+				}]
+      }
+    ]
+  }
+]

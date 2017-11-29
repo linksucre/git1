@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<style>
+   	.clear_btn:hover
+			{ 
+			border:1px solid #0063AC;
+			color: #D3D3D3;
+			background-color:#F4F4F4;
+			}
+			.clear_btn{
+				border:1px solid #0063AC;
+				color: #D3D3D3;
+				background: #F4F4F4;
+			}
+   </style>
+	<body>
+		<div class="easyui-layout" data-options="fit:true">
+			<p class="title" style="height:3%;box-sizing: border-box; padding:14px 0 0 10px;margin: 0px;">当前位置：
+			    <a href="#" style="color: dodgerblue;" class="remove_first">集团公司</a>
+		    </p>
+			<table border="0" cellspacing="0" cellpadding="0" class="table_layout clear_box">
+				<tr>
+					<td>权属：</td>
+					<td>
+						<select id="ownership" editable="false" class="easyui-combobox combobox-f combo-f" panelheight="auto" style="width: 120px; display: none;">
+							<option value="" selected="selected">全部</option>
+							<option value="1">自有</option>
+							<option value="2">外租</option>
+						</select>
+					</td>
+					<td>日期区间：</td>
+					<td>
+						<input type="text" editable="false" id="startDate" class="easyui-datebox datebox-f combo-f" style="width: 90px; display: none;" comboname="startDate">
+							到
+						<input type="text" editable="false" id="startDate" class="easyui-datebox datebox-f combo-f" style="width: 90px; display: none;" comboname="startDate">				
+					</td>
+					
+					<td colspan="3">
+		
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#dg')">查询</span>
+							
+					<a href="javascript:void(0)" class="easyui-linkbutton clear_btn" onclick="back('.title')" iconcls="icon-return" style="background: #F4F4FB;color:#E1E1E9">
+						返回上一级
+					</a>
+						<span style="cursor: pointer;" onclick="alert('#w1')" class="kaohe"><i class="ihelp"></i>考核算法说明</span>
+					</td>
+				</tr>
+			</table>
+			<div class="box_tab" style="width:100%;height:85%">
+			    <div class="div-dg dg_tab" style="width:100%;height:85%">
+				     <table id="dg" class="easyui-datagrid load" style="width:100%;height:85%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/efficiency.json',method:'get'"></table>
+				</div>
+				
+				<!--<div class="div-dg3 dg_tab" style="display: none;width:100%;height:85%">
+					<table id="dg3" class="easyui-datagrid load" style="width:100%;height:85%" data-options="singleSelect:false,collapsible:false,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/efficiency2.json',method:'get'">
+						<thead>
+							<tr>
+								<th data-options="field:'ORG_NAME',width: 150">单位</th>
+								<th data-options="field:'LEVELNAME',width: 300">等级名称</th>
+								<th data-options="field:'RISK_VALUE',width: 300">风险值</th>
+								<th data-options="field:'ALARM',width: 300">报警次数</th>
+								<th data-options="field:'WEIZHANG',width: 300">违章次数</th>
+								<th data-options="field:'SHIGU',width: 300">事故次数</th>
+								<th data-options="field:'MILE',width: 300">公里数</th>
+							</tr>
+						</thead>
+					</table>
+				</div>-->
+			</div>	
+			<!--模态框-->
+		
+			<div id='w1' class="easyui-window" closed='true' title="考核算法说明" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:380px;height:150px;">
+				<div class="panel" style="display: block; width: 366px;">
+					<div style="width: 366px; height: 94px; padding: 10px;" title="" class="panel-body panel-body-noheader panel-body-noborder dialog-content">
+						<div>
+							总车日&nbsp;＝&nbsp;Σ（车辆数 *日期区间天数）<br>
+							工作车日&nbsp;=&nbsp;Σ（每辆车辆的工作日）<br>
+							车辆工作率 &nbsp;=&nbsp;工作车日/总车日 *100%<br>
+							 注：当车辆日统计表当日车辆行驶公里数大于1km，则认为当日算一天工作日<br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(function() {
+			$('#dg').datagrid({
+				idField: 'itemid',
+				fitColumns:true,
+				columns: [
+					[{
+							field: 'orgName',
+							title: '单位',
+							width: 200,
+							formatter: function(value, row, index) {
+								return '<a style="color:blue" class="a_text" onclick="tab_mes(this)" href="#">' + value + '</a>';
+
+							}
+						},
+						{
+							field: 'vehCount',
+							title: '车辆数量',
+							width: 200
+						},
+						{
+							field: 'ownership',
+							title: '权属',
+							width: 200
+						},
+						{
+							field: 'totalDay',
+							title: '总车日',
+							width: 200
+						},
+						{
+							field: 'workDay',
+							title: '工作车日',
+							width: 200
+						},
+						{
+							field: 'workRatio',
+							title: '车辆工作率',
+							width: 200
+						}
+					]
+				]
+			});
+		});
+		
+		
+		var arr = ['../../json/efficiency1.json','../../json/efficiency2.json','../../json/efficiency2.json']
+		var i = 0;	
+		function tab_mes(text){	
+			i++;
+			var a = arr.slice(i-1,i)	
+//			console.log(a[0])
+			$('#dg').datagrid({  
+				 url:a[0]
+			})
+			var a_text = $(text).html();
+			var a = "<a href='#' class='remove' onclick='remove(this)' style='color: dodgerblue;'>/" + a_text + "</a>";
+			$('.title').append(a);	
+		}	
+		function remove(hide) {
+			i--;
+			console.log("a",i)
+			var b = arr.slice(i-1,i)	
+			$('#dg').datagrid({  
+				 url:b[0]
+			})
+			$(hide).nextAll().remove();
+				
+		}
+		$('.remove_first').click(function(){
+			$('#dg').datagrid({  
+				 url:'../../json/efficiency.json'
+			})
+			$('.remove_first').nextAll().remove();
+			i=0
+		})
+	//	返回上一级
+	var divLen =0
+		function back(id){
+			divLen = $(id).find("a").length-2
+			
+			if(divLen<=-1){
+				return;
+			}else{
+				console.log("b",divLen)
+				var b = arr.slice(divLen-1,divLen)	
+				$('#dg').datagrid({  
+					 url:b[0]
+				})
+				 $(id).find("a:last").remove()
+			}
+
+		};
+
+
+		
+	</script>
+</html>

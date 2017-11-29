@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>车辆使用状态统计</title>
+	</head>
+	<link rel="import" href="../../public.html">
+	<script type="text/javascript" src="../../js/fenye.js"></script>
+	<script type="text/javascript" src="../../js/loading.js"></script>
+	<!-- // 百度地图 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=h86KsPl6VGvedz2G3CGmR37Ah8oMUMcY"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/DistanceTool/1.2/src/DistanceTool_min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+	<!-- //加载鼠标绘制工具 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+	<!-- //拉框放大 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/library/RectangleZoom/1.2/src/RectangleZoom_min.js"></script>
+	<!-- //交通路况 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.2/src/TrafficControl_min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInRectangle/1.2/src/SearchInRectangle_min.js"></script>
+
+	<style type="text/css">
+       /*信息框样式*/	
+       *{
+       	margin: 0;
+       	padding: 0;
+       }	
+		.tool {
+			width: 307px;
+			height: 240px;
+			border: 1px solid #D4D4D4;
+			border-radius: 5px;
+			background: #FAFAFA;
+			box-shadow: 7px 7px 18px -4px grey;
+		}
+		
+		.tool .tool_top {
+			width: 100%;
+			height: 26px;
+			line-height: 26px;
+			color: #000000;
+			background: url(../../images/tb_bg.png) repeat-x;
+			box-sizing: border-box;
+			padding: 0 5px;
+		}
+		
+		.tool .tool_top span {
+			display: inline-block;
+			float: right;
+			color: #85AADA;
+		}
+		
+		.tool .tool_div_border {
+			width: 100%;
+			height: 186px;
+			box-sizing: border-box;
+			padding: 0 5px;
+			background: #F4F4F4;
+		}
+		
+		.tool .tool_div {
+			width: 100%;
+			height: 200px;
+			box-sizing: border-box;
+			padding: 5px 5px 0 5px;
+			border: 1px solid #D4D4D4;
+			background: #FFFFFF;
+		}
+		
+		.tool .tool_div .tool_tab {
+			width: 100%;
+			border-left: 1px dashed #CCCCCC;
+		}
+		
+		.tool .tool_div .tool_tab tr th {
+			height: 30px;
+			background: #89BCF1;
+			text-align: center;
+			border-top: 1px dashed #CCCCCC;
+			border-right: 1px dashed #CCCCCC;
+		}
+		
+		.tool .tool_div .tool_tab tr td {
+			height: 30px;
+			color: #000000;
+			border-bottom: 1px dashed #CCCCCC;
+			border-right: 1px dashed #CCCCCC;
+			box-sizing: border-box;
+			padding-left: 5px;
+		}
+		
+		.parent {
+			padding: 0!important;
+		}
+		body,html{
+			padding: 0;
+			margin: 0;
+		}
+		#allmap div div:nth-child(2) div:nth-child(4){
+			z-index:-500!important;
+		}
+	</style>
+
+	<body>
+		<div class="easyui-layout" style="width:100%; height:100%;">
+			<div region="center" style="width:100%; height:100%;">
+				<div id="allmap" style="width:100%;height:100%;"></div>
+				<div id="legend" style="position: absolute; top: 30px; right: 10px; z-index: 9999; width: 150px; visibility: visible; border: 3px solid rgb(232, 232, 232); background: rgba(240, 240, 240, 0.901961);">
+					<div style="background:#FFFFFF;text-align:center;"><b>图例说明</b></div>
+					<table>
+						<tbody>
+							<tr>
+								<td style="padding-left:10px;">
+									<div style="height:13px;width:50px;background-color:#82D900"></div>
+								</td>
+								<td style="padding:0 15px 0 15px">在用量</td>
+							</tr>
+							<tr>
+								<td style="padding-left:10px;">
+									<div style="height:13px;width:50px;background-color:#0000FF"></div>
+								</td>
+								<td style="padding:0 15px 0 15px">闲置量</td>
+							</tr>
+							<tr>
+								<td style="padding-left:10px;">
+									<div style="height:13px;width:50px;background-color:#FF00FF"></div>
+								</td>
+								<td style="padding:0 15px 0 15px">报废量</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="easyui-resizable" data-options="maxHeight:550,minHeight:100" style="box-sizing: border-box; background: #FFFFFF;width:100%;height:30%;position:absolute; bottom:0;left:0;right: 0;">
+							<p class="title" style="height:3%;box-sizing: border-box; padding:14px 0 15px 10px;margin: 0px;">时间：2017-11-23     当前位置：
+								<a href="#" style="color: dodgerblue;" class="remove_first" onclick="remove_first('#dg','.remove_first','../../json/veh_stat1.json')">集团公司</a>
+							</p>
+							<table border="0" cellspacing="0" cellpadding="0" class="table_layout">
+								<tr>
+									<td>单位：</td>
+									<td>
+										<div class="clear_mes">
+											<input class="easyui-combotree messagesData" name="" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:150px;">
+											<span class="clearMess" style="display:none;"></span>
+									    </div>
+									</td>
+									<td colspan="6">
+										<span class="easyui-linkbutton" iconcls="icon-search" onclick="refreshbtn('.easyui-datagrid')">查询</span>
+										<span class="easyui-linkbutton" iconcls="icon-excel"><a id="exportExcel" href="#">导出</a></span>
+									</td>
+								</tr>
+							</table>
+							<table id="dg" class="easyui-datagrid" style="width:100%;height:80%" data-options="fitColumns:true,rownumbers:true,singleSelect:false,pagination:true,pageList:[5,10,15,20],url:'../../json/veh_stat1.json',method:'get'">
+							    <thead>
+									<tr>
+										<th data-options="field:'orgname',formatter:formatter,width:200">单位</th>
+										<th data-options="field:'org_name',width:200">单位</th>
+										<th data-options="field:'vehiclecount',width:200">车辆总数</th>
+										<th data-options="field:'inuse',width:200">在用数量</th>
+										<th data-options="field:'idle',width:200">闲置数量</th>
+										<th data-options="field:'discard',width:200">报废数量</th>
+										<th data-options="field:'userate',width:200">使用率(%)</th>
+									</tr>
+								</thead>
+							</table>
+				</div>			
+		    </div>
+		</div>
+		<div class="box1_float" style="top: 0;right: 0; display: block;">
+			<ul class="box1_ul">
+				<li id="zoomMax">
+					<a href="#" title="点击后拉框即可放大地图，再次点击后可退出" class="easyui-tooltip"><span><img src="../../images/nav_zoomin.png"/></span>拉框放大</a>
+				</li>
+				<li id="zoomMin">
+					<a href="#" title="点击后拉框即可缩小地图，再次点击后可退出" class="easyui-tooltip"><span><img src="../../images/nav_zoomout.png"/></span>拉框缩小</a>
+				</li>
+				<li id="fullextent">
+					<a href="#" title="点击按钮地图缩放到全局范围" class="easyui-tooltip"><span><img src="../../images/nav_fullextent.png"/></span>全局</a>
+				</li>
+				<li>
+					<a href="#" title="点击按钮地图返回上一视图" class="easyui-tooltip"><span><img src="../../images/nav_previous.png"/></span>前一视图</a>
+				</li>
+				<li>
+					<a href="#" title="点击按钮地图返回下一视图" class="easyui-tooltip"><span><img src="../../images/nav_next.png"/></span>后一视图</a>
+				</li>
+				<li>
+					<a href="#" title="点击可进行地图拖拽" class="easyui-tooltip"><span><img src="../../images/nav_pan.png"/></span>平移</a>
+				</li>
+				<li id="distance">
+					<a href="#" title="点击可进行距离测量,再次点击后停止距离测量" class="easyui-tooltip"><span><img src="../../images/Measure_Distance.png"/></span>测距</a>
+				</li>
+				<li id="measureArea">
+					<a href="#" title="点击可进行面积测量,再次点击后停止面积测量" class="easyui-tooltip"><span><img src="../../images/Measure_Area.png"/></span>测面</a>
+				</li>
+			</ul>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="../../js/mapTools.js"></script>
+	<script type="text/javascript" src="../../js/more_data.js"></script>
+    
+	<script type="text/javascript">
+		var arr=['../../json/veh_stat2.json','../../json/veh_stat3.json']
+		var hideShow=["veh_stat","orgname","org_name"]
+		// 百度地图allmap
+		map.centerAndZoom(new BMap.Point(116.417854, 39.921988), 15);
+		var divNumber = 1;
+		var marker = [];
+		var arrLabel=[];
+		// 添加带有定位的导航控件
+		var navigationControl = new BMap.NavigationControl({
+			// 靠左上角位置
+			anchor: BMAP_ANCHOR_TOP_LEFT,
+			// LARGE类型
+			type: BMAP_NAVIGATION_CONTROL_LARGE
+		});
+		map.addControl(navigationControl);
+		//获取覆盖物个数
+		var overlays = [];
+		//信息框
+		var lng_lat = [{
+				"a": "20",
+				"b": "0",
+				"lng": "116.417854",
+				"lat": "39.921988",
+				"UnitName": "油气田企业",
+				"monitors": "5",
+				"LineNumber": "5",
+				"OnLineRate": "0",
+				"del":"0",
+				"use":"100"
+			},
+			{
+				"a": "50",
+				"b": "0",
+				"lng": "116.406605",
+				"lat": "39.921585",
+				"UnitName": "总部机关",
+				"monitors": "2",
+				"LineNumber": "1",
+				"OnLineRate": "60",
+				"del":"0",
+				"use":"100"
+			},
+			{
+				"a": "40",
+				"b": "0",
+				"lng": "116.412222",
+				"lat": "39.912345",
+				"UnitName": "销售企业",
+				"monitors": "2",
+				"LineNumber": "1",
+				"OnLineRate": "70",
+				"del":"0",
+				"use":"100"
+			}
+
+		]
+		// 定义自定义覆盖物的构造函数  
+		function SquareOverlay(center, length, color) {
+			this._center = center;
+			this._length = length;
+			this._color = color;
+		}
+		// 继承API的BMap.Overlay  
+		SquareOverlay.prototype = new BMap.Overlay();
+
+		//初始化自定义覆盖物
+		// 实现初始化方法
+		var div;
+		var id;
+		SquareOverlay.prototype.initialize = function(map) {
+			//保存map对象实例  
+			this._map = map;
+			//创建div元素，作为自定义覆盖物的容器  
+			div = document.createElement("div");
+			//赋id  
+			div.id = 'div' + divNumber;
+			divNumber++;
+			div.style.position = "absolute";
+			//可以根据参数设置元素外观  
+			div.style.width = this._length + "px";
+			div.style.height = this._length + "px";
+			div.style.background = this._color;
+			div.style.borderRadius = this._radius;
+			//将div添加到覆盖物容器中  
+			map.getPanes().markerPane.appendChild(div);
+			//保存div实例  
+			this._div = div;
+			// 需要将div元素作为方法的返回值，当调用该覆盖物的show、     
+			id = document.getElementById("" + div.id + "");
+			var myChart = echarts.init(document.getElementById("" + div.id + ""));
+			function fun(){
+			   	 var res = "<div class='tool'>" +
+						"<div class='tool_top'>单位统计信息<span>x</span></div>" +
+						"<div class='tool_div_border'>" +
+						"<div class='tool_div'>" +
+						"<table border='0' cellspacing='0' cellpadding='0' class='tool_tab'>" +
+						"<tr>" +
+						"<th>单位名称</th>" +
+						"<th>" +lng_lat[m].UnitName + "</th>" +
+						"</tr>" +
+						"<tr>" +
+						"<td>车总量:</td>" +
+						"<td>" +lng_lat[m].monitors + "</td>" +
+						"</tr>" +
+						"<tr>" +
+						"<td>在用量:</td>" +
+						"<td>" +lng_lat[m].LineNumber + "</td>" +
+						"</tr>" +
+						"<tr>" +
+						"<td>闲置量:</td>" +
+						"<td>" +lng_lat[m].OnLineRate + "</td>" +
+						"</tr>" +
+						"<tr>" +
+						"<td>报废量:</td>" +
+						"<td>" +lng_lat[m].del + "</td>" +
+						"</tr>" +
+						"<tr>" +
+						"<td>使用率(%):</td>" +
+						"<td>" +lng_lat[m].use + "</td>" +
+						"</tr>" +
+						"</table>" +
+						"</div>" +
+						"</div>" +
+						"</div>"
+				return res;
+			}
+			option = {
+				tooltip: {
+					trigger: 'item',
+					formatter:fun()
+				},
+				  color:['#FF8C00','#00FF7F'],   
+				series: [{
+					type: 'pie',
+					radius: '100%',
+					center: ['50%', '50%'],
+					data: [
+						{value: ""+a+""},
+						{value: ""+b+""}
+					],
+					label: {
+						normal: {
+							show: false,
+							position: 'center'
+						}
+					}
+				}]
+			};
+			myChart.setOption(option);
+			$("#" + div.id + "").find('div').eq(1).attr('class', 'parent');
+			return div;
+		}
+		//绘制覆盖物
+		// 实现绘制方法  
+		SquareOverlay.prototype.draw = function() {
+			// 根据地理坐标转换为像素坐标，并设置给容器 
+			var position = this._map.pointToOverlayPixel(this._center);
+			this._div.style.left = position.x - this._length / 2 + "px";
+			this._div.style.top = position.y - this._length / 2 + "px";
+		}
+		//显示和隐藏覆盖物
+		// 实现显示方法  
+		SquareOverlay.prototype.show = function() {
+			if(this._div) {
+				this._div.style.display = "";
+			}
+		}
+		//添加自定义覆盖物  
+		for(var m = 0; m < lng_lat.length; m++) {
+			var a = lng_lat[m].a;
+			var b = lng_lat[m].b;
+			var UnitName = lng_lat[m].UnitName;
+			var lng = lng_lat[m].lng;
+			var lat = lng_lat[m].lat;
+			var poi = new BMap.Point(lng, lat);
+			var mySquare = new SquareOverlay(poi, 24, "red");
+			map.addOverlay(mySquare);
+			marker.push(mySquare);
+			
+//			添加文本标注
+			var point = new BMap.Point(lng, lat);
+			var opts = {
+			  position : point,  // 指定文本标注所在的地理位置
+			  offset : new BMap.Size(-25, 20)    //设置文本偏移量
+			}
+			var label = new BMap.Label(UnitName, opts);  // 创建文本标注对象
+				label.setStyle({
+					 color : "#CC6633",
+					 fontSize : "12px",
+					 height : "20px",
+					 lineHeight : "20px",
+					 background:'none',
+					 border:'none'
+				 });
+			map.addOverlay(label); 	
+		}
+		//自定义覆盖物添加事件方法
+		SquareOverlay.prototype.addEventListener = function(event, fun) {
+			this._div['on' + event] = fun;
+		};
+			//		点击地图上的点
+		$.each(marker, function(data, index) {
+			this.addEventListener('click', function() {
+				$('#allmap').children().children().eq(1).children().eq(3).hide();
+				tab_mes('.a_text', '#dg', '.title')//改变表格数据
+                $('#div1').hide();//隐藏点
+			    $('#div2').hide();
+			    $('#div3').hide();
+			    zoomMax();
+			})	
+		})
+//	点击表个数据的第一个title
+		$('.remove_first').click(function(){
+			$('#allmap').children().children().eq(1).children().eq(3).show();
+            $('#div1').show();//隐藏点
+		    $('#div2').show();
+		    $('#div3').show();
+		    zoomMin();
+		})
+	      	
+	//	定义一个控件类,即function 点击marker点放大地图
+		function ZoomControl() {
+			this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+			this.defaultOffset = new BMap.Size(10, 10);
+		}
+		ZoomControl.prototype = new BMap.Control(); 
+		function zoomMax() {
+			map.setZoom(map.getZoom() + 5);
+		}
+		var myZoomCtrl = new ZoomControl(); // 创建控件		
+		map.addControl(myZoomCtrl); // 添加到地图当中
+	//定义一个控件类 点击remove点缩小地图		
+		function ZoomControl1() {
+			this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+			this.defaultOffset = new BMap.Size(-5, -5);
+		}
+		ZoomControl1.prototype = new BMap.Control();
+		function zoomMin() {
+			map.setZoom(map.getZoom() - 5);
+		}
+		var myZoomCtrl1 = new ZoomControl1();
+		map.addControl(myZoomCtrl1);
+	</script>
+
+</html>

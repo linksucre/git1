@@ -1,0 +1,215 @@
+{
+    "total": 19,
+    "rows": [
+        {
+            "ORG_CODE": "01",
+            "ORG_NAME": "集团公司",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 1
+        },
+        {
+            "ORG_CODE": "0101",
+            "ORG_NAME": "总部机关",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 2
+        },
+        {
+            "ORG_CODE": "0102",
+            "ORG_NAME": "总部挂靠单位",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 3
+        },
+        {
+            "ORG_CODE": "0104",
+            "ORG_NAME": "未列入机构序列的单位",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 4
+        },
+        {
+            "ORG_CODE": "0107",
+            "ORG_NAME": "销售企业",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 5
+        },
+        {
+            "ORG_CODE": "0114",
+            "ORG_NAME": "参股企业",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 6
+        },
+        {
+            "ORG_CODE": "0108",
+            "ORG_NAME": "管道储运企业",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 7
+        },
+        {
+            "ORG_CODE": "0112",
+            "ORG_NAME": "其他单位",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 8
+        },
+        {
+            "ORG_CODE": "0124",
+            "ORG_NAME": "新疆配送主动安全管控",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 9
+        },
+        {
+            "ORG_CODE": "0115",
+            "ORG_NAME": "海外企业",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 10
+        },
+        {
+            "ORG_CODE": "0103",
+            "ORG_NAME": "专业公司",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 11
+        },
+        {
+            "ORG_CODE": "0106",
+            "ORG_NAME": "炼化企业",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 12
+        },
+        {
+            "ORG_CODE": "0110",
+            "ORG_NAME": "工程建设企业",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 13
+        },
+        {
+            "ORG_CODE": "0111",
+            "ORG_NAME": "装备制造企业",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 14
+        },
+        {
+            "ORG_CODE": "0109",
+            "ORG_NAME": "工程技术服务企业",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 15
+        },
+        {
+            "ORG_CODE": "0113",
+            "ORG_NAME": "科研及事业单位",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 16
+        },
+        {
+            "ORG_CODE": "0105",
+            "ORG_NAME": "油气田企业",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 17
+        },
+        {
+            "ORG_CODE": "0117",
+            "ORG_NAME": "终端接入",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 18
+        },
+        {
+            "ORG_CODE": "0119",
+            "ORG_NAME": "工程建设企业",
+            "TOTAL_SEND": null,
+            "WEATHER_WARN_COUNT": 0,
+            "ROAD_WARN_COUNT": 0,
+            "EQU_WARN_COUNT": 0,
+            "SEQ_ROAD_WARN_COUNT": 0,
+            "DEN_DRIVER_WARN_COUNT": 0,
+            "ROWNUMBER": 19
+        }
+    ],
+    "tableType": "org"
+}

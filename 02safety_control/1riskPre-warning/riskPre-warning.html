@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<link rel="import" href="../../public.html">
+		<link rel="stylesheet" type="text/css" href="../../css/switchbutton.css">
+		<script type="text/javascript" src="../../js/loading.js"></script>
+		<script type="text/javascript" src="../../js/noContextMenu.js"></script>
+		<!-- // 百度地图 -->
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=h86KsPl6VGvedz2G3CGmR37Ah8oMUMcY"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/library/DistanceTool/1.2/src/DistanceTool_min.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+		<!-- //加载鼠标绘制工具 -->
+		<script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+		<!-- //拉框放大 -->
+		<script type="text/javascript" src="http://api.map.baidu.com/library/RectangleZoom/1.2/src/RectangleZoom_min.js"></script>
+		<!-- //交通路况 -->
+		<script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.2/src/TrafficControl_min.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInRectangle/1.2/src/SearchInRectangle_min.js"></script>
+	</head>
+
+	<body style="width: 100%;height: 100%;overflow: hidden;margin: 0;padding: 0;">
+
+		<div id="allmap" style="width:100%;height:100%;"></div>
+        <div class="easyui-resizable" data-options="maxHeight:500,minHeight:50" style="box-sizing: border-box; background: #FFFFFF;width:100%;height:30%;position:absolute; bottom:0;left:0;right:0;overflow: hidden;">
+			<div class="easyui-tabs" style="width:100%;height:500px;overflow: hidden;">
+	  			<div title="恶劣天气预警" data-options="iconCls:'icon-s_police'" style="height:500px;padding:0px;overflow: hidden;">
+					 <div id="weather_table_search1" style="box-sizing: border-box;padding: 5px; height: auto" class="datagrid-toolbar">
+						<input type="checkbox" class="isShow">显示图标&nbsp;&nbsp;&nbsp;&nbsp; 省份名称：
+	
+						<div class="box" style="display: inline-block;">
+							<select id="p" style="padding: 0; width: 120px; height: 23px;border-radius:5px; outline-style: none;  border: 1px solid #95B8E7;">
+								<option>全国</option>
+							</select>
+	
+							预警等级:
+							<select style="width: 70px; display: none;" id="level" class="easyui-combobox combobox-f combo-f" editable="false">
+	
+								<option value="0" selected="selected">全部</option>
+								<option value="1">红色</option>
+								<option value="2">橙色</option>
+								<option value="3">黄色</option>
+								<option value="4">蓝色</option>
+							</select>
+						</div>
+						预警类型:
+	
+						<select style="width: 70px; display: none;" id="weatheralarmtype" class="easyui-combobox combobox-f combo-f" editable="false">
+							<option value="" selected="selected">全部</option>
+							<option value="台风">台风</option>
+							<option value="暴雨">暴雨</option>
+							<option value="高温">高温</option>
+							<option value="寒潮">寒潮</option>
+							<option value="大雾">大雾</option>
+							<option value="暴雪">暴雪</option>
+							<option value="大风">大风</option>
+							<option value="沙尘暴">沙尘暴</option>
+							<option value="冰雹">冰雹</option>
+							<option value="干旱">干旱</option>
+							<option value="道路结冰">道路结冰</option>
+							<option value="雷电">雷电</option>
+							<option value="霜冻">霜冻</option>
+							<option value="霾">霾</option>
+							<option value="雷雨大风">雷雨大风</option>
+						</select>
+	
+						&nbsp;
+						<input type="hidden" class="combo-value" value="系统自动录入"> &nbsp;&nbsp;&nbsp;
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" id="searchBtn1" onclick="refreshbtn('#table_3')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="alert('#add')">添加</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="modify('#table_3')">修改</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="deleteRows('#table_3')">删除</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'" onclick="refreshbtn('#table_3')">发送</span>
+					</div>
+					<!-- 添加 -->
+					<div id="add" class="easyui-window" closed="true" title="添加" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:500px;height:320px; padding: 10px">
+						<div>
+							<table border="0" cellspacing="0" cellpadding="0" class="table_layout"style="height: 200px;" >
+								<tr>
+									<td>省份名称：</td>
+									<td><input type="text" /></td>
+								</tr>
+								<tr>
+									<td>城市名称：</td>
+									<td><input type="text" /></td>
+								</tr>
+								<tr>
+									<td>灾害地址：</td>
+									<td><input id="cc" class="easyui-combotree width" data-options="url:'../../json/tree_data1.json',method:'get',required:false" style="width:100px;"></td>
+								</tr>
+								<tr>
+									<td>原因：</td>
+									<td>
+										<select class="easyui-combobox">
+											<option value="">请选择</option>
+											<option value="">频繁疲劳驾驶</option>
+											<option value="">频繁发生事故</option>
+											<option value="">频繁超速</option>
+											<option value="">其他</option>
+											<option value="">频繁越区</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>详情：</td>
+									<td><textarea name="" rows="3" cols="50"></textarea></td>
+								</tr>
+							</table>
+						</div>
+	
+						<div style="width: 100%;text-align: center;">
+							<a href="javascript:void(0)" class="easyui-linkbutton add_list" onclick="$('#add').window('close')">确定</a>
+							<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#add').window('close')">关闭</a>
+						</div>
+					</div>
+	
+					<table class="easyui-datagrid" id="table_3" title="" style="width:100%;height:100%" data-options="singleSelect:true,fitColumns:true,collapsible:true,url:'../../json/datagrid_data_gj.json',method:'get'">
+						<thead>
+							<tr>
+								<th data-options="field:'productid',width:200,align:'center'">省份名称</th>
+								<th data-options="field:'listprice',width:200,align:'center'">城市名称</th>
+								<th data-options="field:'unitcost',width:200,align:'center'">预警等级</th>
+								<th data-options="field:'attr1',width:200,align:'center'">预警类型</th>
+								<th data-options="field:'status',width:200,align:'center'">预警时间</th>
+								<th data-options="field:'status',width:200,align:'center'">数据来源</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div title="路况信息" data-options="iconCls:'icon-search'" style="overflow: hidden;">
+	
+					<div id="alarm_roadCondition_table_search" style="box-sizing: border-box; padding: 5px; height: auto" class="datagrid-toolbar">
+						<input type="checkbox" class="isShow" value="on">显示图标&nbsp;&nbsp;&nbsp;&nbsp; 线路名称：
+						<input type="text" name="roadConditionName" id="roadConditionName" class="easyui-validatebox textbox validatebox-text" style="width:100px;height: 18px;">
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" id="search1" onclick="refreshbtn('#table_4')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="alert('#add')">添加</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="modify('#table_4')">修改</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="deleteRows('#table_4')">删除</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'" onclick="refreshbtn('#table_4')">发送</span>
+					</div>
+	
+					<table class="easyui-datagrid" id="table_4" title="" style="width:100%;height:400px" data-options="singleSelect:true,fitColumns:true,collapsible:true,url:'../../json/datagrid_data_gj.json',method:'get'">
+						<thead>
+							<tr>
+								<th data-options="field:'productid',width:200,align:'center'">线路名称</th>
+								<th data-options="field:'listprice',width:200,align:'center'">线路标识</th>
+								<th data-options="field:'unitcost',width:200,align:'center'">开始时间</th>
+								<th data-options="field:'attr1',width:200,align:'center'">结束时间</th>
+								<th data-options="field:'status',width:200,align:'center'">数据来源</th>
+							</tr>
+						</thead>
+					</table>
+	
+				</div>
+				<div title="地震灾害" data-options="iconCls:'icon-search'" style="overflow: hidden;">
+					<div id="alarm_roadCondition_table_search1" style="box-sizing: border-box; padding: 5px; height: auto;overflow: hidden;" class="datagrid-toolbar">
+						<input type="checkbox" class="isShow" value="on">显示图标&nbsp;&nbsp;&nbsp;&nbsp; 发震地址：
+						<input type="text" name="roadConditionName" id="roadConditionName1" class="easyui-validatebox textbox validatebox-text" style="width:100px;height: 18px;">
+						<!-- 										<a href="#" onClick="pageClear()" class="easyui-linkbutton" data-options="iconCls:'icon-reload'">清空</a>   -->
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-search'" id="search2" onclick="refreshbtn('#table_5')">查询</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="alert('#add')">添加</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="modify('#table_5')">修改</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="deleteRows('#table_5')">删除</span>
+						<span class="easyui-linkbutton" data-options="iconCls:'icon-cz_reset'" onclick="refreshbtn('#table_5')">发送</span>
+					</div>
+	
+					<table class="easyui-datagrid" id="table_5" title="" style="width:100%;height:400px" data-options="singleSelect:true,fitColumns:true,collapsible:true,url:'../../json/datagrid_data_gj.json',method:'get'">
+						<thead>
+							<tr>
+								<th data-options="field:'productid',width:157,align:'center'">发震地址</th>
+								<th data-options="field:'listprice',width:157,align:'center'">经度</th>
+								<th data-options="field:'unitcost',width:157,align:'center'">纬度</th>
+								<th data-options="field:'attr1',width:157,align:'center'">地震等级</th>
+								<th data-options="field:'status',width:157,align:'center'">深度</th>
+								<th data-options="field:'status',width:157,align:'center'">发震时间</th>
+								<th data-options="field:'status',width:157,align:'center'">数据来源</th>
+							</tr>
+						</thead>
+					</table>
+	
+				</div>
+			</div>
+		</div>
+
+		<!--模态框-->
+		<div id="selectTip" class="easyui-window" closed="true" title="违规处理" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:360px;height:300px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 20px">
+				<table border="0" cellspacing="0" cellpadding="0" style="width: 100%;height:200px;">
+					<tr>
+						<td>城市名称：</td>
+						<td>
+							<select class="easyui-combobox style">
+								<option value="">忽略处理</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>预警等级</td>
+						<td>
+							<select class="easyui-combobox style">
+								<option value="">请减速慢行，注意安全</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>预警时间：</td>
+						<td>
+							<input type="text" class="min" />分钟
+						</td>
+					</tr>
+					<tr>
+						<td>预警类型：</td>
+						<td>
+							<textarea id="pReason" class="easyui-validatebox" maxlength="256"></textarea>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div style="width: 100%; text-align: center;">
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#selectTip').window('close')">确定</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#selectTip').window('close')">关闭</a>
+			</div>
+		</div>
+		<div id="unselectTip" class="easyui-window" closed="true" title="提示框" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:150px;">
+			<div style="width:100%;box-sizing: border-box; padding: 10px 0 0 10px">
+				暂无选中数据,请选择一条数据！
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 20px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#unselectTip').window('close')">确定</a>
+				<a href="#" class="easyui-linkbutton" onclick="$('#unselectTip').window('close')">关闭</a>
+			</div>
+		</div>
+
+		<div class="right_box" style="width: 20px;position: absolute;top:0; right:0; height: 22px">
+			<div class="box1" style="border: 0;">
+				<p class="p1"></p>
+			</div>
+		</div>
+		<div class="box1_float">
+			<ul class="box1_ul" id="func_list">
+				<li>
+					<a href="#" title="点击后拉框即可放大地图，再次点击后可退出" class="easyui-tooltip" id="zoomMax">
+						<span>
+                        <img src="../../images/nav_zoomin.png" />
+                    </span>拉框放大</a>
+				</li>
+				<li>
+					<a href="#" title="点击后拉框即可缩小地图，再次点击后可退出" class="easyui-tooltip" id="zoomMin">
+						<span>
+                        <img src="../../images/nav_zoomout.png" />
+                    </span>拉框缩小</a>
+				</li>
+				<li>
+					<a href="#" title="点击按钮地图缩放到全局范围" class="easyui-tooltip" id="fullextent">
+						<span>
+                        <img src="../../images/nav_fullextent.png" />
+                    </span>全局</a>
+				</li>
+				<li>
+					<a href="#" title="点击按钮地图返回上一视图" class="easyui-tooltip" id="btnUndo">
+						<span>
+                        <img src="../../images/nav_previous.png" />
+                    </span>前一视图</a>
+				</li>
+				<li>
+					<a href="#" title="点击按钮地图返回下一视图" class="easyui-tooltip" id="btnRedo">
+						<span>
+                        <img src="../../images/nav_next.png" />
+                    </span>后一视图</a>
+				</li>
+				<li>
+					<a href="#" title="点击可进行地图拖拽" class="easyui-tooltip" id="Dragging">
+						<span>
+                        <img src="../../images/nav_pan.png" />
+                    </span>平移</a>
+				</li>
+				<li>
+					<a href="#" title="点击可进行距离测量,再次点击后停止距离测量" class="easyui-tooltip" id="distance">
+						<span>
+                        <img src="../../images/Measure_Distance.png" />
+                    </span>测距</a>
+				</li>
+				<li>
+					<a href="#" title="点击可进行面积测量,再次点击后停止面积测量" id="measureArea" class="easyui-tooltip">
+						<span>
+                        <img src="../../images/Measure_Area.png" />
+                    </span>测面
+					</a>
+				</li>
+			</ul>
+		</div>
+
+	</body>
+	<script src="../../js/mapTools.js"></script>
+	<script>
+		var map = new BMap.Map("allmap");
+		map.centerAndZoom(new BMap.Point(103.23, 35.33), 5);
+		map.enableScrollWheelZoom(true);
+		// 添加带有定位的导航控件
+		var navigationControl = new BMap.NavigationControl({
+			// 靠左上角位置
+			anchor: BMAP_ANCHOR_TOP_LEFT,
+			// LARGE类型
+			type: BMAP_NAVIGATION_CONTROL_LARGE,
+		});
+		map.addControl(navigationControl);
+		//获取覆盖物个数
+		var overlays = [];
+		// 添加带有定位的导航控件
+		var navigationControl = new BMap.NavigationControl({
+			// 靠左上角位置
+			anchor: BMAP_ANCHOR_TOP_LEFT,
+			// LARGE类型
+			type: BMAP_NAVIGATION_CONTROL_LARGE,
+			// 启用显示定位
+			// enableGeolocation: true
+		});
+		map.addControl(navigationControl);
+	</script>
+	<script>
+		window.onload = function() {
+			$("div.BMap_stdMpZoom").remove()
+		}
+		// 添加
+		 $('.add_list').click(function(){
+			$('#table_3').datagrid('insertRow',{
+			    index: 13,  // 索引从0开始
+				row: {
+				    productid: '河南省',
+				    listprice: '郑州',
+				    unitcost: '1级',
+				    attr1: '疲劳驾驶',
+				    status: '2017-11-4 10:12:11',
+				    status: '2017-11-4 10:12:11'
+				}       
+			});
+	    })	
+//		function add_window(w) {
+//			$(w).window('open');
+//		}
+		// 修改
+		function modify(t) {
+			var rowIndex = $(t).datagrid('getSelected');
+			if(rowIndex == null) {
+				$('#unselectTip').window('open');
+			} else if(rowIndex != null) {
+				$('#selectTip').window('open');
+			}
+		}
+	</script>
+
+</html>
