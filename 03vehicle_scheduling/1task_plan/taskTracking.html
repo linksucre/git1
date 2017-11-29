@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8 />
+		<title>任务跟踪</title>
+		 <link rel="import" href="../../public.html">
+	     <script type="text/javascript" src="../../js/loading.js"></script>
+		<script src="../../js/fenye.js"></script>
+		<style>
+     
+		</style>
+	</head>
+	<body class="easyui-layout" style="position: relative;">
+		<!--form表单及弹框-->
+		<div id='w1' class="easyui-window" closed='true' title="提示信息" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:120px;">
+			<div style="width:100%;box-sizing: border-box; padding: 5px 0 0 10px;">
+				您确认要删除记录吗？
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="submitForm1()">确定</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w1').window('close')">关闭</a>
+			</div>
+		</div>
+		 <div id='dlg1' class="easyui-window" closed='true' title="提示" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:300px;height:160px;">
+			<div style="margin-left:80px;margin-top:20px;"> 
+				<label style="margin-right:20px;"><input name="Fruit" type="radio" value="" />加急 </label>
+				<label><input name="Fruit" type="radio" value="" />普通 </label>
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 30px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#dlg1').window('close')">确定</a>
+				<a href="#" class="easyui-linkbutton" onclick="$('#dlg1').window('close')">关闭</a>
+			</div>
+		</div>
+			<div id='dlg2' class="easyui-window" closed='true' title="任务进度查看" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'" style="width:500px;height:400px;">
+			<div > 
+				<table border="0" cellspacing="0" cellpadding="0" class="table_mes" style="width: 100%;height:100%;">
+					<tr>
+						<td align="center"><img src="../../images/jindu.png" alt="" /></td>
+						
+					</tr>
+				</table>
+			</div>
+			<div style="width:100%; text-align: center;margin-top: 10px;">
+				<a href="#" class="easyui-linkbutton" onclick="$('#dlg2').window('close')">确定</a>
+				<a href="#" class="easyui-linkbutton" onclick="$('#dlg2').window('close')">关闭</a>
+			</div>
+		</div>
+
+		<div class="clear_box" style="padding: 5px; height:100%" class="datagrid-toolbar" style="width:100%;overflow: hidden;">
+			<div id="vblackdataTablesearch" style="padding: 5px;" align="left" class="datagrid-toolbar">
+		<table style="width: 100%;min-width: 1250px;margin: auto" id="genzongchong">
+			<tbody>
+				<tr>
+				<td width="200px">任务名称： <input type="text" name="taskName" id="taskName" class="easyui-validatebox textbox validatebox-text" style="width: 96px;height:20px;border-radius: 0px;">
+				</td>
+				<td width="200px">任务类型： 
+					<select id="taskType" class="easyui-combobox combobox-f combo-f" style="width: 100px; display: none;" editable="false" comboname="taskType">
+						<option value="" selected="selected">全部</option>
+						<option value="0">公车任务</option>
+						<option value="1">货车任务</option>
+						<option value="2">班车任务</option>
+						<option value="3">特殊车型任务</option>
+				</select>
+
+				</td>
+				<td width="200px">任务状态： <select id="taskStatus" class="easyui-combobox " style="width: 100px; display: none;" editable="false" comboname="taskStatus">
+						<option value="" selected="selected">全部</option>
+						<option value="1">新建</option>
+						<option value="11">部门审批中</option>
+						<option value="12">部门审批完成</option>
+						<option value="13">部门审批驳回</option>
+						<option value="2">已调派</option>
+						<option value="3">调派审批中</option>
+						<option value="4">调派审批完成</option>
+						<option value="10">调派审批驳回</option>
+						<!-- <option value="5">撤销审批中</option> -->
+						<option value="6">撤销</option>
+						<option value="7">通知派发</option>
+						<option value="8">任务进行中</option>
+						<option value="9">任务完成</option>
+				</select>
+				</td>
+				<td>申请日期： 
+					<input type="text" class="easyui-datebox datebox-f combo-f" id="startDate" editable="false" style="width: 100px; display: none;" comboname="startDate">
+					
+					到
+					<input type="text" class="easyui-datebox datebox-f combo-f" id="endDate" editable="false" style="width: 100px; display: none;" comboname="endDate">
+					
+				</td>
+			</tr>
+			<tr>
+				<td>优先级别： <select id="priorityLevel" class="easyui-combobox combobox-f combo-f" style="width: 100px; display: none;" editable="false" comboname="priorityLevel">
+						<option value="" selected="selected">全部</option>
+						<option value="1">普通</option><br />
+						<option value="2">加急</option>
+				</select>
+				</td>
+				<td>申请单位： 
+					 <input type="text" class="easyui-combotree" comboname="orgCode" style="width:100px;height:20px;border:1px solid #95b8e7;" data-options="url:'get_data.php',url:'../../json/alarmSwitchdanwei.json',method:'get'">
+					
+
+				</td>
+				<td align="left" width="800px" colspan="6">
+					<!--<table width="100%">
+						<tbody>
+							<tr>-->
+							<!--<td align="left">-->
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-search'"  onclick="refreshbtn('#gendingshitt')">查询</a>
+								<a class="easyui-linkbutton " data-options="iconCls:'icon-cz_reset'" onclick="clearSearch()">重置</a>
+							<!--</td>-->
+							<!--<td align="center">-->
+							
+							<a href="#" id="btnchangeLevel" style=" " class="easyui-linkbutton clear_btn" group="" onclick="getSelected(0);" data-options="iconCls:'icon-sum'">
+								级别调整
+							</a> 
+							<a href="#" id="btnConsolidation" style=" " class="easyui-linkbutton clear_btn" group="" onclick="getSelected(1);" data-options="iconCls:'icon-save'">
+								任务合并
+							</a> 
+							<a href="#" id="btnupdate" style=" " class="easyui-linkbutton clear_btn" group="" onclick="getSelected(2);" data-options="iconCls:'icon-edit'">
+								编辑任务
+							</a>
+							<a href="#" id="vblackdataTable_delbtn" style=" " class="easyui-linkbutton clear_btn" group="" onclick="getSelected(3);" data-options="iconCls:'icon-remove'">
+								删除任务
+							</a> 
+							<a href="#" id="btnUndo" style=" " class="easyui-linkbutton clear_btn"  onclick="getSelected(4);" data-options="iconCls:'icon-cz_reset'">
+								撤销任务
+							</a> 
+				</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+			<div style="width:100%;height:90%;">
+					
+			<table id="gendingshitt" class="easyui-datagrid" style="width:100%;height:90%" data-options="singleSelect:true,collapsible:true,rownumbers:true,pagination:true,pageList:[5,10,15,20],url:'../../json/renwugenzong.json',method:'get'">
+			</table>
+			</div>
+		</div>
+      <span id="task" style="display: none;">task</span>
+		<script>
+		//以下很长一段表格数据
+			$(function() {
+				$('#gendingshitt').datagrid({
+					fitColumns : "true",
+					iconCls: 'icon-edit',
+					singleSelect: true,
+					//				idField:'itemid',
+					columns: [
+						[{
+								field: 'taskId',
+								title: '任务编号',
+								width: 100,
+								align: 'center',
+								formatter: function(value, row, index) {
+//									console.log(value)
+									if(row.editing) {} else {
+										var e = '<a href="#" onclick="editrow(this)"  style="color: dodgerblue;">'+value+'</a> ';
+										return e;
+									}
+								}
+							},
+							{   
+								field: 'taskName',
+								title: '任务名称',
+								width: 200,
+								align: 'right',
+								editor: {
+									type: 'numberbox',
+									options: {
+										precision: 1
+									}
+								}
+							},
+							{
+								field: 'isLongDistance',
+								title: '任务类型',
+								width: 100,
+								align: 'right',
+								editor: 'numberbox'
+							},
+							{
+								field: 'taskStatusString',
+								title: '新建',
+								width: 100,
+								align: 'center',
+								formatter: function(value, row, index) {
+								if(row.editing) {} else {
+									var e = '<a href="#" onclick="editrow1(this)"  style="color: dodgerblue;">新建</a> ';
+									return e;
+								}
+							}
+							},
+							{
+								field: 'applyDate',
+								title: '申请日期',
+								width: 100,
+								editor: 'text'
+							},
+							{
+								field: 'priorityLevel',
+								title: '优先级别',
+								width: 100,
+								align: 'center',
+								editor: {
+									type: '操作',
+									options: {
+										on: 'P',
+										off: ''
+									}
+								}
+							},
+							{
+								field: 'applyOrgName',
+								title: '申请单位',
+								width: 200,
+								align: 'center',
+								editor: {
+									type: '操作',
+									options: {
+										on: 'P',
+										off: ''
+									}
+								}
+							},
+							{
+								field: 'useDate',
+								title: '用车时间',
+								width: 100,
+								align: 'center',
+								editor: {
+									type: '操作',
+									options: {
+										on: 'P',
+										off: ''
+									}
+								}
+							},
+							{
+								field: 'leaveAddress',
+								title: '出发地',
+								width: 150,
+								align: 'center',
+								editor: {
+									type: '操作',
+									options: {
+										on: 'P',
+										off: ''
+									}
+								}
+							},
+							{
+								field: 'arriveAddress',
+								title: '目的地',
+								width: 150,
+								align: 'center',
+								editor: {
+									type: '操作',
+									options: {
+										on: 'P',
+										off: ''
+									}
+								}
+							},
+							{
+								field: 'action',
+								title: '操作',
+								width: 100,
+								align: 'center',
+								formatter: function(value, row, index) {
+									if(row.editing) {
+										var s = '<a href="#" onclick="saverow(this)">Save</a> ';
+									
+										return s;
+									} else {
+										var e = '<a href="#" onclick="editrow2(this)" style="color:#0000EE">人车调派</a> ';
+									
+										return e ;
+									}
+								}
+							}
+						]
+					]
+				});
+			});
+
+			function updateActions(index) {
+				$('#gendingshitt').datagrid('updateRow', {
+					index: index,
+					row: {}
+				});
+			}
+
+			function getRowIndex(target) {
+				var tr = $(target).closest('tr.datagrid-row');
+				return parseInt(tr.attr('datagrid-row-index'));
+			}
+
+			function editrow(target) {
+			    var id = $('#task').html();
+			    var str = JSON.stringify(id);
+			    window.sessionStorage.setItem('name', str);
+				window.location.href = "../../vehicleScheduling/taskDetails.html";
+			}
+			function editrow1(target) {
+				$('#dlg2').window('open')
+			}
+			function editrow2(target) {
+				window.location.href = "../../car_send/not_dispat.html";
+			}
+			function deleterow(target) {
+				$.messager.confirm('Confirm', 'Are you sure?', function(r) {
+					if(r) {
+						$('#gendingshitt').datagrid('deleteRow', getRowIndex(target));
+					}
+				});
+			}
+
+			function saverow(target) {
+				$('#gendingshitt').datagrid('endEdit', getRowIndex(target));
+			}
+			function insert() {
+				prompt1a();
+			}
+			//		分页
+			var pager = $('#gendingshitt').datagrid().datagrid('getPager'); // get the pager of datagrid
+			pager.pagination({
+				buttons: [{
+					iconCls: 'icon-search',
+					handler: function() {
+						alert('search');
+					}
+				}, {
+					iconCls: 'icon-add',
+					handler: function() {
+						alert('add');
+					}
+				}, {
+					iconCls: 'icon-edit',
+					handler: function() {
+						alert('edit');
+					}
+				}]
+			});
+
+			function pagerFilter(data) {
+				if(typeof data.length == 'number' && typeof data.splice == 'function') { // is array  
+					data = {
+						total: data.length,
+						rows: data
+					}
+				}
+				var dg = $(this);
+				var opts = dg.datagrid('options');
+				var pager = dg.datagrid('getPager');
+				pager.pagination({
+					onSelectPage: function(pageNum, pageSize) {
+						opts.pageNumber = pageNum;
+						opts.pageSize = pageSize;
+						pager.pagination('refresh', {
+							pageNumber: pageNum,
+							pageSize: pageSize
+						});
+						dg.datagrid('loadData', data);
+					}
+				});
+				if(!data.originalRows) {
+					data.originalRows = (data.rows);
+				}
+				var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
+				var end = start + parseInt(opts.pageSize);
+				data.rows = (data.originalRows.slice(start, end));
+				return data;
+			}
+
+			$('#gendingshitt').datagrid({
+				loadFilter: pagerFilter
+			});
+			$("#genzongchaId").click(function(){
+						$("#gendingshitt").datagrid("reload");
+				
+			});
+			
+			
+				function submitForm1() {
+				//点击删除
+					deleteRows("#gendingshitt")
+					$('#w1').window('close');
+			}
+			//弹框
+			function confirm1(e) {
+				//如果选择了的话
+				if(e == 0){
+					$('#dlg1').window('open')
+				}else if(e == 1){
+					$.messager.confirm('提示信息', '请选择公车任务进行合并', function(r) {
+						if(r) {
+							return;
+						
+						}
+					});
+				}else if(e == 2){
+					$.messager.confirm('提示信息', '只能编辑申请人是自己的记录', function(r) {
+						if(r) {
+							return;
+						
+						}
+					});
+				}else if(e == 3){
+					$('#w1').window('open');
+				}else if(e == 4){
+					$.messager.confirm('提示信息', '您确认想要撤销此任务吗?', function(r) {
+						if(r) {
+							return;
+						
+						}
+					});
+				}
+				
+			}
+			function prompt1a(e) {
+				if(e== 0){
+					$.messager.confirm('提示信息', '请选择一条记录', function(r) {
+						if(r) {
+							return;
+						
+						}
+					});
+				}else if(e == 1){
+					$.messager.confirm('提示信息', '请选择两项以上的公车任务进行合并', function(r) {
+						if(r) {
+							return;
+						
+						}
+					});
+				}else if(e == 2){
+					$.messager.confirm('提示信息', '请选择一条记录', function(r) {
+						if(r) {
+							return;
+						
+						}
+					});
+				}else if(e == 3){
+					$.messager.confirm('提示信息', '请选择一条记录', function(r) {
+						if(r) {
+							return;
+						
+						}
+					});
+				}else if(e == 4){
+					$.messager.confirm('提示信息', '请选择一条记录', function(r) {
+						if(r) {
+							return;
+						
+						}
+					});
+				}
+				
+			};
+			function getSelected(e){
+				var row = $('#gendingshitt').datagrid('getSelected');
+						if (row == null){
+							prompt1a(e);
+			//				alert('Item ID:'+row.itemid+"\nPrice:"+row.listprice);
+						}else if(row != null){
+							confirm1(e);
+						}
+				}
+		</script>
+	</body>
+
+</html>

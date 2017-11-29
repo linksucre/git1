@@ -1,0 +1,163 @@
+[
+	{
+		"id": "449939441",
+		"text": "生产用车",
+		"attributes": {
+			"id": "449939441",
+			"templateType": 1,
+			"text": "生产用车",
+			"taskStatus": "12",
+			"taskType": 0
+		}
+	}, {
+		"id": "-1351793526",
+		"text": "申请去H26井取资料",
+		"attributes": {
+			"id": "-1351793526",
+			"templateType": 2,
+			"text": "申请去H26井取资料",
+			"taskStatus": "1",
+			"taskType": 0
+		}
+	}, {
+		"id": "-847935546",
+		"text": "新疆事业部申请到采油四厂",
+		"attributes": {
+			"id": "-847935546",
+			"templateType": 2,
+			"text": "新疆事业部申请到采油四厂",
+			"taskStatus": "1",
+			"taskType": 0
+		}
+	}, {
+		"id": "1971141990",
+		"text": "申请到磨溪008-18-X1井",
+		"attributes": {
+			"id": "1971141990",
+			"templateType": 2,
+			"text": "申请到磨溪008-18-X1井",
+			"taskStatus": "1",
+			"taskType": 1
+		}
+	}, {
+		"id": "449936039",
+		"text": "生产用车",
+		"attributes": {
+			"id": "449936039",
+			"templateType": 2,
+			"text": "生产用车",
+			"taskStatus": "1",
+			"taskType": 1
+		}
+	}, {
+		"id": "-796248509",
+		"text": "排烟机运输",
+		"attributes": {
+			"id": "-796248509",
+			"templateType": 2,
+			"text": "排烟机运输",
+			"taskStatus": "1",
+			"taskType": 1
+		}
+	}, {
+		"id": "449936035",
+		"text": "生产",
+		"attributes": {
+			"id": "449936035",
+			"templateType": 2,
+			"text": "生产",
+			"taskStatus": "1",
+			"taskType": 1
+		}
+	}, {
+		"id": "449936033",
+		"text": "辽阳石化演示申请到和布克赛尔",
+		"attributes": {
+			"id": "449936033",
+			"templateType": 1,
+			"text": "辽阳石化演示申请到和布克赛尔",
+			"taskStatus": "12",
+			"taskType": 0
+		}
+	}, {
+		"id": "449871353",
+		"text": "新疆油田演示申请到和布克赛尔",
+		"attributes": {
+			"id": "449871353",
+			"templateType": 1,
+			"text": "新疆油田演示申请到和布克赛尔",
+			"taskStatus": "12",
+			"taskType": 0
+		}
+	}, {
+		"id": "449871359",
+		"text": "校验测量仪器",
+		"attributes": {
+			"id": "449871359",
+			"templateType": 1,
+			"text": "校验测量仪器",
+			"taskStatus": "12",
+			"taskType": 0
+		}
+	}, {
+		"id": "449871355",
+		"text": "新疆油田演示申请到福海",
+		"attributes": {
+			"id": "449871355",
+			"templateType": 1,
+			"text": "新疆油田演示申请到福海",
+			"taskStatus": "12",
+			"taskType": 0
+		}
+	}, {
+		"id": "449950289",
+		"text": "黑龙江分公司申请到咸阳高速堵车点",
+		"attributes": {
+			"id": "449950289",
+			"templateType": 1,
+			"text": "黑龙江分公司申请到咸阳高速堵车点",
+			"taskStatus": "12",
+			"taskType": 0
+		}
+	}, {
+		"id": "449872730",
+		"text": "机场接人",
+		"attributes": {
+			"id": "449872730",
+			"templateType": 1,
+			"text": "机场接人",
+			"taskStatus": "12",
+			"taskType": 0
+		}
+	}, {
+		"id": "-796248516",
+		"text": "废料运输",
+		"attributes": {
+			"id": "-796248516",
+			"templateType": 2,
+			"text": "废料运输",
+			"taskStatus": "1",
+			"taskType": 1
+		}
+	}, {
+		"id": "-1351793525",
+		"text": "油料运输",
+		"attributes": {
+			"id": "-1351793525",
+			"templateType": 2,
+			"text": "油料运输",
+			"taskStatus": "1",
+			"taskType": 1
+		}
+	}, {
+		"id": "-1353823266",
+		"text": "去复印社取资料",
+		"attributes": {
+			"id": "-1353823266",
+			"templateType": 2,
+			"text": "去复印社取资料",
+			"taskStatus": "1",
+			"taskType": 0
+		}
+	}
+]

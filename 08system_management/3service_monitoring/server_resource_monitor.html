@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html style="width:100%;height:100%;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>服务器资源监控</title>
+    <!-- 引入EasyUI的样式文件-->
+    <link rel="import" href="../../public.html">
+    <script src="https://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+    <script type="text/javascript" src="../../js/loading.js"></script>
+</head>
+
+<body style="width:100%;height:100%;margin:0;padding:0;" class="easyui-layout" id="fenxianyujing">
+    <!--form表单及弹框-->
+    <div id='w3' class="easyui-window" closed='true' title="新增服务器" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:400px;height:263px;overflow: hidden;">
+        <div style="width: 296px; height: 147px; padding: 10px;" title="新增服务器" class="panel-body panel-body-noheader panel-body-noborder dialog-content">
+            <table style="width: 100%;height: 100%;">
+                <tbody>
+                    <tr>
+                        <td>服务器IP：</td>
+                        <td>
+                            <input type="text" name="procName" id="procName" style="width:150px;" maxlength="15" class="easyui-validatebox textbox validatebox-text validatebox-invalid"
+                                data-options="required:true" title="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>服务器名称：</td>
+                        <td>
+                            <input type="text" name="className" id="className" style="width:150px;" maxlength="100" class="easyui-validatebox textbox validatebox-text validatebox-invalid"
+                                data-options="required:false" title="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>服务器端口：</td>
+                        <td>
+                            <input type="text" name="serversIp" id="serversIp" style="width:150px;" maxlength="15" class="easyui-validatebox textbox validatebox-text validatebox-invalid"
+                                data-options="required:true,validType:['ip']" title="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>服务器用户名：</td>
+                        <td>
+                            <input type="text" name="serversUsername" id="serversUsername" style="width:150px;" maxlength="15" class="easyui-validatebox textbox validatebox-text validatebox-invalid"
+                                data-options="required:true" title="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>服务器密码：</td>
+                        <td>
+                            <input type="password" name="serversPassword" id="serversPassword" style="width:150px;" maxlength="15" class="easyui-validatebox textbox validatebox-text validatebox-invalid"
+                                data-options="required:true" title="">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="width:100%; text-align: center;margin-top: 10px;">
+            <a href="#" class="easyui-linkbutton" onclick="submitForm()">保存</a>
+            <a href="#" class="easyui-linkbutton" onclick="$('#w3').window('close')">关闭</a>
+        </div>
+    </div>
+    <div id='dlg1' class="easyui-window" closed='true' title="进程服务修改" data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-save'"
+        style="width:340px;height:240px;overflow: hidden;">
+        <div class="message" style="padding: 10px;height:50%;">
+
+            <input type="hidden" id="couresId_upd" value="1911717935">
+            <table style="width: 100%">
+                <tbody>
+                    <tr>
+                        <td>进程服务名：</td>
+                        <td>
+                            <input type="text" name="procName" id="procName_upd" style="width:150px;" maxlength="15" class="easyui-validatebox textbox validatebox-text"
+                                data-options="required:true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>全类名：</td>
+                        <td>
+                            <input type="text" name="className" id="className_upd" style="width:150px;" maxlength="100" class="easyui-validatebox textbox validatebox-text"
+                                data-options="required:true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>服务器IP：</td>
+                        <td>
+                            <input type="text" name="serversIp" id="serversIp_upd" style="width:150px;" maxlength="15" class="easyui-validatebox textbox validatebox-text"
+                                data-options="required:true,validType:['ip']">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>服务器用户名：</td>
+                        <td>
+                            <input type="text" name="serversUsername" id="serversUsername_upd" style="width:150px;" maxlength="15" class="easyui-validatebox textbox validatebox-text"
+                                data-options="required:true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>服务器密码：</td>
+                        <td>
+                            <input type="password" name="serversPassword" id="serversPassword_upd" style="width:150px;" maxlength="15" class="easyui-validatebox textbox validatebox-text"
+                                data-options="required:true">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="width:100%; text-align: center;margin-top: 10px;">
+            <a href="#" class="easyui-linkbutton delList" onclick="$('#dlg1').window('close')">确定</a>
+            <a href="#" class="easyui-linkbutton" onclick="$('#dlg1').window('close')">关闭</a>
+        </div>
+    </div>
+
+    </div>
+    <div class="easyui-layout" style="width:100%;height:100%;">
+        <div data-options="region:'west',split:true" title="服务器ip" style="width: 330px;overflow: hidden;">
+            <div id="addCourToolbar" style="padding: 5px; height: auto;overflow: hidden;" data-options="fit:true,fitColumns:true" class="datagrid-toolbar">
+                <input type="hidden" id="searchProcButt" value=""> 服务器名称：
+                <input type="text" id="searchProc" class="easyui-validatebox textbox validatebox-text" style="width:90px;border-radius: 0px;">
+
+                <a class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="refreshbtn('#sanjiaoTable2')" style="margin:0;">查询</a>
+                <a id="cour_add_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="margin:0;">添加</a>
+            </div>
+            <table id="sanjiaoTable2" class="easyui-datagrid" style="width:320px;height:100%;padding: 0;margin:0;" data-options="rownumbers:true,singleSelect:true,url:'../../json/jinchengfuwu.json',method:'get'">
+                <thead>
+                    <tr>
+                        <th data-options="field:'couresName',width:100,align:'center'">服务器名称</th>
+                        <th data-options="field:'serviceIp',width:100,align: 'center'">服务器IP</th>
+                        <th data-options="field:'action',formatter:myFormatter_mouth0,width:100,align: 'center'">操作</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div data-options="region:'center',title:'服务器数据表'" style="overflow: hidden;width:100%;height:100%;margin-top:100px;">
+            <div id="main2" style="width:45%;height:75%;display:inline-block"></div>
+            <div id="main3" style="width:45%;height:75%;display:inline-block"></div>
+            <div style="width:75%;height:30%;">
+                <table id="dg1" class="easyui-datagrid" style="width:100%;height:100px" data-options="singleSelect:true,url:'../../json/jincheng_jiankong1.json',method:'get'">
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function myFormatter_mouth0(value, row, index) {
+        var s = "<a href='#' class='a_text' onclick='deleterow(this)' style='color:blue;margin-right:5px;'>删除</a>";
+        var c = "<a href='#' onclick='editrow1(this)' style='color:blue;margin-right:5px;'>修改</a>";
+        return s + c;
+    }
+
+
+    function editrow1(target) {
+        $('#dlg1').window('open');
+    }
+
+    function getRowIndex(target) {
+        var tr = $(target).closest('tr.datagrid-row');
+        return parseInt(tr.attr('datagrid-row-index'));
+    }
+
+    function deleterow(target) {
+        $.messager.confirm('Confirm', '是否删除?', function (r) {
+            if (r) {
+                $('#sanjiaoTable2').datagrid('deleteRow', getRowIndex(target));
+            }
+        });
+    }
+
+    var chart;
+    $(function () {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'main2', //图表放置的容器，DIV 
+                defaultSeriesType: 'spline', //图表类型为曲线图 
+                events: {
+                    load: function () {
+                        var series = this.series[0];
+                        //每隔5秒钟，图表更新一次，y数据值在0-100之间的随机数 
+                        setInterval(function () {
+                                var x = (new Date()).getTime(), // 当前时间 
+                                    y = Math.random() * 100;
+                                series.addPoint([x, y], true, true);
+                            },
+                            5000);
+                    }
+                }
+            },
+            title: {
+                text: 'CPU曲线图' //图表标题 
+            },
+            xAxis: { //设置X轴 
+                title: {
+                    text: 'CPU使用率'
+                },
+                type: 'datetime', //X轴为日期时间类型 
+                tickPixelInterval: 150, //X轴标签间隔 
+                gridLineColor: '#197F07', //横向网格线颜色
+                gridLineDashStyle: 'longdash', //横向网格线样式
+                gridLineWidth: 1, //横向网格线宽度
+                minorGridLineDashStyle: 'longdash',
+                minorTickInterval: 'auto',
+                minorTickWidth: 0
+            },
+            yAxis: { //设置Y轴 
+                title: {
+                    text: 'CPU使用率(%)'
+                },
+                max: 50, //Y轴最大值 
+                min: 0, //Y轴最小值 					
+                gridLineColor: '#197F07', //纵向网格线颜色
+                gridLineDashStyle: 'longdash', //横向网格线样式
+                gridLineWidth: 1, //纵向网格线宽度
+                minorGridLineDashStyle: 'longdash',
+                minorTickInterval: 'auto',
+                minorTickWidth: 0
+            },
+            tooltip: { //当鼠标悬置数据点时的提示框 
+                formatter: function () { //格式化提示信息 
+                    return 'CPU使用率' +
+                        Highcharts.dateFormat('%H:%M:%S', this.x) + '' +
+                        Highcharts.numberFormat(this.y, 2) + '%';
+                }
+            },
+            legend: {
+                enabled: false //设置图例不可见 
+            },
+            exporting: {
+                enabled: false //设置导出按钮不可用 
+            },
+
+            series: [{
+                name: 'CPU使用率',
+                data: (function () { //设置默认数据， 
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+                    for (i = -19; i <= 0; i++) {
+                        data.push({
+                            x: time + i * 5,
+                            y: Math.random() * 100
+                        });
+                    }
+                    return data;
+                })()
+            }]
+        });
+    });
+    $(function () {
+       var chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'main3', //图表放置的容器，DIV 
+                defaultSeriesType: 'spline', //图表类型为曲线图 
+                events: {
+                    load: function () {
+                        var series = this.series[0];
+                        //每隔5秒钟，图表更新一次，y数据值在0-100之间的随机数 
+                        setInterval(function () {
+                                var x = (new Date()).getTime(), // 当前时间 
+                                    y = Math.random() * 100;
+                                series.addPoint([x, y], true, true);
+                            },
+                            5000);
+                    }
+                }
+            },
+            title: {
+                text: '内存曲线图' //图表标题 
+            },
+            xAxis: { //设置X轴 
+                title: {
+                    text: '内存使用率'
+                },
+                type: 'datetime', //X轴为日期时间类型 
+                tickPixelInterval: 150, //X轴标签间隔 
+                gridLineColor: '#197F07', //横向网格线颜色
+                gridLineDashStyle: 'longdash', //横向网格线样式
+                gridLineWidth: 1, //横向网格线宽度
+                minorGridLineDashStyle: 'longdash',
+                minorTickInterval: 'auto',
+                minorTickWidth: 0
+            },
+            yAxis: { //设置Y轴 
+                title: {
+                    text: '内存使用率(%)'
+                },
+                max: 60, //Y轴最大值 
+                min: 0, //Y轴最小值 					
+                gridLineColor: '#197F07', //纵向网格线颜色
+                gridLineDashStyle: 'longdash', //横向网格线样式
+                gridLineWidth: 1, //纵向网格线宽度
+                minorGridLineDashStyle: 'longdash',
+                minorTickInterval: 'auto',
+                minorTickWidth: 0
+            },
+            tooltip: { //当鼠标悬置数据点时的提示框 
+                formatter: function () { //格式化提示信息 
+                    return '内存使用率' +
+                        Highcharts.dateFormat('%H:%M:%S', this.x) + '' +
+                        Highcharts.numberFormat(this.y, 2) + '%';
+                }
+            },
+            legend: {
+                enabled: false //设置图例不可见 
+            },
+            exporting: {
+                enabled: false //设置导出按钮不可用 
+            },
+
+            series: [{
+                name: '内存使用率',
+                data: (function () { //设置默认数据， 
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+                    for (i = -19; i <= 0; i++) {
+                        data.push({
+                            x: time + i * 5,
+                            y: Math.random() * 100
+                        });
+                    }
+                    return data;
+                })()
+            }]
+        });
+    });
+    // 基于准备好的dom，初始化echarts实例 day
+    //进度条
+    function progressFormatter(value, row, index) {
+        htmlstr = '<div class="easyui-progressbar progressbar easyui-fluid" style="width: 100%; height: 20px;">' +
+            '<div class="progressbar-value" style="width: 100%; height: 20px; line-height: 20px;"> ' +
+            '<div class="progressbar-text" style="width: ' + value + '; height: 20px; line-height: 20px;">' + value +
+            '</div>' +
+            '</div>' +
+            '</div>';
+        return htmlstr;
+    }
+    $('#dg1').datagrid({
+        idField: 'itemid',
+        fitColumns:true,
+        columns: [
+            [{
+                    field: 'couresName',
+                    title: '服务器名称',
+                    width: 180,
+                    align:'center',
+                },
+
+                {
+                    field: 'cpu',
+                    title: 'cpu使用率',
+                    width: 220,
+                    align:'center',
+                    formatter: progressFormatter
+                },
+                {
+                    field: 'memory',
+                    title: '内存使用率',
+                    width: 220,
+                    align:'center',
+                    formatter: progressFormatter
+                },
+                {
+                    field: 'status',
+                    title: '硬盘使用率',
+                    width: 220,
+                    align:'center'
+                }
+
+            ]
+        ]
+    });
+    //点击添加出来弹框
+    $("#cour_add_btn").click(function () {
+        prompt1a()
+    })
+    //点击添加行
+    function submitForm() {
+        $('#w3').window('close')
+        $('#sanjiaoTable2').datagrid('insertRow', {
+            index: 10, // 索引从0开始
+            row: {
+                couresName: '终端接入服务181',
+                status: '运行',
+                action: '删除'
+            }
+        });
+    }
+
+    function closeForm() {
+        $('#w3').window('close')
+    }
+
+    function prompt1a() {
+        $('#w3').window('open')
+    };
+</script>
+
+</html>

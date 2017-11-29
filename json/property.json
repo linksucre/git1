@@ -1,0 +1,630 @@
+[
+	{
+		"id": 11,
+		"text": "车辆监控",
+		"state": "closed",
+		"children": [
+			{
+				"id": 111,
+				"text": "实时监控",
+				"children":[
+				    {
+							"id": 1121,
+							"text": "报警记录"
+					  }
+				],
+				"checked":"true",
+				"state":"closed"
+			}, {
+				"id": 112,
+				"text": "重点关注",
+				"children":[
+				    {
+							"id": 1121,
+							"text": "报警记录"
+					  }
+				],
+				"checked":"true",
+				"state":"closed"
+			}, {
+				"id": 113,
+				"text": "违规报警",
+				"children": [
+				   {
+							"id": 1121,
+							"text": "报警记录"
+					},
+				   {
+							"id": 1122,
+							"text": "预警记录"
+					}
+				],
+				"checked":"true",
+				"state":"closed"
+			}, {
+				"id": 114,
+				"text": "指令交互",
+				"children": [
+				   {
+							"id": 1141,
+							"text": "指令管理"
+					},
+				   {
+							"id": 1142,
+							"text": "短信下发"
+					},
+				   {
+							"id": 1142,
+							"text": "定时拍照"
+					},
+				   {
+							"id": 1142,
+							"text": "定时监听"
+					},
+				   {
+							"id": 1142,
+							"text": "监听记录"
+					},
+				   {
+							"id": 1142,
+							"text": "交互记录"
+					},
+				   {
+							"id": 1142,
+							"text": "定时点名"
+					},
+				   {
+							"id": 1142,
+							"text": "车辆点名"
+					},
+				   {
+							"id": 1142,
+							"text": "点名记录"
+					},
+				   {
+							"id": 1142,
+							"text": "状态监测"
+					},
+				   {
+							"id": 1142,
+							"text": "记录仪采集"
+					}
+				],
+				"checked":"true",
+				"state":"closed"
+			}, {
+				"id": 115,
+				"text": "监控管理",
+				"children": [
+				   {
+							"id": 1121,
+							"text": "照片管理"
+					},
+				   {
+							"id": 1122,
+							"text": "音频管理"
+					},
+				   {
+							"id": 1122,
+							"text": "黑名单管理"
+					}
+				],
+				"checked":"true",
+				"state":"closed"
+			},{
+				"id": 116,
+				"text": "行驶记录",
+				"children": [
+				   {
+							"id": 1121,
+							"text": "多屏监控"
+					},
+				   {
+							"id": 1122,
+							"text": "轨迹播放"
+					}
+				],
+				"checked":"true",
+				"state":"closed"
+			}
+		]
+	}, {
+		"id": 12,
+		"text": "安全管理",
+		"children": [
+			{
+				"id": 121,
+				"text": "风险预警",
+				"children": [
+				   {
+							"id": 1121,
+							"text": "风险预警"
+					},
+				   {
+							"id": 1122,
+							"text": "危险驾驶预警"
+					},
+				   {
+							"id": 1122,
+							"text": "预警发送记录"
+					}
+				],
+				"checked":"true",
+				"state":"closed"
+			},
+			{
+				"id": 121,
+				"text": "违规管理",
+				"children": [
+				   {
+							"id": 1121,
+							"text": "违规信息首页"
+					},
+				   {
+							"id": 1122,
+							"text": "违规信息管理"
+					}
+				],
+				"checked":"true",
+				"state":"closed"
+			},
+			{
+				"id": 121,
+				"text": "违章管理",
+				"children": [
+				   {
+							"id": 1121,
+							"text": "违章信息首页"
+					},
+				   {
+							"id": 1122,
+							"text": "违章信息管理"
+					}
+				],
+				"checked":"true",
+				"state":"closed"
+			},
+			{
+				"id": 121,
+				"text": "事故管理",
+				"children": [
+				   {
+							"id": 1121,
+							"text": "事故信息首页"
+					},
+				   {
+							"id": 1122,
+							"text": "事故信息管理"
+					}
+				],
+				"checked":"true",
+				"state":"closed"
+			},
+			{
+				"id": 121,
+				"text": "安全管理",
+				"children": [
+				   {
+							"id": 1121,
+							"text": "驾驶员安全统计"
+					},
+				   {
+							"id": 1122,
+							"text": "单位安全统计"
+					},
+				   {
+							"id": 1122,
+							"text": "资质管理"
+					},
+				   {
+							"id": 1122,
+							"text": "假日管理"
+					},
+				   {
+							"id": 1122,
+							"text": "三交一封管理"
+					},
+				   {
+							"id": 1122,
+							"text": "驾驶员流动率"
+					},
+				   {
+							"id": 1122,
+							"text": "单位安全等级评定"
+					},
+				   {
+							"id": 1122,
+							"text": "驾驶行为分析"
+					},
+				   {
+							"id": 1122,
+							"text": "业务提醒记录"
+					},
+				   {
+							"id": 1122,
+							"text": "驾驶员安全等级评定"
+					}
+				],
+				"checked":"true",
+				"state":"closed"
+			}
+		],
+		"checked":"true",
+		"state":"closed"
+	}, {
+		"id": 13,
+		"text": "车辆调度",
+		"children": [
+				   {
+							"id": 1121,
+							"text": "任务计划",
+							"children": [
+						   		{
+									"id": 1121,
+									"text": "公务用车申请"
+									},
+								   {
+											"id": 1122,
+											"text": "生产用车申请"
+									},
+								   {
+											"id": 1122,
+											"text": "班车计划制定"
+									},
+								   {
+											"id": 1122,
+											"text": "任务管理"
+									},
+								   {
+											"id": 1122,
+											"text": "任务计划导入"
+									}
+								],
+						"checked":"true",
+						"state":"closed"
+					},
+				   {
+							"id": 1122,
+							"text": "运能运力分析",
+							"children": [
+						   		{
+									"id": 1121,
+									"text": "运能运力查询"
+									},
+								   {
+											"id": 1122,
+											"text": "效率分析"
+									}
+								],
+						"checked":"true",
+						"state":"closed"
+					},
+				   {
+							"id": 1122,
+							"text": "路线管理",
+							"children": [
+						   		{
+									"id": 1121,
+									"text": "路线管理"
+									}
+								],
+						"checked":"true",
+						"state":"closed"
+					},
+				   {
+							"id": 1122,
+							"text": "车辆调派",
+							"children": [
+						   		{
+									"id": 1121,
+									"text": "未调派"
+									},
+								   {
+											"id": 1122,
+											"text": "调派审批列表"
+									}
+								],
+						"checked":"true",
+						"state":"closed"
+					},
+				   {
+							"id": 1122,
+							"text": "油耗管理",
+							"children": [
+						   		{
+									"id": 1121,
+									"text": "车辆油耗监测"
+									},
+								   {
+											"id": 1122,
+											"text": "任务油耗监测"
+									}
+								],
+						"checked":"true",
+						"state":"closed"
+					},
+				   {
+							"id": 1122,
+							"text": "任务统计",
+							"children": [
+						   		{
+									"id": 1121,
+									"text": "单位任务计划"
+									},
+								   {
+											"id": 1122,
+											"text": "单车任务统计"
+									}
+								],
+						"checked":"true",
+						"state":"closed"
+					}
+				],
+				"checked":"true",
+				"state":"closed"
+	}, {
+		"id": 14,
+		"text": "综合服务",
+		"children": [
+						   		{
+									"id": 1121,
+									"text": "信息服务",
+									"children": [
+									   		{
+												"id": 1121,
+												"text": "信息综合"
+												}
+											],
+									"checked":"true",
+									"state":"closed"
+									},
+								   {
+											"id": 1122,
+											"text": "接入服务",
+											"children": [
+											   		{
+														"id": 1121,
+														"text": "业务平台接入"
+														},
+													   {
+																"id": 1122,
+																"text": "连接状态监控"
+														},
+													   {
+																"id": 1122,
+																"text": "数据支撑服务"
+														}
+													],
+											"checked":"true",
+											"state":"closed"
+														}
+													],
+											"checked":"true",
+											"state":"closed"
+	}, {
+		"id": 15,
+		"text": "监管服务",
+		"children": [
+		   		{
+					"id": 1121,
+					"text": "监管服务平台",
+					"children": [
+					   		{
+								"id": 1121,
+								"text": "平台管理"
+								},
+							   {
+										"id": 1122,
+										"text": "监管巡查"
+								},
+							   {
+										"id": 1122,
+										"text": "数据上报记录"
+								},
+							   {
+										"id": 1122,
+										"text": "指令交互记录"
+								},
+							   {
+										"id": 1122,
+										"text": "报警督办"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					}
+				],
+		"checked":"true",
+		"state":"closed"
+	}, {
+		"id": 16,
+		"text": "综合分析",
+		"children": [
+		   		{
+					"id": 1121,
+					"text": "安全类统计报表",
+					"children": [
+					   		{
+								"id": 1121,
+								"text": "事故分析统计"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					},
+				   {
+							"id": 1122,
+							"text": "调度类统计报表",
+							"children": [
+					   		{
+								"id": 1121,
+								"text": "车辆调派汇总统计"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					},
+				   {
+							"id": 1122,
+							"text": "监控类统计报表",
+							"children": [
+					   		{
+								"id": 1121,
+								"text": "车辆监控信息汇总统计"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					},
+				   {
+							"id": 1122,
+							"text": "监管服务统计报表",
+							"children": [
+					   		{
+								"id": 1121,
+								"text": "监管数据汇总统计"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					},
+				   {
+							"id": 1122,
+							"text": "车辆安全综合展示",
+							"children": [
+					   		{
+								"id": 1121,
+								"text": "警情统计"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					},
+				   {
+							"id": 1122,
+							"text": "车辆运行综合展示",
+							"children": [
+					   		{
+								"id": 1121,
+								"text": "实时车辆在线统计"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					},
+				   {
+							"id": 1122,
+							"text": "人员状况综合展示",
+							"children": [
+					   		{
+								"id": 1121,
+								"text": "驾驶员数量统计"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					},
+				   {
+							"id": 1122,
+							"text": "运输公司统计报表",
+							"children": [
+					   		{
+								"id": 1121,
+								"text": "车辆超速报警明细表"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					}
+				],
+		"checked":"true",
+		"state":"closed"
+	}, {
+		"id": 17,
+		"text": "业务管理",
+		"children": [
+		   		{
+					"id": 1121,
+					"text": "业务数据管理",
+					"children": [
+					   		{
+								"id": 1121,
+								"text": "终端类型管理"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					},
+		   		{
+					"id": 1121,
+					"text": "消息订阅管理",
+					"children": [
+					   		{
+								"id": 1121,
+								"text": "查看个人订阅"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					},
+		   		{
+					"id": 1121,
+					"text": "报警参数管理",
+					"children": [
+					   		{
+								"id": 1121,
+								"text": "超速预警"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					}
+				],
+		"checked":"true",
+		"state":"closed"
+	}, {
+		"id": 17,
+		"text": "系统管理",
+		"children": [
+		   		{
+					"id": 1121,
+					"text": "系统管理",
+					"children": [
+					   		{
+								"id": 1121,
+								"text": "用户管理"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					},
+		   		{
+					"id": 1121,
+					"text": "日志管理",
+					"children": [
+					   		{
+								"id": 1121,
+								"text": "系统日志"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					},
+		   		{
+					"id": 1121,
+					"text": "服务监控",
+					"children": [
+					   		{
+								"id": 1121,
+								"text": "服务监控主页"
+								}
+							],
+					"checked":"true",
+					"state":"closed"
+					}
+				],
+		"checked":"true",
+		"state":"closed"
+	}
+]
+
