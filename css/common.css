@@ -1,0 +1,19 @@
+ul{padding: 0;}
+h1{padding: 0; margin: 0;}
+html,body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,th,td,form,fieldset,legend,input,img{margin:0;padding:0;}
+h1,h2,h3,h4,h5,h6,b,strong{font-weight:normal;}
+i,em{font-style:normal;}
+a{text-decoration:none;}
+ul,ol,li{list-style:none!important;}
+.left{float:left;}
+.right{float:right;}
+.p_0{ padding: 0!important;  }
+.m_0{ margin: 0!important;  }
+.pt_0{ padding-top: 0!important;  }
+.pb_0{ padding-bottom: 0!important;  }
+.pl_0{ padding-left: 0!important;  }
+.pr_0{ padding-right: 0!important;  }
+.mt_0{margin-top: 10px!important;}
+.mb_0{margin-bottom: 20px!important;}
+
+

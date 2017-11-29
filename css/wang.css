@@ -1,0 +1,89 @@
+.btn-color{
+	background: #075EA2;
+	color:#FFFFFF;
+	
+}
+/*媒体查询*/
+/*综合分析*/
+@media screen and (max-width: 1920px) {
+    #main6,#main7,#main8,#main9,#main10,#main11,#mainLeft{
+				width: 90%;
+				height: 600px;
+			}
+}
+@media screen and (max-width: 1600px) {
+   #main6,#main7,#main8,#main9,#main10,#main11,#mainLeft{
+				width: 90%;
+				height:400px;
+			}
+}
+@media screen and (max-width: 1366px) {
+    #main6,#main7,#main8,#main9,#main10,#main11,#mainLeft{
+				width:80%;
+				height:360px;
+			}
+}
+/*安全管控*/
+@media screen and (max-width: 1920px) {
+    #main01,#main02,#main03,#main04,#main05,#anquanEarch-day,#anquanEarch-month,#anquanEarch-year{
+				width:1500px;
+				height: 600px;
+			}
+}
+@media screen and (max-width: 1600px) {
+    #main01,#main02,#main03,#main04,#main05,#anquanEarch-day,#anquanEarch-month,#anquanEarch-year{
+				width: 1200px;
+				height:400px;
+			}
+}
+@media screen and (max-width: 1440px) {
+  #main01,#main02,#main03,#main04,#main05,#anquanEarch-day,#anquanEarch-month,#anquanEarch-year{
+				width: 1100px;
+				height:400px;
+			}
+}
+@media screen and (max-width: 1366px) {
+   #main01,#main02,#main03,#main04,#main05,#anquanEarch-day,#anquanEarch-month,#anquanEarch-year{
+				width: 1000px;
+				height:380px;
+		}
+}
+/*监管服务*/
+@media screen and (max-width: 1920px) {
+    #main,#map1{
+			width: 100%;
+			height: 800px;
+		}
+}
+@media screen and (max-width: 1600px) {
+    #main,#map1{
+				width: 100%;
+				height:600px;
+			}
+}
+@media screen and (max-width: 1366px) {
+     #main,#map1{
+			width: 90%;
+			height:500px;
+		}
+}
+
+	/*单位下拉框树状图样式*/
+.search{
+		height: 13px;
+		width:210px;
+		display: inline-block;
+		position: relative;
+		padding-bottom: 10px;
+	}
+.qingchu{
+		width: 16px;
+	    height: 21px;
+	    top: 0;
+	    right: 15px;
+	    background: url(../images/panel_tools.png) no-repeat;
+	    background-size:48px 32px;
+		background-position: -16px 3px;
+		display: none;	
+		position: absolute;
+}
